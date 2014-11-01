@@ -1,0 +1,51 @@
+
+/*Center Horizontally*/
+.horizontal_center {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+/*Temporary CSS class for applying color to a div*/
+.temp {
+	background-color: red
+}
+
+/*Options container for 
+Play ToT, Upcoming Holidays, Favs*/
+/*Apply table attribute*/
+#options_container, .table {
+	display: table;
+}
+
+/*Apply table-row for row attribute*/
+.row {
+	display: table-row;
+}
+
+/*Apply table-cell for column attribute*/
+.column {
+	display: table-cell;
+}
+
+/*Apply padding to columns right of column1*/
+.rightcolumn {
+	padding-left: 10px;
+}
+
+/*Vertical Align*/
+#valign_container {
+	position:relatve;
+}
+#or {
+	position: absolute;
+	top: 50%;
+	margin-top: -1em;
+}
+
+/*Styling for the selection text */
+#selectionA, #selectionB {
+	color: white;
+}
+
+
