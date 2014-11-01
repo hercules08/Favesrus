@@ -11,6 +11,7 @@ $.ui.animateHeaders = false;
 $.ui.useOSThemes = false;
 
 /*
+TEMPLATE
 Function: functionName()
 Parameter: parameterName is the 
 Description:
