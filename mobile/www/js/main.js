@@ -100,8 +100,8 @@ function userLogin(option) {
 }
 
 
-function updateFavDetails(data) {
-
+function updateFavDetails(data, name) {
+	$("#fav_name").html(name);
 }
 
 /*
@@ -116,27 +116,27 @@ function loadjsonData(){
 	$.getJSON("http://71.237.221.15/giftly/api/user/1", function(data) {
 		console.log(data);
 		//Load the user name in Header
-		$("#username").text("Hi "+data.FirstName+" "+data.LastName+"!");
+		$("#username").html("Hi "+data.FirstName+"!");
 		//Load images to the Favs section
 		$("#person1").attr("src",data.Favs[0].Pic);
 		$("#person1").click(function () {
 			$.ui.loadContent("#favs_details_page", false, false, "fade");
-			updateFavDetails(data);
+			updateFavDetails(data, data.Favs[0].FirstName+" "+data.Favs[1].LastName);
 		});
 		$("#person2").attr("src",data.Favs[1].Pic);
 		$("#person2").click(function () {
 			$.ui.loadContent("#favs_details_page", false, false, "fade");
-			updateFavDetails(data);
+			updateFavDetails(data, data.Favs[0].FirstName+" "+data.Favs[1].LastName);
 		});
 		$("#person3").attr("src","http://www.nsbepropdx.org/uploads/2/3/7/3/23733030/9716396.jpg");
 		$("#person3").click(function () {
 			$.ui.loadContent("#favs_details_page", false, false, "fade");
-			updateFavDetails(data);
+			updateFavDetails(data, "");
 		});
 		$("#person4").attr("src","http://www.nsbepropdx.org/uploads/2/3/7/3/23733030/6245377.jpg");
 		$("#person4").click(function () {
 			$.ui.loadContent("#favs_details_page", false, false, "fade");
-			updateFavDetails(data);
+			updateFavDetails(data, "");
 		});
 	});	
 	
