@@ -75,32 +75,42 @@
             </div>
         </div>
         <!--Gift Selection Page-->
-        <div id="forth" title="title" class="panel" data-footer="none" data-header="main_header">
+        <div id="forth" title="title" class="panel" data-footer="none" data-header="gift_selection_header">
+            <header id="gift_selection_header">
+                <a id="backButton" class="backButton"></a> 
+                <h1>That's From Us</h1>
+            </header>
             <div class="horizontal_center">
                 <h2>Double Click to Choose</h2>
-                <div class="table horizontal_center">
+                <div id="selection_container" class="table horizontal_center">
                     <div class="row">
-                        <div id="selectionA" class=".alizarin_bg column">A</div>
+                        <div id="selectionA" class="alizarin_bg column">
+                            <h1>A</h1>
+                            <!--<img src="" alt="Selection1 Image"/>-->
+                        </div>
                         <div id="valign_container" class="column">
                             <h3 id="or">OR</h3>
                         </div>
-                        <div id="selectionB" class=".alizarin_bg column">B</div>
+                        <div id="selectionB" class="alizarin_bg column">
+                            <h1>B</h1>
+                            <!--<img src="" alt="Selection1 Image"/>-->
+                        </div>
                     </div>
                 </div>
             </div>     
         </div>
         <!--Favs Details Page-->
-        <div id="favs_details_page" title="title" class="panel" data-footer="none" data-header="main_header"  selected="true">
-            <div class="top_padding table horizontal_center">
+        <div id="favs_details_page" title="title" class="panel" data-footer="none" data-header="main_header" selected="true">
+            <div class="table horizontal_center">
                 <div class="row">
                     <div id="ask_network_column" class="column">
                         <div id="ask_network_button">Ask<br>The<br>Network</div>
                     </div>
-                    <div class="column">
+                    <div id="fav_details_column" class="column">
                         <div class="formGroupHead">Shopping For</div>
                         <div id="fav_name">Test User</div>
                         <form>
-                            <label for="frm_input2">Range</label><select name="$range">
+                            <label for="fav_$range">Spending Range</label><select id="fav_$range">
                                 <option value="none">Select $ Range</option>
                                 <option value="$10">$10</option>
                                 <option value="$20">$20</option>
@@ -113,14 +123,26 @@
                                 <option value="$30">$90</option>
                                 <option value="$40">$100</option>
                             </select>
-                            <label for="frm_input3">Occasion</label><input id="frm_input3" type="text" placeholder="mm/dd/yyyy">             
+                            <label for="frm_input3">Next Occasion</label><select id="fav_ocassion">
+                                <option value="none">Select Month Day, Year</option>
+                                <option value="$10">Sunday, November 2, 2014</option>
+                                <option value="$20">$20</option>
+                                <option value="$30">$30</option>
+                                <option value="$40">$40</option>
+                                <option value="$20">$50</option>
+                                <option value="$30">$60</option>
+                                <option value="$40">$70</option>
+                                <option value="$20">$80</option>
+                                <option value="$30">$90</option>
+                                <option value="$40">$100</option>
+                            </select>         
                         </form>
                     </div>
                 </div>
                 <div class="row">
                     <div class="horizontal_center column">
                         <h2>Suggestions</h2>
-                        <div id="suggestion_container table">
+                        <!--<div id="suggestion_container table">
                             <div class="row">
                                 <div class="column">
                                     <div id="suggestion1" class="suggestion_item"></div>
@@ -128,13 +150,13 @@
                                 <div class="column rightcolumn">
                                     <div id="suggestion2" class="suggestion_item"></div>
                                 </div>
-                                <!--<div class="column rightcolumn">
+                                <div class="column rightcolumn">
                                     <div id="suggestion3" class="suggestion_item"></div>
                                 </div>
                                 <div class="column rightcolumn">
                                     <div id="suggestion4" class="suggestion_item"></div>
-                                </div>-->
-                            </div>
+                                </div>
+                            </div>-->
                         </div>
                     </div>
                 </div>

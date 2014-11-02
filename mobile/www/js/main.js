@@ -24,13 +24,17 @@ window.onload = function () {
 	//Stretch the Favorites Row accross two rows 
 	$("#temp2").attr("colspan", "'2'");
 
-	//Set the div background for the Favs section to the size of table
-	/*$("#temp2").width(0.8 * window.innerWidth);
-	$("#temp2").height(0.25 * window.innerHeight);*/
+	//Set the table size on the Gift Selection page
+	$("#selection_container").width(0.8 * window.innerWidth);
+	//$("#selection_container").height(0.25 * window.innerHeight);
+
+
 
 	//Set the size of selction A & B div for this of This OR That! 
-	$("#selectionA").width(0.5 * window.innerWidth);
-	$("#selectionB").width(0.5 * window.innerWidth);
+	$(".alizarin_bg").width(0.6 * window.innerHeight);
+	$(".alizarin_bg").height(0.6 * window.innerHeight);
+	$(".alizarin_bg").width(0.6 * window.innerHeight);
+	$(".alizarin_bg").height(0.6 * window.innerHeight);
 
 	//apply an onclick event handler to the Favs div
 	$("#favs_row").click(function () {
@@ -47,7 +51,8 @@ window.onload = function () {
 	$("#ask_network_button").height(0.2 * window.innerHeight);
 
 	//Set the size of ask_network button div for for the Favs Details Page 
-	$("#ask_network_column").width(0.25 * window.innerWidth);
+	$("#ask_network_column").width(0.15 * window.innerWidth);
+
 }
 
 /*
