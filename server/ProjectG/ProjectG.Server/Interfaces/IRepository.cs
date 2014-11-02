@@ -25,5 +25,11 @@ namespace ProjectG.Server.Interfaces
         Item AddItem(Item item);
         Item UpdateItem(Item item);
         void DeleteItem(int id);
+
+        int GetXBoxCount();
+        int GetPS4Count();
+
+        void IncrementXBoxCount();
+        void IncrementPS4Count();
     }
 }

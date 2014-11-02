@@ -161,6 +161,7 @@
     <Compile Include="Controllers\RetailerController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Controllers\VoteController.cs" />
     <Compile Include="DropCreateDatabaseIfModelChangesWithSeedData.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -173,6 +174,7 @@
     <Compile Include="Models\ProjectGDBContext.cs" />
     <Compile Include="Models\Retailer.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Models\VoteModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

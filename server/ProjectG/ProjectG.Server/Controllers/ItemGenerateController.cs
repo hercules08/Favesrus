@@ -56,7 +56,7 @@ namespace ProjectG.Server.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="Id,ItemName,ItemPrice,RetailerId,CategoryId")] Item item)
+        public ActionResult Create([Bind(Include="Id,ItemName,ItemImage,ItemPrice,RetailerId,CategoryId")] Item item)
         {
             if (ModelState.IsValid)
             {
@@ -91,7 +91,7 @@ namespace ProjectG.Server.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="Id,ItemName,ItemPrice,RetailerId,CategoryId")] Item item)
+        public ActionResult Edit([Bind(Include="Id,ItemName,ItemImage,ItemPrice,RetailerId,CategoryId")] Item item)
         {
             if (ModelState.IsValid)
             {

@@ -7,8 +7,8 @@ namespace ProjectG.Server.Models
     {
         static ProjectGDBContext()
         {
-            //Database.SetInitializer<ProjectGDBContext>(null);
-            Database.SetInitializer<ProjectGDBContext>(new DropCreateDatabaseIfModelChangesWithSeedData());
+            Database.SetInitializer<ProjectGDBContext>(null);
+            //Database.SetInitializer<ProjectGDBContext>(new DropCreateDatabaseIfModelChangesWithSeedData());
         }
 
         public ProjectGDBContext()
@@ -21,6 +21,8 @@ namespace ProjectG.Server.Models
         public DbSet<Occasion> Occasions { get; set; }
         public DbSet<Retailer> Retailers { get; set; }
         public DbSet<User> Users { get; set; }
+
+        public DbSet<VoteModel> VoteModels { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

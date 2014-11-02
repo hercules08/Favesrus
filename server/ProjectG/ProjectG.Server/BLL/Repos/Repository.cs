@@ -84,7 +84,7 @@ namespace ProjectG.Server.BLL.Repos
 
         public Item GetItem(int? id)
         {
-            throw new NotImplementedException();
+            return context.Items.Find(id.Value);
         }
 
         public Item AddItem(Item item)
@@ -105,6 +105,33 @@ namespace ProjectG.Server.BLL.Repos
         {
             Item item = context.Items.Find(id);
             context.Items.Remove(item);
+            context.SaveChanges();
+        }
+
+
+        public int GetXBoxCount()
+        {
+            return context.VoteModels.First().XBoxCount;
+        }
+
+        public int GetPS4Count()
+        {
+            return context.VoteModels.First().PS4Count;
+        }
+
+        public void IncrementXBoxCount()
+        {
+            VoteModel model = context.VoteModels.Find(1) ;
+            model.XBoxCount += 1;
+            context.Entry(model).State = EntityState.Modified;
+            context.SaveChanges();
+        }
+
+        public void IncrementPS4Count()
+        {
+            VoteModel model = context.VoteModels.Find(1);
+            model.PS4Count += 1;
+            context.Entry(model).State = EntityState.Modified;
             context.SaveChanges();
         }
     }

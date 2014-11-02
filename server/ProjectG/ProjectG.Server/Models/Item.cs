@@ -7,6 +7,7 @@ namespace ProjectG.Server.Models
     {
         public int Id { get; set; }
         public string ItemName { get; set; }
+        public string ItemImage { get; set; }
         public Nullable<decimal> ItemPrice { get; set; }
         public Nullable<int> RetailerId { get; set; }
         public Nullable<int> CategoryId { get; set; }
