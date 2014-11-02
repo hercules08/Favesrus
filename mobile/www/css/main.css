@@ -7,13 +7,35 @@
 }
 
 /*Temporary CSS class for applying color to a div*/
-.temp {
+.red_bg {
 	background-color: red
+}
+
+/*Favs section CSS class for applying color to a div*/
+.blue_bg {
+	background-color: #3498db;
+}
+
+
+
+/*Selection section CSS class*/
+.alizarin_bg, .suggestion_item {
+	background-color: #e74c3c;
+}
+
+/*person from thier social media*/
+#person {
+	width:50px;
+	height:50px;
+	border-radius: 50%;
 }
 
 /*Options container for 
 Play ToT, Upcoming Holidays, Favs*/
 /*Apply table attribute*/
+#options_container {
+	width:100%;
+}
 #options_container, .table {
 	display: table;
 }
@@ -35,7 +57,7 @@ Play ToT, Upcoming Holidays, Favs*/
 
 /*Vertical Align*/
 #valign_container {
-	position:relatve;
+	position:relative;
 }
 #or {
 	position: absolute;
@@ -43,9 +65,27 @@ Play ToT, Upcoming Holidays, Favs*/
 	margin-top: -1em;
 }
 
-/*Styling for the selection text */
-#selectionA, #selectionB {
+
+/*Text color to white*/
+.suggestion_item {
 	color: white;
 }
 
+/*Styling for the selection text */
+/*#selectionA, #selectionB {
+	color: white;
+}*/
+
+/*Background for the Ask The Network button*/
+#ask_network_button {
+	background-color: #2980b9;
+	font-style: italic;
+	font-weight: bold;
+	color: white;
+}
+
+/*Top Padding for keeping away from the Header*/
+.top_padding {
+	padding-top: 10px;
+}
 
