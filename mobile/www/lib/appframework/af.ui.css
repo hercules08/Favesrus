@@ -164,7 +164,7 @@ body {
     font-weight: bold;
     left: 27.5%;
     /*color: inherit;*/
-    color: #34495e;
+    /*color: #34495e;*/
     padding: 10px 0;
     text-shadow: rgba(0,0,0,0.8) 0 -1px 0;
     text-align: center;
@@ -699,7 +699,7 @@ body {
 #afui .backButton {
     background:rgba(249,249,249,1);
     /*color:#fff;*/
-    color: #2c3e50;
+    /*color: #2c3e50;*/
     display: block;
     position: absolute;
     line-height:44px;

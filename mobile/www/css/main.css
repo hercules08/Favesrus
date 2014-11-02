@@ -44,9 +44,49 @@
 
 }
 
+#menu_page {
+	background-image: url("../images/screen_03_bg.png") !important;
+	background-repeat: no-repeat !important;
+	background-size: 100% 100% !important;
+}
+
+#gift_selection_page {
+	background-image: url("../images/screen_04_bg_no-circles.png") !important;
+	background-repeat: no-repeat !important;
+	background-size: 100% 100% !important;
+}
+
+#pro_gifter_page {
+	background-image: url("../images/screen_06_bg.png") !important;
+	background-repeat: no-repeat !important;
+	background-size: 100% 100% !important;
+}
+
+#suggestions_page {
+	background-image: url("../images/screen_08_bg-suggestions.png") !important;
+	background-repeat: no-repeat !important;
+	background-size: 100% 100% !important;
+}
+
+#favs_details_page {
+	background-image: url("../images/screen_05_bg.png") !important;
+	background-repeat: no-repeat !important;
+	background-size: 100% 100% !important;
+}
+
+#checkout_page {
+	background-image: url("../images/screen_07_bg.png") !important;
+	background-repeat: no-repeat !important;
+	background-size: 100% 100% !important;
+}
+
 /*Selection section CSS class*/
-.alizarin_bg, .suggestion_item {
+.alizarin_bg, .suggestion_item, #selectionA, #selectionB {
 	background-color: #e74c3c;
+}
+
+#selectionA, #selectionB {
+	border-radius: 50%;
 }
 
 /*person from thier social media*/
@@ -56,6 +96,7 @@
 	float:left;
 	margin-left: 10px;
 	margin-bottom: 5px;
+	/*padding-top: 74px;*/
 }
 
 /*Options container for 
@@ -64,6 +105,12 @@ Play ToT, Upcoming Holidays, Favs*/
 #options_container {
 	width:100%;
 }
+
+#play {
+	padding-top: 7%;
+	margin-left: -10px;
+}
+
 .table {
 	display: table;
 }
@@ -95,7 +142,7 @@ Play ToT, Upcoming Holidays, Favs*/
 
 
 /*Text color to white*/
-.suggestion_item,.alizarin_bg, #favs_title {
+.suggestion_item,.alizarin_bg, #favs_title, #selectionA, #selectionB {
 	color: white !important;
 }
 
@@ -116,6 +163,10 @@ Play ToT, Upcoming Holidays, Favs*/
 /*Top Padding for keeping away from the Header*/
 .top_padding {
 	padding-top: 10px;
+}
+
+#username {
+	color: white !important;
 }
 
 /**/
@@ -140,3 +191,17 @@ Play ToT, Upcoming Holidays, Favs*/
 	padding-left: 36px;
 
 }
+
+.button_red {
+				display: inline-block;
+				font-family: Tahoma,Arial,Helvetica,sans-serif;
+				font-weight:bold;
+				color: #ffffff;
+				font-size:1em;
+				line-height: 28px;
+				margin: 1em; padding: 1em 1.5em 1em 1em;
+				background-image: url("../images/btn_red_left.png"), url("../images/btn_red_right.png"), url("../images/btn_red_center.png");
+				background-repeat: no-repeat, no-repeat, repeat-x;
+				background-position: left top, right top, left top ;
+				height:90px;
+			}

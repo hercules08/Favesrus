@@ -28,10 +28,16 @@ window.onload = function () {
 	$(".red_bg").width(0.5 * window.innerWidth);
 	$(".red_bg").height(0.5 * window.innerHeight);
 
+	//Set the size for the Play button
+	$("#play").width(0.40 * window.innerWidth);
 	//apply an onclick event handler to the play! button
 	$("#play").click(function () {
-		$.ui.loadContent("#forth", false, false, "fade");
+		$.ui.loadContent("#gift_selection_page", false, false, "fade");
+		loadjsonSelectionData();
 	});
+
+	//Set the size for the Play button
+	//$("#upcoming_image").width(0.60 * window.innerWidth);
 
 	$("#spacer").height("10px")
 
@@ -40,20 +46,20 @@ window.onload = function () {
 	//$("#selection_container").height(0.25 * window.innerHeight);
 
 	//Set the size of selction A & B div for this of This OR That! 
-	$(".alizarin_bg").width(0.6 * window.innerHeight);
-	$(".alizarin_bg").height(0.6 * window.innerHeight);
-	$(".alizarin_bg").width(0.6 * window.innerHeight);
-	$(".alizarin_bg").height(0.6 * window.innerHeight);
+	$("#selectionA").width(0.6 * window.innerHeight);
+	$("#selectionA").height(0.6 * window.innerHeight);
+	$("#selectionB").width(0.6 * window.innerHeight);
+	$("#selectionB").height(0.6 * window.innerHeight);
 
 	//apply an onclick event handler to the Favs div
-	$("#transition_button").click(function () {
+	/*$("#transition_button").click(function () {
 		$.ui.loadContent("#menu_page", false, false, "fade");
-	});
+	});*/
 
 	//
-	$("#favs_row").click(function () {
+	/*$("#favs_row").click(function () {
 		$.ui.loadContent("#favs_details_page", false, false, "fade");
-	});
+	});*/
 
 	//Set the size of favs person div for for the menu Page 
 	$(".person").width(0.15 * window.innerWidth);
@@ -66,22 +72,57 @@ window.onload = function () {
 
 
 	//Set the size of ask_network button div for for the Favs Details Page 
-	$("#ask_network_button").width(0.2 * window.innerWidth);
-	$("#ask_network_button").height(0.2 * window.innerHeight);
+	/*$("#ask_network_button").width(0.2 * window.innerWidth);
+	$("#ask_network_button").height(0.2 * window.innerHeight);*/
 
 	//Set the size of ask_network button div for for the Favs Details Page 
 	$("#ask_network_column").width(0.15 * window.innerWidth);
 
-	//Add the pressed event handler to the fav_occasion element on the favs_details page
-	document.getElementsByName("fav_ocassion")[0].onchange = function() {
+	$("#tot_back_column").width(0.15 * window.innerWidth);
+
+
+	$("#ask_network_button").click(function () {
+		$.ui.loadContent("#pro_gifter_page", false, false, "slide");
+	});
+
+	$("#suggestions_button").click(function () {
+		$.ui.loadContent("#suggestions_page", false, false, "slide");
+	});
+
+	//Add the scroll event handler to the fav_occasion element on the favs_details page
+	/*document.getElementsByName("fav_ocassion")[0].onchange = function() {
 	//document.getElementsByName("fav_ocassion")[0].onscroll = function() {
 		alert("Occasion Date picker was Touch");
-	};
+	};*/
 
-	/*$("#fav_occasion").scroll(function() {
-		alert("Occasion Date picker was Scrolled");
-	});*/
-	//$("#fav_occasion").attr(onscroll,"alert('Hello')")
+	$("#return_button").width(0.2 * window.innerWidth);
+	$("#return_button").click(function () {
+		$.ui.loadContent("#menu_page", false, false, "slide");
+	});	
+
+	$("#tot_back_button").click(function () {
+		$.ui.loadContent("#menu_page", false, false, "slide");
+	});
+
+}
+
+function loadjsonSelectionData(){
+	var data;
+	//$.get("mypage.php?foo=bar",function(data){});
+	$.getJSON("http://71.237.221.15/giftly/api/item/getRandomItems", function(data) {
+		console.log(data);
+		//Load images to the Favs section
+		$("#selectionA").attr("src",data[0].ImageLink);
+		$("#selectionA").click(function () {
+			//updateServer(data, data.Favs[0].FirstName+" "+data.Favs[0].LastName);
+			loadjsonSelectionData();
+		});
+		$("#selectionB").attr("src",data[1].ImageLink);
+		$("#selectionB").click(function () {
+			//updateServer(data, data.Favs[1].FirstName+" "+data.Favs[1].LastName);
+			loadjsonSelectionData();
+		});
+	});		
 }
 
 /*
@@ -99,6 +140,11 @@ function userLogin(option) {
 	}, 2000);
 }
 
+
+function updateFavDetails(data, name) {
+	$("#fav_name").html(name);
+}
+
 /*
 TEMPLATE
 Function: functionName()
@@ -108,17 +154,40 @@ Description:
 function loadjsonData(){
 	var data;
 	//$.get("mypage.php?foo=bar",function(data){});
-	$.getJSON("http://71.237.221.15/giftly/api/user", function(data) {
-		console.log(data);
+	$.getJSON("http://71.237.221.15/giftly/api/user/1", function(data) {
+		//console.log(data);
 		//Load the user name in Header
-		$("#username").text("Hi "+data[0].FirstName+" "+data[0].LastName+"!");
+		$("#username").html("Hi "+data.FirstName+"!");
 		//Load images to the Favs section
-		$("#person1").attr("src",data[0].Favs[0].Pic);
-		$("#person2").attr("src",data[0].Favs[1].Pic);
+		$("#person1").attr("src",data.Favs[0].Pic);
+		$("#person1").click(function () {
+			$.ui.loadContent("#favs_details_page", false, false, "fade");
+			updateFavDetails(data, data.Favs[0].FirstName+" "+data.Favs[0].LastName);
+		});
+		$("#person2").attr("src",data.Favs[1].Pic);
+		$("#person2").click(function () {
+			$.ui.loadContent("#favs_details_page", false, false, "fade");
+			updateFavDetails(data, data.Favs[1].FirstName+" "+data.Favs[1].LastName);
+		});
 		$("#person3").attr("src","http://www.nsbepropdx.org/uploads/2/3/7/3/23733030/9716396.jpg");
+		$("#person3").click(function () {
+			$.ui.loadContent("#favs_details_page", false, false, "fade");
+			updateFavDetails(data, "");
+		});
 		$("#person4").attr("src","http://www.nsbepropdx.org/uploads/2/3/7/3/23733030/6245377.jpg");
+		$("#person4").click(function () {
+			$.ui.loadContent("#favs_details_page", false, false, "fade");
+			updateFavDetails(data, "");
+		});
 	});	
 	
+}
+
+function checkout(){
+	$.getJSON("http://71.237.221.15/giftly/api/pay", function(data) {
+		//alert("Checkout reached!");
+	});
+
 }
 
 
