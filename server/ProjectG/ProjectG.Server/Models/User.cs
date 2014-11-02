@@ -18,5 +18,7 @@ namespace ProjectG.Server.Models
         public Nullable<System.DateTime> Birthday { get; set; }
         public virtual ICollection<User> Favs { get; set; }
         public virtual ICollection<Item> FavItems { get; set; }
+
+        public string Pic { get; set; }
     }
 }

@@ -14,5 +14,7 @@ namespace ProjectG.Server.Controllers
 
             return View();
         }
+
+
     }
 }
