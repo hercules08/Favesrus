@@ -91,17 +91,17 @@
                 <h2 style="color:#e48545 !important;"> </h2>
                 <div id="selection_container" class="table horizontal_center">
                     <div class="row">
-                        <div id="selectionA" class="alizarin_bg column">
-                            <h1>A</h1>
-                            <!--<img id="selectionA" src="" alt="Selection1 Image"/>-->
-                        </div>
+                        <!--<div id="selectionA" class="alizarin_bg column">
+                            <h1>A</h1>-->
+                            <img id="selectionA" src="" alt="Selection1 Image"/>
+                        <!--</div>-->
                         <div id="valign_container" class="column">
                             <h3 id="or"></h3>
                         </div>
-                        <div id="selectionB" class="alizarin_bg column">
-                            <h1>B</h1>
-                            <!--<img id="selectionA" src="" alt="Selection1 Image"/>-->
-                        </div>
+                        <!--<div id="selectionB" class="alizarin_bg column">
+                            <h1>B</h1>-->
+                            <img id="selectionB" src="" alt="Selection1 Image"/>
+                        <!--</div>-->
                     </div>
                     <div class="row horizontal_center">
                         <div id="" class="column">
@@ -132,7 +132,7 @@
                         <label for="fav_$range">Spending Range</label><select name="fav_$range">
                             <option value="none">Select $ Range</option>
                             <option value="$10">$10</option>
-                            <option value="$20">$20</option>
+                            <option value="$20" selected>$20</option>
                             <option value="$30">$30</option>
                             <option value="$40">$40</option>
                             <option value="$20">$50</option>
@@ -148,7 +148,7 @@
                             <option value="$20">Monday, November 3, 2014</option>
                             <option value="$30">Tuesday, November 4, 2014</option>
                             <option value="$40">Wednesday, November 5, 2014</option>
-                            <option value="$20">Thursday, November 6, 2014</option>
+                            <option value="$20" selected>Thursday, November 6, 2014</option>
                             <option value="$30">Friday, November 7, 2014</option>
                         </select>         
                     </form>
@@ -160,7 +160,7 @@
                 </td>
                 <td class="horizontal_center">
                     <img id="ask_network_button" src="images/screen_05_button_1.png" alt=""style="width:193.6px;height:40px;"/>
-                    <img id="suggestion_button" src="images/screen_05_button_2.png" style="width:155px; height:40px; margin-left:10px;">
+                    <img id="suggestions_button" src="images/screen_05_button_2.png" style="width:155px; height:40px; margin-left:10px;">
                 </td>
             </tr>
             </table>
@@ -206,10 +206,22 @@
                 </div>
             </div>-->    
         </div>
-        <!--Pro Gifter Page-->
-        <div id="pro_gifter_page" title="title" class="panel" data-footer="none" data-header="favs_details_header">
-            </div>    
+        <!--Pro Gifter (Ask the Network) Page-->
+        <div id="pro_gifter_page" title="title" class="panel" data-footer="none" data-header="none">
+            <div style="padding-top: 135px;width: 250px;height: 150px;">
+                <textarea rows="6" placeholder="Ask Tod for some Help finding the 'perfect gift!'"></textarea>
+                <div class="button_red" onclick='alert("Your Message has been sent!");loadjsonData();$.ui.loadContent("#menu_page", false, false, "fade");' style="margin-top: -40px;">Send Message!!</div>
+            </div>
         </div>
+        <!--Suggestion Page-->
+        <div id="suggestions_page" title="title" class="panel" data-footer="none" data-header="none" onclick='loadjsonData();$.ui.loadContent("#checkout_page", false, false, "slide");'>
+            
+        </div>
+        <!--Suggestion Page-->
+        <div id="checkout_page" title="title" class="panel" data-footer="none" data-header="none" onclick='alert("Thank you for your purchase!");checkout();loadjsonData();$.ui.loadContent("#menu_page", false, false, "fade");'>
+            
+        </div>
+<!--        </div>-->
     </div>
 </body>
 </html>

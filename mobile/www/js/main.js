@@ -33,6 +33,7 @@ window.onload = function () {
 	//apply an onclick event handler to the play! button
 	$("#play").click(function () {
 		$.ui.loadContent("#gift_selection_page", false, false, "fade");
+		loadjsonSelectionData();
 	});
 
 	//Set the size for the Play button
@@ -45,10 +46,10 @@ window.onload = function () {
 	//$("#selection_container").height(0.25 * window.innerHeight);
 
 	//Set the size of selction A & B div for this of This OR That! 
-	$(".alizarin_bg").width(0.6 * window.innerHeight);
-	$(".alizarin_bg").height(0.6 * window.innerHeight);
-	$(".alizarin_bg").width(0.6 * window.innerHeight);
-	$(".alizarin_bg").height(0.6 * window.innerHeight);
+	$("#selectionA").width(0.6 * window.innerHeight);
+	$("#selectionA").height(0.6 * window.innerHeight);
+	$("#selectionB").width(0.6 * window.innerHeight);
+	$("#selectionB").height(0.6 * window.innerHeight);
 
 	//apply an onclick event handler to the Favs div
 	/*$("#transition_button").click(function () {
@@ -80,6 +81,14 @@ window.onload = function () {
 	$("#tot_back_column").width(0.15 * window.innerWidth);
 
 
+	$("#ask_network_button").click(function () {
+		$.ui.loadContent("#pro_gifter_page", false, false, "slide");
+	});
+
+	$("#suggestions_button").click(function () {
+		$.ui.loadContent("#suggestions_page", false, false, "slide");
+	});
+
 	//Add the scroll event handler to the fav_occasion element on the favs_details page
 	/*document.getElementsByName("fav_ocassion")[0].onchange = function() {
 	//document.getElementsByName("fav_ocassion")[0].onscroll = function() {
@@ -95,6 +104,25 @@ window.onload = function () {
 		$.ui.loadContent("#menu_page", false, false, "slide");
 	});
 
+}
+
+function loadjsonSelectionData(){
+	var data;
+	//$.get("mypage.php?foo=bar",function(data){});
+	$.getJSON("http://71.237.221.15/giftly/api/item/getRandomItems", function(data) {
+		console.log(data);
+		//Load images to the Favs section
+		$("#selectionA").attr("src",data[0].ImageLink);
+		$("#selectionA").click(function () {
+			//updateServer(data, data.Favs[0].FirstName+" "+data.Favs[0].LastName);
+			loadjsonSelectionData();
+		});
+		$("#selectionB").attr("src",data[1].ImageLink);
+		$("#selectionB").click(function () {
+			//updateServer(data, data.Favs[1].FirstName+" "+data.Favs[1].LastName);
+			loadjsonSelectionData();
+		});
+	});		
 }
 
 /*
@@ -127,7 +155,7 @@ function loadjsonData(){
 	var data;
 	//$.get("mypage.php?foo=bar",function(data){});
 	$.getJSON("http://71.237.221.15/giftly/api/user/1", function(data) {
-		console.log(data);
+		//console.log(data);
 		//Load the user name in Header
 		$("#username").html("Hi "+data.FirstName+"!");
 		//Load images to the Favs section
@@ -153,6 +181,13 @@ function loadjsonData(){
 		});
 	});	
 	
+}
+
+function checkout(){
+	$.getJSON("http://71.237.221.15/giftly/api/pay", function(data) {
+		//alert("Checkout reached!");
+	});
+
 }
 
 
