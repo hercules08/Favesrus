@@ -56,18 +56,18 @@ Play ToT, Upcoming Holidays, Favs*/
 }
 
 /*Vertical Align*/
-#valign_container {
-	position:relative;
+#valign_container, #ask_network_column {
+	vertical-align: middle;
 }
-#or {
+/*#or {
 	position: absolute;
 	top: 50%;
 	margin-top: -1em;
-}
+}*/
 
 
 /*Text color to white*/
-.suggestion_item {
+.suggestion_item,.alizarin_bg {
 	color: white;
 }
 
@@ -82,6 +82,7 @@ Play ToT, Upcoming Holidays, Favs*/
 	font-style: italic;
 	font-weight: bold;
 	color: white;
+	border-radius: 5px;
 }
 
 /*Top Padding for keeping away from the Header*/
@@ -89,3 +90,17 @@ Play ToT, Upcoming Holidays, Favs*/
 	padding-top: 10px;
 }
 
+/*Add styling to the Fav_name*/
+#fav_name {
+	font-size: 1.5em;
+	font-style: italic;
+}
+
+/*Add Left alignment*/
+#fav_details_column {
+	margin-left: auto;
+	margin-right: auto;
+	text-align: left;
+	padding-left: 36px;
+
+}
