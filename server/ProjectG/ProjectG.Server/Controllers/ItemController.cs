@@ -19,9 +19,13 @@ namespace ProjectG.Server.Controllers
 
         IRepository repo;
 
+        static int countUp = 1;
+        static int countDown; 
+
         public ItemController(IRepository repo)
         {
             this.repo = repo;
+            countDown = repo.GetItems().Count();
         }
 
         // GET api/Item
@@ -37,10 +41,15 @@ namespace ProjectG.Server.Controllers
             List<Item> items = new List<Item>();
 
             //Get one random item not on the list
-            Item itemA = repo.GetItems().Except(dontQueryList).First();
-            dontQueryList.Add(itemA);
-            Item itemB = repo.GetItems().Except(dontQueryList).Last();
-            dontQueryList.Add(itemB);
+            Item itemA = repo.GetItem(countUp);
+            while(itemA == null)
+            {
+                countUp++;
+                itemA = repo.GetItem(countUp);
+            }
+            countUp++;
+            Item itemB = repo.GetItem(countDown);
+            countDown--;
 
             items.Add(itemA);
             items.Add(itemB);

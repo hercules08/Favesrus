@@ -159,6 +159,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ItemController.cs" />
     <Compile Include="Controllers\ItemGenerateController.cs" />
+    <Compile Include="Controllers\PayController.cs" />
     <Compile Include="Controllers\RetailerController.cs" />
     <Compile Include="Controllers\ItemUpdateController.cs" />
     <Compile Include="Controllers\UserController.cs" />

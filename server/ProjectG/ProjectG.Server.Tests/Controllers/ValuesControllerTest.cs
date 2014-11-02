@@ -22,6 +22,8 @@ namespace ProjectG.Server.Tests.Controllers
         private string secret;
         private string token;
         private string actualToken = "191462791bdc6f25d1689cd3db40ba";
+        private string accountId = "4faffa4cca8b4dd495f28f4739dc38ce";
+        private string cardNumber = "7519049210952012";
 
         public ValuesControllerTest()
         {
@@ -179,6 +181,55 @@ namespace ProjectG.Server.Tests.Controllers
                 {"should_send_modo_descript", "1"},
                 {"verify_password_url", "http://damolaomotosho.com/"},
                 {"is_modo_terms_agree", "1"}
+            };
+
+            byte[] responseArray = client.UploadValues(url, collection);
+
+            var responseString = Encoding.ASCII.GetString(responseArray);
+        }
+
+
+        [TestMethod]
+        public void Can_Add_Modo_Credit_Card()
+        {
+            GetToken();
+
+            var url = "https://api.sbx.gomo.do/YiiModo/api_v2/card/add";
+
+            WebClient client = new WebClient();
+
+            NameValueCollection collection = new NameValueCollection()
+            {
+                {"consumer_key", key},
+                {"access_token", GetTokenFromJSON(token)},
+                {"account_id", accountId },
+                {"card_number", cardNumber },
+                {"expiry", "12/20"},
+                {"zip_code", "20724"}
+            };
+
+            byte[] responseArray = client.UploadValues(url, collection);
+
+            var responseString = Encoding.ASCII.GetString(responseArray);
+        }
+
+        [TestMethod]
+        public void Can_Visit_With_Modo()
+        {
+            GetToken();
+
+            var url = "https://api.sbx.gomo.do/YiiModo/api_v2/gift/send";
+
+            WebClient client = new WebClient();
+
+            NameValueCollection collection = new NameValueCollection()
+            {
+                {"consumer_key", key},
+                {"access_token", GetTokenFromJSON(token)},
+                {"account_id", accountId },
+                {"giver_name", "Damola"},
+                {"gift_amount", "50"},
+                {"receiver_phone", "2014869434"}
             };
 
             byte[] responseArray = client.UploadValues(url, collection);
