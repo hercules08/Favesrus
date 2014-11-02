@@ -32,7 +32,7 @@ window.onload = function () {
 	$("#play").width(0.40 * window.innerWidth);
 	//apply an onclick event handler to the play! button
 	$("#play").click(function () {
-		$.ui.loadContent("#forth", false, false, "fade");
+		$.ui.loadContent("#gift_selection_page", false, false, "fade");
 	});
 
 	//Set the size for the Play button
@@ -71,17 +71,30 @@ window.onload = function () {
 
 
 	//Set the size of ask_network button div for for the Favs Details Page 
-	$("#ask_network_button").width(0.2 * window.innerWidth);
-	$("#ask_network_button").height(0.2 * window.innerHeight);
+	/*$("#ask_network_button").width(0.2 * window.innerWidth);
+	$("#ask_network_button").height(0.2 * window.innerHeight);*/
 
 	//Set the size of ask_network button div for for the Favs Details Page 
 	$("#ask_network_column").width(0.15 * window.innerWidth);
+
+	$("#tot_back_column").width(0.15 * window.innerWidth);
+
 
 	//Add the scroll event handler to the fav_occasion element on the favs_details page
 	/*document.getElementsByName("fav_ocassion")[0].onchange = function() {
 	//document.getElementsByName("fav_ocassion")[0].onscroll = function() {
 		alert("Occasion Date picker was Touch");
 	};*/
+
+	$("#return_button").width(0.2 * window.innerWidth);
+	$("#return_button").click(function () {
+		$.ui.loadContent("#menu_page", false, false, "slide");
+	});	
+
+	$("#tot_back_button").click(function () {
+		$.ui.loadContent("#menu_page", false, false, "slide");
+	});
+
 }
 
 /*
@@ -121,12 +134,12 @@ function loadjsonData(){
 		$("#person1").attr("src",data.Favs[0].Pic);
 		$("#person1").click(function () {
 			$.ui.loadContent("#favs_details_page", false, false, "fade");
-			updateFavDetails(data, data.Favs[0].FirstName+" "+data.Favs[1].LastName);
+			updateFavDetails(data, data.Favs[0].FirstName+" "+data.Favs[0].LastName);
 		});
 		$("#person2").attr("src",data.Favs[1].Pic);
 		$("#person2").click(function () {
 			$.ui.loadContent("#favs_details_page", false, false, "fade");
-			updateFavDetails(data, data.Favs[0].FirstName+" "+data.Favs[1].LastName);
+			updateFavDetails(data, data.Favs[1].FirstName+" "+data.Favs[1].LastName);
 		});
 		$("#person3").attr("src","http://www.nsbepropdx.org/uploads/2/3/7/3/23733030/9716396.jpg");
 		$("#person3").click(function () {

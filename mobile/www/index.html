@@ -82,25 +82,32 @@
         </div>
             
         <!--Gift Selection Page-->
-        <div id="forth" title="title" class="panel" data-footer="none" data-header="gift_selection_header">
-            <header id="gift_selection_header">
+        <div id="gift_selection_page" title="title" class="panel" data-footer="none" data-header="none">
+            <!--<header id="gift_selection_header">
                 <a id="backButton" class="backButton">Back</a> 
                 <h1>That's From Us</h1>
-            </header>
+            </header>-->
             <div class="horizontal_center">
-                <h2>Double Click to Choose</h2>
+                <h2 style="color:#e48545 !important;"> </h2>
                 <div id="selection_container" class="table horizontal_center">
                     <div class="row">
                         <div id="selectionA" class="alizarin_bg column">
                             <h1>A</h1>
-                            <!--<img src="" alt="Selection1 Image"/>-->
+                            <!--<img id="selectionA" src="" alt="Selection1 Image"/>-->
                         </div>
                         <div id="valign_container" class="column">
-                            <h3 id="or">OR</h3>
+                            <h3 id="or"></h3>
                         </div>
                         <div id="selectionB" class="alizarin_bg column">
                             <h1>B</h1>
-                            <!--<img src="" alt="Selection1 Image"/>-->
+                            <!--<img id="selectionA" src="" alt="Selection1 Image"/>-->
+                        </div>
+                    </div>
+                    <div class="row horizontal_center">
+                        <div id="" class="column">
+                        </div>
+                        <div id="" class="column">
+                            <img id="return_button" src="images/screen_04_button.png" alt="Return Button"/>
                         </div>
                     </div>
                 </div>
@@ -108,18 +115,62 @@
         </div>
             
         <!--Favs Details Page-->
-        <div id="favs_details_page" title="title" class="panel" data-footer="none" data-header="favs_details_header">
-            <header id="favs_details_header">
+        <div id="favs_details_page" title="title" class="panel" data-footer="none" data-header="none">
+            <!--<header id="favs_details_header">
                 <a id="backButton" class="backButton">Back</a>
                 <h1>That's From Us</h1>
-            </header>
-            <div class="table horizontal_center">
+            </header>-->
+            <table>
+            <tr>
+                <td>
+                    <img id="tot_back_button" src="images/screen_default_back-button.png" style="width:120px"/>
+                </td>
+                <td>
+                    <div class="formGroupHead" style="padding-top:56px">Shopping For</div>
+                    <div id="fav_name">Test User</div>
+                    <form>
+                        <label for="fav_$range">Spending Range</label><select name="fav_$range">
+                            <option value="none">Select $ Range</option>
+                            <option value="$10">$10</option>
+                            <option value="$20">$20</option>
+                            <option value="$30">$30</option>
+                            <option value="$40">$40</option>
+                            <option value="$20">$50</option>
+                            <option value="$30">$60</option>
+                            <option value="$40">$70</option>
+                            <option value="$20">$80</option>
+                            <option value="$30">$90</option>
+                            <option value="$40">$100</option>
+                        </select>
+                        <label for="fav_ocassion">Next Occasion</label><select name="fav_ocassion">
+                            <option value="none">Select Month Day, Year</option>
+                            <option value="$10">Sunday, November 2, 2014</option>
+                            <option value="$20">Monday, November 3, 2014</option>
+                            <option value="$30">Tuesday, November 4, 2014</option>
+                            <option value="$40">Wednesday, November 5, 2014</option>
+                            <option value="$20">Thursday, November 6, 2014</option>
+                            <option value="$30">Friday, November 7, 2014</option>
+                        </select>         
+                    </form>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    
+                </td>
+                <td class="horizontal_center">
+                    <img id="ask_network_button" src="images/screen_05_button_1.png" alt=""style="width:193.6px;height:40px;"/>
+                    <img id="suggestion_button" src="images/screen_05_button_2.png" style="width:155px; height:40px; margin-left:10px;">
+                </td>
+            </tr>
+            </table>
+            <!--<div class="table horizontal_center" style="width:100%;">
                 <div class="row">
                     <div id="ask_network_column" class="column">
-                        <div id="ask_network_button">Ask<br>The<br>Network</div>
+                        <img id="tot_back_button" src="images/screen_default_back-button.png" style/>
                     </div>
                     <div id="fav_details_column" class="column">
-                        <div class="formGroupHead">Shopping For</div>
+                        <div class="formGroupHead" style="padding-top:20px">Shopping For</div>
                         <div id="fav_name">Test User</div>
                         <form>
                             <label for="fav_$range">Spending Range</label><select name="fav_$range">
@@ -149,26 +200,11 @@
                 </div>
                 <div class="row">
                     <div class="horizontal_center column">
-                        <h2>Suggestions</h2>
-                        <!--<div id="suggestion_container table">
-                            <div class="row">
-                                <div class="column">
-                                    <div id="suggestion1" class="suggestion_item"></div>
-                                </div>
-                                <div class="column rightcolumn">
-                                    <div id="suggestion2" class="suggestion_item"></div>
-                                </div>
-                                <div class="column rightcolumn">
-                                    <div id="suggestion3" class="suggestion_item"></div>
-                                </div>
-                                <div class="column rightcolumn">
-                                    <div id="suggestion4" class="suggestion_item"></div>
-                                </div>
-                            </div>-->
-                        </div>
+                        <img id="ask_network_button" src="images/screen_05_button_1.png" alt=""/>
+                        <img id=""suggestion_button src="images/screen_05_button_2.png">
                     </div>
                 </div>
-            </div>    
+            </div>-->    
         </div>
         <!--Pro Gifter Page-->
         <div id="pro_gifter_page" title="title" class="panel" data-footer="none" data-header="favs_details_header">

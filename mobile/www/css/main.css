@@ -50,9 +50,25 @@
 	background-size: 100% 100% !important;
 }
 
+#gift_selection_page {
+	background-image: url("../images/screen_04_bg_no-circles.png") !important;
+	background-repeat: no-repeat !important;
+	background-size: 100% 100% !important;
+}
+
+#favs_details_page {
+	background-image: url("../images/screen_05_bg.png") !important;
+	background-repeat: no-repeat !important;
+	background-size: 100% 100% !important;
+}
+
 /*Selection section CSS class*/
 .alizarin_bg, .suggestion_item {
 	background-color: #e74c3c;
+}
+
+#selectionA, #selectionB {
+	border-radius: 50%;
 }
 
 /*person from thier social media*/
