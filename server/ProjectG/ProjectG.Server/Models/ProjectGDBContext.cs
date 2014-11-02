@@ -1,6 +1,5 @@
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
-using ProjectG.Server.Models.Mapping;
 
 namespace ProjectG.Server.Models
 {
@@ -25,11 +24,7 @@ namespace ProjectG.Server.Models
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Configurations.Add(new CategoryMap());
-            modelBuilder.Configurations.Add(new ItemMap());
-            modelBuilder.Configurations.Add(new OccasionMap());
-            modelBuilder.Configurations.Add(new RetailerMap());
-            modelBuilder.Configurations.Add(new UserMap());
+
         }
     }
 }

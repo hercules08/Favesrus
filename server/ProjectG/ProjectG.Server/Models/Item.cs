@@ -12,5 +12,6 @@ namespace ProjectG.Server.Models
         public Nullable<int> CategoryId { get; set; }
         public virtual Category Category { get; set; }
         public virtual Retailer Retailer { get; set; }
+        public virtual ICollection<User> Users { get; set; }
     }
 }

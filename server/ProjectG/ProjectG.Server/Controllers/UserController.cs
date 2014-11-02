@@ -11,8 +11,8 @@ namespace ProjectG.Server.Controllers
 {
     public class UserController : ApiController
     {
-        IUserRepository repo;
-        public UserController(IUserRepository repo)
+        IRepository repo;
+        public UserController(IRepository repo)
         {
             this.repo = repo;
         }
@@ -26,21 +26,6 @@ namespace ProjectG.Server.Controllers
         public User Get(int id)
         {
             return repo.GetUser(id);
-        }
-
-        // POST api/user
-        public void Post([FromBody]string value)
-        {
-        }
-
-        // PUT api/user/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE api/user/5
-        public void Delete(int id)
-        {
         }
     }
 }
