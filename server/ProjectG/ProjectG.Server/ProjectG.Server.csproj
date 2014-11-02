@@ -157,8 +157,10 @@
     <Compile Include="BLL\Repos\Repository.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ItemController.cs" />
     <Compile Include="Controllers\ItemGenerateController.cs" />
     <Compile Include="Controllers\RetailerController.cs" />
+    <Compile Include="Controllers\ItemUpdateController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Controllers\VoteController.cs" />
@@ -169,6 +171,7 @@
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\DumbItem.cs" />
     <Compile Include="Models\Item.cs" />
     <Compile Include="Models\Occasion.cs" />
     <Compile Include="Models\ProjectGDBContext.cs" />
@@ -235,6 +238,7 @@
     <Content Include="Views\ItemGenerate\Details.cshtml" />
     <Content Include="Views\ItemGenerate\Edit.cshtml" />
     <Content Include="Views\ItemGenerate\Index.cshtml" />
+    <Content Include="Views\Home\VoteStatus.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

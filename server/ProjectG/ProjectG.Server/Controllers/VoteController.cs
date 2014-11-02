@@ -16,11 +16,18 @@ namespace ProjectG.Server.Controllers
             this.repo = repo;
         }
 
+        [Route("api/vote/incrementxbox")]
+        [HttpGet]
         public void IncrementXBox()
         {
-
+            repo.IncrementXBoxCount();
         }
 
-        //public void IncrementPS4()
+        [Route("api/vote/incrementps4")]
+        [HttpGet]
+        public void IncrementPS4()
+        {
+            repo.IncrementPS4Count();
+        }
     }
 }

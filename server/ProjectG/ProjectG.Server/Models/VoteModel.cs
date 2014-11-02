@@ -10,11 +10,8 @@ namespace ProjectG.Server.Models
         public int Id { get; set; }
         public int XBoxCount { get; set; }
         public int PS4Count { get; set; }
-
-        public float XBoxPrecent { get { return XBoxCount / TotalCount; } }
-
-        public float PS4Precent { get { return PS4Count / TotalCount; } }
-
+        public string XBoxPrecent { get { return (((float)XBoxCount / (float)TotalCount)*100).ToString("n2"); } }
+        public string PS4Precent { get { return (((float)PS4Count / (float)TotalCount)*100).ToString("n2"); } }
         public int TotalCount { get { return XBoxCount + PS4Count; } }
     }
 }

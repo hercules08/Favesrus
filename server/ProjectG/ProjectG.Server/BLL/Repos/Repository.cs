@@ -22,9 +22,10 @@ namespace ProjectG.Server.BLL.Repos
             return context.Users.Find(id);
         }
 
-        public void SaveUser(int id)
+        public void SaveUser(User user)
         {
-            throw new NotImplementedException();
+            context.Entry(user).State = EntityState.Modified;
+            context.SaveChanges();
         }
 
         public Retailer AddRetailer(Retailer retailer)
@@ -133,6 +134,11 @@ namespace ProjectG.Server.BLL.Repos
             model.PS4Count += 1;
             context.Entry(model).State = EntityState.Modified;
             context.SaveChanges();
+        }
+
+        public VoteModel GetVoteModel()
+        {
+            return context.VoteModels.First();
         }
     }
 }

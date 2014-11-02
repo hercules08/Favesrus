@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ProjectG.Server.Interfaces;
+using ProjectG.Server.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,11 +10,23 @@ namespace ProjectG.Server.Controllers
 {
     public class HomeController : Controller
     {
+        IRepository repo;
+
+        public HomeController(IRepository repo)
+        {
+            this.repo = repo;
+        }
         public ActionResult Index()
         {
             ViewBag.Title = "Home Page";
 
             return View();
+        }
+
+        public ActionResult VoteStatus()
+        {
+            VoteModel voteModel = repo.GetVoteModel();
+            return View(voteModel);
         }
     }
 }

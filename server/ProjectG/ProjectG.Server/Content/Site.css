@@ -40,3 +40,30 @@ input[type="checkbox"].input-validation-error {
 .validation-summary-valid {
     display: none;
 }
+
+.thumbnail {
+	margin-top: 20px;
+}
+
+.thumbnail > img {
+	height: 200px;
+}
+
+.thumbnail .caption {
+	text-align: center;
+}
+
+.col-xs-4.versus {
+	margin-top: 20px;
+height: 200px;
+text-align: center;
+font-size: 36px;
+padding-top: 90px;
+}
+
+footer {
+	display: none;
+position: fixed;
+bottom: 0px;
+height: 70px;
+}

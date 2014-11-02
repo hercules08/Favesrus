@@ -10,7 +10,8 @@ namespace ProjectG.Server.Interfaces
     {
         IEnumerable<User> Users { get; }
         User GetUser(int id);
-        void SaveUser(int id);
+        void SaveUser(User user);
+
         IEnumerable<Retailer> GetRetailers();
         Retailer GetRetailer(int? id);
         Retailer AddRetailer(Retailer retailer);
@@ -31,5 +32,7 @@ namespace ProjectG.Server.Interfaces
 
         void IncrementXBoxCount();
         void IncrementPS4Count();
+
+        VoteModel GetVoteModel();
     }
 }
