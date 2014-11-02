@@ -19,7 +19,7 @@
 
 /*Favs section CSS class for applying color to a div*/
 .blue_bg {
-	background-color: #3498db;
+	background-color: #68c6b6;
 }
 #intro_page_button_container {
 	position: absolute;
@@ -31,6 +31,10 @@
 	background-image: url("../images/screen_01_bg_2.png") !important;
 	background-repeat: no-repeat !important;
 	background-size: 100% 100% !important;
+}
+
+#fb_login_button {
+	padding-bottom: 13px;
 }
 
 #loading_page {
@@ -48,7 +52,7 @@
 /*person from thier social media*/
 .person {
 	border-radius: 50%;
-	background-color: white;
+	/*background-color: white;*/
 	float:left;
 	margin-left: 10px;
 	margin-bottom: 5px;

@@ -110,9 +110,13 @@ function loadjsonData(){
 	//$.get("mypage.php?foo=bar",function(data){});
 	$.getJSON("http://71.237.221.15/giftly/api/user", function(data) {
 		console.log(data);
-		alert("JSON Data received!!");
-		//Load the user name & images to the Favs section
-		
+		//Load the user name in Header
+		$("#username").text("Hi "+data[0].FirstName+" "+data[0].LastName+"!");
+		//Load images to the Favs section
+		$("#person1").attr("src",data[0].Favs[0].Pic);
+		$("#person2").attr("src",data[0].Favs[1].Pic);
+		$("#person3").attr("src","http://www.nsbepropdx.org/uploads/2/3/7/3/23733030/9716396.jpg");
+		$("#person4").attr("src","http://www.nsbepropdx.org/uploads/2/3/7/3/23733030/6245377.jpg");
 	});	
 	
 }
