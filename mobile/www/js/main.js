@@ -12,23 +12,32 @@ $.ui.useOSThemes = false;
 
 
 window.onload = function () {
+	$("#intro_page_button_container").width(0.35 * window.innerWidth);
+	$(".intro_image_button").width(0.35 * window.innerWidth);
+
+	$("#fb_login_button").click(function () {
+		userLogin('Facebook');
+	});
+
+	$("#signup_button").click(function () {
+		userLogin('Signup');
+	});
+	
+
 	//Set the size of div to a square (50% of the device width)
 	$(".red_bg").width(0.5 * window.innerWidth);
 	$(".red_bg").height(0.5 * window.innerHeight);
 
 	//apply an onclick event handler to the play! button
 	$("#play").click(function () {
-		$.ui.loadContent("#forth", true, true, "fade");
+		$.ui.loadContent("#forth", false, false, "fade");
 	});
 
-	//Stretch the Favorites Row accross two rows 
-	$("#temp2").attr("colspan", "'2'");
+	$("#spacer").height("10px")
 
 	//Set the table size on the Gift Selection page
 	$("#selection_container").width(0.8 * window.innerWidth);
 	//$("#selection_container").height(0.25 * window.innerHeight);
-
-
 
 	//Set the size of selction A & B div for this of This OR That! 
 	$(".alizarin_bg").width(0.6 * window.innerHeight);
@@ -37,9 +46,19 @@ window.onload = function () {
 	$(".alizarin_bg").height(0.6 * window.innerHeight);
 
 	//apply an onclick event handler to the Favs div
-	$("#favs_row").click(function () {
-		$.ui.loadContent("#favs_details_page", true, true, "fade");
+	$("#transition_button").click(function () {
+		$.ui.loadContent("#menu_page", false, false, "fade");
 	});
+
+	//
+	$("#favs_row").click(function () {
+		$.ui.loadContent("#favs_details_page", false, false, "fade");
+	});
+
+	//Set the size of favs person div for for the menu Page 
+	$(".person").width(0.15 * window.innerWidth);
+	$(".person").height(0.15 * window.innerWidth);
+
 
 	//Set the size of ask_network div for for the Favs Details Page 
 	$(".suggestion_item").width(0.25 * window.innerWidth);
@@ -54,13 +73,15 @@ window.onload = function () {
 	$("#ask_network_column").width(0.15 * window.innerWidth);
 
 	//Add the pressed event handler to the fav_occasion element on the favs_details page
-	$("select").change(function() {
+	document.getElementsByName("fav_ocassion")[0].onchange = function() {
+	//document.getElementsByName("fav_ocassion")[0].onscroll = function() {
 		alert("Occasion Date picker was Touch");
-	});
+	};
 
 	/*$("#fav_occasion").scroll(function() {
 		alert("Occasion Date picker was Scrolled");
 	});*/
+	//$("#fav_occasion").attr(onscroll,"alert('Hello')")
 }
 
 /*
@@ -69,6 +90,35 @@ Function: functionName()
 Parameter: parameterName is the 
 Description:
 */
-function login(method) {
-
+function userLogin(option) {
+	$.ui.loadContent("#loading_page", false, false, "fade");
+	setTimeout(function () {
+		$.ui.loadContent("#menu_page", false, false, "fade");
+		//load json data
+		loadjsonData();
+	}, 2000);
 }
+
+/*
+TEMPLATE
+Function: functionName()
+Parameter: parameterName is the 
+Description:
+*/
+function loadjsonData(){
+	var data;
+	//$.get("mypage.php?foo=bar",function(data){});
+	$.getJSON("http://71.237.221.15/giftly/api/user", function(data) {
+		console.log(data);
+		//Load the user name in Header
+		$("#username").text("Hi "+data[0].FirstName+" "+data[0].LastName+"!");
+		//Load images to the Favs section
+		$("#person1").attr("src",data[0].Favs[0].Pic);
+		$("#person2").attr("src",data[0].Favs[1].Pic);
+		$("#person3").attr("src","http://www.nsbepropdx.org/uploads/2/3/7/3/23733030/9716396.jpg");
+		$("#person4").attr("src","http://www.nsbepropdx.org/uploads/2/3/7/3/23733030/6245377.jpg");
+	});	
+	
+}
+
+

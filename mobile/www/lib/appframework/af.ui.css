@@ -21,7 +21,8 @@
 body {
     overflow-x:hidden;
     -webkit-text-size-adjust:none;
-    font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;
+    /*font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;*/
+    font-family: Tahoma,Verdana,Segoe,sans-serif; 
     color:#000;
     font-size:14px;
     display:-webkit-box;
@@ -680,12 +681,14 @@ body {
 }
 
 #afui .header{
-/*    background:#0088D1;*/
-    background-color: rgb(249,249,249);
+    /*background:#0088D1;*/
+    /*background-color: rgb(249,249,249);*/
+    background-color: #009978;/*That's From Us color scheme*/
     border:none;
 /*    border-bottom:1px solid #0088D1;*/
     border-bottom:1px solid #34495e;
-    color:#2c3e50;
+    /*color:#2c3e50;*/
+    color:white;
 }
 
 #afui  .header h1 {

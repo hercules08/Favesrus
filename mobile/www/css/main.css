@@ -6,17 +6,43 @@
     text-align: center;
 }
 
+.horizontal_left {
+	margin-left: auto;
+	margin-right: auto;
+	text-align: left;
+}
+
 /*Temporary CSS class for applying color to a div*/
 .red_bg {
-	background-color: red
+	/*background-color: red*/
 }
 
 /*Favs section CSS class for applying color to a div*/
 .blue_bg {
-	background-color: #3498db;
+	background-color: #68c6b6;
+}
+#intro_page_button_container {
+	position: absolute;
+	left: 60%;
+	top: 55%;
 }
 
+#main {
+	background-image: url("../images/screen_01_bg_2.png") !important;
+	background-repeat: no-repeat !important;
+	background-size: 100% 100% !important;
+}
 
+#fb_login_button {
+	padding-bottom: 13px;
+}
+
+#loading_page {
+	background-image: url("../images/screen_02_scroll-in-from-left-to-right.png") !important;
+	background-repeat: no-repeat !important;
+	background-size: 100% 100% !important;
+
+}
 
 /*Selection section CSS class*/
 .alizarin_bg, .suggestion_item {
@@ -24,10 +50,12 @@
 }
 
 /*person from thier social media*/
-#person {
-	width:50px;
-	height:50px;
+.person {
 	border-radius: 50%;
+	/*background-color: white;*/
+	float:left;
+	margin-left: 10px;
+	margin-bottom: 5px;
 }
 
 /*Options container for 
@@ -36,7 +64,7 @@ Play ToT, Upcoming Holidays, Favs*/
 #options_container {
 	width:100%;
 }
-#options_container, .table {
+.table {
 	display: table;
 }
 
@@ -67,8 +95,8 @@ Play ToT, Upcoming Holidays, Favs*/
 
 
 /*Text color to white*/
-.suggestion_item,.alizarin_bg {
-	color: white;
+.suggestion_item,.alizarin_bg, #favs_title {
+	color: white !important;
 }
 
 /*Styling for the selection text */
@@ -90,11 +118,19 @@ Play ToT, Upcoming Holidays, Favs*/
 	padding-top: 10px;
 }
 
+/**/
+#favs_row {
+	color: white;
+	width: 100%;
+}
+
 /*Add styling to the Fav_name*/
 #fav_name {
 	font-size: 1.5em;
 	font-style: italic;
 }
+
+
 
 /*Add Left alignment*/
 #fav_details_column {

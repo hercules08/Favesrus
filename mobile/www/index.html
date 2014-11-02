@@ -11,13 +11,13 @@
     </style>
     
     <!--  JQuery  -->
-    <script type="text/javascript" src="lib/jQuery/jquery.js"></script>
+<!--    <script type="text/javascript" src="lib/jQuery/jquery.js"></script>-->
     
     <!--App Framework files-->
     <link rel="stylesheet" href="lib/appframework/af.ui.css">
     <link rel="stylesheet" href="lib/appframework/icon.css">
     
-    <script type="text/javascript" src="lib/appframework/jq-appframework.min.js"></script>
+<!--    <script type="text/javascript" src="lib/appframework/jq-appframework.min.js"></script>-->
     <script type="text/javascript" src="lib/appframework/appframework.js"></script>
     <script type="text/javascript" src="lib/appframework/appframework.ui.js"></script>
     
@@ -27,53 +27,62 @@
 
 <body id="afui">
     <div id="content">
+        <header id="main_header">
+            <h1>That's From Us</h1>
+        </header>
         <!--Main Page-->
-        <div id="main" title="title" class="panel" data-footer="none" data-header="main_header" selected="true">    
-            <header id="main_header">
-                <h1>That's From Us</h1>
-            </header>
+        <div id="main" title="title" class="panel" data-footer="none" data-header="none" selected="true">    
             <div class="horizontal_center">
-                <!--<img id="" src=""/>-->
-                <div id="temp" class="red_bg horizontal_center"></div>
-                <div class="button-grouped">
-                    <a id="" href="#second" class="button">Login with Facebook</a>
-                    <a id="" href="#second" class="button">Sign Up</a>
+                <div id="intro_page_button_container">
+                    <img  id="fb_login_button" class="intro_image_button" src="images/screen_01_button_1.png"/>
+                    <img id="signup_button" class="intro_image_button" src="images/screen_01_button_2.png"/>
                 </div>
             </div>
         </div>
         
         <!--Loading Second Page-->
-        <div id="second" title="title" class="panel" data-footer="none" data-header="main_header">
+        <div id="loading_page" title="title" class="panel" data-footer="none" data-header="none">
             <div class="horizontal_center">
                 <!--<img id="" src=""/>-->
                 <div id="temp" class="red_bg horizontal_center"></div>
-                <h1>Loading Page..</h1>
-                <a class="button" href="#third">Transition</a>
+                <h1>Loading...</h1>
             </div>
         </div>
         
-        <!--Action Items Third Page-->
-        <div id="third" title="title" class="panel" data-footer="none" data-header="main_header">
-            <div id="options_container" class="horizontal_center">
-                <div class="row">
-                    <div class="column">
+        <!--Menu Third Page-->
+        <header id="menu_header">
+            <h1 id="username">Welcome User!</h1>
+        </header>
+        <div id="menu_page" title="title" class="panel" data-footer="none" data-header="menu_header">
+            
+            <table id="options_container" class="horizontal_center">
+                <tr>
+                    <td>
                         <h2>This OR That!</h2>
                         <a id="play" class="button">PLAY!</a>
-                    </div>
-                    <div class="column rightcolumn">
+                    </td>
+                    <td class="rightcolumn">
                         <h2>Upcoming Holidays<h2>
                         Christmas<br>December 25 
-                    </div>
-                </div>
-                <div id="favs_row" class="row">
-                    <!--<img id="" src=""/>-->
-                    <div id="temp2" colspan="2" class="blue_bg horizontal_center column">
-                        <div><h2>Favs</h2></div>
-                        <div class="person"></div>
-                    </div>
-                </div>
-            </div>
+                    </td>
+                </tr>
+                <tr id="spacer"></tr>
+                <tr id="favs_row">
+                    <td colspan="2" id="temp2" class="blue_bg horizontal_left">
+                        <div><h2 id="favs_title">Favs</h2></div>
+                        <div id="person_container">
+                            <div class="person"><img id="person1" class="person" src=""/></div>
+                            <div class="person"><img id="person2" class="person" src=""/></div>
+                            <div class="person"><img id="person3" class="person" src=""/></div>
+                            <div class="person"><img id="person4" class="person" src=""/></div>
+                        </div>
+                        <!--<img id="" src=""/>-->
+                    </td>
+                </tr>
+            </table>
+            
         </div>
+            
         <!--Gift Selection Page-->
         <div id="forth" title="title" class="panel" data-footer="none" data-header="gift_selection_header">
             <header id="gift_selection_header">
@@ -99,8 +108,13 @@
                 </div>
             </div>     
         </div>
+            
         <!--Favs Details Page-->
-        <div id="favs_details_page" title="title" class="panel" data-footer="none" data-header="main_header">
+        <div id="favs_details_page" title="title" class="panel" data-footer="none" data-header="favs_details_header">
+            <header id="favs_details_header">
+                <a id="backButton" class="backButton">Back</a>
+                <h1>That's From Us</h1>
+            </header>
             <div class="table horizontal_center">
                 <div class="row">
                     <div id="ask_network_column" class="column">
@@ -160,6 +174,10 @@
                         </div>
                     </div>
                 </div>
+            </div>    
+        </div>
+        <!--Pro Gifter Page-->
+        <div id="pro_gifter_page" title="title" class="panel" data-footer="none" data-header="favs_details_header">
             </div>    
         </div>
     </div>
