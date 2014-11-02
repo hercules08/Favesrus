@@ -28,10 +28,15 @@ window.onload = function () {
 	$(".red_bg").width(0.5 * window.innerWidth);
 	$(".red_bg").height(0.5 * window.innerHeight);
 
+	//Set the size for the Play button
+	$("#play").width(0.40 * window.innerWidth);
 	//apply an onclick event handler to the play! button
 	$("#play").click(function () {
 		$.ui.loadContent("#forth", false, false, "fade");
 	});
+
+	//Set the size for the Play button
+	//$("#upcoming_image").width(0.60 * window.innerWidth);
 
 	$("#spacer").height("10px")
 
@@ -46,14 +51,14 @@ window.onload = function () {
 	$(".alizarin_bg").height(0.6 * window.innerHeight);
 
 	//apply an onclick event handler to the Favs div
-	$("#transition_button").click(function () {
+	/*$("#transition_button").click(function () {
 		$.ui.loadContent("#menu_page", false, false, "fade");
-	});
+	});*/
 
 	//
-	$("#favs_row").click(function () {
+	/*$("#favs_row").click(function () {
 		$.ui.loadContent("#favs_details_page", false, false, "fade");
-	});
+	});*/
 
 	//Set the size of favs person div for for the menu Page 
 	$(".person").width(0.15 * window.innerWidth);
@@ -72,16 +77,11 @@ window.onload = function () {
 	//Set the size of ask_network button div for for the Favs Details Page 
 	$("#ask_network_column").width(0.15 * window.innerWidth);
 
-	//Add the pressed event handler to the fav_occasion element on the favs_details page
-	document.getElementsByName("fav_ocassion")[0].onchange = function() {
+	//Add the scroll event handler to the fav_occasion element on the favs_details page
+	/*document.getElementsByName("fav_ocassion")[0].onchange = function() {
 	//document.getElementsByName("fav_ocassion")[0].onscroll = function() {
 		alert("Occasion Date picker was Touch");
-	};
-
-	/*$("#fav_occasion").scroll(function() {
-		alert("Occasion Date picker was Scrolled");
-	});*/
-	//$("#fav_occasion").attr(onscroll,"alert('Hello')")
+	};*/
 }
 
 /*
@@ -99,6 +99,11 @@ function userLogin(option) {
 	}, 2000);
 }
 
+
+function updateFavDetails(data) {
+
+}
+
 /*
 TEMPLATE
 Function: functionName()
@@ -108,15 +113,31 @@ Description:
 function loadjsonData(){
 	var data;
 	//$.get("mypage.php?foo=bar",function(data){});
-	$.getJSON("http://71.237.221.15/giftly/api/user", function(data) {
+	$.getJSON("http://71.237.221.15/giftly/api/user/1", function(data) {
 		console.log(data);
 		//Load the user name in Header
-		$("#username").text("Hi "+data[0].FirstName+" "+data[0].LastName+"!");
+		$("#username").text("Hi "+data.FirstName+" "+data.LastName+"!");
 		//Load images to the Favs section
-		$("#person1").attr("src",data[0].Favs[0].Pic);
-		$("#person2").attr("src",data[0].Favs[1].Pic);
+		$("#person1").attr("src",data.Favs[0].Pic);
+		$("#person1").click(function () {
+			$.ui.loadContent("#favs_details_page", false, false, "fade");
+			updateFavDetails(data);
+		});
+		$("#person2").attr("src",data.Favs[1].Pic);
+		$("#person2").click(function () {
+			$.ui.loadContent("#favs_details_page", false, false, "fade");
+			updateFavDetails(data);
+		});
 		$("#person3").attr("src","http://www.nsbepropdx.org/uploads/2/3/7/3/23733030/9716396.jpg");
+		$("#person3").click(function () {
+			$.ui.loadContent("#favs_details_page", false, false, "fade");
+			updateFavDetails(data);
+		});
 		$("#person4").attr("src","http://www.nsbepropdx.org/uploads/2/3/7/3/23733030/6245377.jpg");
+		$("#person4").click(function () {
+			$.ui.loadContent("#favs_details_page", false, false, "fade");
+			updateFavDetails(data);
+		});
 	});	
 	
 }

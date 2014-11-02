@@ -53,26 +53,23 @@
         <header id="menu_header">
             <h1 id="username">Welcome User!</h1>
         </header>
-        <div id="menu_page" title="title" class="panel" data-footer="none" data-header="menu_header">
-            
+        <div id="menu_page" title="title" class="panel" data-footer="none" data-header="none">
             <table id="options_container" class="horizontal_center">
                 <tr>
-                    <td>
-                        <h2>This OR That!</h2>
-                        <a id="play" class="button">PLAY!</a>
+                    <td class="horizontal_left">
+                        <img id="play" src="images/screen_03_button-goes-all-the-way-to-the-margin.png"/>
                     </td>
                     <td class="rightcolumn">
-                        <h2>Upcoming Holidays<h2>
-                        Christmas<br>December 25 
+                        <!--<img id="upcoming_image" src="images/screen_03_events.png"/>-->
                     </td>
                 </tr>
                 <tr id="spacer"></tr>
                 <tr id="favs_row">
-                    <td colspan="2" id="temp2" class="blue_bg horizontal_left">
-                        <div><h2 id="favs_title">Favs</h2></div>
+                    <td colspan="2" id="temp2" class=" horizontal_left" style="height:159px">
+                        <!--<div><h2 id="favs_title">Favs</h2></div>-->
                         <div id="person_container">
-                            <div class="person"><img id="person1" class="person" src=""/></div>
-                            <div class="person"><img id="person2" class="person" src=""/></div>
+                            <div class="person" style="margin-left:92px"><img id="person1" class="person"/></div>
+                            <div class="person"><img id="person2" class="person"/></div>
                             <div class="person"><img id="person3" class="person" src=""/></div>
                             <div class="person"><img id="person4" class="person" src=""/></div>
                         </div>
@@ -140,15 +137,11 @@
                             <label for="fav_ocassion">Next Occasion</label><select name="fav_ocassion">
                                 <option value="none">Select Month Day, Year</option>
                                 <option value="$10">Sunday, November 2, 2014</option>
-                                <option value="$20">$20</option>
-                                <option value="$30">$30</option>
-                                <option value="$40">$40</option>
-                                <option value="$20">$50</option>
-                                <option value="$30">$60</option>
-                                <option value="$40">$70</option>
-                                <option value="$20">$80</option>
-                                <option value="$30">$90</option>
-                                <option value="$40">$100</option>
+                                <option value="$20">Monday, November 3, 2014</option>
+                                <option value="$30">Tuesday, November 4, 2014</option>
+                                <option value="$40">Wednesday, November 5, 2014</option>
+                                <option value="$20">Thursday, November 6, 2014</option>
+                                <option value="$30">Friday, November 7, 2014</option>
                             </select>         
                         </form>
                     </div>

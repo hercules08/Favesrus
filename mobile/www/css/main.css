@@ -44,6 +44,12 @@
 
 }
 
+#menu_page {
+	background-image: url("../images/screen_03_bg.png") !important;
+	background-repeat: no-repeat !important;
+	background-size: 100% 100% !important;
+}
+
 /*Selection section CSS class*/
 .alizarin_bg, .suggestion_item {
 	background-color: #e74c3c;
@@ -56,6 +62,7 @@
 	float:left;
 	margin-left: 10px;
 	margin-bottom: 5px;
+	/*padding-top: 74px;*/
 }
 
 /*Options container for 
@@ -64,6 +71,12 @@ Play ToT, Upcoming Holidays, Favs*/
 #options_container {
 	width:100%;
 }
+
+#play {
+	padding-top: 7%;
+	margin-left: -10px;
+}
+
 .table {
 	display: table;
 }
@@ -116,6 +129,10 @@ Play ToT, Upcoming Holidays, Favs*/
 /*Top Padding for keeping away from the Header*/
 .top_padding {
 	padding-top: 10px;
+}
+
+#username {
+	color: white !important;
 }
 
 /**/
