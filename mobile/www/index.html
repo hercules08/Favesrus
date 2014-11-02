@@ -28,7 +28,7 @@
 <body id="afui">
     <div id="content">
         <!--Main Page-->
-        <div id="main" title="title" class="panel" data-footer="none" data-header="main_header">    
+        <div id="main" title="title" class="panel" data-footer="none" data-header="main_header" selected="true">    
             <header id="main_header">
                 <h1>That's From Us</h1>
             </header>
@@ -77,7 +77,7 @@
         <!--Gift Selection Page-->
         <div id="forth" title="title" class="panel" data-footer="none" data-header="gift_selection_header">
             <header id="gift_selection_header">
-                <a id="backButton" class="backButton"></a> 
+                <a id="backButton" class="backButton">Back</a> 
                 <h1>That's From Us</h1>
             </header>
             <div class="horizontal_center">
@@ -100,7 +100,7 @@
             </div>     
         </div>
         <!--Favs Details Page-->
-        <div id="favs_details_page" title="title" class="panel" data-footer="none" data-header="main_header" selected="true">
+        <div id="favs_details_page" title="title" class="panel" data-footer="none" data-header="main_header">
             <div class="table horizontal_center">
                 <div class="row">
                     <div id="ask_network_column" class="column">
@@ -110,7 +110,7 @@
                         <div class="formGroupHead">Shopping For</div>
                         <div id="fav_name">Test User</div>
                         <form>
-                            <label for="fav_$range">Spending Range</label><select id="fav_$range">
+                            <label for="fav_$range">Spending Range</label><select name="fav_$range">
                                 <option value="none">Select $ Range</option>
                                 <option value="$10">$10</option>
                                 <option value="$20">$20</option>
@@ -123,7 +123,7 @@
                                 <option value="$30">$90</option>
                                 <option value="$40">$100</option>
                             </select>
-                            <label for="frm_input3">Next Occasion</label><select id="fav_ocassion">
+                            <label for="fav_ocassion">Next Occasion</label><select name="fav_ocassion">
                                 <option value="none">Select Month Day, Year</option>
                                 <option value="$10">Sunday, November 2, 2014</option>
                                 <option value="$20">$20</option>

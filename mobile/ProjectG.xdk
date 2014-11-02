@@ -6,7 +6,7 @@
       "projectTypeName": "com.intel.xdk.projecttype.jsapp",
       "src": "",
       "projectGuid": "dbb96884-9d69-417d-9712-48eb7259b51f",
-      "lastModifiedDate": 1414872149158,
+      "lastModifiedDate": 1414903116260,
       "creationDate": 1414869828779
     },
     "sourceDirectory": "www",
@@ -54,7 +54,8 @@
         "name_": "Android",
         "preferences_": {
           "android-minSdkVersion": "10",
-          "android-targetSdkVersion": "19"
+          "android-targetSdkVersion": "19",
+          "Orientation": "landscape"
         },
         "isActive_": true,
         "appName_": "ProjectG",
@@ -76,7 +77,8 @@
         "name_": "Android-Crosswalk",
         "preferences_": {
           "android-minSdkVersion": "14",
-          "android-targetSdkVersion": "19"
+          "android-targetSdkVersion": "19",
+          "Orientation": "landscape"
         },
         "isActive_": true,
         "appName_": "ProjectG",
@@ -98,7 +100,8 @@
         "name_": "iOS",
         "preferences_": {
           "ios-target": "5",
-          "ios-configuration": "adhoc"
+          "ios-configuration": "adhoc",
+          "Orientation": "landscape"
         },
         "isActive_": true,
         "appName_": "ProjectG",

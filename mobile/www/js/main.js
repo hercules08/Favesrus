@@ -53,6 +53,14 @@ window.onload = function () {
 	//Set the size of ask_network button div for for the Favs Details Page 
 	$("#ask_network_column").width(0.15 * window.innerWidth);
 
+	//Add the pressed event handler to the fav_occasion element on the favs_details page
+	$("select").change(function() {
+		alert("Occasion Date picker was Touch");
+	});
+
+	/*$("#fav_occasion").scroll(function() {
+		alert("Occasion Date picker was Scrolled");
+	});*/
 }
 
 /*
