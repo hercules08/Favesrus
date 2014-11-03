@@ -20,12 +20,11 @@ namespace ProjectG.Server.Controllers
         IRepository repo;
 
         static int countUp = 1;
-        static int countDown; 
+        static int countUp2 = 2; 
 
         public ItemController(IRepository repo)
         {
             this.repo = repo;
-            countDown = repo.GetItems().Count();
         }
 
         // GET api/Item
@@ -48,8 +47,14 @@ namespace ProjectG.Server.Controllers
                 itemA = repo.GetItem(countUp);
             }
             countUp++;
-            Item itemB = repo.GetItem(countDown);
-            countDown--;
+            
+            Item itemB = repo.GetItem(countUp2);
+            while (itemB == null)
+            {
+                countUp2+=2;
+                itemB = repo.GetItem(countUp2);
+            }
+            countUp2++;
 
             items.Add(itemA);
             items.Add(itemB);
