@@ -1,4 +1,4 @@
-Project-G
+Project-G (That's From Us)
 =========
 
 Money2020 Gifting App
@@ -23,3 +23,13 @@ That's From Us APIs URL
 
 *API URL for 1 user*
 - http://71.237.221.15/giftly/api/user/3 
+
+
+Framework/Libraries used
+
+Intel App Framework
+---------------
+**source:**  https://github.com/01org/appframework
+**documentation:** http://app-framework-software.intel.com/documentation.php
+**documentation:** http://app-framework-software.intel.com/components.php
+**license: https:** //raw.githubusercontent.com/01org/appframework/master/license.txt
