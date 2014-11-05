@@ -14,3 +14,12 @@ Arthurs
 - Wale Ogundipe
 
 - Jeff Lofvers
+
+
+That's From Us APIs URL
+----------------
+*API URL for all users' data*
+- http://71.237.221.15/giftly/api/user/
+
+*API URL for 1 user*
+- http://71.237.221.15/giftly/api/user/3 
