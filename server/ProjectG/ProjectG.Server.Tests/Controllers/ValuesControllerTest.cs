@@ -188,6 +188,26 @@ namespace ProjectG.Server.Tests.Controllers
             var responseString = Encoding.ASCII.GetString(responseArray);
         }
 
+        [TestMethod]
+        public void Can_Get_Merchants_List()
+        {
+            GetToken();
+
+            var url = "https://api.sbx.gomo.do/YiiModo/api_v2/merchant/list";
+
+            WebClient client = new WebClient();
+
+            NameValueCollection collection = new NameValueCollection()
+            {
+                {"consumer_key", key},
+                {"access_token", GetTokenFromJSON(token)}
+            };
+
+            byte[] responseArray = client.UploadValues(url, collection);
+
+            var responseString = Encoding.ASCII.GetString(responseArray);
+        }
+
 
         [TestMethod]
         public void Can_Add_Modo_Credit_Card()
