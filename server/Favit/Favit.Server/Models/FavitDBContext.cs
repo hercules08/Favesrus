@@ -1,17 +1,18 @@
+using Favit.Server.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 
 namespace Favit.Server.Models
 {
-    public partial class ProjectGDBContext : DbContext
+    public partial class FavitDBContext : DbContext, IDbContext
     {
-        static ProjectGDBContext()
+        static FavitDBContext()
         {
-            Database.SetInitializer<ProjectGDBContext>(null);
+            Database.SetInitializer<FavitDBContext>(null);
             //Database.SetInitializer<ProjectGDBContext>(new DropCreateDatabaseIfModelChangesWithSeedData());
         }
 
-        public ProjectGDBContext()
+        public FavitDBContext()
             : base("Name=ProjectGDBContext")
         {
         }
@@ -27,6 +28,11 @@ namespace Favit.Server.Models
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
 
+        }
+
+        public new IDbSet<T> Set<T>() where T : class
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

@@ -5,9 +5,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Web.Mvc;
+using System.Web.Http.Dependencies;
 
-namespace Favit.Server.Infrastructure
+namespace Favit.Server.Web.Common
 {
     public class NinjectDependencyResolver : IDependencyResolver
     {

@@ -8,10 +8,10 @@ using System.Web;
 namespace Favit.Server
 {
     public class FavitInitializer : 
-        DropCreateDatabaseIfModelChanges<ProjectGDBContext>
+        DropCreateDatabaseIfModelChanges<FavitDBContext>
     {
 
-        protected override void Seed(ProjectGDBContext context)
+        protected override void Seed(FavitDBContext context)
         {
             Category shoes = new Category() { CategoryName = "Shoes"};
             Category shirts = new Category() { CategoryName = "Shirts" };

@@ -10,7 +10,7 @@ namespace Favit.Server.BLL.Repos
 {
     public class Repository : IRepository
     {
-        private ProjectGDBContext context = new ProjectGDBContext();
+        private FavitDBContext context = new FavitDBContext();
 
         public IEnumerable<User> Users
         {

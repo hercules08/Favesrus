@@ -10,8 +10,7 @@ namespace Favit.Server.App_Start
 
     using Ninject;
     using Ninject.Web.Common;
-    using Favit.Server.Infrastructure;
-    using System.Web.Mvc;
+    using System.Web.Http;
 
     public static class NinjectWebCommon 
     {
@@ -63,7 +62,11 @@ namespace Favit.Server.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            DependencyResolver.SetResolver(new NinjectDependencyResolver(kernel));
-        }        
+            var containerConfigurator = new NinjectConfigurator();
+            containerConfigurator.Configure(kernel);
+
+            //Message authentication handler
+            //GlobalConfiguration.Configuration.MessageHandlers.Add(kernel.Get)
+        }
     }
 }
