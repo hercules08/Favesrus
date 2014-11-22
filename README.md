@@ -1,6 +1,13 @@
 Favit
 =========
 
+**Links**
+
+- Home -	[favit.io](http://favit.io)
+- Dev - 	[dev.favit.io](dev.favit.io)
+- Api - 	[api.favit.io](api.favit.io)
+- Seller - 	[sell.favit.io](sell.favit.io)
+
 **Front End Architecture**
 
 - Developed In - Intel XDK

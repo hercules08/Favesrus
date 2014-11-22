@@ -7,7 +7,7 @@ using System.Web;
 
 namespace Favit.Server
 {
-    public class DropCreateDatabaseIfModelChangesWithSeedData : 
+    public class FavitInitializer : 
         DropCreateDatabaseIfModelChanges<ProjectGDBContext>
     {
 
