@@ -1,15 +1,25 @@
-Project-G
+Favit
 =========
 
-Money2020 Gifting App
+**Front End Architecture**
 
-Developed using the Intel XDK
+- Developed In - Intel XDK
+- Design - KendoUI
+- Structure - Backbone.js
+- Testing - QUnit
 
-Arthurs
+**Back End Architecture**
+
+- Developed In - Visual Studio 2013
+- Design - RESTFUL, HATEOAS
+- Structure - WebApi 2, MVC5
+- Testing - MSTest
+
+Authors
 -----------
 - Elroy Ashtian, Jr.
 
-- Damola Omotosho
+- [Damola Omotosho](http://damolaomotosho.com)
 
 - Wale Ogundipe
 
