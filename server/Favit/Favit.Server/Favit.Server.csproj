@@ -61,6 +61,12 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.Data.OData.5.6.3\lib\net40\Microsoft.Data.OData.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common">
+      <HintPath>..\packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Validation">
+      <HintPath>..\packages\EnterpriseLibrary.Validation.6.0.1304.0\lib\NET45\Microsoft.Practices.EnterpriseLibrary.Validation.dll</HintPath>
+    </Reference>
     <Reference Include="Moq">
       <HintPath>..\packages\Moq.4.2.1409.1722\lib\net40\Moq.dll</HintPath>
     </Reference>
@@ -76,9 +82,6 @@
     </Reference>
     <Reference Include="Ninject.Web.Mvc">
       <HintPath>..\packages\Ninject.MVC5.3.2.1.0\lib\net45-full\Ninject.Web.Mvc.dll</HintPath>
-    </Reference>
-    <Reference Include="Ninject.Web.WebApi">
-      <HintPath>..\packages\Ninject.Web.WebApi.3.2.3.0\lib\net45-full\Ninject.Web.WebApi.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -161,8 +164,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Common\" />
-    <Folder Include="Infrastructure\" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -199,7 +201,6 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
-    <Compile Include="BLL\Repos\Repository.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ItemController.cs" />
@@ -210,27 +211,10 @@
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Controllers\VoteController.cs" />
-    <Compile Include="Data\IDbContext.cs" />
-    <Compile Include="Data\Mappings\CategoryMap.cs" />
-    <Compile Include="Data\Mappings\ItemMap.cs" />
-    <Compile Include="Data\Mappings\OccasionMap.cs" />
-    <Compile Include="Data\Mappings\RetailerMap.cs" />
-    <Compile Include="Data\Mappings\UserMap.cs" />
-    <Compile Include="FavitInitializer.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Interfaces\IUnitOfWork.cs" />
-    <Compile Include="Web.Common\NinjectDependencyResolver.cs" />
-    <Compile Include="Interfaces\IRepository.cs" />
-    <Compile Include="Models\Category.cs" />
-    <Compile Include="Models\DumbItem.cs" />
-    <Compile Include="Models\Item.cs" />
-    <Compile Include="Models\Occasion.cs" />
-    <Compile Include="Models\FavitDBContext.cs" />
-    <Compile Include="Models\Retailer.cs" />
-    <Compile Include="Models\User.cs" />
-    <Compile Include="Models\VoteModel.cs" />
+    <Compile Include="App_Start\NinjectDependencyResolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -297,7 +281,6 @@
     <Content Include="Views\Retailer\Delete.cshtml" />
     <Content Include="Views\Retailer\Details.cshtml" />
     <Content Include="Views\Retailer\Edit.cshtml" />
-    <Content Include="Views\Retailer\Index.cshtml" />
     <Content Include="Views\Category\Create.cshtml" />
     <Content Include="Views\Category\Delete.cshtml" />
     <Content Include="Views\Category\Details.cshtml" />
@@ -310,8 +293,34 @@
     <Content Include="Views\ItemGenerate\Index.cshtml" />
     <Content Include="Views\Home\VoteStatus.cshtml" />
     <Content Include="Scripts\jquery-2.1.1.min.map" />
+    <Content Include="Views\Retailer\Index.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Favit.BLL\Favit.BLL.csproj">
+      <Project>{4a1c75a8-26a6-4d59-9ba6-6347be5930a3}</Project>
+      <Name>Favit.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Favit.DAL\Favit.DAL.csproj">
+      <Project>{eff2490d-7682-4c7d-868a-250c60206b2a}</Project>
+      <Name>Favit.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Favit.Model\Favit.Model.csproj">
+      <Project>{b0034e99-ac9b-4adf-8a4d-bf1a7662b0b7}</Project>
+      <Name>Favit.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Repository.Pattern.Ef6\Repository.Pattern.Ef6.csproj">
+      <Project>{f68a1d19-93fb-47c1-a22b-42bea3e4fd8c}</Project>
+      <Name>Repository.Pattern.Ef6</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Repository.Pattern\Repository.Pattern.csproj">
+      <Project>{6e682a14-c872-4813-b620-76e108dea683}</Project>
+      <Name>Repository.Pattern</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Service.Pattern\Service.Pattern.csproj">
+      <Project>{e900c942-d659-4676-b3c7-5bf7b0c174ed}</Project>
+      <Name>Service.Pattern</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />

@@ -1,5 +1,5 @@
-﻿using Favit.Server.Interfaces;
-using Favit.Server.Models;
+﻿
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,12 +10,12 @@ namespace Favit.Server.Controllers
 {
     public class HomeController : Controller
     {
-        IRepository repo;
+        //IRepository repo;
 
-        public HomeController(IRepository repo)
-        {
-            this.repo = repo;
-        }
+        //public HomeController(IRepository repo)
+        //{
+        //    this.repo = repo;
+        //}
         public ActionResult Index()
         {
             ViewBag.Title = "Home Page";
@@ -23,10 +23,10 @@ namespace Favit.Server.Controllers
             return View();
         }
 
-        public ActionResult VoteStatus()
-        {
-            VoteModel voteModel = repo.GetVoteModel();
-            return View(voteModel);
-        }
+        //public ActionResult VoteStatus()
+        //{
+        //    VoteModel voteModel = repo.GetVoteModel();
+        //    return View(voteModel);
+        //}
     }
 }

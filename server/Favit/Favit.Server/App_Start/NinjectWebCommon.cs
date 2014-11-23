@@ -10,7 +10,6 @@ namespace Favit.Server.App_Start
 
     using Ninject;
     using Ninject.Web.Common;
-    using System.Web.Http;
 
     public static class NinjectWebCommon 
     {
@@ -64,9 +63,6 @@ namespace Favit.Server.App_Start
         {
             var containerConfigurator = new NinjectConfigurator();
             containerConfigurator.Configure(kernel);
-
-            //Message authentication handler
-            //GlobalConfiguration.Configuration.MessageHandlers.Add(kernel.Get)
-        }
+        }        
     }
 }

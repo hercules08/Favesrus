@@ -1,5 +1,5 @@
-﻿using Favit.Server.Interfaces;
-using Favit.Server.Models;
+﻿
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,29 +12,29 @@ namespace Favit.Server.Controllers
     public class ItemUpdateController : ApiController
     {
 
-        IRepository repo;
+ //       IRepository repo;
 
-        public ItemUpdateController(IRepository repo)
-        {
-            this.repo = repo;
-        }
+ //       public ItemUpdateController(IRepository repo)
+ //       {
+ //           this.repo = repo;
+ //       }
 
-        // POST api/uasdfa
-        public void Post([FromBody]string value)
-        {
-        }
+ //       // POST api/uasdfa
+ //       public void Post([FromBody]string value)
+ //       {
+ //       }
 
- // PUT api/item/5
-        public void Put(int id, [FromBody]string value)
-        {
-            User user = repo.GetUser(1);
+ //// PUT api/item/5
+ //       public void Put(int id, [FromBody]string value)
+ //       {
+ //           User user = repo.GetUser(1);
 
-            if(user.FavItems.Where(i => i.Id == id).Count() != 0)
-            {
-                Item item = repo.GetItem(id);
-                user.FavItems.Add(item);
-                repo.SaveUser(user);
-            }
-        }
+ //           if(user.FavItems.Where(i => i.Id == id).Count() != 0)
+ //           {
+ //               Item item = repo.GetItem(id);
+ //               user.FavItems.Add(item);
+ //               repo.SaveUser(user);
+ //           }
+ //       }
     }
 }

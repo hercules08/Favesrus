@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Favit.BLL.Interfaces;
+using Favit.Model.Entities;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -6,26 +8,26 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using Favit.Server.Models;
-using Favit.Server.Interfaces;
+
+
 
 namespace Favit.Server.Controllers
 {
     public class RetailerController : Controller
     {
-        IRepository repo;
 
+        IRetailerService retailerService;
 
-        public RetailerController(IRepository repo)
+        public RetailerController(IRetailerService retailerService)
         {
-            this.repo = repo;
+            this.retailerService = retailerService;
         }
 
 
         // GET: /Retailer/
         public ActionResult Index()
         {
-            return View(repo.GetRetailers());
+            return View(retailerService.Queryable());
         }
 
         // GET: /Retailer/Details/5
@@ -35,7 +37,7 @@ namespace Favit.Server.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Retailer retailer = repo.GetRetailer(id);
+            Retailer retailer = retailerService.Find(id);
             if (retailer == null)
             {
                 return HttpNotFound();
@@ -54,11 +56,11 @@ namespace Favit.Server.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="Id,RetailerName,RetailerLogo,RetailerLogoDataString")] Retailer retailer)
+        public ActionResult Create([Bind(Include = "Id,RetailerName,RetailerLogo,RetailerLogoDataString")] Retailer retailer)
         {
             if (ModelState.IsValid)
             {
-                repo.AddRetailer(retailer);
+                retailerService.Insert(retailer);
                 return RedirectToAction("Index");
             }
 
@@ -72,7 +74,7 @@ namespace Favit.Server.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Retailer retailer = repo.GetRetailer(id);
+            Retailer retailer = retailerService.Find(id);
             if (retailer == null)
             {
                 return HttpNotFound();
@@ -85,11 +87,11 @@ namespace Favit.Server.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="Id,RetailerName,RetailerLogo,RetailerLogoDataString")] Retailer retailer)
+        public ActionResult Edit([Bind(Include = "Id,RetailerName,RetailerLogo,RetailerLogoDataString")] Retailer retailer)
         {
             if (ModelState.IsValid)
             {
-                repo.UpdateRetailer(retailer);
+                retailerService.Update(retailer);
                 return RedirectToAction("Index");
             }
             return View(retailer);
