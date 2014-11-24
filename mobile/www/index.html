@@ -30,6 +30,7 @@
     <!-- Login View -->
     <div data-role="view" id="fi-login-view" data-layout="fi-login-layout">
         <div id="login_container">
+            <div class="button_red">Login In</div>
             <img class="login_button" id="login_facebook_button" src="images/login_facebook.png"/>
             <a id="signup-modalview-open-button" data-click="openModalView" data-role="button">
                 <img class="login_button" id="login_email_button" src="images/signup_email.png"/>
@@ -116,26 +117,26 @@
     <div data-role="view" id="fi-playtot-view" data-layout="fi-playtot-layout">
         <div id="playtot_container">
             <div id="selection_A" class="selection">
-                <img class="scale_fit" id="img_A" src=""/>
+                <img id="img_A" src=""/>
             </div>
-            <a id="playtot-button" href="fi-playtot-view" data-role="button">
-                <img id="play_button_img" src="images/play_tot.png"/>
-            </a>
+            <div id="divider">
+            OR
+            </div>
+            <div id="selection_B" class="selection">
+                <img id="img_B" src=""/>
+            </div>
         </div>
     </div>
     
     <!-- Layout -->
-    <div data-role="layout" data-id="fi-mainmenu-layout">
+    <div data-role="layout" data-id="fi-playtot-layout">
         <!-- Header -->
         <header data-role="header">
             <div data-role="navbar">
+                <a data-align="left" data-role="backbutton"  id="">Back</a>
                 <span data-role="view-title">Fāvit</span>
-                <a data-align="left" data-icon="drawer-button" data-role="button"  id="drawer_icon" data-rel="drawer" href="#my-drawer"></a>
             </div> 
         </header>
-        <footer data-role="footer">
-            <span style="color:#fff">Footer goes here</span>
-        </footer>
     </div>
     
     <script>
