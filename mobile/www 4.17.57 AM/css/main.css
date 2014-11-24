@@ -1,0 +1,39 @@
+.scale_fit {
+    width: 90%;
+}
+
+.login_button {
+    width: 90%;
+}
+
+#mainmenu_container, #login_container {
+    margin: auto;
+    text-align: center;
+}
+
+#login_container {
+    padding-top: 20vh;
+}
+
+#mainmenu_container {
+    padding-top: 4vh;
+}
+
+#drawer_icon {
+    font-size:1.4em;
+}
+
+#signup-modalview-open-button, #playtot-button {
+    border: none !important;
+}
+
+/*Drawer icon*/
+km-drawer-button:before, .km-drawer-button:after  { 
+    content: "\E077"; 
+}
+
+#selection {
+    background: orange;
+    border-radius: 50%;
+    width:90%;
+}

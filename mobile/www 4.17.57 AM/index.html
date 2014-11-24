@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Favit 1.0</title>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    
+    <!-- Cordova Framework (PHANTOM) -->
+    <script src="cordova.js"></script>
+    <script src="xhr.js"></script>
+
+    <script src="lib/jquery/jquery.min.js"></script>
+    <!-- Kendo UI -->
+    <script src="lib/kendo-ui/kendo.mobile.min.js"></script>
+    
+    <link href="lib/kendo-ui/kendo.mobile.all.min.css" rel="stylesheet" />
+    <!-- jQuery Selector Engine-->
+    
+    <link rel="stylesheet" href="css/main.css"/>
+    <script src=js/main.js></script>
+
+    <script>
+        function onDeviceReady(){
+            navigator.splashscreen.hide();
+        }
+        document.addEventListener("deviceready", onDeviceReady, false);
+    </script>    
+</head>
+<body>
+    <!-- Login View -->
+    <div data-role="view" id="fi-login-view" data-layout="fi-login-layout">
+        <div id="login_container">
+            <img class="login_button" id="login_facebook_button" src="images/login_facebook.png"/>
+            <a id="signup-modalview-open-button" data-click="openModalView" data-role="button">
+                <img class="login_button" id="login_email_button" src="images/signup_email.png"/>
+            </a>
+        </div>
+    </div>
+    <!-- Layout -->
+    <div data-role="layout" data-id="fi-login-layout">
+        <!-- Header -->
+        <header data-role="header">
+            <div data-role="navbar">
+                <span data-role="view-title">Fāvit</span>
+            </div> 
+        </header>
+        <footer data-role="footer">
+            <span style="color:#fff">Footer goes here</span>
+        </footer>
+    </div>
+    
+    <!-- User Sign Up Modal View -->
+    <div data-role="modalview" id="signup-modalview" style="width:90%">
+        <div data-role="header">
+            <div data-role="navbar">
+                <span>SignUp</span>
+                <a data-click="closeModalViewLogin" data-role="button" data-align="right">Cancel</a>
+            </div>
+        </div>
+
+        <ul data-role="listview" data-style="inset">
+            <li><label for="email">Email: <input type="text" id="email" /></label></li>
+            <li><label for="password">Password: <input type="password" id="password" /></label></li>
+            <li>
+                <label for="birthday">Birthday: <input type="text" id="birthday" /></label>
+            </li>
+            <li><label for="gender">Gender: <input type="text" id="gender" /></label></li>
+            
+        </ul>
+        <a data-click="closeModalViewLogin" href="fi-mainmenu-view" id="modalview-login-button" type="button" data-role="button">Submit</a>
+    </div>
+    
+    <!-- Main Menu View -->
+    <div data-role="view" id="fi-mainmenu-view" data-layout="fi-mainmenu-layout">
+        <div id="mainmenu_container">
+            <img class="scale_fit" id="upcoming_events_button" src="images/upcoming_events.png"/>
+            <a id="playtot-button" href="fi-playtot-view" data-role="button">
+                <img id="play_button_img" src="images/play_tot.png"/>
+            </a>
+        </div>
+    </div>
+    
+    <!-- My User Profile Drawer -->
+    <div data-role="drawer" id="my-drawer" style="width: 270px">
+        <ul data-role="listview" data-type="group">
+            <li>Hi Damola <!--TODO Fix to insert user name-->
+                <ul>
+                    <li data-icon="contacts"><a href="#drawer-profile" data-transition="none">Profile</a></li>
+                    <li data-icon="favorites"><a href="#drawer-gift-suggestions" data-transition="none">Gift Suggestions</a></li>
+                </ul>
+            </li>
+            <li>Account
+                <ul>
+                    <li data-icon="off">Log Out</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    
+    <!-- Layout -->
+    <div data-role="layout" data-id="fi-mainmenu-layout">
+        <!-- Header -->
+        <header data-role="header">
+            <div data-role="navbar">
+                <span data-role="view-title">Fāvit</span>
+                <a data-align="left" data-icon="drawer-button" data-role="button"  id="drawer_icon" data-rel="drawer" href="#my-drawer"></a>
+            </div> 
+        </header>
+        <footer data-role="footer">
+            <span style="color:#fff">Footer goes here</span>
+        </footer>
+    </div>
+    
+    <!-- Play This or That View -->
+    <div data-role="view" id="fi-playtot-view" data-layout="fi-playtot-layout">
+        <div id="playtot_container">
+            <div id="selection_A" class="selection">
+                <img class="scale_fit" id="img_A" src=""/>
+            </div>
+            <a id="playtot-button" href="fi-playtot-view" data-role="button">
+                <img id="play_button_img" src="images/play_tot.png"/>
+            </a>
+        </div>
+    </div>
+    
+    <!-- Layout -->
+    <div data-role="layout" data-id="fi-mainmenu-layout">
+        <!-- Header -->
+        <header data-role="header">
+            <div data-role="navbar">
+                <span data-role="view-title">Fāvit</span>
+                <a data-align="left" data-icon="drawer-button" data-role="button"  id="drawer_icon" data-rel="drawer" href="#my-drawer"></a>
+            </div> 
+        </header>
+        <footer data-role="footer">
+            <span style="color:#fff">Footer goes here</span>
+        </footer>
+    </div>
+    
+    <script>
+        //Load the KendoUI Library & "fi-login-view" View Initially
+        var app = new kendo.mobile.Application($(document.body), {
+            initial: "fi-login-view"
+        });  
+    </script>
+</body>
+</html>
