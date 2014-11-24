@@ -2,6 +2,7 @@
 using Favit.DAL.EntityFramwork;
 using Favit.DAL.Interfaces;
 using Favit.Model.Entities;
+using Favit.Model.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,38 +10,38 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Favit.BLL.Services
-{    
-    public class RetailerService:IRetailerService
+{
+    public class ItemService : IItemService
     {
         IRepository repo;
         IUnitOfWork uow;
 
-        public RetailerService(ISessionFactory sessionFactory)
+        public ItemService(ISessionFactory sessionFactory)
         {
             uow = sessionFactory.CurrentUoW;
             repo = new Repository(uow);
         }
 
-        public IQueryable<Retailer> GetRetailers()
+        public IQueryable<Item> GetItems()
         {
-            return repo.GetList<Retailer>();
+            return repo.GetList<Item>();
         }
 
-        public Retailer FindRetailerById(int? id)
+        public Item FindItemById(int? id)
         {
-            return repo.GetEntity<Retailer>(id);
+            return repo.GetEntity<Item>(id);
         }
 
-        public Retailer AddRetailer(Retailer entity)
+        public Item AddItem(Item entity)
         {
             uow.BeginTransaction();
             repo.AddEntity(entity);
             uow.CommitTransaction();
-            
+
             return entity;
         }
 
-        public Retailer UpdateRetailer(Retailer entity)
+        public Item UpdateItem(Item entity)
         {
             uow.BeginTransaction();
             repo.UpdateEntity(entity);
@@ -49,11 +50,21 @@ namespace Favit.BLL.Services
             return entity;
         }
 
-        public void DeleteRetailer(Retailer entity)
+        public void DeleteItem(Item entity)
         {
             uow.BeginTransaction();
             repo.DeleteEntity(entity);
             uow.CommitTransaction();
+        }
+
+        public DumbItem GetRandomItemA()
+        {
+            throw new NotImplementedException();
+        }
+
+        public DumbItem GetRandomItemB(int entityAId)
+        {
+            throw new NotImplementedException();
         }
     }
 }

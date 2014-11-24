@@ -36,7 +36,8 @@ namespace Favit.Server.App_Start
             container.Bind<IUnitOfWork>().To<UnitOfWork>();
             container.Bind<IRepository>().To<Repository>();
             container.Bind<ISessionFactory>().To<SessionFactory>().InRequestScope();
-            
+
+            container.Bind<IItemService>().To<ItemService>();
             container.Bind<IRetailerService>().To<RetailerService>();
 
         }

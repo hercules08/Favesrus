@@ -49,6 +49,7 @@
     <Compile Include="Interfaces\IRetailerService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\EmailService.cs" />
+    <Compile Include="Services\ItemService.cs" />
     <Compile Include="Services\RetailerService.cs" />
   </ItemGroup>
   <ItemGroup>

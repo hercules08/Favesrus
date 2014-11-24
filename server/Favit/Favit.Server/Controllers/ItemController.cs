@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Favit.BLL.Interfaces;
+using Favit.Model.Entities;
+using Favit.Model.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -15,23 +18,23 @@ namespace Favit.Server.Controllers
 {
     public class ItemController : ApiController
     {
-        //private static List<Item> dontQueryList = new List<Item>();
+        private static List<Item> dontQueryList = new List<Item>();
 
-        //IRepository repo;
+        IItemService itemService;
 
-        //static int countUp = 1;
-        //static int countUp2 = 2;
+        static int countUp = 1;
+        static int countUp2 = 2;
 
-        //public ItemController(IRepository repo)
-        //{
-        //    this.repo = repo;
-        //}
+        public ItemController(IItemService itemService)
+        {
+            this.itemService = itemService;
+        }
 
-        //// GET api/Item
-        //public IEnumerable<Item> GetItems()
-        //{
-        //    return repo.GetItems();
-        //}
+        // GET api/Item
+        public IEnumerable<Item> GetItems()
+        {
+            return itemService.GetItems();
+        }
 
         //[Route("api/item/getrandomitems")]
         //[HttpGet]

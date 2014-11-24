@@ -9,6 +9,7 @@ namespace Favit.Model.Entities
         public virtual string RetailerName { get; set; }
         public virtual string RetailerLogo { get; set; }
         public virtual string RetailerLogoDataString { get; set; }
+        public virtual string ModoMerchantId { get; set; }
         public virtual ICollection<Item> Items { get; set; }
     }
 }

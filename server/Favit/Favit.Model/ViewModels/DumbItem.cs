@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Favit.Model.Entities
+namespace Favit.Model.ViewModels
 {
     public class DumbItem
     {
