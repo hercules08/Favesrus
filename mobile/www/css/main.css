@@ -66,3 +66,35 @@ km-off:before, .km-off:after  {
     background-position: left top, right top, left top ;
     height:90px;
 }
+
+.fi-retailer-photo {
+    float: left;
+    height: 90px;
+    width: 70px;
+}
+
+.fi-listitem-title {
+    font-size: 19px;
+    font-weight: bold;
+    color: darkblue;
+}
+
+.km-android .fi-listitem-title {
+    font-size: 19px;
+    font-weight: bold;
+    color: rgb(104, 188, 235);
+}
+
+.fi-normal-label {
+
+    font-weight: normal;
+
+}
+
+.fi-retailer-details {
+
+    padding-left: 75px;
+
+    font-weight: normal;
+
+}
