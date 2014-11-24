@@ -8,7 +8,6 @@ namespace Favit.Model.Entities
     {
         public Item()
         {
-            Users = new List<User>();
         }
 
         public string ItemName { get; set; }

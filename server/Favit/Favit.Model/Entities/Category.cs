@@ -14,6 +14,13 @@ namespace Favit.Model.Entities
 
     public partial class Category:EntityBase, ICategory
     {
+
+
+        public virtual string CategoryName { get; set; }
+        public virtual ICollection<Item> Items { get; set; }
+
+
+
         internal Category()
         {
             this.Items = new List<Item>();
@@ -29,9 +36,6 @@ namespace Favit.Model.Entities
         {
             Items = items;
         }
-
-        public virtual string CategoryName { get; set; }
-        public virtual ICollection<Item> Items { get; set; }
 
         public void AddItemToCategory(Item item)
         {
