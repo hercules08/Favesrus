@@ -10,8 +10,14 @@ namespace Favit.DAL
     {
         static FavitDBContext()
         {
-            Database.SetInitializer<FavitDBContext>(null);
+            //Database.SetInitializer<FavitDBContext>(null);
             //Database.SetInitializer<FavitDBContext>(new FavitInitializer());
+        }
+
+        public FavitDBContext(string dbNameOrContext)
+            : base(dbNameOrContext)
+        {
+            Configuration.LazyLoadingEnabled = false;
         }
 
         public FavitDBContext()
@@ -26,6 +32,7 @@ namespace Favit.DAL
         public DbSet<Retailer> Retailers { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<VoteModel> VoteModels { get; set; }
+        public DbSet<newsletter> Newsletter { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

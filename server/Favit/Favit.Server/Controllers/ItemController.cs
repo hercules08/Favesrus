@@ -20,7 +20,7 @@ namespace Favit.Server.Controllers
         //IRepository repo;
 
         //static int countUp = 1;
-        //static int countUp2 = 2; 
+        //static int countUp2 = 2;
 
         //public ItemController(IRepository repo)
         //{
@@ -41,17 +41,17 @@ namespace Favit.Server.Controllers
 
         //    //Get one random item not on the list
         //    Item itemA = repo.GetItem(countUp);
-        //    while(itemA == null)
+        //    while (itemA == null)
         //    {
         //        countUp++;
         //        itemA = repo.GetItem(countUp);
         //    }
         //    countUp++;
-            
+
         //    Item itemB = repo.GetItem(countUp2);
         //    while (itemB == null)
         //    {
-        //        countUp2+=2;
+        //        countUp2 += 2;
         //        itemB = repo.GetItem(countUp2);
         //    }
         //    countUp2++;

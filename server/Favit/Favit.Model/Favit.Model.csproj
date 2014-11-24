@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\Category.cs" />
+    <Compile Include="Entities\newsletter.cs" />
     <Compile Include="Factories\CategoryFactory.cs" />
     <Compile Include="Fluent\FluentCategory.cs" />
     <Compile Include="Fluent\FluentItem.cs" />

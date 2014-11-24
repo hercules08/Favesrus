@@ -231,6 +231,7 @@
     <Content Include="assets\fonts\ostrich-regular-webfont.svg" />
     <Content Include="assets\fonts\SIL Open Font License 1.1.txt" />
     <Content Include="assets\img\background.jpg" />
+    <Content Include="assets\img\background1.jpg" />
     <Content Include="assets\img\close-widgets-black.png" />
     <Content Include="assets\img\close-widgets-white.png" />
     <Content Include="assets\img\close.png" />
@@ -298,9 +299,10 @@
     <Content Include="assets\js\.DS_Store" />
     <Content Include="assets\js\twitter\.DS_Store" />
     <Content Include="assets\js\twitter\cache\02a914dad85d48d393701deedc3bf638.json" />
+    <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
+    <None Include="Properties\PublishProfiles\FavitAWS.pubxml" />
     <None Include="Properties\PublishProfiles\ProjectGProfile.pubxml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
-    <Content Include="index.html" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
@@ -323,7 +325,6 @@
     <Content Include="Scripts\_references.js" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Retailer\Create.cshtml" />
@@ -343,6 +344,7 @@
     <Content Include="Views\Home\VoteStatus.cshtml" />
     <Content Include="Scripts\jquery-2.1.1.min.map" />
     <Content Include="Views\Retailer\Index.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Favit.BLL\Favit.BLL.csproj">

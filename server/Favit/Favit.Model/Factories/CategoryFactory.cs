@@ -21,7 +21,8 @@ namespace Favit.Model.Factories
 
         public static Category Create(string categoryName)
         {
-            entity = FluentCategory.Init().Create(categoryName);
+            IFluentCategory fluentEntity = FluentCategory.Init();
+            entity = fluentEntity.Create(categoryName);
 
             if(entity.IsValid)
             {

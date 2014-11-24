@@ -1,4 +1,5 @@
-﻿using Favit.BLL.Interfaces;
+﻿using Favit.BLL;
+using Favit.BLL.Interfaces;
 using Favit.BLL.Services;
 using Favit.DAL;
 using Favit.DAL.EntityFramwork;
@@ -44,7 +45,14 @@ namespace Favit.Server.App_Start
         {
             protected override FavitDBContext CreateInstance(IContext context)
             {
-                return new FavitDBContext();
+                if (!DebuggingService.RunningInDebugMode())
+                {
+                    return new FavitDBContext("name=DeployedContext");
+                }
+                else
+                {
+                    return new FavitDBContext();
+                }
             }
         }
 

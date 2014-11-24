@@ -37,5 +37,13 @@ namespace Favit.Model.Entities
         {
             Items.Add(item);
         }
+
+        public override bool IsValid
+        {
+            get
+            {
+                return base.Validate<Category>();
+            }
+        }
     }
 }

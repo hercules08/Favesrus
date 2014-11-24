@@ -122,7 +122,7 @@ $(document).ready(function() {
 		status.removeClass('shake');
 		$.ajax({
 			type: "POST",
-			url: "scripts/subscription.php",
+			url: "home/subscription",
 			data: postData,
 			success: function(data) {
 
@@ -236,7 +236,7 @@ $(document).ready(function() {
 		success.removeClass('shake')
 		$.ajax({
 			type: "POST",
-			url: "scripts/writeus.php",
+			url: "home/writeus",
 			data: postData,
 			success: function(data) {
 				if (data == "success") {

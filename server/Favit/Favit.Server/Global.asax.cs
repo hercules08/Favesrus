@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Favit.BLL;
+using Favit.DAL;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
@@ -29,6 +32,14 @@ namespace Favit.Server
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
+            if (!DebuggingService.RunningInDebugMode())
+            {
+                Database.SetInitializer<FavitDBContext>(new FavitInitializer());
+            }
+            else
+            {
+                Database.SetInitializer<FavitDBContext>(new FavitInitializer());
+            }
         }
     }
 }

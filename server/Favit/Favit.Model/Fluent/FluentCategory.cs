@@ -23,7 +23,7 @@ namespace Favit.Model.Fluent
         private static IFluentCategory fluent;
 
 
-        public FluentCategory()
+        static FluentCategory()
         {
             fluent = new FluentCategory();
         }

@@ -41,10 +41,14 @@
   <ItemGroup>
     <Compile Include="BaseFacade.cs" />
     <Compile Include="BaseService.cs" />
+    <Compile Include="DebuggingService.cs" />
     <Compile Include="Facade\CategoryFacade.cs" />
     <Compile Include="Facade\RetailerFacade.cs" />
+    <Compile Include="Interfaces\IEmailService.cs" />
+    <Compile Include="Interfaces\IItemService.cs" />
     <Compile Include="Interfaces\IRetailerService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\EmailService.cs" />
     <Compile Include="Services\RetailerService.cs" />
   </ItemGroup>
   <ItemGroup>
