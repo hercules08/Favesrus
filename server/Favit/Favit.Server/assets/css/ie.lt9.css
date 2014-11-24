@@ -1,0 +1,105 @@
+	html, body {
+		height: 100%;
+	}
+	div#header {
+		height:100px;
+		position:fixed;
+	}
+    div#logo {
+		 padding-top:18px; 
+	} 	
+	#bg-image,#bg-pattern{
+		top:100px;
+		position: fixed;
+	}
+	#bg-image {
+		/* The url is relative to the document, not to the css file! */
+    	/* Prefer absolute urls to avoid confusion. */
+    	-ms-behavior: url(assets/js/backgroundsize.min.htc);
+	}
+	#countdown-widget {
+		position: fixed;
+	}
+	#tubular-container,#tubular-shield,#bg-overlay,#bg-loading {
+		visibility: visible;
+	}
+	#content {
+		margin-top: 100px;
+	}
+	#main div.section.countdown {
+		margin-top: 80px;
+		cursor: pointer;
+	}	
+	div.section.countdown .scrolldown {
+		display:block;
+	}
+	.countdown_amount {
+		font-size: 130px;
+		line-height: 130px;  
+	}
+	#widgets{
+		padding-top: 30px;
+	}
+	#main #widgets div.section {
+		margin:0 auto 30px auto;
+		display:none;
+	}
+	
+	div.section.intro h1.title {
+	    font-size: 55px;
+		line-height: 80px;
+	    text-align: center;
+	    letter-spacing: 0;
+	}
+	div.section.intro p.description {
+		text-align: center;
+	}
+	div.section.newsletter fieldset {
+		border: 1px solid;
+		padding: 0 50px 50px 50px;
+	}		
+	div.section.newsletter legend {
+		padding: 0px 30px;
+		text-align: center;			
+		font-size: 30px;
+		line-height: 45px;	
+		width: auto;
+		margin-left:70px;
+	}
+	div.section.newsletter input.text {
+	     width:82%;  
+	     padding-top:10px; 
+	}
+	div.section.newsletter input.submit {
+	     width:88px;   
+	}	
+	div.section.social > .twitter{
+        width:51%;   
+        padding-left:90px; 
+        padding-top:0;
+        background-position: 0 0; 
+        float:left;
+    }
+    div.section.social > .findus {
+        width: 30%; 
+        float:right;  
+    }
+    div.section.social .findus a.social {
+   		float:right;
+    }	
+    
+    div.section.writeus {
+		position: fixed!important;;
+		margin: 0!important;
+	}
+	
+	#contact_form{
+		height:100%;
+		display:none;
+	}
+	#contact_form .wrap{
+		width: 860px;
+	}
+	#contact_form .wrap .form{
+		width:485px;
+	}

@@ -219,6 +219,46 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="assets\css\colors\custom.css" />
+    <Content Include="assets\css\colors\photo.css" />
+    <Content Include="assets\css\colors\video.css" />
+    <Content Include="assets\css\ie.9.css" />
+    <Content Include="assets\css\ie.lt9.css" />
+    <Content Include="assets\css\media-queries.css" />
+    <Content Include="assets\css\no-header.css" />
+    <Content Include="assets\css\reset.css" />
+    <Content Include="assets\css\style.css" />
+    <Content Include="assets\fonts\ostrich-regular-webfont.svg" />
+    <Content Include="assets\fonts\SIL Open Font License 1.1.txt" />
+    <Content Include="assets\img\background.jpg" />
+    <Content Include="assets\img\close-widgets-black.png" />
+    <Content Include="assets\img\close-widgets-white.png" />
+    <Content Include="assets\img\close.png" />
+    <Content Include="assets\img\cursor.png" />
+    <Content Include="assets\img\loading.gif" />
+    <Content Include="assets\img\logo_color.png" />
+    <Content Include="assets\img\logo_dark.png" />
+    <Content Include="assets\img\logo_light.png" />
+    <Content Include="assets\img\overlay_dark.png" />
+    <Content Include="assets\img\overlay_light.png" />
+    <Content Include="assets\img\pattern.png" />
+    <Content Include="assets\img\social.png" />
+    <Content Include="assets\img\sprite_checkbox.png" />
+    <Content Include="assets\img\sprite_radio.png" />
+    <Content Include="assets\img\twitter_bird.png" />
+    <Content Include="assets\js\backgroundsize.min.htc" />
+    <Content Include="assets\js\init.js" />
+    <Content Include="assets\js\jquery.countdown.min.js" />
+    <Content Include="assets\js\jquery.mousewheel.min.js" />
+    <Content Include="assets\js\jquery.nicescroll.min.js" />
+    <Content Include="assets\js\jquery.screwdefaultbuttonsV2.min.js" />
+    <Content Include="assets\js\jquery.tubular.1.0.js" />
+    <Content Include="assets\js\jquery_cookie.js" />
+    <Content Include="assets\js\modernizr.-2.6.2.custom.min.js" />
+    <Content Include="assets\js\twitter\index.php" />
+    <Content Include="assets\js\twitter\jquery.tweet.min.js" />
+    <Content Include="assets\js\twitter\lib\tmhOAuth.php" />
+    <Content Include="assets\js\twitter\lib\tmhUtilities.php" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -250,8 +290,17 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
+    <Content Include="assets\css\.DS_Store" />
+    <Content Include="assets\fonts\ostrich-regular-webfont.eot" />
+    <Content Include="assets\fonts\ostrich-regular-webfont.ttf" />
+    <Content Include="assets\fonts\ostrich-regular-webfont.woff" />
+    <Content Include="assets\img\Thumbs.db" />
+    <Content Include="assets\js\.DS_Store" />
+    <Content Include="assets\js\twitter\.DS_Store" />
+    <Content Include="assets\js\twitter\cache\02a914dad85d48d393701deedc3bf638.json" />
     <None Include="Properties\PublishProfiles\ProjectGProfile.pubxml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
+    <Content Include="index.html" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
@@ -307,18 +356,6 @@
     <ProjectReference Include="..\Favit.Model\Favit.Model.csproj">
       <Project>{b0034e99-ac9b-4adf-8a4d-bf1a7662b0b7}</Project>
       <Name>Favit.Model</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Repository.Pattern.Ef6\Repository.Pattern.Ef6.csproj">
-      <Project>{f68a1d19-93fb-47c1-a22b-42bea3e4fd8c}</Project>
-      <Name>Repository.Pattern.Ef6</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Repository.Pattern\Repository.Pattern.csproj">
-      <Project>{6e682a14-c872-4813-b620-76e108dea683}</Project>
-      <Name>Repository.Pattern</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Service.Pattern\Service.Pattern.csproj">
-      <Project>{e900c942-d659-4676-b3c7-5bf7b0c174ed}</Project>
-      <Name>Service.Pattern</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

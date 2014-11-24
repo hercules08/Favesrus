@@ -1,8 +1,7 @@
 ﻿using Favit.BLL.Interfaces;
+using Favit.DAL.EntityFramwork;
+using Favit.DAL.Interfaces;
 using Favit.Model.Entities;
-using Repository.Pattern.Repositories;
-using Repository.Pattern.UnitOfWork;
-using Service.Pattern;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,28 +10,50 @@ using System.Threading.Tasks;
 
 namespace Favit.BLL.Services
 {    
-    public class RetailerService:Service<Retailer>, IRetailerService
+    public class RetailerService:IRetailerService
     {
+        IRepository repo;
+        IUnitOfWork uow;
 
-        IUnitOfWorkAsync uow;
-
-        public RetailerService(IRepositoryAsync<Retailer> repo, IUnitOfWorkAsync uow) : base(repo)
+        public RetailerService(ISessionFactory sessionFactory)
         {
-            this.uow = uow;
+            uow = sessionFactory.CurrentUoW;
+            repo = new Repository(uow);
         }
 
-        public override void Insert(Retailer entity)
+        public IQueryable<Retailer> GetRetailers()
         {
-            base.Insert(entity);
+            return repo.GetList<Retailer>();
+        }
 
-            try
-            {
-                uow.SaveChanges();
-            }
-            catch
-            {
+        public Retailer FindRetailerById(int? id)
+        {
+            return repo.GetEntity<Retailer>(id);
+        }
 
-            }
+        public Retailer AddRetailer(Retailer retailer)
+        {
+            uow.BeginTransaction();
+            repo.AddEntity(retailer);
+            uow.CommitTransaction();
+            
+            return retailer;
+        }
+
+        public Retailer UpdateRetailer(Retailer retailer)
+        {
+            uow.BeginTransaction();
+            repo.UpdateEntity(retailer);
+            uow.CommitTransaction();
+
+            return retailer;
+        }
+
+        public void DeleteRetailer(Retailer retailer)
+        {
+            uow.BeginTransaction();
+            repo.DeleteEntity(retailer);
+            uow.CommitTransaction();
         }
     }
 }

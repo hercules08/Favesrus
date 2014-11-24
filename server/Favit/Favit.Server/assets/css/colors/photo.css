@@ -1,0 +1,42 @@
+/* Light preset */
+body{
+	color: #000000;
+}
+div#header,
+#widgets {
+	background-color: #ffffff;
+}
+#bg-overlay {
+	background-image: url(../../img/overlay_light.png); 
+}
+#bg-image { 
+	background-image: url(../../img/background.jpg);
+}
+fieldset,
+div.section.newsletter input {
+	border-color: #000000;
+	color:#000000;
+}
+div.section.newsletter input.submit,
+div.section.writeus > .toggle-button {
+	background-color: #000000;
+	color:#ffffff;
+}
+#contact_form .wrap .submit {
+	background-color: #ffffff;
+	color:#000000;	
+}
+#widgets.opened > span.close {
+	background: url(../../img/close-widgets-black.png) no-repeat;
+}
+
+@media only screen {
+	#widgets {
+		background-color: inherit;
+	}
+}
+@media only screen and (max-width: 480px) {
+	#widgets {
+		background-color: #ffffff; 
+	}
+}

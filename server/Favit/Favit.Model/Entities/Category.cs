@@ -14,9 +14,20 @@ namespace Favit.Model.Entities
 
     public partial class Category:EntityBase, ICategory
     {
-        public Category()
+        internal Category()
         {
             this.Items = new List<Item>();
+        }
+
+        public Category(string categoryName)
+        {
+            CategoryName = categoryName;
+        }
+
+        public Category(string categoryName, ICollection<Item> items):
+            this(categoryName)
+        {
+            Items = items;
         }
 
         public virtual string CategoryName { get; set; }

@@ -1,0 +1,443 @@
+
+@media only screen {
+	html, body {
+		height: 100%;
+	}
+	div#header {
+		height:120px;
+		position:fixed;
+	}
+    div#logo {
+		 padding-top:30px; 
+	} 	
+	#bg-image {
+		height: 100%;
+    }
+	#bg-image,#bg-pattern{
+		top:120px;
+		position: fixed;
+	}
+	#countdown-widget {
+		position: fixed;
+	}
+	#tubular-container,#tubular-shield,#bg-overlay,#bg-loading {
+		visibility: visible;
+	}
+	#content {
+		margin-top: 120px;
+	}
+	
+	#main div.section.countdown {
+		width: 100%;
+		margin-top:80px;
+		cursor: url('../img/cursor.png'), pointer;
+	}	
+	div.section.countdown .scrolldown {
+		display:none;
+	}
+	.countdown_amount {
+        font-size: 170px;
+		line-height: 170px;  
+	}	
+	#widgets{
+		padding-top: 100px;
+	}
+	#widgets.opened > span.close {
+		top:120px;
+	}
+	#main #widgets div.section {
+	    opacity: 0;
+	    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	    filter: alpha(opacity=0);
+	}	
+	h1.title {
+		font-size: 55px;
+		line-height: 80px;
+		text-align: center;
+		letter-spacing: 0;
+	}
+	p.description {
+		text-align: center;
+	}	
+	div.section.newsletter fieldset {
+		border: 1px solid;
+		padding: 0px 50px 50px 50px;
+	}		
+	div.section.newsletter legend {
+		padding: 0px 30px;
+		text-align: center;			
+		font-size: 30px;
+		line-height: 45px;	
+		width: auto;
+	}	
+	div.section.newsletter input.text {
+	    width:82%; 
+	}
+	div.section.newsletter input.submit {
+	    width: 18%; 
+	}	
+	div.section.social > .twitter{
+        width:51%;   
+        padding-left:90px; 
+        padding-top:0;
+        background-position: 0 0; 
+        float:left;  
+    }
+    div.section.social > .findus {
+        width: 30%;  
+        float:right;  
+    }
+    div.section.social .findus a.social {
+   		float:right;
+    }
+    
+    div.section.writeus {
+		position: fixed!important;
+		margin: 0!important;
+	}
+	#contact_form{
+		height:0;
+	}
+	#contact_form .wrap .submit{
+	}
+}
+
+
+@media only screen and (max-width: 1025px) {
+
+	html, body {
+		height: 100%;
+	}
+	div#header {
+		height:100px;
+		position:fixed;
+	}
+    div#logo {
+		 padding-top:18px; 
+	} 	
+	#bg-image,#bg-pattern{
+		top:100px;
+		position: fixed;
+	}
+	#countdown-widget {
+		position: fixed;
+	}
+	#tubular-container,#tubular-shield,#bg-overlay,#bg-loading {
+		visibility: visible;
+	}
+	#content {
+		margin-top: 100px;
+	}
+	#main div.section.countdown {
+		margin-top: 80px;
+		cursor: pointer;
+	}	
+	div.section.countdown .scrolldown {
+		display:block;
+	}
+	.countdown_amount {
+		font-size: 130px;
+		line-height: 130px;  
+	}
+	#widgets{
+		padding-top: 30px;
+	}
+	#widgets.opened > span.close {
+		top:100px;
+	}
+	#main #widgets div.section {
+		margin:0 auto 30px auto;
+	    opacity: 0;
+	    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	    filter: alpha(opacity=0);
+	}
+	
+	h1.title {
+	    font-size: 55px;
+		line-height: 80px;
+	    text-align: center;
+	    letter-spacing: 0;
+	}
+	p.description {
+		text-align: center;
+	}
+	div.section.newsletter fieldset {
+		border: 1px solid;
+		padding: 0 50px 50px 50px;
+	}		
+	div.section.newsletter legend {
+		padding: 0px 30px;
+		text-align: center;			
+		font-size: 30px;
+		line-height: 45px;	
+		width: auto;
+	}
+	div.section.newsletter input.text {
+	     width:82%;   
+	}
+	div.section.newsletter input.submit {
+	     width:88px;   
+	}	
+	div.section.social > .twitter{
+        width:51%;   
+        padding-left:90px; 
+        padding-top:0;
+        background-position: 0 0; 
+        float:left;
+    }
+    div.section.social > .findus {
+        width: 30%; 
+        float:right;  
+    }
+    div.section.social .findus a.social {
+   		float:right;
+    }	
+    
+    div.section.writeus {
+		position: fixed!important;;
+		margin: 0!important;
+	}
+	
+	#contact_form .wrap{
+		width: 860px;
+	}
+	#contact_form .wrap .form{
+		width:485px;
+	}
+}
+
+@media only screen and (max-width: 768px) {
+
+	html, body {
+		height: 100%;
+	}
+	div#header {
+		height:100px;
+		position:fixed;
+	}
+	#bg-image,#bg-pattern{
+		top:100px;
+		position: fixed;
+	}	
+	#countdown-widget {
+		position: fixed;
+	}
+	#tubular-container,#tubular-shield,#bg-overlay,#bg-loading {
+		visibility: visible;
+	}
+	#content {
+		margin-top: 100px;
+	}
+	#main div.section.countdown {
+		margin-top: 80px;
+		cursor: pointer;
+	}	
+	div.section.countdown .scrolldown {
+		display:block;
+	}
+	.countdown_amount {
+		font-size: 80px;
+		line-height: 80px;  
+	}
+	h1.title {
+	    font-size: 55px;
+		line-height: 80px;
+	    text-align: center;
+	    letter-spacing: 0;
+	}
+	p.description {
+		text-align: center;
+	}
+	#widgets{
+		padding-top: 30px;
+	}
+	#widgets.opened > span.close {
+		top:100px;
+	}
+	#main #widgets div.section {
+		margin:0 auto 30px auto;
+	    opacity: 0;
+	    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	    filter: alpha(opacity=0);
+	}		
+	div.section.newsletter fieldset {
+		border: 1px solid;
+		padding: 0 50px 50px 50px;
+	}	
+	div.section.newsletter legend {
+		padding: 0px 30px;
+		text-align: center;				
+		font-size: 30px;
+		line-height: 45px;	
+		width: auto;
+	}
+	div.section.newsletter input.text {
+	     width:82%;   
+	}
+	div.section.newsletter input.submit {
+	     width:88px;   
+	}
+	div.section.social > .twitter{
+        width:51%;   
+        padding-left:90px; 
+        padding-top:0;
+        background-position: 0 0; 
+        float:left;
+    }
+    div.section.social > .findus {
+        width: 30%;
+        float:right;   
+    }
+    div.section.social .findus a.social {
+   		float:right;
+    }
+    
+    div.section.writeus {
+		position: fixed!important;;
+		margin: 0!important;
+	}
+	
+	#contact_form .wrap{
+		width: 668px;
+	}
+	#contact_form .wrap .form{
+		width:485px;
+	}
+
+}
+
+@media only screen and (max-width: 568px) {
+
+	html, body {
+		height: auto;
+	}
+	div#header {
+		height:100px;
+		position:relative;
+	}
+	#bg-image{
+		height: 270px;
+		min-height: 270px;	
+		overflow: hidden;
+	}	
+	#bg-image,#bg-pattern{
+		position: absolute;
+		height: 270px;
+		overflow: hidden;
+	}
+
+	#tubular-container,#tubular-shield,#bg-overlay,#bg-loading {
+		visibility: hidden
+	}
+	#content {
+		margin-top: 0;
+	}
+	#main div.section.countdown {
+		margin-top: 0;
+		height: 270px;
+		cursor: pointer;	
+		overflow: hidden;	
+	}
+	div.section.countdown .scrolldown {
+		display:none;
+	}
+	.countdown_amount {
+		font-size: 50px;
+		line-height: 50px;  
+	}
+	#countdown-widget {
+		top: 110px;
+		position: absolute;
+	}	
+	#widgets.opened > span.close {
+		top:100px;
+	}
+	#main #widgets div.section {
+		width: 340px;
+		margin:0 auto 30px auto;
+	    opacity: 1;
+	    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=1)";
+	    filter: alpha(opacity=1);
+	}	
+	h1.title {
+	    font-size: 30px;
+	    line-height: 30px;
+	    text-align: left;
+	    letter-spacing: 0.1em;
+	}
+	h1.title span{
+		display:block;
+	}
+	p.description {
+		text-align: justify;
+	}	
+	div.section.newsletter fieldset {
+		border: 0;
+		padding: 0;
+		position: relative;     
+		padding-top: 65px;
+		border-top: 1px solid;
+		border-bottom: 1px solid;
+		padding-bottom: 35px;
+	}
+
+	div.section.newsletter legend {	
+		padding: 0;
+		text-align: center;			
+		font-size: 22px;
+		line-height: 30px;	
+		position: absolute;
+		top: 28px;
+		width: 100%;
+	}	
+	div.section.newsletter input.text {
+	     width:100%; 
+	     margin-bottom:15px; 
+	     font-size:15px; 
+	}
+	div.section.newsletter input.submit {
+	     width:100%;   
+	}
+
+   div.section.social > .twitter{
+        width:100%;  
+        padding-left:0;
+        padding-top:85px;
+        background-position: 50% 0;
+        float:none;  
+   }
+
+   div.section.social > .findus {
+        width:100%;  
+        float:none; 
+   }
+   div.section.social .findus a.social {
+   		float:none;
+   }
+   
+   div.section.writeus {
+		position: absolute!important;
+		margin: 0 0!important;
+	}
+
+	#contact_form {
+		height:100%;
+	}
+	#contact_form .wrap{
+		width: 310px;
+	}
+	#contact_form .wrap .form{
+		width:300px;
+	}
+
+}
+
+
+@media only screen and (max-width:380px) {
+
+	
+	#main #widgets div.section {
+		width: 240px;
+	}	
+
+}

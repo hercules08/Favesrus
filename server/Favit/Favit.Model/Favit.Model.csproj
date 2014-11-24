@@ -46,8 +46,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Base\EntityValidator.cs" />
     <Compile Include="Entities\Category.cs" />
+    <Compile Include="Factories\CategoryFactory.cs" />
+    <Compile Include="Fluent\FluentCategory.cs" />
+    <Compile Include="Fluent\FluentItem.cs" />
+    <Compile Include="Fluent\FluentOccasion.cs" />
+    <Compile Include="Fluent\FluentRetailer.cs" />
+    <Compile Include="Fluent\FluentUser.cs" />
+    <Compile Include="Fluent\FluentVoteModel.cs" />
     <Compile Include="ViewModels\DumbItem.cs" />
     <Compile Include="Base\EntityBase.cs" />
     <Compile Include="Base\IEntityBase.cs" />
@@ -58,22 +64,9 @@
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\VoteModel.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Factories\" />
-    <Folder Include="Validation\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Repository.Pattern.Ef6\Repository.Pattern.Ef6.csproj">
-      <Project>{f68a1d19-93fb-47c1-a22b-42bea3e4fd8c}</Project>
-      <Name>Repository.Pattern.Ef6</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Repository.Pattern\Repository.Pattern.csproj">
-      <Project>{6e682a14-c872-4813-b620-76e108dea683}</Project>
-      <Name>Repository.Pattern</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -43,12 +43,6 @@
     <Compile Include="ServicePattern.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Repository.Pattern\Repository.Pattern.csproj">
-      <Project>{6e682a14-c872-4813-b620-76e108dea683}</Project>
-      <Name>Repository.Pattern</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

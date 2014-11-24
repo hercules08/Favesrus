@@ -1,0 +1,15 @@
+
+#main div.section.countdown {
+	margin-top: 80px;
+	cursor: pointer;
+}	
+div.section.countdown .scrolldown {
+	display:block;
+}
+
+div.section.newsletter legend {
+	margin-left:70px;
+}
+div.section.newsletter input.text{
+	background:#eee;
+}

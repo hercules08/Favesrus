@@ -73,12 +73,6 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Repository.Pattern\Repository.Pattern.csproj">
-      <Project>{6E682A14-C872-4813-B620-76E108DEA683}</Project>
-      <Name>Repository.Pattern</Name>
-    </ProjectReference>
-  </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

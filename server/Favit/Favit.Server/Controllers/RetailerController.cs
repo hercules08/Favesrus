@@ -27,7 +27,7 @@ namespace Favit.Server.Controllers
         // GET: /Retailer/
         public ActionResult Index()
         {
-            return View(retailerService.Queryable());
+            return View(retailerService.GetRetailers());
         }
 
         // GET: /Retailer/Details/5
@@ -37,7 +37,7 @@ namespace Favit.Server.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Retailer retailer = retailerService.Find(id);
+            Retailer retailer = retailerService.FindRetailerById(id);
             if (retailer == null)
             {
                 return HttpNotFound();
@@ -60,7 +60,7 @@ namespace Favit.Server.Controllers
         {
             if (ModelState.IsValid)
             {
-                retailerService.Insert(retailer);
+                retailerService.AddRetailer(retailer);
                 return RedirectToAction("Index");
             }
 
@@ -74,7 +74,7 @@ namespace Favit.Server.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Retailer retailer = retailerService.Find(id);
+            Retailer retailer = retailerService.FindRetailerById(id);
             if (retailer == null)
             {
                 return HttpNotFound();
@@ -91,7 +91,7 @@ namespace Favit.Server.Controllers
         {
             if (ModelState.IsValid)
             {
-                retailerService.Update(retailer);
+                retailerService.UpdateRetailer(retailer);
                 return RedirectToAction("Index");
             }
             return View(retailer);

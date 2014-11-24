@@ -1,16 +1,16 @@
 using Favit.DAL.Mapping;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
-using Repository.Pattern.Ef6;
 using Favit.Model.Entities;
+using Ninject;
 
 namespace Favit.DAL
 {
-    public partial class FavitDBContext : DataContext
+    public partial class FavitDBContext : DbContext
     {
         static FavitDBContext()
         {
-            //Database.SetInitializer<FavitDBContext>(null);
+            Database.SetInitializer<FavitDBContext>(null);
             //Database.SetInitializer<FavitDBContext>(new FavitInitializer());
         }
 

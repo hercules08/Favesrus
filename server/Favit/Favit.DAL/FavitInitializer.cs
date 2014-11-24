@@ -1,5 +1,5 @@
 ﻿using Favit.Model.Entities;
-using Repository.Pattern.Infrastructure;
+using Favit.Model.Factories;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -15,18 +15,18 @@ namespace Favit.DAL
         protected override void Seed(FavitDBContext context)
         {
             base.Seed(context);
-            Category shoes = new Category() { Id=1, CategoryName = "Shoes"};
-            Category shirts = new Category() { Id=2, CategoryName = "Shirts" };
+            Category shoes = CategoryFactory.Create("Shoes");
+            Category shirts = CategoryFactory.Create("Shirts");
             context.Categories.Add(shoes);
             context.Categories.Add(shirts);
 
-            Retailer nikeRetailer = new Retailer() { Id=1, RetailerName="Nike", RetailerLogo="http://i.forbesimg.com/media/lists/companies/nike_416x416.jpg"};
-            Retailer hmRetailer = new Retailer() { Id=2, RetailerName="HM", RetailerLogo="http://www.polyvore.com/cgi/img-thing?.out=jpg&size=l&tid=31791934"};
+            Retailer nikeRetailer = new Retailer() { RetailerName="Nike", RetailerLogo="http://i.forbesimg.com/media/lists/companies/nike_416x416.jpg"};
+            Retailer hmRetailer = new Retailer() {RetailerName="HM", RetailerLogo="http://www.polyvore.com/cgi/img-thing?.out=jpg&size=l&tid=31791934"};
             context.Retailers.Add(nikeRetailer);
             context.Retailers.Add(hmRetailer);
 
-            Item shoeItem = new Item() { Id=1, ItemName="Shoe", ItemPrice=50, Category = shoes, Retailer = nikeRetailer };
-            Item shirtItem = new Item() { Id = 2, ItemName = "Blue Shirt", ItemPrice = 50, Category = shirts, Retailer = hmRetailer };
+            Item shoeItem = new Item() { ItemName="Shoe", ItemPrice=50, Category = shoes, Retailer = nikeRetailer };
+            Item shirtItem = new Item() { ItemName = "Blue Shirt", ItemPrice = 50, Category = shirts, Retailer = hmRetailer };
             context.Items.Add(shoeItem);
             context.Items.Add(shirtItem);
 

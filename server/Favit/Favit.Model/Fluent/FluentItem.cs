@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Favit.Model.Base
+namespace Favit.Model.Fluent
 {
-    class EntityValidator
+    class FluentItem
     {
     }
 }

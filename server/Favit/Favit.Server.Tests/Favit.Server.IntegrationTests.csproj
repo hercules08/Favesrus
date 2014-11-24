@@ -147,14 +147,6 @@
       <Project>{efb0d679-2a1f-460a-b5a1-f7776419e069}</Project>
       <Name>Favit.Server</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Repository.Pattern.Ef6\Repository.Pattern.Ef6.csproj">
-      <Project>{f68a1d19-93fb-47c1-a22b-42bea3e4fd8c}</Project>
-      <Name>Repository.Pattern.Ef6</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Repository.Pattern\Repository.Pattern.csproj">
-      <Project>{6e682a14-c872-4813-b620-76e108dea683}</Project>
-      <Name>Repository.Pattern</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

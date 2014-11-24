@@ -1,0 +1,27 @@
+.no-header #bg-pattern,
+.no-header #bg-image{
+    top:0;    
+}
+.no-header #header {
+    height: 0!important; 
+    overflow: hidden;
+}
+.no-header #content{
+    margin-top: -75px!important;  
+    top:75px;  
+}
+.no-header #widgets {
+	padding-top: 0;
+}
+.no-header #widgets.opened > span.close {
+	top: 0;
+}
+@media only screen and (max-width: 480px) {
+
+	.no-header #content{
+	    margin-top: -25px!important;    
+	}
+	.no-header #widgets {
+		padding-top:30px;
+	}
+}
