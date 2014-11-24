@@ -2,15 +2,14 @@
   "project": {
     "projectSettingsVersion": "1.1",
     "creationData": {
-      "type": "Import",
+      "type": "Demo",
       "projectTypeName": "com.intel.xdk.projecttype.jsapp",
-      "src": "",
-      "projectGuid": "dbb96884-9d69-417d-9712-48eb7259b51f",
-      "lastModifiedDate": 1414903116260,
-      "creationDate": 1414869828779
+      "src": "https://edge-intel.s3.amazonaws.com/jsapp/production/release-2014-ww45/template-a-blank/sample.zip",
+      "projectGuid": "46748e15-e257-45df-93e8-264354cf26fa",
+      "lastModifiedDate": 1416810300371,
+      "creationDate": 1416722516330
     },
     "sourceDirectory": "www",
-    "cordovaPluginsDirectory": "plugins",
     "startFile": "index.html",
     "projectFiles": {},
     "projectDirectories": {},
@@ -30,23 +29,31 @@
         }
       }
     ],
+    "serviceMethods": [],
+    "cordovaPluginsDirectory": "plugins",
     "cordovaPlugins": [
       {
         "id": "org.apache.cordova.device",
-        "version": "0.2.5",
+        "version": "0.2.9",
         "selectedState": "Auto",
         "data": {},
         "paramvals": {}
       },
       {
         "id": "org.apache.cordova.splashscreen",
-        "version": "0.2.5",
+        "version": "0.3.0",
         "selectedState": "Auto",
+        "data": {},
+        "paramvals": {}
+      },
+      {
+        "id": "org.apache.cordova.statusbar",
+        "version": "0.1.7",
+        "selectedState": "Included",
         "data": {},
         "paramvals": {}
       }
     ],
-    "serviceMethods": [],
     "buildConfigurations": {
       "Android": {
         "platform_": "android",
@@ -55,11 +62,11 @@
         "preferences_": {
           "android-minSdkVersion": "10",
           "android-targetSdkVersion": "19",
-          "Orientation": "landscape"
+          "android-installLocation": "auto"
         },
         "isActive_": true,
-        "appName_": "ProjectG",
-        "appID_": "not.yet.specified",
+        "appName_": "Favit",
+        "appID_": "com.eaj.favit",
         "appAccess_": "*",
         "icons_": [],
         "splashes_": [],
@@ -67,9 +74,11 @@
         "addlPermissions_": "",
         "excludedLibraries_": "",
         "cordovaCLIVersion_": "3.5",
+        "crosswalkVersion_": "stable",
         "appVersion_": "0.0.1",
-        "appVersionCode_": "1",
-        "crosswalkVersion_": "stable"
+        "appDescription_": "",
+        "appAuthor_": "",
+        "appVersionCode_": "1"
       },
       "Android-Crosswalk": {
         "platform_": "android",
@@ -78,11 +87,11 @@
         "preferences_": {
           "android-minSdkVersion": "14",
           "android-targetSdkVersion": "19",
-          "Orientation": "landscape"
+          "android-installLocation": "auto"
         },
         "isActive_": true,
-        "appName_": "ProjectG",
-        "appID_": "not.yet.specified",
+        "appName_": "Favit",
+        "appID_": "com.eaj.favit",
         "appAccess_": "*",
         "icons_": [],
         "splashes_": [],
@@ -90,9 +99,11 @@
         "addlPermissions_": "",
         "excludedLibraries_": "",
         "cordovaCLIVersion_": "3.5",
+        "crosswalkVersion_": "stable",
         "appVersion_": "0.0.1",
-        "appVersionCode_": "1",
-        "crosswalkVersion_": "stable"
+        "appDescription_": "",
+        "appAuthor_": "",
+        "appVersionCode_": "1"
       },
       "iOS": {
         "platform_": "ios",
@@ -100,12 +111,11 @@
         "name_": "iOS",
         "preferences_": {
           "ios-target": "5",
-          "ios-configuration": "adhoc",
-          "Orientation": "landscape"
+          "ios-configuration": "adhoc"
         },
         "isActive_": true,
-        "appName_": "ProjectG",
-        "appID_": "not.yet.specified",
+        "appName_": "Favit",
+        "appID_": "com.eaj.favit",
         "appAccess_": "*",
         "icons_": [],
         "splashes_": [],
@@ -113,16 +123,21 @@
         "addlPermissions_": "",
         "excludedLibraries_": "",
         "cordovaCLIVersion_": "3.5",
-        "appVersion_": "0.0.1"
+        "crosswalkVersion_": "stable",
+        "appVersion_": "0.0.1",
+        "appDescription_": ""
       },
       "Windows8": {
         "platform_": "windows8",
         "runtime_": "Cordova 3.x",
         "name_": "Windows8",
-        "preferences_": {},
+        "preferences_": {
+          "windows-publisher-display-name": "",
+          "windows-publisher-id": ""
+        },
         "isActive_": true,
-        "appName_": "ProjectG",
-        "appID_": "not.yet.specified",
+        "appName_": "Favit",
+        "appID_": "xdk.intel.blank.project",
         "appAccess_": "*",
         "icons_": [],
         "splashes_": [],
@@ -130,7 +145,9 @@
         "addlPermissions_": "",
         "excludedLibraries_": "",
         "cordovaCLIVersion_": "3.5",
-        "appVersion_": "0.0.0.1"
+        "crosswalkVersion_": "stable",
+        "appVersion_": "0.0.0.1",
+        "appDescription_": ""
       },
       "WindowsPhone8": {
         "platform_": "wp8",
@@ -138,8 +155,8 @@
         "name_": "WindowsPhone8",
         "preferences_": {},
         "isActive_": true,
-        "appName_": "ProjectG",
-        "appID_": "not.yet.specified",
+        "appName_": "Favit",
+        "appID_": "com.eaj.favit",
         "appAccess_": "*",
         "icons_": [],
         "splashes_": [],
@@ -147,7 +164,8 @@
         "addlPermissions_": "",
         "excludedLibraries_": "",
         "cordovaCLIVersion_": "3.5",
-        "appVersion_": "0.0.0.1"
+        "crosswalkVersion_": "stable",
+        "appVersion_": "1.0.0.0"
       }
     }
   }

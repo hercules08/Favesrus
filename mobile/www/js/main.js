@@ -1,193 +1,46 @@
-/*jslint vars:true, plusplus:true */
-/*global window, $ */
+//Execute after the DOM finishes loading
+$(
+    function () {
+        //Add the padding styling to the first button on the Login View
+        $("#login_container img").first().css("padding-bottom", "10vh");
+        
+        //Add the padding-top styling to the first button on the Main Menu View
+        $("#mainmenu_container img").first().css("padding-bottom", "5vh");
+        
+        $("a img").css("width","100%");
+    }
+);
 
-//counter for numbering the Person an Details input fields
-var counter = 1;
-
-//Disable the animation of the header name
-$.ui.animateHeaders = false;
-
-//Disable native look and feel
-$.ui.useOSThemes = false;
-
-
-window.onload = function () {
-	$("#intro_page_button_container").width(0.35 * window.innerWidth);
-	$(".intro_image_button").width(0.35 * window.innerWidth);
-
-	$("#fb_login_button").click(function () {
-		userLogin('Facebook');
-	});
-
-	$("#signup_button").click(function () {
-		userLogin('Signup');
-	});
-	
-
-	//Set the size of div to a square (50% of the device width)
-	$(".red_bg").width(0.5 * window.innerWidth);
-	$(".red_bg").height(0.5 * window.innerHeight);
-
-	//Set the size for the Play button
-	$("#play").width(0.40 * window.innerWidth);
-	//apply an onclick event handler to the play! button
-	$("#play").click(function () {
-		$.ui.loadContent("#gift_selection_page", false, false, "fade");
-		loadjsonSelectionData();
-	});
-
-	//Set the size for the Play button
-	//$("#upcoming_image").width(0.60 * window.innerWidth);
-
-	$("#spacer").height("10px")
-
-	//Set the table size on the Gift Selection page
-	$("#selection_container").width(0.8 * window.innerWidth);
-	//$("#selection_container").height(0.25 * window.innerHeight);
-
-	//Set the size of selction A & B div for this of This OR That! 
-	$("#selectionA").width(0.6 * window.innerHeight);
-	$("#selectionA").height(0.6 * window.innerHeight);
-	$("#selectionB").width(0.6 * window.innerHeight);
-	$("#selectionB").height(0.6 * window.innerHeight);
-
-	//apply an onclick event handler to the Favs div
-	/*$("#transition_button").click(function () {
-		$.ui.loadContent("#menu_page", false, false, "fade");
-	});*/
-
-	//
-	/*$("#favs_row").click(function () {
-		$.ui.loadContent("#favs_details_page", false, false, "fade");
-	});*/
-
-	//Set the size of favs person div for for the menu Page 
-	$(".person").width(0.15 * window.innerWidth);
-	$(".person").height(0.15 * window.innerWidth);
-
-
-	//Set the size of ask_network div for for the Favs Details Page 
-	$(".suggestion_item").width(0.25 * window.innerWidth);
-	$(".suggestion_item").height(0.15 * window.innerHeight);
-
-
-	//Set the size of ask_network button div for for the Favs Details Page 
-	/*$("#ask_network_button").width(0.2 * window.innerWidth);
-	$("#ask_network_button").height(0.2 * window.innerHeight);*/
-
-	//Set the size of ask_network button div for for the Favs Details Page 
-	$("#ask_network_column").width(0.15 * window.innerWidth);
-
-	$("#tot_back_column").width(0.15 * window.innerWidth);
-
-
-	$("#ask_network_button").click(function () {
-		$.ui.loadContent("#pro_gifter_page", false, false, "slide");
-	});
-
-	$("#suggestions_button").click(function () {
-		$.ui.loadContent("#suggestions_page", false, false, "slide");
-	});
-
-	//Add the scroll event handler to the fav_occasion element on the favs_details page
-	/*document.getElementsByName("fav_ocassion")[0].onchange = function() {
-	//document.getElementsByName("fav_ocassion")[0].onscroll = function() {
-		alert("Occasion Date picker was Touch");
-	};*/
-
-	$("#return_button").width(0.2 * window.innerWidth);
-	$("#return_button").click(function () {
-		$.ui.loadContent("#menu_page", false, false, "slide");
-	});	
-
-	$("#tot_back_button").click(function () {
-		$.ui.loadContent("#menu_page", false, false, "slide");
-	});
-
+//Close the SignUp Modal View
+function closeModalViewLogin() {
+    $("#signup-modalview").kendoMobileModalView("close");
 }
 
-function loadjsonSelectionData(){
-	var data;
-	//$.get("mypage.php?foo=bar",function(data){});
-	$.getJSON("http://71.237.221.15/giftly/api/item/getRandomItems", function(data) {
-		console.log(data);
-		//Load images to the Favs section
-		$("#selectionA").attr("src",data[0].ImageLink);
-		$("#selectionA").click(function () {
-			//updateServer(data, data.Favs[0].FirstName+" "+data.Favs[0].LastName);
-			loadjsonSelectionData();
-		});
-		$("#selectionB").attr("src",data[1].ImageLink);
-		$("#selectionB").click(function () {
-			//updateServer(data, data.Favs[1].FirstName+" "+data.Favs[1].LastName);
-			loadjsonSelectionData();
-		});
-	});		
-}
-
-/*
-TEMPLATE
-Function: functionName()
-Parameter: parameterName is the 
-Description:
-*/
-function userLogin(option) {
-	$.ui.loadContent("#loading_page", false, false, "fade");
-	setTimeout(function () {
-		$.ui.loadContent("#menu_page", false, false, "fade");
-		//load json data
-		loadjsonData();
-	}, 2000);
-}
-
-
-function updateFavDetails(data, name) {
-	$("#fav_name").html(name);
-}
-
-/*
-TEMPLATE
-Function: functionName()
-Parameter: parameterName is the 
-Description:
-*/
-function loadjsonData(){
-	var data;
-	//$.get("mypage.php?foo=bar",function(data){});
-	$.getJSON("http://71.237.221.15/giftly/api/user/1", function(data) {
-		//console.log(data);
-		//Load the user name in Header
-		$("#username").html("Hi "+data.FirstName+"!");
-		//Load images to the Favs section
-		$("#person1").attr("src",data.Favs[0].Pic);
-		$("#person1").click(function () {
-			$.ui.loadContent("#favs_details_page", false, false, "fade");
-			updateFavDetails(data, data.Favs[0].FirstName+" "+data.Favs[0].LastName);
-		});
-		$("#person2").attr("src",data.Favs[1].Pic);
-		$("#person2").click(function () {
-			$.ui.loadContent("#favs_details_page", false, false, "fade");
-			updateFavDetails(data, data.Favs[1].FirstName+" "+data.Favs[1].LastName);
-		});
-		$("#person3").attr("src","http://www.nsbepropdx.org/uploads/2/3/7/3/23733030/9716396.jpg");
-		$("#person3").click(function () {
-			$.ui.loadContent("#favs_details_page", false, false, "fade");
-			updateFavDetails(data, "");
-		});
-		$("#person4").attr("src","http://www.nsbepropdx.org/uploads/2/3/7/3/23733030/6245377.jpg");
-		$("#person4").click(function () {
-			$.ui.loadContent("#favs_details_page", false, false, "fade");
-			updateFavDetails(data, "");
-		});
-	});	
-	
-}
-
-function checkout(){
-	$.getJSON("http://71.237.221.15/giftly/api/pay", function(data) {
-		//alert("Checkout reached!");
-	});
-
+//Open the SignUp Modal View
+function openModalView(e) {
+    $("#signup-modalview").data("kendoMobileModalView").open();
+    //Add the month to the <select> tag
+    var monthsOfYear = ["Feb", "March", "April", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
+    /*TODO This is not working; Unable to create dropdown*/
+    /*$("#birthday").kendoDropDownList({
+                        dataTextField: "text",
+                        dataValueField: "value",
+                        dataSource: [{ text: "Jan", value: "Jan" }]
+                    });
+    var dropdownlist = $("#birthday").data("kendoDropDownList");*/
+    
+    for (var i = 0;i < monthsOfYear.length; i++){
+        /*option = document.createElement("option");
+        option.text = monthsOfYear[i];
+        option.value = monthsOfYear[i];
+        select = document.getElementsByName("month")[0];
+        select.appendChild(option);*/
+        
+        
+        //dropdownlist.dataSource.add({ text: monthsOfYear[i], value: monthOfYear[i] });
+    }
+    
+    
 }
 
 

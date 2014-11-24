@@ -1,227 +1,148 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Gift ME</title>
+    <title>Favit 1.0</title>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    
+    <!-- Cordova Framework (PHANTOM) -->
+    <script src="cordova.js"></script>
+    <script src="xhr.js"></script>
 
-    <style>
-        @-ms-viewport { width: 100vw ; zoom: 100% ; }                           @viewport { width: 100vw ; zoom: 100% ; }
-        @-ms-viewport { user-zoom: fixed ; }                                    @viewport { user-zoom: fixed ; }
-    </style>
+    <script src="lib/jquery/jquery.min.js"></script>
+    <!-- Kendo UI -->
+    <script src="lib/kendo-ui/kendo.mobile.min.js"></script>
     
-    <!--  JQuery  -->
-<!--    <script type="text/javascript" src="lib/jQuery/jquery.js"></script>-->
+    <link href="lib/kendo-ui/kendo.mobile.all.min.css" rel="stylesheet" />
+    <!-- jQuery Selector Engine-->
     
-    <!--App Framework files-->
-    <link rel="stylesheet" href="lib/appframework/af.ui.css">
-    <link rel="stylesheet" href="lib/appframework/icon.css">
-    
-<!--    <script type="text/javascript" src="lib/appframework/jq-appframework.min.js"></script>-->
-    <script type="text/javascript" src="lib/appframework/appframework.js"></script>
-    <script type="text/javascript" src="lib/appframework/appframework.ui.js"></script>
-    
-    <link rel="stylesheet" href="css/main.css">
-    <script src="js/main.js"></script>
+    <link rel="stylesheet" href="css/main.css"/>
+    <script src=js/main.js></script>
+
+    <script>
+        function onDeviceReady(){
+            navigator.splashscreen.hide();
+        }
+        document.addEventListener("deviceready", onDeviceReady, false);
+    </script>    
 </head>
-
-<body id="afui">
-    <div id="content">
-        <header id="main_header">
-            <h1>That's From Us</h1>
-        </header>
-        <!--Main Page-->
-        <div id="main" title="title" class="panel" data-footer="none" data-header="none" selected="true">    
-            <div class="horizontal_center">
-                <div id="intro_page_button_container">
-                    <img  id="fb_login_button" class="intro_image_button" src="images/screen_01_button_1.png"/>
-                    <img id="signup_button" class="intro_image_button" src="images/screen_01_button_2.png"/>
-                </div>
-            </div>
+<body>
+    <!-- Login View -->
+    <div data-role="view" id="fi-login-view" data-layout="fi-login-layout">
+        <div id="login_container">
+            <img class="login_button" id="login_facebook_button" src="images/login_facebook.png"/>
+            <a id="signup-modalview-open-button" data-click="openModalView" data-role="button">
+                <img class="login_button" id="login_email_button" src="images/signup_email.png"/>
+            </a>
         </div>
-        
-        <!--Loading Second Page-->
-        <div id="loading_page" title="title" class="panel" data-footer="none" data-header="none">
-            <div class="horizontal_center">
-                <!--<img id="" src=""/>-->
-                <div id="temp" class="red_bg horizontal_center"></div>
-                <h1>Loading...</h1>
-            </div>
-        </div>
-        
-        <!--Menu Third Page-->
-        <!--<header id="menu_header">
-            <h1 id="username">Welcome User!</h1>
-        </header>-->
-        <div id="menu_page" title="title" class="panel" data-footer="none" data-header="none">
-            <table id="options_container" class="horizontal_center">
-                <tr>
-                    <td class="horizontal_left">
-                        <div id="username" style="position:absolute; color:#009978 !important; font-size:1.5em;"></div>
-                        <img id="play" src="images/screen_03_button-goes-all-the-way-to-the-margin.png"/>
-                    </td>
-                    <td class="rightcolumn">
-                        <!--<img id="upcoming_image" src="images/screen_03_events.png"/>-->
-                    </td>
-                </tr>
-                <tr id="spacer"></tr>
-                <tr id="favs_row">
-                    <td colspan="2" id="temp2" class=" horizontal_left" style="height:159px">
-                        <!--<div><h2 id="favs_title">Favs</h2></div>-->
-                        <div id="person_container">
-                            <div class="person" style="margin-left:92px"><img id="person1" class="person"/></div>
-                            <div class="person"><img id="person2" class="person"/></div>
-                            <div class="person"><img id="person3" class="person" src=""/></div>
-                            <div class="person"><img id="person4" class="person" src=""/></div>
-                        </div>
-                        <!--<img id="" src=""/>-->
-                    </td>
-                </tr>
-            </table>
-            
-        </div>
-            
-        <!--Gift Selection Page-->
-        <div id="gift_selection_page" title="title" class="panel" data-footer="none" data-header="none">
-            <!--<header id="gift_selection_header">
-                <a id="backButton" class="backButton">Back</a> 
-                <h1>That's From Us</h1>
-            </header>-->
-            <div class="horizontal_center">
-                <h2 style="color:#e48545 !important;"> </h2>
-                <div id="selection_container" class="table horizontal_center">
-                    <div class="row">
-                        <!--<div id="selectionA" class="alizarin_bg column">
-                            <h1>A</h1>-->
-                            <img id="selectionA" src="" alt="Selection1 Image"/>
-                        <!--</div>-->
-                        <div id="valign_container" class="column">
-                            <h3 id="or"></h3>
-                        </div>
-                        <!--<div id="selectionB" class="alizarin_bg column">
-                            <h1>B</h1>-->
-                            <img id="selectionB" src="" alt="Selection1 Image"/>
-                        <!--</div>-->
-                    </div>
-                    <div class="row horizontal_center">
-                        <div id="" class="column">
-                        </div>
-                        <div id="" class="column">
-                            <img id="return_button" src="images/screen_04_button.png" alt="Return Button"/>
-                        </div>
-                    </div>
-                </div>
-            </div>     
-        </div>
-            
-        <!--Favs Details Page-->
-        <div id="favs_details_page" title="title" class="panel" data-footer="none" data-header="none">
-            <!--<header id="favs_details_header">
-                <a id="backButton" class="backButton">Back</a>
-                <h1>That's From Us</h1>
-            </header>-->
-            <table>
-            <tr>
-                <td>
-                    <img id="tot_back_button" src="images/screen_default_back-button.png" style="width:120px"/>
-                </td>
-                <td>
-                    <div class="formGroupHead" style="padding-top:56px">Shopping For</div>
-                    <div id="fav_name">Test User</div>
-                    <form>
-                        <label for="fav_$range">Spending Range</label><select name="fav_$range">
-                            <option value="none">Select $ Range</option>
-                            <option value="$10">$10</option>
-                            <option value="$20" selected>$20</option>
-                            <option value="$30">$30</option>
-                            <option value="$40">$40</option>
-                            <option value="$20">$50</option>
-                            <option value="$30">$60</option>
-                            <option value="$40">$70</option>
-                            <option value="$20">$80</option>
-                            <option value="$30">$90</option>
-                            <option value="$40">$100</option>
-                        </select>
-                        <label for="fav_ocassion">Next Occasion</label><select name="fav_ocassion">
-                            <option value="none">Select Month Day, Year</option>
-                            <option value="$10">Sunday, November 2, 2014</option>
-                            <option value="$20">Monday, November 3, 2014</option>
-                            <option value="$30">Tuesday, November 4, 2014</option>
-                            <option value="$40">Wednesday, November 5, 2014</option>
-                            <option value="$20" selected>Thursday, November 6, 2014</option>
-                            <option value="$30">Friday, November 7, 2014</option>
-                        </select>         
-                    </form>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    
-                </td>
-                <td class="horizontal_center">
-                    <img id="ask_network_button" src="images/screen_05_button_1.png" alt=""style="width:193.6px;height:40px;"/>
-                    <img id="suggestions_button" src="images/screen_05_button_2.png" style="width:155px; height:40px; margin-left:10px;">
-                </td>
-            </tr>
-            </table>
-            <!--<div class="table horizontal_center" style="width:100%;">
-                <div class="row">
-                    <div id="ask_network_column" class="column">
-                        <img id="tot_back_button" src="images/screen_default_back-button.png" style/>
-                    </div>
-                    <div id="fav_details_column" class="column">
-                        <div class="formGroupHead" style="padding-top:20px">Shopping For</div>
-                        <div id="fav_name">Test User</div>
-                        <form>
-                            <label for="fav_$range">Spending Range</label><select name="fav_$range">
-                                <option value="none">Select $ Range</option>
-                                <option value="$10">$10</option>
-                                <option value="$20">$20</option>
-                                <option value="$30">$30</option>
-                                <option value="$40">$40</option>
-                                <option value="$20">$50</option>
-                                <option value="$30">$60</option>
-                                <option value="$40">$70</option>
-                                <option value="$20">$80</option>
-                                <option value="$30">$90</option>
-                                <option value="$40">$100</option>
-                            </select>
-                            <label for="fav_ocassion">Next Occasion</label><select name="fav_ocassion">
-                                <option value="none">Select Month Day, Year</option>
-                                <option value="$10">Sunday, November 2, 2014</option>
-                                <option value="$20">Monday, November 3, 2014</option>
-                                <option value="$30">Tuesday, November 4, 2014</option>
-                                <option value="$40">Wednesday, November 5, 2014</option>
-                                <option value="$20">Thursday, November 6, 2014</option>
-                                <option value="$30">Friday, November 7, 2014</option>
-                            </select>         
-                        </form>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="horizontal_center column">
-                        <img id="ask_network_button" src="images/screen_05_button_1.png" alt=""/>
-                        <img id=""suggestion_button src="images/screen_05_button_2.png">
-                    </div>
-                </div>
-            </div>-->    
-        </div>
-        <!--Pro Gifter (Ask the Network) Page-->
-        <div id="pro_gifter_page" title="title" class="panel" data-footer="none" data-header="none">
-            <div style="padding-top: 135px;width: 250px;height: 150px;">
-                <textarea rows="6" placeholder="Ask Tod for some Help finding the 'perfect gift!'"></textarea>
-                <div class="button_red" onclick='alert("Your Message has been sent!");loadjsonData();$.ui.loadContent("#menu_page", false, false, "fade");' style="margin-top: -40px;">Send Message!!</div>
-            </div>
-        </div>
-        <!--Suggestion Page-->
-        <div id="suggestions_page" title="title" class="panel" data-footer="none" data-header="none" onclick='loadjsonData();$.ui.loadContent("#checkout_page", false, false, "slide");'>
-            
-        </div>
-        <!--Suggestion Page-->
-        <div id="checkout_page" title="title" class="panel" data-footer="none" data-header="none" onclick='alert("Thank you for your purchase!");checkout();loadjsonData();$.ui.loadContent("#menu_page", false, false, "fade");'>
-            
-        </div>
-<!--        </div>-->
     </div>
+    <!-- Layout -->
+    <div data-role="layout" data-id="fi-login-layout">
+        <!-- Header -->
+        <header data-role="header">
+            <div data-role="navbar">
+                <span data-role="view-title">Fāvit</span>
+            </div> 
+        </header>
+        <footer data-role="footer">
+            <span style="color:#fff">Footer goes here</span>
+        </footer>
+    </div>
+    
+    <!-- User Sign Up Modal View -->
+    <div data-role="modalview" id="signup-modalview" style="width:90%">
+        <div data-role="header">
+            <div data-role="navbar">
+                <span>SignUp</span>
+                <a data-click="closeModalViewLogin" data-role="button" data-align="right">Cancel</a>
+            </div>
+        </div>
+
+        <ul data-role="listview" data-style="inset">
+            <li><label for="email">Email: <input type="text" id="email" /></label></li>
+            <li><label for="password">Password: <input type="password" id="password" /></label></li>
+            <li>
+                <label for="birthday">Birthday: <input type="text" id="birthday" /></label>
+            </li>
+            <li><label for="gender">Gender: <input type="text" id="gender" /></label></li>
+            
+        </ul>
+        <a data-click="closeModalViewLogin" href="fi-mainmenu-view" id="modalview-login-button" type="button" data-role="button">Submit</a>
+    </div>
+    
+    <!-- Main Menu View -->
+    <div data-role="view" id="fi-mainmenu-view" data-layout="fi-mainmenu-layout">
+        <div id="mainmenu_container">
+            <img class="scale_fit" id="upcoming_events_button" src="images/upcoming_events.png"/>
+            <a id="playtot-button" href="fi-playtot-view" data-role="button">
+                <img id="play_button_img" src="images/play_tot.png"/>
+            </a>
+        </div>
+    </div>
+    
+    <!-- My User Profile Drawer -->
+    <div data-role="drawer" id="my-drawer" style="width: 270px">
+        <ul data-role="listview" data-type="group">
+            <li>Hi Damola <!--TODO Fix to insert user name-->
+                <ul>
+                    <li data-icon="contacts"><a href="#drawer-profile" data-transition="none">Profile</a></li>
+                    <li data-icon="favorites"><a href="#drawer-gift-suggestions" data-transition="none">Gift Suggestions</a></li>
+                </ul>
+            </li>
+            <li>Account
+                <ul>
+                    <li data-icon="off">Log Out</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    
+    <!-- Layout -->
+    <div data-role="layout" data-id="fi-mainmenu-layout">
+        <!-- Header -->
+        <header data-role="header">
+            <div data-role="navbar">
+                <span data-role="view-title">Fāvit</span>
+                <a data-align="left" data-icon="drawer-button" data-role="button"  id="drawer_icon" data-rel="drawer" href="#my-drawer"></a>
+            </div> 
+        </header>
+        <footer data-role="footer">
+            <span style="color:#fff">Footer goes here</span>
+        </footer>
+    </div>
+    
+    <!-- Play This or That View -->
+    <div data-role="view" id="fi-playtot-view" data-layout="fi-playtot-layout">
+        <div id="playtot_container">
+            <div id="selection_A" class="selection">
+                <img class="scale_fit" id="img_A" src=""/>
+            </div>
+            <a id="playtot-button" href="fi-playtot-view" data-role="button">
+                <img id="play_button_img" src="images/play_tot.png"/>
+            </a>
+        </div>
+    </div>
+    
+    <!-- Layout -->
+    <div data-role="layout" data-id="fi-mainmenu-layout">
+        <!-- Header -->
+        <header data-role="header">
+            <div data-role="navbar">
+                <span data-role="view-title">Fāvit</span>
+                <a data-align="left" data-icon="drawer-button" data-role="button"  id="drawer_icon" data-rel="drawer" href="#my-drawer"></a>
+            </div> 
+        </header>
+        <footer data-role="footer">
+            <span style="color:#fff">Footer goes here</span>
+        </footer>
+    </div>
+    
+    <script>
+        //Load the KendoUI Library & "fi-login-view" View Initially
+        var app = new kendo.mobile.Application($(document.body), {
+            initial: "fi-login-view"
+        });  
+    </script>
 </body>
 </html>
