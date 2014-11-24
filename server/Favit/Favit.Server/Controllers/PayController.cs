@@ -74,7 +74,7 @@ namespace Favit.Server.Controllers
                 {"account_id", accountId },
                 {"giver_name", "Damola"},
                 {"gift_amount", "50"},
-                {"receiver_phone", "2014869434"}
+                {"receiver_phone", "3014373223"}
             };
 
             byte[] responseArray = client.UploadValues(url, collection);

@@ -11,6 +11,7 @@ using System.Net;
 using System.IO;
 using System.Collections.Specialized;
 using System.Web.Helpers;
+using System.Diagnostics;
 
 namespace Favit.Server.IntegrationTests.Controllers
 {
@@ -224,13 +225,45 @@ namespace Favit.Server.IntegrationTests.Controllers
                 {"access_token", GetTokenFromJSON(token)},
                 {"account_id", accountId },
                 {"card_number", cardNumber },
-                {"expiry", "12/20"},
+                {"expiry", "0517"},
                 {"zip_code", "20724"}
             };
 
-            byte[] responseArray = client.UploadValues(url, collection);
 
-            var responseString = Encoding.ASCII.GetString(responseArray);
+            byte[] responseArray = null;
+
+            try
+            {
+                responseArray = client.UploadValues(url, collection);
+                var responseString = Encoding.ASCII.GetString(responseArray);
+            }
+            catch (WebException e)
+            {
+                Debug.WriteLine("This program is expected to throw WebException on successful run." +
+                        "\n\nException Message :" + e.Message);
+                if (e.Status == WebExceptionStatus.ProtocolError)
+                {
+                    Debug.WriteLine("Status Code : {0}", ((HttpWebResponse)e.Response).StatusCode);
+                    Debug.WriteLine("Status Description : {0}", ((HttpWebResponse)e.Response).StatusDescription);
+
+                    string responseText;
+
+                    if (e.Response != null)
+                    {
+                        var responseStream = e.Response.GetResponseStream();
+
+                        if (responseStream != null)
+                        {
+                            using (var reader = new StreamReader(responseStream))
+                            {
+                                responseText = reader.ReadToEnd();
+                                Debug.WriteLine(responseText);
+                            }
+                        }
+                    }
+
+                }
+            }
         }
 
         [TestMethod]
@@ -249,12 +282,45 @@ namespace Favit.Server.IntegrationTests.Controllers
                 {"account_id", accountId },
                 {"giver_name", "Damola"},
                 {"gift_amount", "50"},
-                {"receiver_phone", "2014869434"}
+                {"receiver_phone", "3014373223"},
+                {"should_notify_receiver", "1"},
+                {"should_notify_sender", "1"}
             };
 
-            byte[] responseArray = client.UploadValues(url, collection);
+            byte[] responseArray = null;
 
-            var responseString = Encoding.ASCII.GetString(responseArray);
+            try
+            { 
+                responseArray = client.UploadValues(url, collection);
+                var responseString = Encoding.ASCII.GetString(responseArray);
+            }
+            catch(WebException e)
+            {
+                Debug.WriteLine("This program is expected to throw WebException on successful run." +
+                        "\n\nException Message :" + e.Message);
+                if (e.Status == WebExceptionStatus.ProtocolError)
+                {
+                    Debug.WriteLine("Status Code : {0}", ((HttpWebResponse)e.Response).StatusCode);
+                    Debug.WriteLine("Status Description : {0}", ((HttpWebResponse)e.Response).StatusDescription);
+
+                    string responseText;
+
+                    if (e.Response != null)
+                    {
+                        var responseStream = e.Response.GetResponseStream();
+
+                        if (responseStream != null)
+                        {
+                            using (var reader = new StreamReader(responseStream))
+                            {
+                                responseText = reader.ReadToEnd();
+                                Debug.WriteLine(responseText);
+                            }
+                        }
+                    }
+
+                }
+            }
         }
 
         private string GetTokenFromJSON(string json)
