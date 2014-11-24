@@ -8,6 +8,13 @@ $(
         $("#mainmenu_container img").first().css("padding-bottom", "5vh");
         
         $("a img").css("width","100%");
+        
+        //Make the images inside the selection Circles full width
+        $(".selection img").css("width","100%");
+        
+        //Set the selection Circles to a default size
+        $(".selection").width(0.55 * window.innerWidth);
+        $(".selection").height(0.55 * window.innerWidth)
     }
 );
 
