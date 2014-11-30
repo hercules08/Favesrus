@@ -6,7 +6,7 @@
       "projectTypeName": "com.intel.xdk.projecttype.jsapp",
       "src": "https://edge-intel.s3.amazonaws.com/jsapp/production/release-2014-ww45/template-a-blank/sample.zip",
       "projectGuid": "46748e15-e257-45df-93e8-264354cf26fa",
-      "lastModifiedDate": 1416810300371,
+      "lastModifiedDate": 1417338203825,
       "creationDate": 1416722516330
     },
     "sourceDirectory": "www",
@@ -119,7 +119,12 @@
         "appAccess_": "*",
         "icons_": [],
         "splashes_": [],
-        "iosProvs_": [],
+        "iosProvs_": [
+          {
+            "relPath": "AdhocProvisioningProfile_FavitTest.mobileprovision",
+            "type": "adhoc"
+          }
+        ],
         "addlPermissions_": "",
         "excludedLibraries_": "",
         "cordovaCLIVersion_": "3.5",

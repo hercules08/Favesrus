@@ -16,9 +16,9 @@
     <link href="lib/kendo-ui/kendo.mobile.all.min.css" rel="stylesheet" />
     <!-- jQuery Selector Engine-->
     
-    <link rel="stylesheet" href="css/main.css"/>
     <script src=js/main.js></script>
-
+    <link rel="stylesheet" href="css/main.css"/>
+    
     <script>
         function onDeviceReady(){
             navigator.splashscreen.hide();
@@ -31,26 +31,28 @@
     <div data-role="view" id="fi-login-view" data-layout="fi-login-layout">
         <div id="login_container">
 <!--            <div class="button_red">Login In</div>-->
-            <img class="login_button" id="login_facebook_button" src="images/login_facebook.png"/>
-            <a id="signup-modalview-open-button" data-click="openModalView" data-role="button">
+            <a id="login-facebook-open-button" href="fi-mainmenu-view" data-role="button">
+                <img class="login_button" id="login_facebook_button" src="images/login_facebook.png"/>
+            </a>
+            <a id="signup-modalview-open-button" data-click="openSignUpModalView" data-role="button">
                 <img class="login_button" id="login_email_button" src="images/signup_email.png"/>
             </a>
         </div>
     </div>
-    <!-- Layout -->
+    <!-- Login Layout -->
     <div data-role="layout" data-id="fi-login-layout">
         <!-- Header -->
         <header data-role="header">
             <div data-role="navbar">
-                <span data-role="view-title">Fāvit</span>
+                <span data-role="view-title"><img class="header_logo" src="images/favit_logo.png"/></span>
             </div> 
         </header>
-        <footer data-role="footer">
+        <!--<footer data-role="footer">
             <span style="color:#fff">Footer goes here</span>
-        </footer>
+        </footer>-->
     </div>
     
-    <!-- User Sign Up Modal View -->
+    <!-- User Sign Up Modal View (Email, Password,) -->
     <div data-role="modalview" id="signup-modalview" style="width:90%">
         <div data-role="header">
             <div data-role="navbar">
@@ -60,125 +62,311 @@
         </div>
 
         <ul data-role="listview" data-style="inset">
-            <li><label for="email">Email: <input type="text" id="email" /></label></li>
+            <li><label for="email">Email: <input type="email" id="email" /></label></li>
             <li><label for="password">Password: <input type="password" id="password" /></label></li>
+            <li><label for="birthday">Birthday: <input type="date" id="birthday" value="2014-12-01"/></label></li>
             <li>
-                <label for="birthday">Birthday: <input type="text" id="birthday" /></label>
+                <label>Gender
+                    <select id="gender">
+                        <option value="First Option">Male</option>
+                        <option value="Second Option">Female</option>
+                    </select>
+                </label>
             </li>
-            <li><label for="gender">Gender: <input type="text" id="gender" /></label></li>
             
         </ul>
-        <a data-click="closeModalViewLogin" href="fi-mainmenu-view" id="modalview-login-button" type="button" data-role="button">Submit</a>
+        <a data-click="closeModalViewLogin" data-click="loadjsonData()" href="fi-mainmenu-view" id="modalview-login-button" type="button" data-role="button">Submit</a>
     </div>
     
     <!-- Main Menu View -->
     <div data-role="view" id="fi-mainmenu-view" data-layout="fi-mainmenu-layout">
         <div id="mainmenu_container">
-            <img class="scale_fit" id="upcoming_events_button" src="images/upcoming_events.png"/>
+            <div id="upcoming_event_container">
+                <img class="scale_fit" id="upcoming_events_img" src="images/upcoming_events.png"/>
+            </div>
             <a id="playtot-button" href="fi-playtot-view" data-role="button">
                 <img id="play_button_img" src="images/play_tot.png"/>
             </a>
             <div class="left">
-            <img id="favorites_button" src="images/Favorites_image_final.png"/>
+                <div id="person_container">
+                    <a id="favorites_button" data-click="openFavoritesModalView" data-role="button">
+                        <img id="favorites_img" src="images/Favorites_image_final.png"/>
+                    </a>
+                    <div class="person">
+                        <img id="person1" src="http://www.nsbepropdx.org/uploads/2/3/7/3/23733030/9716396.jpg"/>
+                    </div>
+                    <div class="person">
+                        <img id="person2" src="http://www.nsbepropdx.org/uploads/2/3/7/3/23733030/6245377.jpg"/>
+                    </div>
+                    <div class="person">
+                        <img id="person3" src="https://avatars2.githubusercontent.com/u/1912337?v=2&s=400"/>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
     
-    <!-- My User Profile Drawer -->
-    <div data-role="drawer" id="my-drawer" style="width: 270px">
-        <ul data-role="listview" data-type="group">
-            <li>Hi Damola <!--TODO Fix to insert user name-->
-                <ul>
-                    <li data-icon="contacts"><a href="#drawer-profile" data-transition="none">Profile</a></li>
-                    <li data-icon="favorites"><a href="#drawer-gift-suggestions" data-transition="none">Gift Suggestions</a></li>
-                    <li data-icon="gift"><a href="fi-retailer-select-view">Purchase</a></li>
-                </ul>
-            </li>
-            <li>Account
-                <ul>
-                    <li data-icon="off">Log Out</li>
-                </ul>
-            </li>
-        </ul>
-    </div>
-
-    
-    <!-- Layout -->
-    <div data-role="layout" data-id="fi-mainmenu-layout">
-        <!-- Header -->
-        <header data-role="header">
+    <!-- Favorites Modal View -->
+    <div data-role="modalview" id="fi-favorites-modalview" style="width:90%">
+        <div data-role="header">
             <div data-role="navbar">
-                <span data-role="view-title">Fāvit</span>
-                <a data-align="left" data-icon="drawer-button" data-role="button"  id="drawer_icon" data-rel="drawer" href="#my-drawer"></a>
-            </div> 
-        </header>
-        <footer data-role="footer">
-            <span style="color:#fff">Footer goes here</span>
-        </footer>
+                <span>Favorites</span>
+                <a data-click="closeFavoritesModalView" data-role="button" data-align="right">X</a>
+            </div>
+        </div>
+        <div id="favorites_modalview_container" class="center">
+            <a data-icon="add" data-role="button">Add From Contacts</a>
+            <br>
+            <a data-icon="action" data-role="button">Send Request to Friends</a>
+        </div>
     </div>
     
     <!-- Play This or That View -->
     <div data-role="view" id="fi-playtot-view" data-layout="fi-playtot-layout">
         <div id="playtot_container">
             <div id="selection_A" class="selection">
-                <img id="img_A" src=""/>
+                <img id="img_A" src="http://g-ecx.images-amazon.com/images/G/01/aplus/detail-page/B009AGXH64hardware.jpg"/>
             </div>
             <div id="divider">
-            OR
+            OR?
             </div>
             <div id="selection_B" class="selection">
-                <img id="img_B" src=""/>
+                <img id="img_B" src="http://static.giantbomb.com/uploads/original/5/56742/2495936-9012444134_80ba47fd6e_o.jpg"/>
             </div>
         </div>
     </div>
     
-    <!-- Retail View -->
-    <div data-role="view" id="fi-retailer-select-view" data-layout="fi-mainmenu-layout">
-        <ul data-role="listview" data-style="inset">
-            <li>
-                <img class="fi-retailer-photo" src="http://ecx.images-amazon.com/images/I/81QZKKQvLXL._SL1430_.jpg" />
-                <div class="fi-retailer-details">
-                    <span class="fi-listitem-title">
-                        Mario Kart 8
-                    </span>
-                     <span class="fi-normal-label">MSRP: $59.99 </span>
-                </div>
-            </li>
-        </ul>
-        <ul>
-            <a>
-                <img class="fi-retailer-photo" src="http://www.justpushstart.com/wp-content/uploads/2012/08/best-buy-logo.jpeg" />
-                <div class="fi-retailer-details">
-                    <span class="fi-listitem-title">
-                        Best Buy
-                    </span>
-                     <span class="fi-normal-label">Modo Price: $50 </span>
-                </div>
-            </a>
-            <a>
-                <img class="fi-retailer-photo" src="http://www.gamestop.com/gs/logos/files/GameStopLogo_BlackRed.jpg" />
-                <div class="fi-retailer-details">
-                    <span class="fi-listitem-title">
-                        Game Stop
-                    </span>
-                     <span class="fi-normal-label">Modo Price: $45 </span>
-                </div>
-            </a>
-        </ul>
-    </div>
-    <!-- Layout -->
+    <!-- Play This or That Layout -->
     <div data-role="layout" data-id="fi-playtot-layout">
         <!-- Header -->
         <header data-role="header">
             <div data-role="navbar">
                 <a data-align="left" data-role="backbutton"  id="">Back</a>
-                <span data-role="view-title">Fāvit</span>
+                <span data-role="view-title"><img class="header_logo" src="images/favit_logo.png"/></span>
+                <a data-align="right" data-role="button" data-icon="refresh"  id="">Refresh</a>
             </div> 
         </header>
     </div>
     
+    <!-- Main Menu Layout -->
+    <div data-role="layout" data-id="fi-mainmenu-layout">
+        <!-- Header -->
+        <header data-role="header">
+            <div data-role="navbar">
+                <span data-role="view-title"><img class="header_logo" src="images/favit_logo.png"/></span>
+                <a data-align="left" data-icon="drawer-button" data-role="button"  id="drawer_icon" data-rel="drawer" href="#fi-my-drawer"></a>
+            </div> 
+        </header>
+    </div>
+    
+    <!-- My  Drawer -->
+    <div data-role="drawer" id="fi-my-drawer" style="width: 270px" data-swipe-to-open-views='["fi-mainmenu-view"]'>
+        <ul data-role="listview" data-type="group">
+            <li>Hi Damola <!--TODO Fix to insert user name-->
+                <ul>
+                    <li data-icon="contacts"><a href="#fi-profile-view" data-transition="none">Profile</a></li>
+                    <li data-icon="favorites"><a href="#fi-gift-suggestions-view" data-transition="none">Gift Suggestions</a></li>
+                </ul>
+            </li>
+            <li>Account
+                <ul>
+                    <li data-icon="off"><a href="#fi-login-view" data-transition="none">Log Out</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    
+    <!-- Profile View -->
+    <div data-role="view" id="fi-profile-view" data-layout="fi-profile-layout">
+        <ul data-role="listview" data-style="inset">
+            <li><label for="name">Name: <input type="text" id="name" value="John Doe" readonly/></label></li>
+            <li>
+                <label>Gender
+                    <select id="gender" disabled>
+                        <option value="First Option">Male</option>
+                        <option value="Second Option">Female</option>
+                    </select>
+                </label>
+            </li>
+            <li><label for="birthday">Birthday: <input type="date" id="birthday" value="1999-01-06" readonly/></label></li>
+            <li><label for="card">Card On File: <input type="text" id="card" value="NO" readonly/></label></li>
+            <li><label for="phone">Phone: <input type="tel" id="phone" value="4072574962" readonly/></label></li>
+            <li><label for="password">Password: <input type="password" id="password" value="hello" readonly/></label></li>
+        </ul>
+        <div class="center"><h2>Likes</h2>
+            <a class="button" data-role="button" >Home Appliances</a>
+            <a class="button selected-button" data-role="button">Video Games</a>
+            <a class="button selected-button" data-role="button" >Shoes</a>
+            <a class="button" data-role="button" >Clothing</a>
+            <a class="button" data-role="button" >Electronics</a>
+            <a class="button" data-role="button" >Restaurants</a>
+        </div>
+        
+    </div>
+    
+    <!-- Profile Layout-->
+    <div data-role="layout" data-id="fi-profile-layout">
+        <!-- Header -->
+        <header data-role="header">
+            <div data-role="navbar">
+                <a data-align="left" data-role="backbutton"  id="">Back</a>
+                <span data-role="view-title"><img class="header_logo" src="images/favit_logo.png"/></span>
+                <a data-align="right" data-role="button"  data-icon="compose" id="">Edit</a>
+            </div> 
+        </header>
+        <!--<footer data-role="footer">
+            <span style="color:#fff">Footer goes here</span>
+        </footer>-->
+    </div>
+    
+    <!-- Gift Suggestions View-->
+    <div data-role="view" id="fi-gift-suggestions-view" data-layout="fi-gift-suggestions-layout">
+        <div id="gift_suggestions_container" class="center">
+            <div id="scrollview" data-role="scrollview">
+                <div data-role="page" >
+                    <div class="scale-fit" class="center">
+                        <table>
+                            <tr>
+                                <td>
+                                    <div>
+                                        <img class="suggestions_photo" src="http://www.gamestop.com/common/images/lbox/240129b.jpg" />
+                                        <br>
+                                        <a data-role="button">GET</a>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        <img class="suggestions_photo" src="http://www.gamestop.com/common/images/lbox/240262b.jpg" />
+                                        <br>
+                                        <a data-role="button" href="fi-retailer-select-view">GET</a>
+                                        <p></p>
+                                    </div>
+                                </td> 
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div>
+                                        <img class="suggestions_photo" src="http://www.gamestop.com/common/images/lbox/240172b1.jpg" />
+                                        <br>
+                                        <a data-role="button">GET</a>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        <img class="suggestions_photo" src="http://www.gamestop.com/common/images/lbox/240274b.jpg" />
+                                        <br>
+                                        <a data-role="button">GET</a>
+                                    </div>
+                                </td> 
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div data-role="page">
+                    <div class="scale-fit" class="center">
+                        <table>
+                            <tr>
+                                <td>
+                                    <div>
+                                        <img class="suggestions_photo" src="http://a1.zassets.com/images/z/2/8/7/6/3/3/2876335-p-MULTIVIEW.jpg" />
+                                        <br>
+                                        <a data-role="button">GET</a>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        <img class="suggestions_photo" src="http://a9.zassets.com/images/z/2/8/5/6/7/1/2856712-p-MULTIVIEW.jpg" />
+                                        <br>
+                                        <a data-role="button">GET</a>
+                                        <p></p>
+                                    </div>
+                                </td> 
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div>
+                                        <img class="suggestions_photo" src="http://a1.zassets.com/images/z/3/0/4/4/0/4/3044040-p-MULTIVIEW.jpg" />
+                                        <br>
+                                        <a data-role="button">GET</a>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        <img class="suggestions_photo" src="http://a1.zassets.com/images/z/2/9/3/0/6/1/2930616-p-MULTIVIEW.jpg" />
+                                        <br>
+                                        <a data-role="button">GET</a>
+                                    </div>
+                                </td> 
+                            </tr>
+                        </table>
+                    </div>
+                
+                </div>
+                
+            </div>
+            <a id="prev-img" title="Previous Image"></a>
+            <a id="next-img" title="Next Image"></a>
+        </div>
+    </div>
+    
+    <!-- Gift Suggestions Layout -->
+    <div data-role="layout" data-id="fi-gift-suggestions-layout">
+        <!-- Header -->
+        <header data-role="header">
+            <div data-role="navbar">
+                <a data-align="left" data-role="backbutton"  id="">Back</a>
+                <span data-role="view-title"><img class="header_logo" src="images/favit_logo.png"/></span>
+            </div> 
+        </header>
+    </div>
+    
+    
+    <!-- Retail View -->
+    <div data-role="view" id="fi-retailer-select-view" data-layout="fi-retailer-select-layout">
+        <ul data-role="listview" data-style="inset">
+            <li>
+                <!-- Gift -->
+                <div class="center">
+                    <img class="gift-photo" src="http://ecx.images-amazon.com/images/I/81QZKKQvLXL._SL1430_.jpg" />
+                    <div class="fi-retailer-details">
+                        <span class="fi-listitem-title">
+                            Mario Kart 8
+                        </span>
+                         <span class="fi-normal-label">MSRP: $59.99 </span>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <img class="fi-retailer-photo" src="http://www.justpushstart.com/wp-content/uploads/2012/08/best-buy-logo.jpeg" />
+                <h3 class="item-title">Bestbuy</h3>
+                <p class="item-price">$59.99</p>
+                <a data-role="button" class="details-operation">Find</a>
+            </li>
+            <li>
+                <img class="fi-retailer-photo" src="http://www.gamestop.com/gs/logos/files/GameStopLogo_BlackRed.jpg" />
+                <h3 class="item-title">Gamestop</h3>
+                <p class="item-price">$59.96</p>
+                <a data-role="button" class="details-operation">Gift</a>
+            </li>
+        </ul>
+    </div>
+    
+    <!-- Retailer Select Layout-->
+    <div data-role="layout" data-id="fi-retailer-select-layout">
+        <!-- Header -->
+        <header data-role="header">
+            <div data-role="navbar">
+                <a data-align="left" data-role="backbutton"  id="">Gift Su...</a>
+                <span data-role="view-title"><img class="header_logo" src="images/favit_logo.png"/></span>
+            </div> 
+        </header>
+        <!--<footer data-role="footer">
+            <span style="color:#fff">Footer goes here</span>
+        </footer>-->
+    </div>
+    
+    <!-- Load the KendoUI Library & "fi-login-view" View Initially  -->
     <script>
-        //Load the KendoUI Library & "fi-login-view" View Initially
         var app = new kendo.mobile.Application($(document.body), {
             initial: "fi-login-view"
         });  
