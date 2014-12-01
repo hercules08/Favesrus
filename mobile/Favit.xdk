@@ -6,7 +6,7 @@
       "projectTypeName": "com.intel.xdk.projecttype.jsapp",
       "src": "https://edge-intel.s3.amazonaws.com/jsapp/production/release-2014-ww45/template-a-blank/sample.zip",
       "projectGuid": "46748e15-e257-45df-93e8-264354cf26fa",
-      "lastModifiedDate": 1417338203825,
+      "lastModifiedDate": 1417414259129,
       "creationDate": 1416722516330
     },
     "sourceDirectory": "www",
@@ -62,7 +62,8 @@
         "preferences_": {
           "android-minSdkVersion": "10",
           "android-targetSdkVersion": "19",
-          "android-installLocation": "auto"
+          "android-installLocation": "auto",
+          "Orientation": "portrait"
         },
         "isActive_": true,
         "appName_": "Favit",
@@ -87,7 +88,8 @@
         "preferences_": {
           "android-minSdkVersion": "14",
           "android-targetSdkVersion": "19",
-          "android-installLocation": "auto"
+          "android-installLocation": "auto",
+          "Orientation": "portrait"
         },
         "isActive_": true,
         "appName_": "Favit",
@@ -110,8 +112,9 @@
         "runtime_": "Cordova 3.x",
         "name_": "iOS",
         "preferences_": {
-          "ios-target": "5",
-          "ios-configuration": "adhoc"
+          "ios-target": "7",
+          "ios-configuration": "adhoc",
+          "Orientation": "portrait"
         },
         "isActive_": true,
         "appName_": "Favit",

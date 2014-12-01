@@ -30,7 +30,7 @@
     <!-- Login View -->
     <div data-role="view" id="fi-login-view" data-layout="fi-login-layout">
         <div id="login_container">
-<!--            <div class="button_red">Login In</div>-->
+           <!--<div class="button_red">Login In</div>-->
             <a id="login-facebook-open-button" href="fi-mainmenu-view" data-role="button">
                 <img class="login_button" id="login_facebook_button" src="images/login_facebook.png"/>
             </a>
@@ -52,11 +52,11 @@
         </footer>-->
     </div>
     
-    <!-- User Sign Up Modal View (Email, Password,) -->
+    <!-- User Sign Up/Login Modal View (Email, Password,) -->
     <div data-role="modalview" id="signup-modalview" style="width:90%">
         <div data-role="header">
             <div data-role="navbar">
-                <span>SignUp</span>
+                <span>Log in</span>
                 <a data-click="closeModalViewLogin" data-role="button" data-align="right">Cancel</a>
             </div>
         </div>
@@ -64,18 +64,10 @@
         <ul data-role="listview" data-style="inset">
             <li><label for="email">Email: <input type="email" id="email" /></label></li>
             <li><label for="password">Password: <input type="password" id="password" /></label></li>
-            <li><label for="birthday">Birthday: <input type="date" id="birthday" value="2014-12-01"/></label></li>
-            <li>
-                <label>Gender
-                    <select id="gender">
-                        <option value="First Option">Male</option>
-                        <option value="Second Option">Female</option>
-                    </select>
-                </label>
-            </li>
-            
         </ul>
-        <a data-click="closeModalViewLogin" data-click="loadjsonData()" href="fi-mainmenu-view" id="modalview-login-button" type="button" data-role="button">Submit</a>
+        <div class="center">
+            <a data-click="closeModalViewLogin" data-click="" href="fi-mainmenu-view" id="modalview-login-button" type="button" data-role="button">Submit</a>
+        </div>
     </div>
     
     <!-- Main Menu View -->
@@ -85,7 +77,7 @@
                 <img class="scale_fit" id="upcoming_events_img" src="images/upcoming_events.png"/>
             </div>
             <a id="playtot-button" href="fi-playtot-view" data-role="button">
-                <img id="play_button_img" src="images/play_tot.png"/>
+                <img id="play_button_img" src="images/discover_fav_gifts.png"/>
             </a>
             <div class="left">
                 <div id="person_container">
@@ -111,7 +103,7 @@
         <div data-role="header">
             <div data-role="navbar">
                 <span>Favorites</span>
-                <a data-click="closeFavoritesModalView" data-role="button" data-align="right">X</a>
+                <a data-click="closeFavoritesModalView" data-role="button" data-align="right">Cancel</a>
             </div>
         </div>
         <div id="favorites_modalview_container" class="center">
@@ -221,6 +213,7 @@
     
     <!-- Gift Suggestions View-->
     <div data-role="view" id="fi-gift-suggestions-view" data-layout="fi-gift-suggestions-layout">
+        <div class="title center"><img class="title_image" src="images/giftbox.png"/>Gift Suggestions</div>
         <div id="gift_suggestions_container" class="center">
             <div id="scrollview" data-role="scrollview">
                 <div data-role="page" >
@@ -231,14 +224,14 @@
                                     <div>
                                         <img class="suggestions_photo" src="http://www.gamestop.com/common/images/lbox/240129b.jpg" />
                                         <br>
-                                        <a data-role="button">GET</a>
+                                        <a data-role="button" data-icon="cart">GET</a>
                                     </div>
                                 </td>
                                 <td>
                                     <div>
                                         <img class="suggestions_photo" src="http://www.gamestop.com/common/images/lbox/240262b.jpg" />
                                         <br>
-                                        <a data-role="button" href="fi-retailer-select-view">GET</a>
+                                        <a data-role="button" href="fi-retailer-select-view" data-icon="cart">GET</a>
                                         <p></p>
                                     </div>
                                 </td> 
@@ -248,14 +241,14 @@
                                     <div>
                                         <img class="suggestions_photo" src="http://www.gamestop.com/common/images/lbox/240172b1.jpg" />
                                         <br>
-                                        <a data-role="button">GET</a>
+                                        <a data-role="button" data-icon="cart">GET</a>
                                     </div>
                                 </td>
                                 <td>
                                     <div>
                                         <img class="suggestions_photo" src="http://www.gamestop.com/common/images/lbox/240274b.jpg" />
                                         <br>
-                                        <a data-role="button">GET</a>
+                                        <a data-role="button" data-icon="cart">GET</a>
                                     </div>
                                 </td> 
                             </tr>
@@ -270,14 +263,14 @@
                                     <div>
                                         <img class="suggestions_photo" src="http://a1.zassets.com/images/z/2/8/7/6/3/3/2876335-p-MULTIVIEW.jpg" />
                                         <br>
-                                        <a data-role="button">GET</a>
+                                        <a data-role="button" data-icon="cart">GET</a>
                                     </div>
                                 </td>
                                 <td>
                                     <div>
                                         <img class="suggestions_photo" src="http://a9.zassets.com/images/z/2/8/5/6/7/1/2856712-p-MULTIVIEW.jpg" />
                                         <br>
-                                        <a data-role="button">GET</a>
+                                        <a data-role="button" data-icon="cart">GET</a>
                                         <p></p>
                                     </div>
                                 </td> 
@@ -287,14 +280,14 @@
                                     <div>
                                         <img class="suggestions_photo" src="http://a1.zassets.com/images/z/3/0/4/4/0/4/3044040-p-MULTIVIEW.jpg" />
                                         <br>
-                                        <a data-role="button">GET</a>
+                                        <a data-role="button" data-icon="cart">GET</a>
                                     </div>
                                 </td>
                                 <td>
                                     <div>
                                         <img class="suggestions_photo" src="http://a1.zassets.com/images/z/2/9/3/0/6/1/2930616-p-MULTIVIEW.jpg" />
                                         <br>
-                                        <a data-role="button">GET</a>
+                                        <a data-role="button" data-icon="cart">GET</a>
                                     </div>
                                 </td> 
                             </tr>
@@ -340,14 +333,21 @@
                 <img class="fi-retailer-photo" src="http://www.justpushstart.com/wp-content/uploads/2012/08/best-buy-logo.jpeg" />
                 <h3 class="item-title">Bestbuy</h3>
                 <p class="item-price">$59.99</p>
-                <a data-role="button" class="details-operation">Find</a>
+                <a data-role="button" class="details-operation" data-rel="actionsheet" href="#retailer_actionsheet" data-icon="globe">Find</a>
             </li>
             <li>
                 <img class="fi-retailer-photo" src="http://www.gamestop.com/gs/logos/files/GameStopLogo_BlackRed.jpg" />
                 <h3 class="item-title">Gamestop</h3>
-                <p class="item-price">$59.96</p>
+                <p class="item-price">$59.96<br><img class="moda_supported" src="images/modapayments_logo.png"/></p>
                 <a data-role="button" class="details-operation">Gift</a>
             </li>
+        </ul>
+        
+        <!-- ActionSheet for Actions related to Retailers-->
+        <ul id="retailer_actionsheet" data-role="actionsheet">
+            <li class="km-actionsheet-title"></li>
+            <li><a>Locate Nearest Store</a></li>
+            <li><a>Visit Web Page</a></li>
         </ul>
     </div>
     
@@ -367,9 +367,11 @@
     
     <!-- Load the KendoUI Library & "fi-login-view" View Initially  -->
     <script>
-        var app = new kendo.mobile.Application($(document.body), {
-            initial: "fi-login-view"
-        });  
+        var app = new kendo.mobile.Application($(document.body), 
+                                               {skin:"material"}, //Set skin to Android Material Light
+                                               /*{platform: "ios7"},*/
+                                               {initial: "fi-login-view"}
+                                              );  
     </script>
 </body>
 </html>

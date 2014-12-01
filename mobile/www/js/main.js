@@ -1,3 +1,14 @@
+//  Prevent Default Scrolling  
+var preventDefaultScroll = function(event) 
+{
+    // Prevent scrolling on this element
+    event.preventDefault();
+    window.scroll(0,0);
+    return false;
+};
+    
+window.document.addEventListener("touchmove", preventDefaultScroll, false);
+
 //Execute after the DOM finishes loading
 $(
     function () {

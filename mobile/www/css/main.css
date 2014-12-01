@@ -1,19 +1,27 @@
+
+
 .scale_fit, table {
     width: 90%;
 }
 
+/*Width of the Login button */
 .login_button {
     width: 90%;
 }
 
 .header_logo {
-    width:25%;
+    width: 25%;
+    max-width: 120px;
 }
 
 #mainmenu_container, #login_container, .selection, #divider, .center, table {
     margin-left: auto;
     margin-right: auto;
     text-align: center;
+}
+
+#modalview-login-button, #favorites_modalview_container a {
+    font-size:1.3em;
 }
 
 #login_container {
@@ -25,12 +33,13 @@
     padding-top: 4vh;
 }
 
+
+
 /*Add margin to the top and bottom*/
 #favorites_modalview_container a {
     margin-top: 4vh;
     margin-bottom: 4vh;
     font-weight: bold;
-    font-size: 1.3em;
 }
 
 
@@ -155,8 +164,8 @@ a img {
     top: 50%;
 }
 
-
-.km-navbar {
+/*Change the background color of the header for iOS and Android Material*/
+.km-navbar, .km-material .km-navbar .km-view-title, .km-material .km-navbar .km-button {
     background-color: #16a085 !important;
 }
 
@@ -209,9 +218,9 @@ a img {
 }
 
 #prev-img {
-    left: -5px;;
+    left: -5px;
     background: url('../images/next_button.png') no-repeat 50% 50%;
-    background-size: 100% 100%;
+    background-size: 100% 105%;
     /*Flip 180 degrees*/
     -ms-transform: rotate(180deg); /* IE 9 */
     -webkit-transform: rotate(180deg); /* Chrome, Safari, Opera */
@@ -221,17 +230,7 @@ a img {
     left: auto;
     right: -5px;
     background: url('../images/next_button.png') no-repeat 50% 50%;
-    background-size: 100% 100%;
-}
-a#prev-img:hover {
-    background: url('../images/next_button.png') no-repeat 50% 50% rgba(0,0,0,.3);
-    background-size: 100% 100%;
-    opacity: 1;
-}
-a#next-img:hover  {
-    background: url('../images/next_button.png') no-repeat 50% 50% rgba(0,0,0,.3);
-    background-size: 100% 100%;
-    opacity: 1;
+    background-size: 100% 105%;
 }
 
 /*Reduce Gift suggestion photos size */
@@ -239,3 +238,19 @@ a#next-img:hover  {
     width: 70%;
 }
 
+/*Title styling*/
+.title {
+    color: #e74c3c;
+    font-size: 1.5em;
+    font-style: italic;
+}
+
+.title_image {
+    width:8%;
+
+}
+
+/*Moda Logo scaling*/
+.moda_supported {
+    width: 30%;
+}
