@@ -104,7 +104,7 @@ km-off:before, .km-off:after  {
 
 /*Set the initial background image for Selection B*/
 #selection_B {
-    background-image: url("http://static.giantbomb.com/uploads/original/5/56742/2495936-9012444134_80ba47fd6e_o.jpg");
+    background-image: url("http://www.gamestop.com/common/images/lbox/104969b.jpg");
 }
 
 .selection_notifier {
@@ -116,10 +116,10 @@ km-off:before, .km-off:after  {
 }
 
 #divider {
-    font-size: 3.0em;
+    font-size: 2.0em;
     font-weight: bold;
-    background-color: #e74c3c; /*Green Sea*/
-    color: #ecf0f1; /*clouds*/
+    background-color: #e74c3c;
+    color: white; /*clouds*/
     font-style: italic;
     padding-top: 30px;
     padding-bottom: 30px;

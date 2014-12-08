@@ -229,8 +229,8 @@ function loadSelectionImages() {
                       "http://a1.zassets.com/images/z/3/0/4/4/0/4/3044040-p-MULTIVIEW.jpg",
                       "http://a1.zassets.com/images/z/2/9/3/0/6/1/2930616-p-MULTIVIEW.jpg",
                       "http://a3.zassets.com/images/z/2/8/8/0/9/5/2880955-p-MULTIVIEW.jpg",      
-                      "http://a3.zassets.com/images/z/2/8/8/0/9/5/2880955-p-MULTIVIEW.jpg",      
-                      "http://a3.zassets.com/images/z/2/8/8/0/9/5/2880955-p-MULTIVIEW.jpg"     
+                      "http://a2.zassets.com/images/z/2/9/0/7/0/6/2907064-p-MULTIVIEW.jpg",      
+                      "http://a9.zassets.com/images/z/1/8/8/18858-p-MULTIVIEW.jpg"     
                     ], 
     temp_array = null;
     // Get the value from a dropdown select
@@ -251,6 +251,7 @@ function loadSelectionImages() {
         while (a == b) {
             b = Math.floor(Math.random() * 4);
         }
+    
         //Load an image into Selection B
         $("#selection_B").css("background-image","url('"+temp_array[b]+"')");
         
