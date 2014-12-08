@@ -73,9 +73,6 @@
     <!-- Main Menu View -->
     <div data-role="view" id="fi-mainmenu-view" data-layout="fi-mainmenu-layout">
         <div id="mainmenu_container">
-            <!--<div id="upcoming_event_container">
-                <img class="scale_fit" id="upcoming_events_img" src="images/upcoming_events.png"/>
-            </div>-->
             <a id="playtot-button" href="fi-playtot-view" data-role="button">
                 <img id="play_button_img" src="images/discover_fav_gifts.png"/>
             </a>
@@ -101,6 +98,21 @@
         </div>
     </div>
     
+    <!-- Upcoming Events Modal View -->
+    <div data-role="modalview" id="fi-upcoming-events-modalview" style="width:90%">
+        <div data-role="header">
+            <div data-role="navbar">
+                <span>Upcoming Events</span>
+                <a data-click="closeUpcomingEventsModalView" data-role="button" data-align="right">Cancel</a>
+            </div>
+        </div>
+        <div id="upcoming_events_modalview_container" class="center">
+            <div id="upcoming_event_container">
+                <img class="scale_fit" id="upcoming_events_img" src="images/upcoming_events.png"/>
+            </div>
+        </div>
+    </div>
+    
     <!-- Favorites Modal View -->
     <div data-role="modalview" id="fi-favorites-modalview" style="width:90%">
         <div data-role="header">
@@ -116,8 +128,15 @@
         </div>
     </div>
     
-    <!-- Play This or That View -->
+    <!-- Play This or That (Discover) View -->
     <div data-role="view" id="fi-playtot-view" data-layout="fi-playtot-layout">
+<!--        <label>Product Category-->
+            <select id="product_category">
+                <option value="First Option">Select Product Category</option>
+                <option value="Second Option">Video Games</option>
+                <option value="Third Option">Shoes</option>
+            </select>
+<!--        </label>-->
         <div id="playtot_container">
             <div id="selection_A" class="selection">
                 <img id="img_A" src="http://g-ecx.images-amazon.com/images/G/01/aplus/detail-page/B009AGXH64hardware.jpg"/>
@@ -131,7 +150,7 @@
         </div>
     </div>
     
-    <!-- Play This or That Layout -->
+    <!-- Play This or That (Discover) Layout -->
     <div data-role="layout" data-id="fi-playtot-layout">
         <!-- Header -->
         <header data-role="header">
@@ -150,7 +169,7 @@
             <div data-role="navbar">
                 <span data-role="view-title"><img class="header_logo" src="images/FavesRUs_logo.png"/></span>
                 <a data-align="left" data-icon="drawer-button" data-role="button"  id="drawer_icon" data-rel="drawer" href="#fi-my-drawer"></a>
-                <a data-align="right" data-icon="calendar-button" data-role="button"  id="calendar_icon"></a>
+                <a data-align="right" data-icon="calendar-button" data-role="button"  id="calendar_icon" data-click="openUpcomingEventsModalView"></a>
             </div> 
         </header>
     </div>

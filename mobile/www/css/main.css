@@ -14,7 +14,7 @@
     width: 120px;
 }
 
-#mainmenu_container, #login_container, .selection, #divider, .center, table {
+#mainmenu_container, #login_container, .selection, #divider, .center, table, #fi-playtot-view {
     margin-left: auto;
     margin-right: auto;
     text-align: center;
@@ -29,10 +29,13 @@
 }
 
 /*Add padding to the top*/
-#mainmenu_container, #playtot_container, #person_container, #gift_suggestions_container {
+#mainmenu_container, #person_container, #gift_suggestions_container {
     padding-top: 4vh;
 }
 
+#playtot_container {
+    padding-top: 2vh;
+}
 
 
 /*Add margin to the top and bottom*/

@@ -102,6 +102,15 @@ function closeFavoritesModalView() {
     $("#fi-favorites-modalview").kendoMobileModalView("close");
 }
 
+//Open the Favorites Modal View
+function openUpcomingEventsModalView(e) {
+    $("#fi-upcoming-events-modalview").data("kendoMobileModalView").open();
+}
+
+//Close the Upcoming Events Modal View
+function closeUpcomingEventsModalView() {
+    $("#fi-upcoming-events-modalview").kendoMobileModalView("close");
+}
 
 function loadjsonSelectionData(){
 	var data;
