@@ -9,9 +9,9 @@
     width: 90%;
 }
 
+/*Set Header size to a fixed size*/
 .header_logo {
-    width: 25%;
-    max-width: 120px;
+    width: 120px;
 }
 
 #mainmenu_container, #login_container, .selection, #divider, .center, table {
@@ -55,7 +55,7 @@
 }
 
 /*Remove default border from images within <a> buttons*/
-#signup-modalview-open-button, #playtot-button, #login-facebook-open-button, #favorites_button  {
+#signup-modalview-open-button, #playtot-button, #gift_suggestions-button, #login-facebook-open-button, #favorites_button  {
     border: none !important;
 }
 
@@ -63,13 +63,17 @@
     padding: 0px;
 }
 
-#playtot-button {
+#playtot-button, #gift_suggestions-button {
     background-color: white;
 }
 
 /*Drawer icon*/
 km-drawer-button:before, .km-drawer-button:after  { 
     content: "\E077"; 
+}
+
+km-calendar-button:before, .km-calendar-button:after {
+    content:"\e089";
 }
 
 /*Off icon*/

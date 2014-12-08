@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Favit 1.0</title>
+    <title>FavesRUs 1.0</title>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     
@@ -44,7 +44,7 @@
         <!-- Header -->
         <header data-role="header">
             <div data-role="navbar">
-                <span data-role="view-title"><img class="header_logo" src="images/favit_logo.png"/></span>
+                <span data-role="view-title"><img class="header_logo" src="images/FavesRUs_logo.png"/></span>
             </div> 
         </header>
         <!--<footer data-role="footer">
@@ -73,11 +73,14 @@
     <!-- Main Menu View -->
     <div data-role="view" id="fi-mainmenu-view" data-layout="fi-mainmenu-layout">
         <div id="mainmenu_container">
-            <div id="upcoming_event_container">
+            <!--<div id="upcoming_event_container">
                 <img class="scale_fit" id="upcoming_events_img" src="images/upcoming_events.png"/>
-            </div>
+            </div>-->
             <a id="playtot-button" href="fi-playtot-view" data-role="button">
                 <img id="play_button_img" src="images/discover_fav_gifts.png"/>
+            </a>
+            <a id="gift_suggestions-button" href="fi-gift-suggestions-view" data-role="button">
+                <img id="gift_suggestions_button_img" src="images/gifts_suggestions.png"/>
             </a>
             <div class="left">
                 <div id="person_container">
@@ -134,8 +137,8 @@
         <header data-role="header">
             <div data-role="navbar">
                 <a data-align="left" data-role="backbutton"  id="">Back</a>
-                <span data-role="view-title"><img class="header_logo" src="images/favit_logo.png"/></span>
-                <a data-align="right" data-role="button" data-icon="refresh"  id="">Refresh</a>
+                <span data-role="view-title"><img class="header_logo" src="images/FavesRUs_logo.png"/></span>
+                <a data-align="right" data-role="button" data-icon="refresh"  id=""></a>
             </div> 
         </header>
     </div>
@@ -145,8 +148,9 @@
         <!-- Header -->
         <header data-role="header">
             <div data-role="navbar">
-                <span data-role="view-title"><img class="header_logo" src="images/favit_logo.png"/></span>
+                <span data-role="view-title"><img class="header_logo" src="images/FavesRUs_logo.png"/></span>
                 <a data-align="left" data-icon="drawer-button" data-role="button"  id="drawer_icon" data-rel="drawer" href="#fi-my-drawer"></a>
+                <a data-align="right" data-icon="calendar-button" data-role="button"  id="calendar_icon"></a>
             </div> 
         </header>
     </div>
@@ -182,7 +186,7 @@
             </li>
             <li><label for="birthday">Birthday: <input type="date" id="birthday" value="1999-01-06" readonly/></label></li>
             <li><label for="card">Card On File: <input type="text" id="card" value="NO" readonly/></label></li>
-            <li><label for="phone">Phone: <input type="tel" id="phone" value="4072574962" readonly/></label></li>
+            <li><label for="phone">Phone: <input type="tel" id="phone" value="3409991111" readonly/></label></li>
             <li><label for="password">Password: <input type="password" id="password" value="hello" readonly/></label></li>
         </ul>
         <div class="center"><h2>Likes</h2>
@@ -202,7 +206,7 @@
         <header data-role="header">
             <div data-role="navbar">
                 <a data-align="left" data-role="backbutton"  id="">Back</a>
-                <span data-role="view-title"><img class="header_logo" src="images/favit_logo.png"/></span>
+                <span data-role="view-title"><img class="header_logo" src="images/FavesRUs_logo.png"/></span>
                 <a data-align="right" data-role="button"  data-icon="compose" id="">Edit</a>
             </div> 
         </header>
@@ -308,7 +312,7 @@
         <header data-role="header">
             <div data-role="navbar">
                 <a data-align="left" data-role="backbutton"  id="">Back</a>
-                <span data-role="view-title"><img class="header_logo" src="images/favit_logo.png"/></span>
+                <span data-role="view-title"><img class="header_logo" src="images/FavesRUs_logo.png"/></span>
             </div> 
         </header>
     </div>
@@ -357,7 +361,7 @@
         <header data-role="header">
             <div data-role="navbar">
                 <a data-align="left" data-role="backbutton"  id="">Gift Su...</a>
-                <span data-role="view-title"><img class="header_logo" src="images/favit_logo.png"/></span>
+                <span data-role="view-title"><img class="header_logo" src="images/FavesRUs_logo.png"/></span>
             </div> 
         </header>
         <!--<footer data-role="footer">
@@ -368,7 +372,7 @@
     <!-- Load the KendoUI Library & "fi-login-view" View Initially  -->
     <script>
         var app = new kendo.mobile.Application($(document.body), 
-                                               {skin:"material"}, //Set skin to Android Material Light
+                                               /*{skin:"material"},*/ //Set skin to Android Material Light
                                                /*{platform: "ios7"},*/
                                                {initial: "fi-login-view"}
                                               );  
