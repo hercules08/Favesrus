@@ -19,7 +19,7 @@ namespace Favit.Model.Entities
         public newsletter(string email)
         {
             this.email = email;
-            this.time = DateTime.Now.ToShortTimeString();
+            this.time = DateTime.Now.ToString();
         }
         public virtual string email { get; set;}
         public virtual string time { get; set; }

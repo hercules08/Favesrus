@@ -5,7 +5,7 @@ using System.Web.Http.Dependencies;
 
 namespace Favit.Server
 {
-    public class NinjectDependencyResolver : IDependencyResolver
+    public class NinjectDependencyResolver : IDependencyResolver, System.Web.Mvc.IDependencyResolver
     {
         private readonly IKernel _container;
 

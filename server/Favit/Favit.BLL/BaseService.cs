@@ -15,8 +15,8 @@ namespace Favit.BLL
 
         public BaseService(IRepository repo, IUnitOfWork uow)
         {
-            uow = uow;
-            repo = repo;
+            this.uow = uow;
+            this.repo = repo;
         }
     }
 }

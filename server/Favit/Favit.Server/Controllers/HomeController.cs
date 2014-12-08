@@ -41,7 +41,7 @@ namespace Favit.Server.Controllers
             {
                 newsletter emailExists = repo.GetList<newsletter>(n => n.email.ToLower() == email.ToLower()).FirstOrDefault();
 
-                if (emailExists == null && IsValidEmail(email))
+                if (emailExists == null)// && IsValidEmail(email))
                 {
                     // Add to database
                     uow.BeginTransaction();
@@ -69,7 +69,7 @@ namespace Favit.Server.Controllers
             {
                 string to = ConfigurationManager.AppSettings["AdminEmailAddresses"];
                 //Send the message
-                new EmailService().SendEmail(email, name + " - Favit Message", message, to);
+                new EmailService().SendEmail(email, name + " - Faves 'R' Us Message", message, to);
                 return "success";
             }
             else

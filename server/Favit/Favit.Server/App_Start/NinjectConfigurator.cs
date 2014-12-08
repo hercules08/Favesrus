@@ -28,6 +28,9 @@ namespace Favit.Server.App_Start
         private void AddBindings(IKernel container)
         {
             ConfigureEntityFramework(container);
+
+            container.Bind<IItemService>().To<ItemService>();
+            container.Bind<IRetailerService>().To<RetailerService>();
         }
 
         private void ConfigureEntityFramework(IKernel container)
@@ -36,10 +39,6 @@ namespace Favit.Server.App_Start
             container.Bind<IUnitOfWork>().To<UnitOfWork>();
             container.Bind<IRepository>().To<Repository>();
             container.Bind<ISessionFactory>().To<SessionFactory>().InRequestScope();
-
-            container.Bind<IItemService>().To<ItemService>();
-            container.Bind<IRetailerService>().To<RetailerService>();
-
         }
 
         public class FavitContextProvider : Provider<FavitDBContext>

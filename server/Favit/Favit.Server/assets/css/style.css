@@ -209,10 +209,11 @@ div#header {
          cursor:pointer;
     }
 	div#logo img {
-		text-indent: -3000px;
 		display: block;
-		width:169px;
-		height:69px;
+        margin-left: auto;
+        margin-right: auto;
+		width:319px;
+		height:69px
     }
     
 

@@ -140,7 +140,7 @@ $(document).ready(function() {
 				
 			},
 			error: function () {
-				status.toggleClass('shake').html("Oups, something went wrong!").slideDown();
+				status.toggleClass('shake').html("Oups there was an error :/").slideDown();
 			}
 		});
 	});
