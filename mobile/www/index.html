@@ -132,20 +132,22 @@
     <div data-role="view" id="fi-playtot-view" data-layout="fi-playtot-layout">
 <!--        <label>Product Category-->
             <select id="product_category">
-                <option value="First Option">Select Product Category</option>
-                <option value="Second Option">Video Games</option>
-                <option value="Third Option">Shoes</option>
+                <option value="none">Select Product Category</option>
+                <option value="video_games">Video Games</option>
+                <option value="shoes">Shoes</option>
             </select>
 <!--        </label>-->
         <div id="playtot_container">
             <div id="selection_A" class="selection">
-                <img id="img_A" src="http://g-ecx.images-amazon.com/images/G/01/aplus/detail-page/B009AGXH64hardware.jpg"/>
+                <div class="selection_notifier"></div>
+<!--                <img id="img_A" src="http://g-ecx.images-amazon.com/images/G/01/aplus/detail-page/B009AGXH64hardware.jpg"/>-->
             </div>
             <div id="divider">
-            OR?
+            This OR That?
             </div>
             <div id="selection_B" class="selection">
-                <img id="img_B" src="http://static.giantbomb.com/uploads/original/5/56742/2495936-9012444134_80ba47fd6e_o.jpg"/>
+                <div class="selection_notifier"></div>
+<!--                <img id="img_B" src="http://static.giantbomb.com/uploads/original/5/56742/2495936-9012444134_80ba47fd6e_o.jpg"/>-->
             </div>
         </div>
     </div>
@@ -157,7 +159,7 @@
             <div data-role="navbar">
                 <a data-align="left" data-role="backbutton"  id="">Back</a>
                 <span data-role="view-title"><img class="header_logo" src="images/FavesRUs_logo.png"/></span>
-                <a data-align="right" data-role="button" data-icon="refresh"  id=""></a>
+                <a data-align="right" data-role="button" data-icon="refresh"  data-click="loadSelectionImages"></a>
             </div> 
         </header>
     </div>
@@ -180,7 +182,7 @@
             <li>Hi Damola <!--TODO Fix to insert user name-->
                 <ul>
                     <li data-icon="contacts"><a href="#fi-profile-view" data-transition="none">Profile</a></li>
-                    <li data-icon="favorites"><a href="#fi-gift-suggestions-view" data-transition="none">Gift Suggestions</a></li>
+<!--                    <li data-icon="favorites"><a href="#fi-gift-suggestions-view" data-transition="none">Wish List</a></li>-->
                 </ul>
             </li>
             <li>Account
@@ -236,7 +238,7 @@
     
     <!-- Gift Suggestions View-->
     <div data-role="view" id="fi-gift-suggestions-view" data-layout="fi-gift-suggestions-layout">
-        <div class="title center"><img class="title_image" src="images/giftbox.png"/>Gift Suggestions</div>
+        <div class="title center"><img class="title_image" src="images/giftbox.png"/>Wish List</div>
         <div id="gift_suggestions_container" class="center">
             <div id="scrollview" data-role="scrollview">
                 <div data-role="page" >

@@ -1,6 +1,5 @@
 //  Prevent Default Scrolling  
-var preventDefaultScroll = function(event) 
-{
+var preventDefaultScroll = function(event) {
     // Prevent scrolling on this element
     event.preventDefault();
     window.scroll(0,0);
@@ -18,25 +17,33 @@ $(
         //Add the padding-top styling to the first image on the Main Menu View
         $("#mainmenu_container img").first().css("padding-bottom", "5vh");
         
-        //Add margin-left to the first <div> container
-        //$(".person").first().css("margin-left", "92px");
-        
-        //$("a img").css("width","100%");
-        
         //Make the images inside the selection Circles full width
         $(".selection img").css("width","100%");
         $(".selection img").css("height","100%");
         
         //Set the selection Circles to a default size
-        $(".selection").width(0.55 * window.innerWidth);
-        $(".selection").height(0.55 * window.innerWidth);
+        var selection_div_width = 0.55 * window.innerWidth;
+        var selection_div_height = 0.55 * window.innerWidth;
+        $(".selection").width(selection_div_width);
+        $(".selection").height(selection_div_height);
         
-        //Add event listener that cretes border around the selected Selection circle
+        //Set the selection selection notifier Image to a default size
+        $(".selection_notifier").width(0.45 * selection_div_width);
+        $(".selection_notifier").height(0.15 * selection_div_height);
+        
+        
+        //Add Click event listener to Selection circle that highlights the selected item
         $(".selection").click(
             function () {
-                $(this).css("border","#e74c3c 2px solid");
+                highlightSelection($(this));            
             }
         );
+        
+        //Add Change event Listener to the select element
+        $( "#product_category" ).change(function() {
+            //alert( "Handler for .change() called." );
+            loadSelectionImages();
+        });
         
         //Set the size for the person_container children
         $("#person_container img").width(0.25 * window.innerWidth);
@@ -48,13 +55,10 @@ $(
         $(".person img").css("width","100%");
         $(".person img").css("height","100%");
         
-        
-        
         $("#prev-img").click(function(e) {
             var scrollView = $("#scrollview").data("kendoMobileScrollView");
             scrollView.prev();
         });
-
         $("#next-img").click(function(e) {
             var scrollView = $("#scrollview").data("kendoMobileScrollView");
             scrollView.next();
@@ -132,7 +136,7 @@ function loadjsonSelectionData(){
 	});		
 }
 
-//apply an onclick event handler to the play! button
+//apply an onclick event handler to the play! button NOT USED
 	$("#playtot-button").click(function () {
 		loadjsonSelectionData();
 	});
@@ -180,4 +184,78 @@ function checkout(){
 
 function showFavoritesOptions () {
     alert("hello");
+}
+
+/*---------------DISCOVER YOUR FAVE GIFTS---------------*/
+/*Change the border to the selection div, fade in the "Faved Image", trigger loadSelectionImages*/
+function highlightSelection(element) {
+    if ($("#product_category").val() !== "none") {
+        //Change the border
+        element.css("border","#e74c3c 2px solid");
+        //Fade in the "FavedIt Image"
+        element.children().fadeIn();
+        //Fade out the "FavedIt Image"
+        element.first().children().fadeOut(1000);
+
+        //Trigger Transition in images in selection wait 1 sec
+        setTimeout(
+            function () {
+                //Return to default border color
+                element.css("border","#bdc3c7 2px solid");
+                loadSelectionImages();
+            },
+            1000);
+        
+    }
+    else {
+        alert("Select a Product Category!");
+    }
+}
+
+
+
+/*Load the appropriate image src for each Selection Circle image divs*/
+function loadSelectionImages() {
+    var temp_video_game_array=["http://www.gamestop.com/common/images/lbox/240129b.jpg",
+                               "http://www.gamestop.com/common/images/lbox/240262b.jpg",
+                               "http://www.gamestop.com/common/images/lbox/240172b1.jpg",
+                               "http://www.gamestop.com/common/images/lbox/240274b.jpg",
+                               "http://www.gamestop.com/common/images/lbox/102221b.jpg",
+                               "http://www.gamestop.com/common/images/lbox/105861b.jpg",
+                               "http://www.gamestop.com/common/images/lbox/240056b1.jpg"
+                              ],
+    temp_shoes_array=["http://a1.zassets.com/images/z/2/8/7/6/3/3/2876335-p-MULTIVIEW.jpg",
+                      "http://a9.zassets.com/images/z/2/8/5/6/7/1/2856712-p-MULTIVIEW.jpg",
+                      "http://a1.zassets.com/images/z/3/0/4/4/0/4/3044040-p-MULTIVIEW.jpg",
+                      "http://a1.zassets.com/images/z/2/9/3/0/6/1/2930616-p-MULTIVIEW.jpg",
+                      "http://a3.zassets.com/images/z/2/8/8/0/9/5/2880955-p-MULTIVIEW.jpg",      
+                      "http://a3.zassets.com/images/z/2/8/8/0/9/5/2880955-p-MULTIVIEW.jpg",      
+                      "http://a3.zassets.com/images/z/2/8/8/0/9/5/2880955-p-MULTIVIEW.jpg"     
+                    ], 
+    temp_array = null;
+    // Get the value from a dropdown select
+    var product_category_val = $("#product_category").val();
+    if (product_category_val === "video_games") {
+        temp_array = temp_video_game_array;
+    }
+    else if (product_category_val === "shoes") {
+        temp_array = temp_shoes_array;
+    }
+    
+    if (temp_array !== null) {
+        //Load an image into Selection A
+        var a = Math.floor(Math.random() * 6);
+        $("#selection_A").css("background-image","url('"+temp_array[a]+"')");
+        var b = Math.floor(Math.random() * 6);
+        //Prevent a from being the same as b
+        while (a == b) {
+            b = Math.floor(Math.random() * 4);
+        }
+        //Load an image into Selection B
+        $("#selection_B").css("background-image","url('"+temp_array[b]+"')");
+        
+    }
+    else {
+        alert("Select a Product Category!");
+    }
 }
