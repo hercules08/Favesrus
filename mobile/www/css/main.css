@@ -1,19 +1,27 @@
+
+
 .scale_fit, table {
     width: 90%;
 }
 
+/*Width of the Login button */
 .login_button {
     width: 90%;
 }
 
+/*Set Header size to a fixed size*/
 .header_logo {
-    width:25%;
+    width: 120px;
 }
-
-#mainmenu_container, #login_container, .selection, #divider, .center, table {
+/*Center*/
+#mainmenu_container, #login_container, .selection, #divider, .center, table, #fi-playtot-view, .selection_notifier {
     margin-left: auto;
     margin-right: auto;
     text-align: center;
+}
+
+#modalview-login-button, #favorites_modalview_container a {
+    font-size:1.3em;
 }
 
 #login_container {
@@ -21,16 +29,20 @@
 }
 
 /*Add padding to the top*/
-#mainmenu_container, #playtot_container, #person_container, #gift_suggestions_container {
+#mainmenu_container, #person_container, #gift_suggestions_container {
     padding-top: 4vh;
 }
+
+#playtot_container {
+    padding-top: 2vh;
+}
+
 
 /*Add margin to the top and bottom*/
 #favorites_modalview_container a {
     margin-top: 4vh;
     margin-bottom: 4vh;
     font-weight: bold;
-    font-size: 1.3em;
 }
 
 
@@ -46,7 +58,7 @@
 }
 
 /*Remove default border from images within <a> buttons*/
-#signup-modalview-open-button, #playtot-button, #login-facebook-open-button, #favorites_button  {
+#signup-modalview-open-button, #playtot-button, #gift_suggestions-button, #login-facebook-open-button, #favorites_button  {
     border: none !important;
 }
 
@@ -54,13 +66,17 @@
     padding: 0px;
 }
 
-#playtot-button {
+#playtot-button, #gift_suggestions-button {
     background-color: white;
 }
 
 /*Drawer icon*/
 km-drawer-button:before, .km-drawer-button:after  { 
     content: "\E077"; 
+}
+
+km-calendar-button:before, .km-calendar-button:after {
+    content:"\e089";
 }
 
 /*Off icon*/
@@ -77,6 +93,26 @@ km-off:before, .km-off:after  {
 /*Add default Silver border to the */
 .selection {
     border: #bdc3c7 2px solid;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+/*Set the initial background image for Selection A*/
+#selection_A {
+    background-image: url("http://g-ecx.images-amazon.com/images/G/01/aplus/detail-page/B009AGXH64hardware.jpg");
+}
+
+/*Set the initial background image for Selection B*/
+#selection_B {
+    background-image: url("http://static.giantbomb.com/uploads/original/5/56742/2495936-9012444134_80ba47fd6e_o.jpg");
+}
+
+.selection_notifier {
+    display:none;
+    margin-top: 5vh;
+    background-image: url("../images/favedit.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
 }
 
 #divider {
@@ -155,8 +191,8 @@ a img {
     top: 50%;
 }
 
-
-.km-navbar {
+/*Change the background color of the header for iOS and Android Material*/
+.km-navbar, .km-material .km-navbar .km-view-title, .km-material .km-navbar .km-button {
     background-color: #16a085 !important;
 }
 
@@ -209,9 +245,9 @@ a img {
 }
 
 #prev-img {
-    left: -5px;;
+    left: -5px;
     background: url('../images/next_button.png') no-repeat 50% 50%;
-    background-size: 100% 100%;
+    background-size: 100% 105%;
     /*Flip 180 degrees*/
     -ms-transform: rotate(180deg); /* IE 9 */
     -webkit-transform: rotate(180deg); /* Chrome, Safari, Opera */
@@ -221,17 +257,7 @@ a img {
     left: auto;
     right: -5px;
     background: url('../images/next_button.png') no-repeat 50% 50%;
-    background-size: 100% 100%;
-}
-a#prev-img:hover {
-    background: url('../images/next_button.png') no-repeat 50% 50% rgba(0,0,0,.3);
-    background-size: 100% 100%;
-    opacity: 1;
-}
-a#next-img:hover  {
-    background: url('../images/next_button.png') no-repeat 50% 50% rgba(0,0,0,.3);
-    background-size: 100% 100%;
-    opacity: 1;
+    background-size: 100% 105%;
 }
 
 /*Reduce Gift suggestion photos size */
@@ -239,3 +265,19 @@ a#next-img:hover  {
     width: 70%;
 }
 
+/*Title styling*/
+.title {
+    color: #e74c3c;
+    font-size: 1.5em;
+    font-style: italic;
+}
+
+.title_image {
+    width:8%;
+
+}
+
+/*Moda Logo scaling*/
+.moda_supported {
+    width: 30%;
+}
