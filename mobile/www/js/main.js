@@ -208,7 +208,17 @@ function highlightSelection(element) {
         
     }
     else {
-        alert("Select a Product Category!");
+        if (navigator.notification) {
+            navigator.notification.alert(
+                'Please Select a Product Category!',  // message
+                "",         // callback
+                'No Product Category Selected',            // title
+                'OK'                  // buttonName
+            );
+        }
+        else {
+            alert("Select a Product Category!");
+        }
     }
 }
 
@@ -257,6 +267,16 @@ function loadSelectionImages() {
         
     }
     else {
-        alert("Select a Product Category!");
+        if (navigator.notification) {
+            navigator.notification.alert(
+                'Please Select a Product Category!',  // message
+                "",         // callback
+                'No Product Category Selected',            // title
+                'OK'                  // buttonName
+            );
+        }
+        else {
+            alert("Select a Product Category!");
+        }
     }
 }
