@@ -120,7 +120,7 @@ function loadjsonSelectionData(){
 	var data;
     alert("hello");
 	//$.get("mypage.php?foo=bar",function(data){});
-	$.getJSON("http://71.237.221.15/giftly/api/item/getRandomItems", function(data) {
+	$.getJSON("http://98.246.147.75/giftly/api/item/getRandomItems", function(data) {
 		console.log(data);
 		//Load images to the Favs section
 		$("#img_A").attr("src",data[0].ImageLink);
@@ -146,7 +146,7 @@ function loadjsonData(){
     //alert("Load JSON Data")
     var data;
 	//$.get("mypage.php?foo=bar",function(data){});
-	$.getJSON("http://71.237.221.15/giftly/api/user/1", function(data) {
+	$.getJSON("http://98.246.147.75/giftly/api/user/1", function(data) {
 		//console.log(data);
 		//Load the user name in Header
 		$("#username").html("Hi "+data.FirstName+"!");
@@ -176,7 +176,7 @@ function loadjsonData(){
 }
 
 function checkout(){
-	$.getJSON("http://71.237.221.15/giftly/api/pay", function(data) {
+	$.getJSON("http://98.246.147.75/giftly/api/pay", function(data) {
 		//alert("Checkout reached!");
 	});
 
