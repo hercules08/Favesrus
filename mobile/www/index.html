@@ -20,6 +20,13 @@
     <link rel="stylesheet" href="css/main.css"/>
     
     <script>
+        // This global variable will
+        // act as a namespace for our application.
+        // Objects from other modules will be
+        // available as properties of the this object
+        // utilizing the Revealing Module Pattern (RMP)
+        var FavesRUS = FavesRUS || {};
+        
         function onDeviceReady(){
             navigator.splashscreen.hide();
         }
