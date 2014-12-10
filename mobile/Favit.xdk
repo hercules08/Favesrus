@@ -6,7 +6,7 @@
       "projectTypeName": "com.intel.xdk.projecttype.jsapp",
       "src": "https://edge-intel.s3.amazonaws.com/jsapp/production/release-2014-ww45/template-a-blank/sample.zip",
       "projectGuid": "46748e15-e257-45df-93e8-264354cf26fa",
-      "lastModifiedDate": 1418026204712,
+      "lastModifiedDate": 1418201671374,
       "creationDate": 1416722516330
     },
     "sourceDirectory": "www",
@@ -73,7 +73,7 @@
           "Orientation": "portrait"
         },
         "isActive_": true,
-        "appName_": "FavsRUS",
+        "appName_": "FavesRUS",
         "appID_": "com.eaj.favit",
         "appAccess_": "*",
         "icons_": [],
@@ -99,7 +99,7 @@
           "Orientation": "portrait"
         },
         "isActive_": true,
-        "appName_": "FavsRUS",
+        "appName_": "FavesRUS",
         "appID_": "com.eaj.favit",
         "appAccess_": "*",
         "icons_": [],
@@ -124,7 +124,7 @@
           "Orientation": "portrait"
         },
         "isActive_": true,
-        "appName_": "FavsRUS",
+        "appName_": "FavesRUS",
         "appID_": "com.eaj.favit",
         "appAccess_": "*",
         "icons_": [],
@@ -151,7 +151,7 @@
           "windows-publisher-id": ""
         },
         "isActive_": true,
-        "appName_": "FavsRUS",
+        "appName_": "FavesRUS",
         "appID_": "xdk.intel.blank.project",
         "appAccess_": "*",
         "icons_": [],

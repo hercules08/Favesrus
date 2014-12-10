@@ -193,9 +193,9 @@ function highlightSelection(element) {
         //Change the border
         element.css("border","#e74c3c 2px solid");
         //Fade in the "FavedIt Image"
-        element.children().fadeIn();
+        element.children().fadeTo(800,1);
         //Fade out the "FavedIt Image"
-        element.first().children().fadeOut(1000);
+        element.children().fadeTo(100,0);
 
         //Trigger Transition in images in selection wait 1 sec
         setTimeout(
@@ -239,8 +239,8 @@ function loadSelectionImages() {
                       "http://a1.zassets.com/images/z/3/0/4/4/0/4/3044040-p-MULTIVIEW.jpg",
                       "http://a1.zassets.com/images/z/2/9/3/0/6/1/2930616-p-MULTIVIEW.jpg",
                       "http://a3.zassets.com/images/z/2/8/8/0/9/5/2880955-p-MULTIVIEW.jpg",      
-                      "http://a2.zassets.com/images/z/2/9/0/7/0/6/2907064-p-MULTIVIEW.jpg",      
-                      "http://a9.zassets.com/images/z/1/8/8/18858-p-MULTIVIEW.jpg"     
+                      "http://a2.zassets.com/images/z/1/0/4/4/9/6/1044961-p-MULTIVIEW.jpg",      
+                      "http://a9.zassets.com/images/z/1/5/6/15651-p-MULTIVIEW.jpg"     
                     ], 
     temp_array = null;
     // Get the value from a dropdown select
@@ -259,7 +259,7 @@ function loadSelectionImages() {
         var b = Math.floor(Math.random() * 6);
         //Prevent a from being the same as b
         while (a == b) {
-            b = Math.floor(Math.random() * 4);
+            b = Math.floor(Math.random() * 6);
         }
     
         //Load an image into Selection B

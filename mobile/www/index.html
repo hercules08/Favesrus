@@ -23,6 +23,7 @@
         function onDeviceReady(){
             navigator.splashscreen.hide();
         }
+
         document.addEventListener("deviceready", onDeviceReady, false);
     </script>    
 </head>
@@ -102,7 +103,7 @@
     <div data-role="modalview" id="fi-upcoming-events-modalview" style="width:90%">
         <div data-role="header">
             <div data-role="navbar">
-                <span>Upcoming Events</span>
+                <span>Events</span>
                 <a data-click="closeUpcomingEventsModalView" data-role="button" data-align="right">Cancel</a>
             </div>
         </div>
@@ -131,11 +132,17 @@
     <!-- Play This or That (Discover) View -->
     <div data-role="view" id="fi-playtot-view" data-layout="fi-playtot-layout">
 <!--        <label>Product Category-->
-            <select id="product_category">
-                <option value="none">Select Product Category</option>
-                <option value="video_games" selected>Video Games</option>
-                <option value="shoes">Shoes</option>
-            </select>
+        <ul data-role="listview" data-style="inset">
+            <li class="left">
+                <label>Category
+                    <select id="product_category">
+                        <option value="none">Select Product Category</option>
+                        <option value="video_games" selected>Video Games</option>
+                        <option value="shoes">Shoes</option>
+                    </select>
+                </label>
+            </li>
+        </ul>
 <!--        </label>-->
         <div id="playtot_container">
             <div id="selection_A" class="selection">
@@ -212,12 +219,12 @@
             <li><label for="password">Password: <input type="password" id="password" value="hello" readonly/></label></li>
         </ul>
         <div class="center"><h2>Likes</h2>
-            <a class="button" data-role="button" >Home Appliances</a>
+            <!--<a class="button" data-role="button" >Home Appliances</a>-->
             <a class="button selected-button" data-role="button">Video Games</a>
             <a class="button selected-button" data-role="button" >Shoes</a>
             <a class="button" data-role="button" >Clothing</a>
-            <a class="button" data-role="button" >Electronics</a>
-            <a class="button" data-role="button" >Restaurants</a>
+            <!--<a class="button" data-role="button" >Electronics</a>
+            <a class="button" data-role="button" >Restaurants</a>-->
         </div>
         
     </div>
@@ -393,11 +400,13 @@
     
     <!-- Load the KendoUI Library & "fi-login-view" View Initially  -->
     <script>
-        var app = new kendo.mobile.Application($(document.body), 
-                                               /*{skin:"material"},*/ //Set skin to Android Material Light
+        
+    var app = new kendo.mobile.Application($(document.body), 
+                                               {skin:"material"}, //UnComment to Set skin to Android Material Light
                                                /*{platform: "ios7"},*/
                                                {initial: "fi-login-view"}
-                                              );  
+                                              ); 
+    	
     </script>
 </body>
 </html>
