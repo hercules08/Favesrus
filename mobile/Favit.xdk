@@ -6,7 +6,7 @@
       "projectTypeName": "com.intel.xdk.projecttype.jsapp",
       "src": "https://edge-intel.s3.amazonaws.com/jsapp/production/release-2014-ww45/template-a-blank/sample.zip",
       "projectGuid": "46748e15-e257-45df-93e8-264354cf26fa",
-      "lastModifiedDate": 1418201671374,
+      "lastModifiedDate": 1418377551409,
       "creationDate": 1416722516330
     },
     "sourceDirectory": "www",
@@ -56,6 +56,20 @@
       {
         "id": "org.apache.cordova.dialogs",
         "version": "0.2.6",
+        "selectedState": "Included",
+        "data": {},
+        "paramvals": {}
+      },
+      {
+        "id": "org.apache.cordova.inappbrowser",
+        "version": "0.4.0",
+        "selectedState": "Included",
+        "data": {},
+        "paramvals": {}
+      },
+      {
+        "id": "org.apache.cordova.geolocation",
+        "version": "0.3.7",
         "selectedState": "Included",
         "data": {},
         "paramvals": {}

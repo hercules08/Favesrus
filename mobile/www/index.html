@@ -379,8 +379,8 @@
         <!-- ActionSheet for Actions related to Retailers-->
         <ul id="retailer_actionsheet" data-role="actionsheet">
             <li class="km-actionsheet-title"></li>
-            <li><a>Locate Nearest Store</a></li>
-            <li><a>Visit Web Page</a></li>
+            <li><a id="locate_btn">Locate Nearest Store</a></li>
+            <li><a id="visit_uri_btn" onclick="window.open(encodeURI('http://www.bestbuy.com/site/mario-kart-8-nintendo-wii-u/8400089.p?id=1218874494199'), '_system', 'location=no')">Visit Web Page</a></li>
         </ul>
     </div>
     
@@ -402,11 +402,11 @@
     <script>
         
     var app = new kendo.mobile.Application($(document.body), 
-                                               {skin:"material"}, //UnComment to Set skin to Android Material Light
-                                               /*{platform: "ios7"},*/
+                                               /*{skin:"material"},*/ //UnComment to Set skin to Android Material Light
+                                               /*{platform: "ios7"},*/ // Do NOT Uncomment (aleady set to default)
                                                {initial: "fi-login-view"}
                                               ); 
-    	
+        
     </script>
 </body>
 </html>

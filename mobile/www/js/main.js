@@ -28,8 +28,8 @@ $(
         $(".selection").height(selection_div_height);
         
         //Set the selection selection notifier Image to a default size
-        $(".selection_notifier").width(0.45 * selection_div_width);
-        $(".selection_notifier").height(0.15 * selection_div_height);
+        $(".selection_notifier").width(0.60 * selection_div_width);
+        $(".selection_notifier").height(0.25 * selection_div_height);
         
         
         //Add Click event listener to Selection circle that highlights the selected item
@@ -41,7 +41,6 @@ $(
         
         //Add Change event Listener to the select element
         $( "#product_category" ).change(function() {
-            //alert( "Handler for .change() called." );
             loadSelectionImages();
         });
         
@@ -63,9 +62,69 @@ $(
             var scrollView = $("#scrollview").data("kendoMobileScrollView");
             scrollView.next();
         });
+
+        /*Add click listener for locate_btn for finding nearest store*/
+        $("#locate_btn").click(
+            function () {
+                //Get current location position
+                if(navigator.geolocation){
+                    try{
+                        navigator.geolocation.getCurrentPosition(onGeolocationSuccess, onGeolocationError);
+                    }
+                    catch (e) {
+                        alert(e);
+                    }
+                }
+                else {
+                    navigator.notification.alert(
+                        'Unable to identify your location!',  // message
+                        "",         // callback
+                        'No Location Found ',            // title
+                        'OK'                  // buttonName
+                    );
+                }            
+            }
+        );
     }
 ); //After the DOM finishes Loading
 
+
+/*---------- Geolocation Cordova plug-in ----------*/
+/* 
+    onSuccess Callback
+    This method accepts a Position object, which contains the
+    current GPS coordinates
+*/
+function onGeolocationSuccess (position) {
+    //Launch iOS native Maps app with query for Best buy near your location
+    if (device.platform == "iOS"){
+        var retailerLocationURL = 'http://maps.apple.com/?q=Best+Buy&ll='+ position.coords.latitude  +','+ position.coords.longitude;
+        window.open(encodeURI(retailerLocationURL), '_system', 'location=no');    
+    }
+    //Launch  Android native Maps app with query Best buy near your location
+    if (device.platform == "Android"){
+           
+    }
+    else {
+
+    }
+    
+}
+
+/*
+   onError Callback receives a PositionError object
+*/
+function onGeolocationError(error) {
+    navigator.notification.alert(
+                        error.message,  // message
+                        "",         // callback
+                        error.code,            // title
+                        'OK'                  // buttonName
+                    );
+}
+
+
+/*---------- Login View ----------*/
 //Close the SignUp Modal View
 function closeModalViewLogin() {
     $("#signup-modalview").kendoMobileModalView("close");
@@ -74,28 +133,9 @@ function closeModalViewLogin() {
 //Open the SignUp Modal View
 function openSignUpModalView(e) {
     $("#signup-modalview").data("kendoMobileModalView").open();
-    //Add the month to the <select> tag
-    //var monthsOfYear = ["Feb", "March", "April", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
-    /*TODO This is not working; Unable to create dropdown*/
-    /*$("#birthday").kendoDropDownList({
-                        dataTextField: "text",
-                        dataValueField: "value",
-                        dataSource: [{ text: "Jan", value: "Jan" }]
-                    });
-    var dropdownlist = $("#birthday").data("kendoDropDownList");*/
-    
-    //for (var i = 0;i < monthsOfYear.length; i++){
-        /*option = document.createElement("option");
-        option.text = monthsOfYear[i];
-        option.value = monthsOfYear[i];
-        select = document.getElementsByName("month")[0];
-        select.appendChild(option);*/
-        
-        
-        //dropdownlist.dataSource.add({ text: monthsOfYear[i], value: monthOfYear[i] });
-    //}
 }
 
+/*---------- MainMenu View ----------*/
 //Open the Favorites Modal View
 function openFavoritesModalView(e) {
     $("#fi-favorites-modalview").data("kendoMobileModalView").open();
@@ -106,7 +146,7 @@ function closeFavoritesModalView() {
     $("#fi-favorites-modalview").kendoMobileModalView("close");
 }
 
-//Open the Favorites Modal View
+//Open the Upcoming Events Modal View
 function openUpcomingEventsModalView(e) {
     $("#fi-upcoming-events-modalview").data("kendoMobileModalView").open();
 }
@@ -116,77 +156,7 @@ function closeUpcomingEventsModalView() {
     $("#fi-upcoming-events-modalview").kendoMobileModalView("close");
 }
 
-function loadjsonSelectionData(){
-	var data;
-    alert("hello");
-	//$.get("mypage.php?foo=bar",function(data){});
-	$.getJSON("http://71.237.221.15/giftly/api/item/getRandomItems", function(data) {
-		console.log(data);
-		//Load images to the Favs section
-		$("#img_A").attr("src",data[0].ImageLink);
-		$("#selection_A").click(function () {
-			//updateServer(data, data.Favs[0].FirstName+" "+data.Favs[0].LastName);
-			loadjsonSelectionData();
-		});
-		$("#img_B").attr("src",data[1].ImageLink);
-		$("#selection_B").click(function () {
-			//updateServer(data, data.Favs[1].FirstName+" "+data.Favs[1].LastName);
-			loadjsonSelectionData();
-		});
-	});		
-}
-
-//apply an onclick event handler to the play! button NOT USED
-	$("#playtot-button").click(function () {
-		loadjsonSelectionData();
-	});
-
-
-function loadjsonData(){
-    //alert("Load JSON Data")
-    var data;
-	//$.get("mypage.php?foo=bar",function(data){});
-	$.getJSON("http://71.237.221.15/giftly/api/user/1", function(data) {
-		//console.log(data);
-		//Load the user name in Header
-		$("#username").html("Hi "+data.FirstName+"!");
-		//Load images to the Favs section
-		$("#person1").attr("src",data.Favs[0].Pic);
-		$("#person1").click(function () {
-//			$.ui.loadContent("#favs_details_page", false, false, "fade");
-//			updateFavDetails(data, data.Favs[0].FirstName+" "+data.Favs[0].LastName);
-		});
-		$("#person2").attr("src",data.Favs[1].Pic);
-		$("#person2").click(function () {
-//			$.ui.loadContent("#favs_details_page", false, false, "fade");
-//			updateFavDetails(data, data.Favs[1].FirstName+" "+data.Favs[1].LastName);
-		});
-//		$("#person3").attr("src","http://www.nsbepropdx.org/uploads/2/3/7/3/23733030/9716396.jpg");
-//		$("#person3").click(function () {
-//			$.ui.loadContent("#favs_details_page", false, false, "fade");
-//			updateFavDetails(data, "");
-//		});
-//		$("#person4").attr("src","http://www.nsbepropdx.org/uploads/2/3/7/3/23733030/6245377.jpg");
-//		$("#person4").click(function () {
-//			$.ui.loadContent("#favs_details_page", false, false, "fade");
-//			updateFavDetails(data, "");
-//		});
-	});	
-	
-}
-
-function checkout(){
-	$.getJSON("http://71.237.221.15/giftly/api/pay", function(data) {
-		//alert("Checkout reached!");
-	});
-
-}
-
-function showFavoritesOptions () {
-    alert("hello");
-}
-
-/*---------------DISCOVER YOUR FAVE GIFTS---------------*/
+/*--------------- DISCOVER YOUR FAVE GIFTS ---------------*/
 /*Change the border to the selection div, fade in the "Faved Image", trigger loadSelectionImages*/
 function highlightSelection(element) {
     if ($("#product_category").val() !== "none") {
@@ -204,8 +174,7 @@ function highlightSelection(element) {
                 element.css("border","#bdc3c7 2px solid");
                 loadSelectionImages();
             },
-            1000);
-        
+            1000);   
     }
     else {
         if (navigator.notification) {
@@ -254,12 +223,12 @@ function loadSelectionImages() {
     
     if (temp_array !== null) {
         //Load an image into Selection A
-        var a = Math.floor(Math.random() * 6);
+        var a = Math.floor(Math.random() * 7);
         $("#selection_A").css("background-image","url('"+temp_array[a]+"')");
-        var b = Math.floor(Math.random() * 6);
+        var b = Math.floor(Math.random() * 7);
         //Prevent a from being the same as b
         while (a == b) {
-            b = Math.floor(Math.random() * 6);
+            b = Math.floor(Math.random() * 7);
         }
     
         //Load an image into Selection B
@@ -276,7 +245,76 @@ function loadSelectionImages() {
             );
         }
         else {
-            alert("Select a Product Category!");
+            alert("Select a Product Category!"); //Remove when publishing application
         }
     }
+}
+
+
+
+
+function loadjsonSelectionData(){
+    var data;
+    alert("hello");
+    //$.get("mypage.php?foo=bar",function(data){});
+    $.getJSON("http://71.237.221.15/giftly/api/item/getRandomItems", function(data) {
+        console.log(data);
+        //Load images to the Favs section
+        $("#img_A").attr("src",data[0].ImageLink);
+        $("#selection_A").click(function () {
+            //updateServer(data, data.Favs[0].FirstName+" "+data.Favs[0].LastName);
+            loadjsonSelectionData();
+        });
+        $("#img_B").attr("src",data[1].ImageLink);
+        $("#selection_B").click(function () {
+            //updateServer(data, data.Favs[1].FirstName+" "+data.Favs[1].LastName);
+            loadjsonSelectionData();
+        });
+    });     
+}
+
+
+
+function loadjsonData(){
+    //alert("Load JSON Data")
+    var data;
+    //$.get("mypage.php?foo=bar",function(data){});
+    $.getJSON("http://71.237.221.15/giftly/api/user/1", function(data) {
+        //console.log(data);
+        //Load the user name in Header
+        $("#username").html("Hi "+data.FirstName+"!");
+        //Load images to the Favs section
+        $("#person1").attr("src",data.Favs[0].Pic);
+        $("#person1").click(function () {
+//          $.ui.loadContent("#favs_details_page", false, false, "fade");
+//          updateFavDetails(data, data.Favs[0].FirstName+" "+data.Favs[0].LastName);
+        });
+        $("#person2").attr("src",data.Favs[1].Pic);
+        $("#person2").click(function () {
+//          $.ui.loadContent("#favs_details_page", false, false, "fade");
+//          updateFavDetails(data, data.Favs[1].FirstName+" "+data.Favs[1].LastName);
+        });
+//      $("#person3").attr("src","http://www.nsbepropdx.org/uploads/2/3/7/3/23733030/9716396.jpg");
+//      $("#person3").click(function () {
+//          $.ui.loadContent("#favs_details_page", false, false, "fade");
+//          updateFavDetails(data, "");
+//      });
+//      $("#person4").attr("src","http://www.nsbepropdx.org/uploads/2/3/7/3/23733030/6245377.jpg");
+//      $("#person4").click(function () {
+//          $.ui.loadContent("#favs_details_page", false, false, "fade");
+//          updateFavDetails(data, "");
+//      });
+    }); 
+    
+}
+
+function checkout(){
+    $.getJSON("http://71.237.221.15/giftly/api/pay", function(data) {
+        //alert("Checkout reached!");
+    });
+
+}
+
+function showFavoritesOptions () {
+    alert("hello");
 }
