@@ -48,9 +48,6 @@
                 <span data-role="view-title"><img class="header_logo" src="images/FavesRUs_logo.png"/></span>
             </div> 
         </header>
-        <!--<footer data-role="footer">
-            <span style="color:#fff">Footer goes here</span>
-        </footer>-->
     </div>
     
     <!-- User Sign Up/Login Modal View (Email, Password,) -->
@@ -80,7 +77,8 @@
             <a id="gift_suggestions-button" href="fi-gift-suggestions-view" data-role="button">
                 <img id="gift_suggestions_button_img" src="images/gifts_suggestions.png"/>
             </a>
-            <div class="left">
+            <!-- USE FOR FUTURE FEATURES -->
+            <!--<div class="left">
                 <div id="person_container">
                     <a id="favorites_button" data-click="openFavoritesModalView" data-role="button">
                         <img id="favorites_img" src="images/Favorites_image_final.png"/>
@@ -95,7 +93,7 @@
                         <img id="person3" src="https://avatars2.githubusercontent.com/u/1912337?v=2&s=400"/>
                     </div>
                 </div>
-            </div>
+            </div>-->
         </div>
     </div>
     
@@ -131,7 +129,6 @@
     
     <!-- Play This or That (Discover) View -->
     <div data-role="view" id="fi-playtot-view" data-layout="fi-playtot-layout">
-<!--        <label>Product Category-->
         <ul data-role="listview" data-style="inset">
             <li class="left">
                 <label>Category
@@ -143,7 +140,6 @@
                 </label>
             </li>
         </ul>
-<!--        </label>-->
         <div id="playtot_container">
             <div id="selection_A" class="selection">
                 <div class="selection_notifier"></div>
@@ -177,29 +173,64 @@
         <header data-role="header">
             <div data-role="navbar">
                 <span data-role="view-title"><img class="header_logo" src="images/FavesRUs_logo.png"/></span>
-                <a data-align="left" data-icon="drawer-button" data-role="button"  id="drawer_icon" data-rel="drawer" href="#fi-my-drawer"></a>
+                <a data-align="left" data-icon="profile-button" data-role="button"  id="profile_icon" href="#fi-profile-view" data-transition="slide:right"></a>
                 <a data-align="right" data-icon="calendar-button" data-role="button"  id="calendar_icon" data-click="openUpcomingEventsModalView"></a>
             </div> 
         </header>
+        <div data-role="footer">
+            <div id="tabstrip" data-role="tabstrip">
+                <a href="#fi-mainmenu-view" data-icon="home">Home</a>
+                <a href="#fi-likes-view" data-icon="favorites">Likes</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Likes View -->
+    <div data-role="view" id="fi-likes-view" data-layout="fi-likes-layout">
+        <div>
+            <h2 class="center">Likes</h2>
+        </div>
+        <ul data-role="listview" data-style="inset">
+            <li class="center product_category_header">Video Games</li>
+            <div class="sub_category_container center">
+                <a class="button sub_category selected-button" data-role="button">Nintendo Wii U</a>
+                <a class="button sub_category" data-role="button">Nintendo 3DS</a>
+                <a class="button sub_category" data-role="button" >Playstation 4</a>
+                <a class="button sub_category" data-role="button" >Microsoft Xbox</a>
+            </div>
+            <li class="center product_category_header">Shoes</li>
+            <li>
+                <label class="sub_category">Gender
+                    <select id="shoe_gender" class="sub_category">
+                        <option value="First Option">Male</option>
+                        <option value="Second Option">Female</option>
+                    </select>
+                </label>
+            </li>
+            <div class="sub_category_container center">
+                <a class="button sub_category" data-role="button">Nike</a>
+                <a class="button sub_category" data-role="button" >Reebok</a>
+            </div>
+        </ul>  
     </div>
     
-    <!-- My  Drawer -->
-    <div data-role="drawer" id="fi-my-drawer" style="width: 270px" data-swipe-to-open-views='["fi-mainmenu-view"]'>
-        <ul data-role="listview" data-type="group">
-            <li>Hi Damola <!--TODO Fix to insert user name-->
-                <ul>
-                    <li data-icon="contacts"><a href="#fi-profile-view" data-transition="none">Profile</a></li>
-<!--                    <li data-icon="favorites"><a href="#fi-gift-suggestions-view" data-transition="none">Wish List</a></li>-->
-                </ul>
-            </li>
-            <li>Account
-                <ul>
-                    <li data-icon="off"><a href="#fi-login-view" data-transition="none">Log Out</a></li>
-                </ul>
-            </li>
-        </ul>
+    <!-- Likes Layout-->
+    <div data-role="layout" data-id="fi-likes-layout">
+        <!-- Header -->
+        <header data-role="header">
+            <div data-role="navbar">
+                <a data-align="left" data-role="backbutton"  id="">Back</a>
+                <span data-role="view-title"><img class="header_logo" src="images/FavesRUs_logo.png"/></span>
+            </div> 
+        </header>
+        <div data-role="footer">
+            <div class="tabstrip" data-role="tabstrip">
+                <a href="#fi-mainmenu-view" data-icon="home">Home</a>
+                <a href="#fi-likes-view" data-icon="favorites">Likes</a>
+            </div>
+        </div>
     </div>
-    
+
     <!-- Profile View -->
     <div data-role="view" id="fi-profile-view" data-layout="fi-profile-layout">
         <ul data-role="listview" data-style="inset">
@@ -218,15 +249,9 @@
             <li><label for="phone">Phone: <input type="tel" id="phone" value="3409991111" readonly/></label></li>
             <li><label for="password">Password: <input type="password" id="password" value="hello" readonly/></label></li>
         </ul>
-        <div class="center"><h2>Likes</h2>
-            <!--<a class="button" data-role="button" >Home Appliances</a>-->
-            <a class="button selected-button" data-role="button">Video Games</a>
-            <a class="button selected-button" data-role="button" >Shoes</a>
-            <a class="button" data-role="button" >Clothing</a>
-            <!--<a class="button" data-role="button" >Electronics</a>
-            <a class="button" data-role="button" >Restaurants</a>-->
+        <div id="logout_container" class="center">
+            <a id="logout_btn" class="button" href="#fi-login-view" data-role="button">Log Out</a>
         </div>
-        
     </div>
     
     <!-- Profile Layout-->
@@ -400,13 +425,11 @@
     
     <!-- Load the KendoUI Library & "fi-login-view" View Initially  -->
     <script>
-        
     var app = new kendo.mobile.Application($(document.body), 
                                                /*{skin:"material"},*/ //UnComment to Set skin to Android Material Light
                                                /*{platform: "ios7"},*/ // Do NOT Uncomment (aleady set to default)
                                                {initial: "fi-login-view"}
-                                              ); 
-        
+                                            ); 
     </script>
 </body>
 </html>

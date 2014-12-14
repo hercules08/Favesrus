@@ -8,6 +8,8 @@ var preventDefaultScroll = function(event) {
     
 window.document.addEventListener("touchmove", preventDefaultScroll, false);
 
+//var tabStrip;
+
 //Execute after the DOM finishes loading
 $(
     function () {
@@ -85,7 +87,32 @@ $(
                 }            
             }
         );
-    }
+
+        /*Add click listener to sub_category button to highlight the button*/
+        $(".button.sub_category").click(
+            function () {
+                console.log($(this).attr("class"));
+                //if button doesn't contain "selected-button", add it
+                if ($(this).attr("class").search("selected-button") == -1) {
+                    $(this).addClass("selected-button");
+                }
+                else {
+                    $(this).removeClass("selected-button");
+                }
+            }
+        );
+
+
+        /*$(".tabstrip").kendoMobileTabStrip({
+            select: function(e) {
+                //console.log($(this));
+                console.log(e.item);
+                console.log(tabstrip.currentItem());
+            }
+        });*/
+
+    }// function
+
 ); //After the DOM finishes Loading
 
 
