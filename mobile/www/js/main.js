@@ -65,33 +65,10 @@ $(
             scrollView.next();
         });
 
-        /*Add click listener for locate_btn for finding nearest store*/
-        $("#locate_btn").click(
-            function () {
-                //Get current location position
-                if(navigator.geolocation){
-                    try{
-                        navigator.geolocation.getCurrentPosition(onGeolocationSuccess, onGeolocationError);
-                    }
-                    catch (e) {
-                        alert(e);
-                    }
-                }
-                else {
-                    navigator.notification.alert(
-                        'Unable to identify your location!',  // message
-                        "",         // callback
-                        'No Location Found ',            // title
-                        'OK'                  // buttonName
-                    );
-                }            
-            }
-        );
-
         /*Add click listener to sub_category button to highlight the button*/
         $(".button.sub_category").click(
             function () {
-                console.log($(this).attr("class"));
+                //console.log($(this).attr("class"));
                 //if button doesn't contain "selected-button", add it
                 if ($(this).attr("class").search("selected-button") == -1) {
                     $(this).addClass("selected-button");
@@ -102,19 +79,72 @@ $(
             }
         );
 
+        //Add touchstart event to the locate button
+        document.getElementById("locate_btn").addEventListener("touchstart", 
+            function (e) {  
+                locateRetailer();
+                e.preventDefault();
+            }, 
+            false);
 
-        /*$(".tabstrip").kendoMobileTabStrip({
-            select: function(e) {
-                //console.log($(this));
-                console.log(e.item);
-                console.log(tabstrip.currentItem());
+        document.getElementById("visit_uri_btn").addEventListener("touchstart", 
+            function (e) {  
+                vistProductWebPage();
+                e.preventDefault();
+            }, 
+            false);
+
+        setTimeout(
+            function () {
+                if (navigator.notification) {
+                    navigator.notification.alert(
+                        'This is the test version of Faves R Us. Have fun & "Fave It."',  // message
+                        "",         // callback
+                        'Faves R US Test_Version',            // title
+                        'OK'                  // buttonName
+                    );
+                }
+                else {
+                    alert('This is the test version of Faves R Us. Have fun & "Fave It."'); //Remove when publishing application
+                }
             }
-        });*/
+            , 3000);
 
     }// function
 
 ); //After the DOM finishes Loading
 
+
+/*
+    LocateRetailer 
+    nearby Retailers with the product
+*/
+function locateRetailer() {
+    //Get current location position
+    if(navigator.geolocation){
+        try{
+            navigator.geolocation.getCurrentPosition(onGeolocationSuccess, onGeolocationError);
+        }
+        catch (e) {
+            alert(e);
+        }
+    }
+    else {
+        navigator.notification.alert(
+            'Unable to identify your location!',  // message
+            "",         // callback
+            'No Location Found ',            // title
+            'OK'                  // buttonName
+        );
+    }            
+}
+
+/*
+    Visit the product's web page
+*/
+function vistProductWebPage() {
+    window.open(encodeURI('http://www.bestbuy.com/site/mario-kart-8-nintendo-wii-u/8400089.p?id=1218874494199'), '_system', 'location=no');
+}
 
 /*---------- Geolocation Cordova plug-in ----------*/
 /* 

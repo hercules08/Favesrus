@@ -160,7 +160,7 @@
         <!-- Header -->
         <header data-role="header">
             <div data-role="navbar">
-                <a data-align="left" data-role="backbutton"  id="">Back</a>
+                <a data-align="left" data-role="backbutton">Back</a>
                 <span data-role="view-title"><img class="header_logo" src="images/FavesRUs_logo.png"/></span>
                 <a data-align="right" data-role="button" data-icon="refresh"  data-click="loadSelectionImages"></a>
             </div> 
@@ -173,13 +173,14 @@
         <header data-role="header">
             <div data-role="navbar">
                 <span data-role="view-title"><img class="header_logo" src="images/FavesRUs_logo.png"/></span>
-                <a data-align="left" data-icon="profile-button" data-role="button"  id="profile_icon" href="#fi-profile-view" data-transition="slide:right"></a>
+                <!--<a data-align="left" data-icon="profile-button" data-role="button"  id="profile_icon" href="#fi-profile-view" data-transition="slide:right"></a>-->
                 <a data-align="right" data-icon="calendar-button" data-role="button"  id="calendar_icon" data-click="openUpcomingEventsModalView"></a>
             </div> 
         </header>
         <div data-role="footer">
             <div id="tabstrip" data-role="tabstrip">
                 <a href="#fi-mainmenu-view" data-icon="home">Home</a>
+                <a href="#fi-profile-view" data-icon="contacts">Profile</a>
                 <a href="#fi-likes-view" data-icon="favorites">Likes</a>
             </div>
         </div>
@@ -219,13 +220,14 @@
         <!-- Header -->
         <header data-role="header">
             <div data-role="navbar">
-                <a data-align="left" data-role="backbutton"  id="">Back</a>
+                <!-- <a data-align="left" data-role="backbutton"  id="">Back</a> -->
                 <span data-role="view-title"><img class="header_logo" src="images/FavesRUs_logo.png"/></span>
             </div> 
         </header>
         <div data-role="footer">
-            <div class="tabstrip" data-role="tabstrip">
+            <div id="tabstrip" data-role="tabstrip">
                 <a href="#fi-mainmenu-view" data-icon="home">Home</a>
+                <a href="#fi-profile-view" data-icon="contacts">Profile</a>
                 <a href="#fi-likes-view" data-icon="favorites">Likes</a>
             </div>
         </div>
@@ -237,7 +239,7 @@
             <li><label for="name">Name: <input type="text" id="name" value="John Doe" readonly/></label></li>
             <li>
                 <label>Gender
-                    <select id="gender" disabled>
+                    <select id="gender">
                         <option value="First Option">Male</option>
                         <option value="Second Option">Female</option>
                     </select>
@@ -245,9 +247,9 @@
             </li>
 <!--            <li><label for="birthday">Birthday: <input type="date" id="birthday" value="1999-01-06" readonly/></label></li>-->
             <li><label for="birthday">Birthday: <input type="date" id="birthday" value="1999-01-06"/></label></li>
-            <li><label for="card">Card On File: <input type="text" id="card" value="NO" readonly/></label></li>
-            <li><label for="phone">Phone: <input type="tel" id="phone" value="3409991111" readonly/></label></li>
-            <li><label for="password">Password: <input type="password" id="password" value="hello" readonly/></label></li>
+            <li><label for="card">Card On File: <input type="text" id="card" value="NO"/></label></li>
+            <li><label for="phone">Phone: <input type="tel" id="phone" value="3409991111"/></label></li>
+            <li><label for="password">Password: <input type="password" id="password" value="hello"/></label></li>
         </ul>
         <div id="logout_container" class="center">
             <a id="logout_btn" class="button" href="#fi-login-view" data-role="button">Log Out</a>
@@ -259,14 +261,17 @@
         <!-- Header -->
         <header data-role="header">
             <div data-role="navbar">
-                <a data-align="left" data-role="backbutton"  id="">Back</a>
                 <span data-role="view-title"><img class="header_logo" src="images/FavesRUs_logo.png"/></span>
                 <a data-align="right" data-role="button"  data-icon="compose" id="">Edit</a>
             </div> 
         </header>
-        <!--<footer data-role="footer">
-            <span style="color:#fff">Footer goes here</span>
-        </footer>-->
+        <div data-role="footer">
+            <div id="tabstrip" data-role="tabstrip">
+                <a href="#fi-mainmenu-view" data-icon="home">Home</a>
+                <a href="#fi-profile-view" data-icon="contacts">Profile</a>
+                <a href="#fi-likes-view" data-icon="favorites">Likes</a>
+            </div>
+        </div>
     </div>
     
     <!-- Gift Suggestions View-->
@@ -289,7 +294,7 @@
                                     <div>
                                         <img class="suggestions_photo" src="http://www.gamestop.com/common/images/lbox/240262b.jpg" />
                                         <br>
-                                        <a data-role="button" href="fi-retailer-select-view" data-icon="cart">GET</a>
+                                        <a data-role="button" href="fi-retailer-select-view" data-icon="cart" id="item2_get_btn">GET</a>
                                         <p></p>
                                     </div>
                                 </td> 
@@ -365,7 +370,7 @@
         <!-- Header -->
         <header data-role="header">
             <div data-role="navbar">
-                <a data-align="left" data-role="backbutton"  id="">Back</a>
+                <a data-align="left" data-role="backbutton">Back</a>
                 <span data-role="view-title"><img class="header_logo" src="images/FavesRUs_logo.png"/></span>
             </div> 
         </header>
@@ -394,6 +399,18 @@
                 <a data-role="button" class="details-operation" data-rel="actionsheet" href="#retailer_actionsheet" data-icon="globe">Find</a>
             </li>
             <li>
+                <img class="fi-retailer-photo" src="http://cbsbaltimore.files.wordpress.com/2011/06/walmart.jpg" />
+                <h3 class="item-title">Walmart</h3>
+                <p class="item-price">$51.99</p>
+                <a data-role="button" class="details-operation" data-rel="actionsheet" href="#retailer_actionsheet" data-icon="globe">Find</a>
+            </li>
+            <li>
+                <img class="fi-retailer-photo" src="http://vignette4.wikia.nocookie.net/logopedia/images/8/86/Sears_logo_2010.svg/revision/latest/scale-to-width/300?cb=20121229225539" />
+                <h3 class="item-title">Sears</h3>
+                <p class="item-price">$50.99</p>
+                <a data-role="button" class="details-operation" data-rel="actionsheet" href="#retailer_actionsheet" data-icon="globe">Find</a>
+            </li>    
+            <li>
                 <img class="fi-retailer-photo" src="http://www.gamestop.com/gs/logos/files/GameStopLogo_BlackRed.jpg" />
                 <h3 class="item-title">Gamestop</h3>
                 <p class="item-price">$59.96<br><img class="moda_supported" src="images/modapayments_logo.png"/></p>
@@ -405,7 +422,7 @@
         <ul id="retailer_actionsheet" data-role="actionsheet">
             <li class="km-actionsheet-title"></li>
             <li><a id="locate_btn">Locate Nearest Store</a></li>
-            <li><a id="visit_uri_btn" onclick="window.open(encodeURI('http://www.bestbuy.com/site/mario-kart-8-nintendo-wii-u/8400089.p?id=1218874494199'), '_system', 'location=no')">Visit Web Page</a></li>
+            <li><a id="visit_uri_btn">Visit Web Page</a></li>
         </ul>
     </div>
     
@@ -414,7 +431,7 @@
         <!-- Header -->
         <header data-role="header">
             <div data-role="navbar">
-                <a data-align="left" data-role="backbutton"  id="">Gift Su...</a>
+                <a data-align="left" data-role="backbutton">Back</a>
                 <span data-role="view-title"><img class="header_logo" src="images/FavesRUs_logo.png"/></span>
             </div> 
         </header>

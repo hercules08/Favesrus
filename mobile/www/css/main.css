@@ -145,13 +145,32 @@ km-off:before, .km-off:after  {
 }
 
 /* Footer styling */
+/* iOS */
 .km-tabstrip {
     background-color: white !important;
     color: #16a085 !important;
+    border-color: #16a085 !important;
 }
 
 .km-ios7 .km-tabstrip .km-button:not(.km-state-active) {
     color: #16a085 !important;
+}
+
+/* Android */
+/* Header styling*/
+.km-navbar, .km-material .km-navbar .km-view-title {
+    background-color: #16a085 !important;
+}
+/* Selected Tab element in navbar*/
+.km-material .km-tabstrip .km-button.km-state-active {
+    color: #fff !important;
+    background-color: #16a085 !important; /*Emerald Green*/
+}
+/* Apply styling to inactive task bar elements*/
+.km-material .km-tabstrip .km-button {
+    color: #16a085 !important; /*Emerald Green*/
+    border-color: #16a085 !important; /*Emerald Green*/
+    border-top: 2px solid;
 }
 
 .left {
@@ -200,14 +219,18 @@ a img {
 }
 
 /*Change the background color of the header for iOS and Android Material*/
-.km-navbar, .km-material .km-navbar .km-view-title, .km-material .km-navbar .km-button {
+.km-navbar, .km-material .km-navbar .km-view-title{
     background-color: #16a085 !important;
+}
+/*Set navbar button to no background color*/
+.km-material .km-navbar .km-button {
+    background-color: inherit !important;
 }
 
 /*Apply white color to icon and text in header*/
 .km-header .km-icon, .km-view-title, .km-navbar .km-button {
     color:white !important;
-    font-size: 1.3em;
+    font-size: 1.4em !important;
 }
 
 
@@ -249,8 +272,8 @@ input, select {
     background-color: #e74c3c !important;
 }
 
-.sub_category, #logout_btn {
-    color: #16a085 !important;
+.sub_category {
+    color: #16a085 !important; /*Emerald Green*/
     font-weight: bold !important;
 }
 
@@ -268,9 +291,12 @@ input, select {
 #logout_btn {
     width: 90% !important;
     font-size: 2.0em;
+    color: white !important;
+    font-weight: bold !important;
+    background-color: #e74c3c;
 }
 
-/*Gift Suggestions View*/
+/*Wish List View*/
 /*Left & Right buttons for the ScrollView*/
 #prev-img, #next-img {
     display: block;
@@ -301,6 +327,11 @@ input, select {
 /*Reduce Gift suggestion photos size */
 .suggestions_photo {
     width: 70%;
+}
+
+#item2_get_btn {
+    color: white !important;
+    background-color: #16a085 !important;    
 }
 
 /*Title styling*/
