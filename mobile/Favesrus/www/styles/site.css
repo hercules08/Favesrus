@@ -1,0 +1,31 @@
+.vertical-center {
+	vertical-align: middle;
+	margin: 5px;
+}
+.horizontal-center {
+	display: block;
+	margin: auto;
+}
+
+.vertical-center-me {
+	margin-top: 25%;
+}
+
+.center-me {
+	text-align: center;
+}
+
+.no-backbutton .km-back {
+	visibility: hidden;
+}
+
+#outer {
+	display: -webkit-box;
+	-webkit-box-pack: center;
+	-webkit-box-align: center;
+}
+
+.login-button {
+	background-color: green; 
+	color: white;
+}

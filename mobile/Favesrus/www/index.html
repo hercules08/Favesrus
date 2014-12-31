@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    
+    <style>
+        @-ms-viewport { width: 100vw ; zoom: 100% ; }                           @viewport { width: 100vw ; zoom: 100% ; }
+        @-ms-viewport { user-zoom: fixed ; }                                    @viewport { user-zoom: fixed ; }
+    </style>
+
+    <script src="intelxdk.js"></script>         <!-- phantom library, needed for Intel XDK api calls -->
+    <script src="cordova.js"></script>          <!-- phantom library, needed for Cordova api calls -->
+    <script src="xhr.js"></script>              <!-- phantom library, needed for Intel XDK CORS -->
+    
+    <script src="xdk/init-dev.js"></script>     <!-- normalizes device and document ready events, see README for details -->
+    
+    <script src="js/kendo/jquery.min.js"></script>
+    <script src="js/kendo/kendo.mobile.min.js"></script>
+    <link href="styles/kendo/kendo.mobile.all.min.css" rel="stylesheet" />
+    <link href="styles/site.css" rel="stylesheet" />
+</head>
+
+<body>
+    <!-- Login Layout -->
+    <div data-role="layout" data-id="faves-login-layout">
+    </div>
+    
+    <!--Main Layout -->
+    <div data-role="layout" data-id="faves-main-layout">
+        <header data-role="header">
+            <div data-role="navbar">
+                <span data-role="view-title"></span>
+            </div>
+        </header>
+        <footer data-role="footer">
+            <div data-role="tabstrip">
+                <a href="#faves-login-view" data-icon="reply">
+                    <br /> Logout
+                </a>
+            </div>
+        </footer>
+    </div>
+    
+    <!--App Layout -->
+    <div data-role="layout" data-id="faves-app-layout">
+        <header data-role="header">
+            <div data-role="navbar">
+                <span data-role="view-title"></span>
+            </div>
+        </header>
+        <footer data-role="footer">
+            <div data-role="tabstrip">
+                <a href="#faves-login-view" data-icon="reply">
+                    <br /> Logout
+                </a>
+                <a href="#" data-icon="settings">
+                    <br /> Settings
+                </a>
+                <a href="#" data-icon="more">
+                    <br /> Profile
+                </a>
+            </div>
+        </footer>
+    </div>
+    
+    <!-- Select Fav People -->
+    <div data-role="view" data-title="Faves 'R' Us - Fav Peeps"
+         id="faves-fav-peeps-view" data-layout="faves-app-layout" 
+         data-stretch="true">
+        Awesome now select a few of your favorite people:
+        
+    </div>
+    
+    <!-- 1st sign in Facebook screen -->
+    <div data-role="view" data-title="Faves 'R' Us - Facebook 1st" 
+         id="faves-facebook-like-selection-view" data-layout="faves-main-layout"
+         data-stretch="true">
+        <ul data-role="listview" data-type="group">
+            <li>
+                <p>Welcome to Faves 'R' Us! Please take sometime to edit the things you like from facebook:</p>
+            </li>
+            <li>
+                Categories
+                <ul>
+                    <li>Shoes <input type="checkbox" data-role="switch"></li>
+                    <li>Books <input type="checkbox" data-role="switch"></li>
+                    <li>Video Games <input type="checkbox" data-role="switch"></li>
+                    <li>Toys <input type="checkbox" data-role="switch"></li>
+                </ul>
+            </li>
+            <li>
+                Complete
+                <ul class="center-me">
+                    <i></i> 
+                    <a data-role="button" 
+                       style="background-color: green; color: white;width: 90%; 
+                              box-sizing: border-box;
+                              -moz-box-sizing: border-box;
+                              -webkit-box-sizing: border-box;
+                              font-size: 1.2em">
+                        Submit
+                    </a>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    
+    <!-- 1st sign in Email screen -->
+    <div data-role="view" data-title="Faves 'R' Us - Email 1st" 
+         id="faves-email-like-selection-view" data-layout="faves-main-layout"
+         data-stretch="true">
+        <ul data-role="listview" data-type="group">
+            <li>
+                <p>Welcome to Faves 'R' Us! Please take sometime to select the things you like:</p>
+            </li>
+            <li>
+                Categories
+                <ul>
+                    <li>Shoes <input type="checkbox" data-role="switch"></li>
+                    <li>Books <input type="checkbox" data-role="switch"></li>
+                    <li>Video Games <input type="checkbox" data-role="switch"></li>
+                    <li>Toys <input type="checkbox" data-role="switch"></li>
+                </ul>
+            </li>
+            <li>
+                Complete
+                <ul class="center-me">
+                    <i></i> 
+                    <a data-role="button" 
+                       style="background-color: green; color: white;width: 90%; 
+                              box-sizing: border-box;
+                              -moz-box-sizing: border-box;
+                              -webkit-box-sizing: border-box;
+                              font-size: 1.2em">
+                        Submit
+                    </a>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    
+    <!-- Login View -->
+    <div data-role="view" data-title="Faves 'R' Us - Login" 
+         id="faves-login-view" data-layout="faves-login-layout"
+         data-stretch="true">
+        <div class="center-me">
+            <img src="images/giftbox.png" style="max-width: 35%; height:auto" class="horizontal-center" />
+            <img src="images/FavesRUs_logo.png" style="max-width: 60%; height:auto" class="horizontal-center" />
+            <br />
+            <a data-role="button" 
+                    href="#faves-facebook-like-selection-view" >
+                Login with facebook
+            </a>
+            <br />
+            <a data-role="button" href="#faves-email-like-selection-view">
+                Login in with email
+            </a>
+            <br />
+            <a href="#"> Forgot password?</a>
+        </div>
+    </div>
+    
+    <!-- Scripts -->
+    <script>        
+        var application;
+        
+        function onAppReady() {
+            if( navigator.splashscreen && navigator.splashscreen.hide ) {   // Cordova API detected
+                navigator.splashscreen.hide() ;
+            }
+            if( window.intel && intel.xdk && intel.xdk.device ) {           // Intel XDK device API detected, but...
+                if( intel.xdk.device.hideSplashScreen )                     // ...hideSplashScreen() is inside the base plugin
+                    intel.xdk.device.hideSplashScreen() ;
+            }
+            application = new kendo.mobile.Application(
+                $(document.body), {
+                    initial: "faves-login-view"
+                });
+        }
+        document.addEventListener("app.Ready", onAppReady, false) ;
+        
+    </script>
+</body>
+</html>
