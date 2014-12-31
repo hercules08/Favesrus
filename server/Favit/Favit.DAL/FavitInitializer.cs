@@ -65,7 +65,7 @@ namespace Favit.DAL
                     Pic = "http://www.damolaomotosho.com/Content/Images/damola3.jpg",
                     Email = "damola.omotosho@gmail.com",
                     Birthday = new DateTime(1987, 2, 8),
-                    Favs = favUsers
+                    FavFriends = favUsers
                 }
             };
 
