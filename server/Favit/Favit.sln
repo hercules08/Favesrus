@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Favit.Web.Api.Models", "Fav
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Favit.Common", "Favit.Common\Favit.Common.csproj", "{7A72165B-8E55-4BF7-8A7C-CB542827915B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Favesrus.Server", "Favesrus.Server\Favesrus.Server.csproj", "{7C39B65A-F562-47DE-B55D-2EF636A80CDA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -73,6 +75,12 @@ Global
 		{7A72165B-8E55-4BF7-8A7C-CB542827915B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7A72165B-8E55-4BF7-8A7C-CB542827915B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7A72165B-8E55-4BF7-8A7C-CB542827915B}.Release|x86.ActiveCfg = Release|Any CPU
+		{7C39B65A-F562-47DE-B55D-2EF636A80CDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C39B65A-F562-47DE-B55D-2EF636A80CDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C39B65A-F562-47DE-B55D-2EF636A80CDA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7C39B65A-F562-47DE-B55D-2EF636A80CDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C39B65A-F562-47DE-B55D-2EF636A80CDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C39B65A-F562-47DE-B55D-2EF636A80CDA}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
