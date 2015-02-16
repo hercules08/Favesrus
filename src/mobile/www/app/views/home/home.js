@@ -1,6 +1,6 @@
 define([
   'views/view',
-  'text!views/first/first.html'
+  'text!views/home/home.html'
 ], function (View, html) {
 
   var categories = new kendo.data.DataSource({
