@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Favesrus.Model.Abstract
+namespace Favesrus.DAL.Abstract
 {
-    public interface IEntity
+    public interface IFavesrusDbContext
     {
-        int Id { get; set; }
+        int SaveChanges();
     }
 }
