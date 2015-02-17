@@ -53,11 +53,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\AbstractEntityBase.cs" />
+    <Compile Include="Entity\FavesrusRole.cs" />
+    <Compile Include="Entity\FavesrusUser.cs" />
+    <Compile Include="Enum\Gender.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Entity\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />

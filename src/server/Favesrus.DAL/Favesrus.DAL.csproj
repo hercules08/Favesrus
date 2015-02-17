@@ -54,6 +54,9 @@
   <ItemGroup>
     <Compile Include="Abstract\IFavesrusDbContext.cs" />
     <Compile Include="Abstract\IRepository.cs" />
+    <Compile Include="Abstract\IUnitOfWork.cs" />
+    <Compile Include="Impl\FavesrusDbContext.cs" />
+    <Compile Include="Impl\FavesrusDbInit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

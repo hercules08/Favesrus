@@ -34,7 +34,15 @@ namespace Favesrus.DAL.Abstract
         PaginatedList<T> Paginate<TKey>(
             int pageIndex, int pageSize,
             Expression<Func<T, TKey>> keySelector);
-        PaginatedList<T> Paginate<TKey>(
+        PaginatedList<T> PaginateBy<TKey>(
+            int pageIndex, int pageSize,
+            Expression<Func<T, TKey>> keySelector,
+            Expression<Func<T, bool>> predicate,
+            params Expression<Func<T, object>>[] includeProperties);
+        Task<PaginatedList<T>> PaginateAsync<TKey>(
+            int pageIndex, int pageSize,
+            Expression<Func<T, TKey>> keySelector);
+        Task<PaginatedList<T>> PaginateByAsync<TKey>(
             int pageIndex, int pageSize,
             Expression<Func<T, TKey>> keySelector,
             Expression<Func<T, bool>> predicate,
