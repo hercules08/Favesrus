@@ -225,6 +225,24 @@
     <Folder Include="Views\Base\" />
     <Folder Include="Views\Prep\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Favesrus.Common\Favesrus.Common.csproj">
+      <Project>{45b94d87-3b21-48d8-9a22-8745d10c3111}</Project>
+      <Name>Favesrus.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Favesrus.DAL\Favesrus.DAL.csproj">
+      <Project>{4f7ce7d0-24df-4a9f-b38b-6d909cf8c204}</Project>
+      <Name>Favesrus.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Favesrus.Model\Favesrus.Model.csproj">
+      <Project>{93724bc5-dc4d-4657-b955-a5c7ddcaecf0}</Project>
+      <Name>Favesrus.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Favesrus.Services\Favesrus.Services.csproj">
+      <Project>{858d9ecb-8477-4899-a0a8-f5194bda3aa1}</Project>
+      <Name>Favesrus.Services</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
