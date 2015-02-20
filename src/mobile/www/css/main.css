@@ -1,0 +1,90 @@
+/*Faves 'R Us colors scheme*/
+.km-ios7 .km-navbar {
+	background-color: #16a085 !important; /*Green Sea*/
+	border-color: #16a085 !important;
+	background-clip: content-box !important;
+}
+
+.km-ios7 .km-view-title {
+	color: white !important;
+}
+
+
+/*Modal View*/
+.km-shim {
+	top: 7% !important;
+	height: 84% !important;
+}
+
+.k-animation-container {
+	width: 95% !important;
+	height: 95% !important;
+}
+
+/*Common styles*/
+.container {
+	margin: 15px;
+}
+
+.center {
+	margin-left: auto;
+    margin-right: auto;
+}
+
+.text-center, .center {
+    text-align: center;
+}
+
+.text-left {
+	text-align: left;
+}
+
+.common-margin-top {
+	margin-top: 20px;
+}
+
+/*Login View*/
+.login-button {
+	font-size: 1.3em !important;
+}
+
+.facebook-style {
+	background-color: #3b5998 !important;
+	border-color: #3b5998 !important;
+	color: white !important;
+}
+
+.login-email-buttongroup {
+	font-size: 1.2em !important;
+}
+
+.login-button, .login-email-buttongroup {
+	width: 80% !important;
+}
+
+.login-form {
+	width: 90% !important;
+}
+
+.green {
+	color: white !important;
+	background-color: #16a085 !important;
+}
+
+/*Fix Kendo UI issues*/
+.km-widget.km-buttongroup .km-button {
+	border-width: 1px 1px 1px 1px !important;
+}
+
+.km-ios7 .km-listinset {
+	margin: 1em !important;
+}
+/*Add a bottom border to all li childerin in a list(listview)*/
+.km-ios7 .km-list>li {
+	border-width: 0 0 1px !important;
+}
+/*Remove the box shadow 'line' from the last child*/
+.km-ios7 .km-list>li:last-child {
+	box-shadow: inset 0 0 0 rgba(180,180,180,0.5) !important;
+	-webkit-box-shadow: inset 0 0 0 rgba(180,180,180,0.5) !important;
+}
