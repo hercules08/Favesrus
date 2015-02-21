@@ -14,7 +14,7 @@ define([
 
     // intialize the application
     // APP.instance = new kendo.mobile.Application(document.body, { skin: 'material' });
-    APP.instance = new kendo.mobile.Application(document.body, { skin: 'ios7' });
+    APP.instance = new kendo.mobile.Application(document.body, { skin: 'ios7' }, {initial: "app/views/home/home.html"});
   };
 
   return {

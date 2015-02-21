@@ -5,23 +5,19 @@
 	background-clip: content-box !important;
 }
 
+.km-ios7 .km-buttongroup {
+color: #16a085 !important;
+}
+
 .km-ios7 .km-view-title {
 	color: white !important;
 }
 
-
-/*Modal View*/
-.km-shim {
-	top: 7% !important;
-	height: 84% !important;
+/* ----------- Common styles ----------- */
+.header-logo {
+	width:38%;
 }
 
-.k-animation-container {
-	width: 95% !important;
-	height: 95% !important;
-}
-
-/*Common styles*/
 .container {
 	margin: 15px;
 }
@@ -43,9 +39,73 @@
 	margin-top: 20px;
 }
 
-/*Login View*/
-.login-button {
-	font-size: 1.3em !important;
+#tabstrip a {
+	color: #16a085 !important;
+}
+
+/* ----------- Modal View -----------*/
+.km-shim {
+	top: 7% !important;
+	height: 84% !important;
+	/*Display shim behind the header*/
+	z-index: 1 !important;
+}
+
+.k-animation-container {
+	width: 95% !important;
+	height: 95% !important;
+}
+
+pre {
+	margin: 0 !important;	
+}
+
+.green {
+	color: white !important;
+	background-color: #16a085 !important;
+}
+
+.hidden {
+	display:none !important;
+}
+
+.show {
+	display:;
+}
+
+a {
+	color: #007aff !important;
+}
+/* ----------- Login View ----------- */
+#login-description {
+	font-size: 0.9em !important;
+}
+
+/*Login Buttons with Media Queries*/
+@media screen and (max-width: 360px) {
+	.login-btn {
+		font-size: 1.1em !important;
+	}
+}
+
+@media screen and (min-width: 361px) {
+	.login-btn {
+		font-size: 1.3em !important;
+	}
+}
+
+/*Login credentials Labels*/
+/*Screens smaller than 380 px*/
+@media screen and (max-width: 390px) {
+	li label {
+		font-size: 0.85em !important;
+	}
+}
+/*Screens smaller than 330 px*/
+@media screen and (max-width: 330px) {
+	li label {
+		font-size: 0.75em !important;
+	}
 }
 
 .facebook-style {
@@ -54,11 +114,11 @@
 	color: white !important;
 }
 
-.login-email-buttongroup {
+.login-email-btngroup {
 	font-size: 1.2em !important;
 }
 
-.login-button, .login-email-buttongroup {
+.login-btn, .login-email-btngroup {
 	width: 80% !important;
 }
 
@@ -66,12 +126,15 @@
 	width: 90% !important;
 }
 
-.green {
-	color: white !important;
-	background-color: #16a085 !important;
+#or-divider {
+	width: 90% !important;
 }
 
-/*Fix Kendo UI issues*/
+/* ----------- Fix Kendo UI issues ----------- */
+.km-view-title {
+	line-height: 1em !important;
+}
+
 .km-widget.km-buttongroup .km-button {
 	border-width: 1px 1px 1px 1px !important;
 }
