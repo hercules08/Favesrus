@@ -6,7 +6,7 @@
 }
 
 .km-ios7 .km-buttongroup {
-color: #16a085 !important;
+	color: #16a085 !important;
 }
 
 .km-ios7 .km-view-title {
@@ -69,14 +69,29 @@ pre {
 	display:none !important;
 }
 
-.show {
+/*.show {
 	display:;
-}
+}*/
 
 a {
 	color: #007aff !important;
 }
 /* ----------- Login View ----------- */
+/*profile pic holder icon for profile picture*/
+/*Filled in Profile (Contacts) icon*/
+.km-profile-pic-holder:before, .km-profile-pic-holder:after  { 
+    content: "\e319";
+    color:white !important; 
+}
+
+#profile-pic img {
+	border-radius: 20px;
+	margin-top: 5px;
+	width: 32px;
+	height: 32px;
+}
+
+
 #login-description {
 	font-size: 0.9em !important;
 }
@@ -128,6 +143,10 @@ a {
 
 #or-divider {
 	width: 90% !important;
+}
+
+#login-fields-container {
+	margin-bottom: 20px !important;
 }
 
 /* ----------- Fix Kendo UI issues ----------- */
