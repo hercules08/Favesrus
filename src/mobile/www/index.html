@@ -17,32 +17,17 @@
     <script src="lib/kendo-ui/kendo.mobile.min.js"></script>
     <link href="lib/kendo-ui/kendo.mobile.all.min.css" rel="stylesheet" />
 
-    <!-- onDeviceReady Listeners -->
-    <!--
-    <script>
-        function onDeviceReady() {
-            if( navigator.splashscreen && navigator.splashscreen.hide ) {   // Cordova API detected
-                navigator.splashscreen.hide() ;
-            }
-            else if( window.intel && intel.xdk && intel.xdk.device ) {           // Intel XDK device API detected, but...
-                if( intel.xdk.device.hideSplashScreen )                     // ...hideSplashScreen() is inside the base plugin
-                    intel.xdk.device.hideSplashScreen() ;
-            }
-        }
-        document.addEventListener("deviceready", onDeviceReady, false) ;
-    </script>
-    -->
-    
-    <!--
-        <script src="app/main.js"></script>
-        <script src="app/app.js"></script>
-    -->
+    <link href="css/main.css" rel="stylesheet"/>
+    <script src="app/service.js"></script>
+    <!--Font Awesome-->
+    <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 
-    <link href="" rel="css/main.css"/>
+    <!--Openfb-->
+    <script src="lib/openfb/openfb.js"></script>
 
 </head>
 <body>
-    <script src="bower_components/jquery/jquery.min.js"></script>
+    <!-- <script src="bower_components/jquery/jquery.min.js"></script> -->
     <script src="bower_components/jquery-tiny-pubsub/dist/ba-tiny-pubsub.js"></script>
     <script src="bower_components/requirejs/require.js" data-main="app/main.js"></script>
 </body>

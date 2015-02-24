@@ -1,0 +1,66 @@
+<!-- wishlist View -->
+<div data-role="view" id="wishlist-view" data-layout="wishlist-layout" data-after-show="afterWishlistViewShow">
+    <div id="container">
+        <h2>
+            Wishlist
+        </h2>
+    </div>
+</div>
+
+<div data-role="modalview" id="login-modal" style="width: 95%; height: 95%;">
+    <div class="container center">
+        <div id="login-description" class="text-center">
+            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. 
+        </div>
+            <a id="facebook-login-btn" class="common-margin-top login-btn facebook-style center" data-role="button">
+                <pre class="fa fa-facebook fa-lg"></pre>&nbsp;&nbsp;&nbsp;&nbsp;Sign in With Facebook
+            </a>
+        <div class="common-margin-top center">
+            <img id="or-divider" src="images/or-divider.png"/>
+        </div>
+        <ul data-role="buttongroup" class="common-margin-top center login-email-btngroup" data-index="0">
+            <li id="create-account-btn">Create Account</li>
+            <li id="sign-in-btn">Sign in</li>
+        </ul>
+        <div id="login-fields-container" class="text-center">
+            <ul data-role="listview" data-style="inset" class="text-left login-form">
+                <li>
+                    <label>Email
+                        <input type="text" value="" />
+                    </label>
+                </li>
+                <li>
+                    <label>Password
+                        <input type="password" value="" />
+                    </label>
+                </li>
+                <li>
+                    <label> Confirm Password
+                        <input type="password" value="" />
+                    </label>
+                </li>
+            </ul>
+            <a id="forgot-password-link" class="hidden" href="">Forgot Password?</a>
+        </div>
+        <a id="account-login-btn" class="common-margin-top login-btn text-center green" data-role="button">Create Account</a>
+    </div>
+</div>
+
+<!-- wishlist Layout -->
+<div data-role="layout" data-id="wishlist-layout">
+    <!-- Header -->
+    <header data-role="header">
+        <div data-role="navbar">
+            <a id="profile-pic" data-align="left" data-icon="profile-pic-holder" data-role="button"></a>
+            <span data-role="view-title"><img class="header-logo" src="images/FavesRUs_logo.png"/></span>
+        </div> 
+    </header>
+    <div data-role="footer">
+        <div id="tabstrip" data-role="tabstrip">
+            <a href="app/views/home/home.html" data-icon="home">Home</a>
+            <a name="wishlist-tab" href="app/views/wishlist/wishlist.html" data-icon="favorites">Wishlist</a>
+            <a href="app/views/home/home.html" data-icon="contacts">Shares</a>
+            <a href="app/views/home/home.html" data-icon="settings">Settings</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,172 @@
+/*Faves 'R Us colors scheme*/
+.km-ios7 .km-navbar {
+	background-color: #16a085 !important; /*Green Sea*/
+	border-color: #16a085 !important;
+	background-clip: content-box !important;
+}
+
+.km-ios7 .km-buttongroup {
+	color: #16a085 !important;
+}
+
+.km-ios7 .km-view-title {
+	color: white !important;
+}
+
+/* ----------- Common styles ----------- */
+.header-logo {
+	width:38%;
+}
+
+.container {
+	margin: 15px;
+}
+
+.center {
+	margin-left: auto;
+    margin-right: auto;
+}
+
+.text-center, .center {
+    text-align: center;
+}
+
+.text-left {
+	text-align: left;
+}
+
+.common-margin-top {
+	margin-top: 20px;
+}
+
+#tabstrip a {
+	color: #16a085 !important;
+}
+
+/* ----------- Modal View -----------*/
+.km-shim {
+	top: 7% !important;
+	height: 84% !important;
+	/*Display shim behind the header*/
+	z-index: 1 !important;
+}
+
+.k-animation-container {
+	width: 95% !important;
+	height: 95% !important;
+}
+
+pre {
+	margin: 0 !important;	
+}
+
+.green {
+	color: white !important;
+	background-color: #16a085 !important;
+}
+
+.hidden {
+	display:none !important;
+}
+
+/*.show {
+	display:;
+}*/
+
+a {
+	color: #007aff !important;
+}
+/* ----------- Login View ----------- */
+/*profile pic holder icon for profile picture*/
+/*Filled in Profile (Contacts) icon*/
+.km-profile-pic-holder:before, .km-profile-pic-holder:after  { 
+    content: "\e319";
+    color:white !important; 
+}
+
+#profile-pic img {
+	border-radius: 20px;
+	margin-top: 5px;
+	width: 32px;
+	height: 32px;
+}
+
+
+#login-description {
+	font-size: 0.9em !important;
+}
+
+/*Login Buttons with Media Queries*/
+@media screen and (max-width: 360px) {
+	.login-btn {
+		font-size: 1.1em !important;
+	}
+}
+
+@media screen and (min-width: 361px) {
+	.login-btn {
+		font-size: 1.3em !important;
+	}
+}
+
+/*Login credentials Labels*/
+/*Screens smaller than 380 px*/
+@media screen and (max-width: 390px) {
+	li label {
+		font-size: 0.85em !important;
+	}
+}
+/*Screens smaller than 330 px*/
+@media screen and (max-width: 330px) {
+	li label {
+		font-size: 0.75em !important;
+	}
+}
+
+.facebook-style {
+	background-color: #3b5998 !important;
+	border-color: #3b5998 !important;
+	color: white !important;
+}
+
+.login-email-btngroup {
+	font-size: 1.2em !important;
+}
+
+.login-btn, .login-email-btngroup {
+	width: 80% !important;
+}
+
+.login-form {
+	width: 90% !important;
+}
+
+#or-divider {
+	width: 90% !important;
+}
+
+#login-fields-container {
+	margin-bottom: 20px !important;
+}
+
+/* ----------- Fix Kendo UI issues ----------- */
+.km-view-title {
+	line-height: 1em !important;
+}
+
+.km-widget.km-buttongroup .km-button {
+	border-width: 1px 1px 1px 1px !important;
+}
+
+.km-ios7 .km-listinset {
+	margin: 1em !important;
+}
+/*Add a bottom border to all li childerin in a list(listview)*/
+.km-ios7 .km-list>li {
+	border-width: 0 0 1px !important;
+}
+/*Remove the box shadow 'line' from the last child*/
+.km-ios7 .km-list>li:last-child {
+	box-shadow: inset 0 0 0 rgba(180,180,180,0.5) !important;
+	-webkit-box-shadow: inset 0 0 0 rgba(180,180,180,0.5) !important;
+}

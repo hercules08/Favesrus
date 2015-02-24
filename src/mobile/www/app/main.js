@@ -7,8 +7,6 @@ var preventDefaultScroll = function(event) {
 };
 window.document.addEventListener("touchmove", preventDefaultScroll, false);
 
-console.log("In main.js");
-
 require.config({
   paths: {
     'text': '../bower_components/requirejs-text/text'
