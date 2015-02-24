@@ -19,6 +19,9 @@ namespace Favesrus.Server
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            // Remove xml formatter
+            config.Formatters.Remove(config.Formatters.XmlFormatter);
         }
     }
 }

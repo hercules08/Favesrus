@@ -19,5 +19,9 @@
                 }
             }
         }
+
+        public static string FACEBOOK_PROVIDER = "Facebook";
+
+        public static string CUSTOMER_ROLE = "Customer";
     }
 }

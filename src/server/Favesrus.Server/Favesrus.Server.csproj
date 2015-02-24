@@ -42,6 +42,14 @@
     <Reference Include="Antlr3.Runtime">
       <HintPath>..\..\..\libs\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="AutoMapper, Version=3.3.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\libs\AutoMapper.3.3.1\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Net4, Version=3.3.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\libs\AutoMapper.3.3.1\lib\net40\AutoMapper.Net4.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\..\..\libs\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -129,8 +137,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\libs\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web.Optimization">
-      <HintPath>..\..\..\libs\Microsoft.AspNet.Web.Optimization.1.1.2\lib\net40\System.Web.Optimization.dll</HintPath>
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\libs\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Optimization.Ex">
       <HintPath>..\..\..\libs\System.Web.Optimization.Ex.1.0.0.0\lib\net40\System.Web.Optimization.Ex.dll</HintPath>
@@ -195,26 +204,53 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FavesrusConfig.cs" />
+    <Compile Include="App_Start\NinjectConfigurator.cs" />
+    <Compile Include="App_Start\NinjectDependencyResolver.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PrepController.cs" />
     <Compile Include="Controllers\WebApi\AccountController.cs" />
+    <Compile Include="Controllers\WebApi\BaseController.cs" />
+    <Compile Include="Dto\FavesrusUser\DtoFavesrusUser.cs" />
+    <Compile Include="Dto\FavesrusUser\LoginFacebookModel.cs" />
+    <Compile Include="Dto\FavesrusUser\LoginModel.cs" />
+    <Compile Include="Dto\FavesrusUser\MapperConfig\DtoFavesrusUser_FavesrusUser.cs" />
+    <Compile Include="Dto\FavesrusUser\MapperConfig\FavesrusUser_DtoFavesrusUser.cs" />
+    <Compile Include="Dto\FavesrusUser\MapperConfig\FavesrusUser_RegisterFacebookModel.cs" />
+    <Compile Include="Dto\FavesrusUser\MapperConfig\RegisterFacebookModel_FavesrusUser.cs" />
+    <Compile Include="Dto\FavesrusUser\MapperConfig\RegisterModel_FavesrusUser.cs" />
+    <Compile Include="Dto\FavesrusUser\MapperConfig\FavesrusUser_RegisterModel.cs" />
+    <Compile Include="Dto\FavesrusUser\RegisterFacebookModel.cs" />
+    <Compile Include="Dto\FavesrusUser\RegisterModel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Alert.cs" />
     <Compile Include="Helpers\GravatarHelper.cs" />
     <Compile Include="Helpers\GravatarOptions.cs" />
+    <Compile Include="Infrastructure\FavesrusAuthProvider.cs" />
+    <Compile Include="Infrastructure\Impl\AutoMapperAdapter.cs" />
+    <Compile Include="Infrastructure\Impl\AutoMapperConfigurator.cs" />
+    <Compile Include="Infrastructure\Interface\IAutoMapperTypeConfigurator.cs" />
+    <Compile Include="Infrastructure\Interface\IAutoMapper.cs" />
+    <Compile Include="Infrastructure\WebContainerManager.cs" />
     <Compile Include="Models\NotificationViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Prep\Index.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -224,9 +260,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Account\" />
     <Folder Include="Views\Base\" />
-    <Folder Include="Views\Prep\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Favesrus.Common\Favesrus.Common.csproj">
@@ -271,6 +305,7 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <Import Project="..\..\..\libs\AutoMapper.3.3.1\tools\AutoMapper.targets" Condition="Exists('..\..\..\libs\AutoMapper.3.3.1\tools\AutoMapper.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

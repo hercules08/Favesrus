@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Favesrus.DAL.Abstract
+namespace Favesrus.Server.Infrastructure.Interface
 {
-    public interface IFavesrusDbContext:IDisposable
+    public interface IAutoMapperTypeConfigurator
     {
-        int SaveChanges();
+        void Configure();
     }
 }
