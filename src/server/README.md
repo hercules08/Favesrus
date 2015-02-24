@@ -32,13 +32,18 @@ You must attach the bearer token for all request that require authentication
 Auth token expires after 20 minutes.
 
 
-Testing using Advanced Rest Client
+Testing using Advanced Rest Client(note Content-Type must be set to application/x-www-form-urlencoded)
 
 http://favesrus.com/api/account/register - firstName=Damola&email=damola.omotosho%40gmail.com&password=12345678
 
-http://favesrus.com/api/account/registerfacebook
+http://favesrus.com/api/account/registerfacebook - firstName=Elroy&email=elroy%40gmail.com&providerkey=12345678
 
-firstName=Elroy&email=elroy%40gmail.com&providerkey=12345678
+http://favesrus.com/api/account/
+loginfacebook - 
+email=elroy@gmail.com&providerkey=12345678
+
+http://favesrus.com/api/account/login -
+username=damola.omotosho@gmail.com&password=12345678
 
 **Links**
 
