@@ -1,5 +1,54 @@
 Favesrus Server
 =========
+-----------------
+
+Document Overview
+---------------------
+
+This implementer's guide provides information about Favesrus’ Application Programming Interface (API). This document will specify the necessary values for requests and responses to and from the API, and will provide sample code for accessing the API. 
+
+The Favesrus API is used to quickly search, "Fave" and purchase gifts. The Favesrus API performs GET/POST request to the Favesrus server using a RESTFUL API. The Favesrus API returns replies in the form of JSON responses. The Favesrus mobile app will use javascript (preferably jquery to parse JSON responses and update the UI).
+
+The dev resources used to test are available here:
+
+[http://dev.favesrus.com/api/{insert-resource-name-here}](http://dev.favesrus.com/api)
+
+The live resources will are located here:
+
+[http://favesrus.com/api](http://favesrus.com/api/)
+
+[api.favesrus.com](api.favesrus.com)
+
+JSON Format
+------------------
+
+The server replies to API request in the form of JSON responses. A sample response from the query [http://dev.favesrus.com/api/retailer/1](http://favesrus.com/api/retailer/1) is below.
+
+	HTTP/1.1 200 OK
+	Content-Type: application/json; charset=utf-8
+
+	{
+		"id":"1",
+		"name":"BestBuy",
+		"website": "http://bestbuy.com"
+	}
+	
+Favesrus Status Codes
+---------------------
+
+
+1. **200** ~ Ok. The request was received and processed in good order.
+1. **204** ~ Ok. No content.
+1. **304** ~ Not modified. This is useful to know that data you tried to update was not modified.
+1. **400** ~ Bad request due to bad syntax/params.
+1. **401** ~ (HTTP) Not authorized. This is to inform you that either the authentication attempt failed or a session has expired.
+1. **403** ~ (HTTP) Forbidden, no matter if you try to authenticate. Do not attempt to use this resource again (pretty please)
+1. **404** ~ (HTTP) Not found.
+1. **410** ~ (HTTP) Gone. Resource has permanently been removed. Do not attempt to use this resource again (pretty please)
+1. **429** ~ Too many requests in the allotted amount of time. 
+1. **500** ~ (HTTP) Internal server error. Bad bad things have happened. Help us by reporting this to Modo.
+1. **503** (HTTP) Service unavailable or one of our key partner's API is down temporarily and the request cannot be processed successfully.
+
 
 Get Authorization Token
 
@@ -16,7 +65,7 @@ Request
 Response Success
 {
 "access_token":"eytWGFHJEWJFOI23IRYH23J14N2J4N123MR4N132L432K4YOI3241234J2314I2341234456781324KJ2LJHUFOYHAKJFNEWKLFEWFKEWFWEF"
-
+- 
 "token_type":"bearer",
 "expires_in":1199
 }

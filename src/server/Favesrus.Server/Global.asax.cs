@@ -12,12 +12,18 @@ using Favesrus.Server.Infrastructure.Impl;
 using Favesrus.Server.Infrastructure;
 using Favesrus.Server.Infrastructure.Interface;
 
+[assembly: log4net.Config.XmlConfigurator(Watch = true)]
+
 namespace Favesrus.Server
 {
     public class Global : HttpApplication
     {
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         void Application_Start(object sender, EventArgs e)
         {
+            if (log.IsInfoEnabled) log.Info("Starting Favesrus Website");
+
             // Code that runs on application startup
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
