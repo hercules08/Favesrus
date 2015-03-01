@@ -32,6 +32,15 @@ $(
 	}
 );
 
+
+/*
+
+*/
+function clearTextFields(){
+
+}
+
+
 /*
 	Description: 
 	Invoked when the 'data-after-show' event is triggered associated to the wishlist view
@@ -44,7 +53,7 @@ function afterWishlistViewShow(e) {
 			enableButtonTouchEventListeners("login");
 			//Initiate openFB
 			// Defaults to sessionStorage for storing the Facebook token
-     		openFB.init({appId: '576057902525208'});
+     		openFB.init({appId: '1549506478654715'});
 		}
 		wishlistShowCounter = 1;
 	// }
@@ -63,29 +72,6 @@ function onForgetPasswordPrompt(results) {
 
 /*
 	Description:
-	Get the user's facebook profile
-*/
-function getFacebookProfilePic() {
-	openFB.api({
-            path: '/me',
-            success: function(data) {
-                //console.log(JSON.stringify(data));
-                //Set the facebook profile pic
-                //document.getElementById("userPic").src = 'http://graph.facebook.com/' + data.id + '/picture?type=small';
-                //$("#profile-pic").attr("data-icon","");
-                $("#profile-pic span").removeClass("km-profile-pic-holder");
-                $("#profile-pic span").append("<img src=''/>");
-                $("#profile-pic img").attr('src', 'http://graph.facebook.com/' + data.id + '/picture?type=small');
-            },
-            error: function errorHandler(error) {
-        		alert(error.message);
-    		}
-    	});
-}
-
-
-/*
-	Description:
 	Invoke the Facebook or Email login process
 */
 function login(option){
@@ -94,8 +80,8 @@ function login(option){
             function(response) {
                 if(response.status === 'connected') {
                     alert('Facebook login succeeded, got access token: ' + response.authResponse.token);
-                    closeLoginModal();
                     getFacebookProfilePic();
+                    getFacebookInfo(response.authResponse.token);
                 } else {
                     alert('Facebook login failed: ' + response.error);
                 }
@@ -103,8 +89,11 @@ function login(option){
             {scope: 'email,user_birthday'}
         );
 	}
-	else if(option === "email") {
-
+	else if(option === "register") {
+        webService("registerEmail","email=" + $("#email-input").val() + "&password=" + $("#confirm-password-input").val());
+    }
+    else if(option === "email") {
+        webService("loginEmail","email=" + $("#email-input").val() + "&password=" + $("#confirm-password-input").val());
 	}
 }
 
@@ -118,7 +107,6 @@ function enableButtonTouchEventListeners(view) {
 		//Add touchstart event to the create account button
         document.getElementById("facebook-login-btn").addEventListener("touchstart", 
             function (e) {
-            	//alert("Sign in With Facebook");
             	login("facebook");
             	//e.preventDefault(); //What is the Experience?
             }, 
@@ -143,8 +131,13 @@ function enableButtonTouchEventListeners(view) {
         document.getElementById("account-login-btn").addEventListener("touchstart", 
             function (e) {
             	alert($("#account-login-btn").text());
-            	closeLoginModal();
-            	e.preventDefault();
+            	if($("#account-login-btn").text() === "Create Account") {
+                    login("register");
+                }
+                else if($("#account-login-btn").text() === "Sign In"){
+                    login("email");
+                }
+            	//e.preventDefault();
             }, 
         false);
 
