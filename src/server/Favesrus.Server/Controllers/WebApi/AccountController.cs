@@ -20,6 +20,7 @@ namespace Favesrus.Server.Controllers.WebApi
     public class AccountController : BaseController
     {
         private IAutoMapper mapper;
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         public AccountController(IAutoMapper mapper)
             : base()
@@ -156,6 +157,8 @@ namespace Favesrus.Server.Controllers.WebApi
         [Route("loginfacebook")]
         public async Task<IHttpActionResult> LoginFacebook(HttpRequestMessage request, LoginFacebookModel model)
         {
+            log.Info(string.Format("Attempt register as {0} with provider key {1}", model.Email, model.ProviderKey));
+
             if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
