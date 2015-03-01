@@ -29,6 +29,9 @@ namespace Favesrus.DAL.Impl
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Microsoft.AspNet.Identity.EntityFramework.IdentityUserLogin>().ToTable("AspNetUserLogins")
+                .Property(c => c.ProviderKey).HasMaxLength(Int32.MaxValue);
         }
 
     }
