@@ -5,9 +5,9 @@ Favesrus Server
 Document Overview
 ---------------------
 
-This implementer's guide provides information about Favesrus’ Application Programming Interface (API). This document will specify the necessary values for requests and responses to and from the API and provides sample request and responses when accessing the API. 
+This document provides information about the Favesrus Application Programming Interface. This document will specify the necessary values for requests to the API and provides sample responses. 
 
-The Favesrus API is used to quickly search, "Fave" and purchase gifts. The Favesrus API performs GET/POST request to the Favesrus server using a RESTFUL API. The Favesrus API returns replies in the form of JSON responses. The Favesrus mobile app will use javascript, preferably jquery to parse JSON responses and update the UI.
+The API is used to quickly search, "Fave" and purchase gifts. API accepts GET,POST,PUT, and DELETE verbs utilizing a RESTFUL API. The server returns replies in the form of JSON objects. The Favesrus mobile app will use javascript, preferably jquery to parse JSON responses and update the UI.
 
 **The dev resources used to test are available here:** [http://dev.favesrus.com/api/](http://dev.favesrus.com/api)
 
@@ -17,7 +17,7 @@ The Favesrus API is used to quickly search, "Fave" and purchase gifts. The Faves
 JSON Format
 ------------------
 
-The server replies to API request in the form of JSON responses. A sample response for the query [http://dev.favesrus.com/api/retailer/1](http://favesrus.com/api/retailer/1) is below.
+The server replies to API request in the form of JSON objects. A sample response for the query [http://dev.favesrus.com/api/retailer/1](http://favesrus.com/api/retailer/1) is below.
 
 	GET: http://dev.favesrus.com/api/retailer/1
 	
@@ -48,7 +48,7 @@ Favesrus Status Codes
 
 
 
-Testing using Advanced Rest Client(note Content-Type must be set to application/x-www-form-urlencoded)
+Testing using Advanced Rest Client or Fiddler the Content-Type must be set to application/x-www-form-urlencoded.
 
 
 Account
