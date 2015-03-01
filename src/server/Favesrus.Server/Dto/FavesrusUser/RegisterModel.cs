@@ -8,7 +8,6 @@ namespace Favesrus.Server.Dto.FavesrusUser
 {
     public class RegisterModel
     {
-        [Required]
         public string FirstName { get; set; }
         public string LastName { get; set; }
         [Required]

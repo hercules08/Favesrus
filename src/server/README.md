@@ -1,29 +1,26 @@
 Favesrus Server
 =========
------------------
+
 
 Document Overview
 ---------------------
 
-This implementer's guide provides information about Favesrus’ Application Programming Interface (API). This document will specify the necessary values for requests and responses to and from the API, and will provide sample code for accessing the API. 
+This implementer's guide provides information about Favesrus’ Application Programming Interface (API). This document will specify the necessary values for requests and responses to and from the API and provides sample request and responses when accessing the API. 
 
-The Favesrus API is used to quickly search, "Fave" and purchase gifts. The Favesrus API performs GET/POST request to the Favesrus server using a RESTFUL API. The Favesrus API returns replies in the form of JSON responses. The Favesrus mobile app will use javascript (preferably jquery to parse JSON responses and update the UI).
+The Favesrus API is used to quickly search, "Fave" and purchase gifts. The Favesrus API performs GET/POST request to the Favesrus server using a RESTFUL API. The Favesrus API returns replies in the form of JSON responses. The Favesrus mobile app will use javascript, preferably jquery to parse JSON responses and update the UI.
 
-The dev resources used to test are available here:
+**The dev resources used to test are available here:** [http://dev.favesrus.com/api/](http://dev.favesrus.com/api)
 
-[http://dev.favesrus.com/api/{insert-resource-name-here}](http://dev.favesrus.com/api)
-
-The live resources will are located here:
-
-[http://favesrus.com/api](http://favesrus.com/api/)
-
-[api.favesrus.com](api.favesrus.com)
+**The live resources will are located here:**
+[http://favesrus.com/api](http://favesrus.com/api/) or [api.favesrus.com](api.favesrus.com)
 
 JSON Format
 ------------------
 
-The server replies to API request in the form of JSON responses. A sample response from the query [http://dev.favesrus.com/api/retailer/1](http://favesrus.com/api/retailer/1) is below.
+The server replies to API request in the form of JSON responses. A sample response for the query [http://dev.favesrus.com/api/retailer/1](http://favesrus.com/api/retailer/1) is below.
 
+	GET: http://dev.favesrus.com/api/retailer/1
+	
 	HTTP/1.1 200 OK
 	Content-Type: application/json; charset=utf-8
 
@@ -81,18 +78,65 @@ You must attach the bearer token for all request that require authentication
 Auth token expires after 20 minutes.
 
 
+
 Testing using Advanced Rest Client(note Content-Type must be set to application/x-www-form-urlencoded)
 
-http://favesrus.com/api/account/register - firstName=Damola&email=damola.omotosho%40gmail.com&password=12345678
 
-http://favesrus.com/api/account/registerfacebook - firstName=Elroy&email=elroy%40gmail.com&providerkey=12345678
+Account
+===
+
+(POST)/account/register
+----------------------
+
+**Context:**
+You would like to register for Favesrus with a new email address and password
+	
+**Request:**
+
+	POST: http://dev.favesrus.com/api/account/register
+	Content-Type: application/x-www-form-urlencoded
+	
+	Request Data:
+	{
+		"email":"damola.omotosho@gmail.com",
+		"password":"12345678"
+	}
+
+
+**Response:**
+
+	HTTP/1.1 201 OK
+	Content-Type: application/json; charset=utf-8
+
+	{
+		"id":"asdfj-12312m-12312mkmf-2321",
+		"modoAccountId":"",
+		"firstName:"",
+		"lastName:"",
+		"birthday": "",
+		"profilePic": null
+	}
+
+**Fiddler query string:**
+
+email=damola.omotosho%40gmail.com&password=12345678
+
+(POST)/account/login
+----------------------
+
+Context:
+
+http://favesrus.com/api/account/login -
+username=damola.omotosho@gmail.com&password=12345678
+
+(POST)/account/loginfacebook
+----------------------
+
+Context:
 
 http://favesrus.com/api/account/
 loginfacebook - 
 email=elroy@gmail.com&providerkey=12345678
-
-http://favesrus.com/api/account/login -
-username=damola.omotosho@gmail.com&password=12345678
 
 **Links**
 

@@ -12,6 +12,7 @@ namespace Favesrus.Server.Dto.FavesrusUser
             //Birthday = DateTime.Now;
         }
 
+        public string Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string ModoAccountId { get; set; }
