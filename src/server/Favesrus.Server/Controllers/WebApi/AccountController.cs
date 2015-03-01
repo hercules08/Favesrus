@@ -13,6 +13,8 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Http.ModelBinding;
 using Microsoft.Owin.Security.Cookies;
+using System.Collections.Generic;
+using System.Net;
 
 namespace Favesrus.Server.Controllers.WebApi
 {
@@ -39,7 +41,7 @@ namespace Favesrus.Server.Controllers.WebApi
         }
 
         [HttpPost]
-        [RoutePrefix("registerfacebook")]
+        [Route("registerfacebook")]
         public async Task<IHttpActionResult> RegisterFacebook(RegisterFacebookModel model)
         {
 
@@ -106,7 +108,17 @@ namespace Favesrus.Server.Controllers.WebApi
 
             if (errorResult != null)
             {
-                return errorResult;
+                //return errorResult;
+
+
+                //Dictionary<string, object> error = new Dictionary<string, object>();
+                //error.Add("Message", "Username is already taken");
+                ////error.Add("ErrorMessage", "Something really bad happened");
+                ////return BadRequest(error);
+
+                //HttpResponseMessage response = Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Username is already taken");
+
+                return BadRequest("Username is already taken.");
             }
 
             // Add to customer role
