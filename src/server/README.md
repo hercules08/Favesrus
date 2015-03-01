@@ -123,20 +123,75 @@ email=damola.omotosho%40gmail.com&password=12345678
 
 (POST)/account/login
 ----------------------
+**Context:**
+You already registered for Favesrus and would like to login with your email and password.
+	
+**Request:**
 
-Context:
+	POST: http://dev.favesrus.com/api/account/login
+	Content-Type: application/x-www-form-urlencoded
+	
+	Request Data:
+	{
+		"email":"damola.omotosho@gmail.com",
+		"password":"12345678"
+	}
 
-http://favesrus.com/api/account/login -
+
+**Response:**
+
+	HTTP/1.1 200 OK
+	Content-Type: application/json; charset=utf-8
+
+	{
+		"id":"asdfj-12312m-12312mkmf-2321",
+		"modoAccountId":"1231-1234ksf-123123nmm",
+		"firstName:"Damola",
+		"lastName:"Omotosho",
+		"birthday": "2/8/1987",
+		"profilePic": "http://damolaomotosho.com/content/images/damola.jpg"
+	}
+
+**Fiddler query string:**
+
 username=damola.omotosho@gmail.com&password=12345678
 
 (POST)/account/loginfacebook
 ----------------------
 
-Context:
+**Context:**
+You would like to login/register for Favesrus using facebook
+	
+**Request:**
 
-http://favesrus.com/api/account/
-loginfacebook - 
+	POST: http://dev.favesrus.com/api/account/loginfacebook
+	Content-Type: application/x-www-form-urlencoded
+	
+	Request Data:
+	{
+		"email":"elroy@gmail.com",
+		"providerKey":"12345678"
+	}
+
+
+**Response:**
+
+	HTTP/1.1 200 OK
+	Content-Type: application/json; charset=utf-8
+
+	{
+		"id":"asdfj-12312m-12312mkmf-2321",
+		"modoAccountId":"1231-1234ksf-123123nmm",
+		"firstName:"Elroy",
+		"lastName:"Ashtian",
+		"birthday": "1/8/1988",
+		"profilePic": "http://elroy.com/content/images/damola.jpg"
+	}
+
+**Fiddler query string:**
+
 email=elroy@gmail.com&providerkey=12345678
+
 
 **Links**
 

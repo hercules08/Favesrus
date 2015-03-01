@@ -39,7 +39,8 @@ namespace Favesrus.Server.Controllers.WebApi
         }
 
         [HttpPost]
-        private async Task<IHttpActionResult> FacebookRegister(RegisterFacebookModel model)
+        [RoutePrefix("registerfacebook")]
+        public async Task<IHttpActionResult> RegisterFacebook(RegisterFacebookModel model)
         {
 
             if (!ModelState.IsValid)
@@ -187,7 +188,7 @@ namespace Favesrus.Server.Controllers.WebApi
                 registerModel.Email = model.Email;
                 registerModel.ProviderKey = model.ProviderKey;
 
-                return await FacebookRegister(registerModel);
+                return await RegisterFacebook(registerModel);
             }
 
         }

@@ -31,7 +31,7 @@ namespace Favesrus.DAL.Impl
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Microsoft.AspNet.Identity.EntityFramework.IdentityUserLogin>().ToTable("AspNetUserLogins")
-                .Property(c => c.ProviderKey).HasMaxLength(Int32.MaxValue);
+                .Property(c => c.ProviderKey).HasMaxLength(450);
         }
 
     }
