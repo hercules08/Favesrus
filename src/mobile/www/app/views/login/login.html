@@ -1,0 +1,47 @@
+<!-- login View -->
+<div data-role="view" id="login-view" data-layout="login-layout">
+    <div class="container center">
+        <div id="login-description" class="text-center">
+            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. 
+        </div>
+            <a id="facebook-login-btn" class="common-margin-top login-btn facebook-style center" data-role="button">
+                <pre class="fa fa-facebook fa-lg"></pre>&nbsp;&nbsp;&nbsp;&nbsp;Sign in With Facebook
+            </a>
+        <div class="common-margin-top center">
+            <img id="or-divider" src="images/or-divider.png"/>
+        </div>
+        <ul data-role="buttongroup" class="common-margin-top center login-email-btngroup" data-index="0">
+            <li id="create-account-btn">Create Account</li>
+            <li id="sign-in-btn">Sign in</li>
+        </ul>
+        <div id="login-fields-container">
+            <ul data-role="listview" data-style="inset" class="text-left login-form">
+                <li>
+                    <input id="email-input" type="email" placeholder="Email" value="" />
+                </li>
+                <li>
+                    <input id="passowrd-input" type="password" placeholder="Password" value="" />
+                </li>
+                <li>
+                    <input id="confirm-password-input" type="password" placeholder="Confirm Password" value="" />
+                </li>
+            </ul>
+            <a id="forgot-password-link" class="hidden" href="">Forgot Password?</a>
+        </div>
+        <a id="account-login-btn" class="common-margin-top login-btn text-center green" data-role="button">Create Account</a>
+    </div>
+</div>
+
+
+<!-- login Layout -->
+<div data-role="layout" data-id="login-layout">
+    <div data-role="header">
+        <div data-role="navbar">
+            <a id="profile-pic" data-align="left" data-icon="profile-pic-holder" data-role="button"></a>
+            <span data-role="view-title"><img class="header-logo" src="images/FavesRUs_logo.png"/></span>
+            <a id="login-close-btn" data-align="right" data-icon="close-btn" data-click="returnToPrevious" data-role="button"></a>
+        </div> 
+    </div>
+    <!-- <div data-role="footer">
+    </div> -->
+</div>
