@@ -1,12 +1,12 @@
 {
   "project": {
-    "projectSettingsVersion": "1.1",
+    "projectSettingsVersion": "1.2",
     "creationData": {
       "type": "Demo",
       "projectTypeName": "com.intel.xdk.projecttype.jsapp",
       "src": "",
       "projectGuid": "e8e03942-8651-4667-af29-645d1fa580eb",
-      "lastModifiedDate": 1424127928806,
+      "lastModifiedDate": 1425231120389,
       "creationDate": 1424116873926
     },
     "XDK-app-designer": "false",
@@ -14,22 +14,7 @@
     "startFile": "index.html",
     "projectFiles": {},
     "projectDirectories": {},
-    "libraries": [
-      {
-        "name": "Cordova",
-        "version": "2.9.0",
-        "data": {
-          "default": true
-        }
-      },
-      {
-        "name": "intelXDK",
-        "version": "4.0.0",
-        "data": {
-          "default": true
-        }
-      }
-    ],
+    "libraries": [],
     "serviceMethods": [],
     "cordovaPluginsDirectory": "plugins",
     "cordovaPlugins": [
@@ -61,12 +46,16 @@
         "isActive_": true,
         "appName_": "Favesrus",
         "appID_": "xdk.intel.blank.template",
-        "appAccess_": "*",
+        "appAccess_": [
+          {
+            "origin": "*"
+          }
+        ],
         "icons_": [],
         "splashes_": [],
-        "iosProvs_": [],
         "addlPermissions_": "",
         "excludedLibraries_": "",
+        "iosProvs_": [],
         "cordovaCLIVersion_": "3.5",
         "crosswalkVersion_": "stable",
         "appVersion_": "0.0.1",
@@ -86,14 +75,18 @@
         "isActive_": true,
         "appName_": "Favesrus",
         "appID_": "xdk.intel.blank.template",
-        "appAccess_": "*",
+        "appAccess_": [
+          {
+            "origin": "*"
+          }
+        ],
         "icons_": [],
         "splashes_": [],
-        "iosProvs_": [],
         "addlPermissions_": "",
         "excludedLibraries_": "",
+        "iosProvs_": [],
         "cordovaCLIVersion_": "3.5",
-        "crosswalkVersion_": "stable",
+        "crosswalkVersion_": "10",
         "appVersion_": "0.0.1",
         "appDescription_": "Use this template to start with a simple index.html file for creating mobile apps.",
         "appAuthor_": "",
@@ -110,12 +103,16 @@
         "isActive_": true,
         "appName_": "Favesrus",
         "appID_": "xdk.intel.blank.template",
-        "appAccess_": "*",
+        "appAccess_": [
+          {
+            "origin": "*"
+          }
+        ],
         "icons_": [],
         "splashes_": [],
-        "iosProvs_": [],
         "addlPermissions_": "",
         "excludedLibraries_": "",
+        "iosProvs_": [],
         "cordovaCLIVersion_": "3.5",
         "crosswalkVersion_": "stable",
         "appVersion_": "0.0.1",
@@ -132,31 +129,16 @@
         "isActive_": true,
         "appName_": "Favesrus",
         "appID_": "xdk.intel.blank.template",
-        "appAccess_": "*",
+        "appAccess_": [
+          {
+            "origin": "*"
+          }
+        ],
         "icons_": [],
         "splashes_": [],
-        "iosProvs_": [],
         "addlPermissions_": "",
         "excludedLibraries_": "",
-        "cordovaCLIVersion_": "3.5",
-        "crosswalkVersion_": "stable",
-        "appVersion_": "0.0.0.1",
-        "appDescription_": "Use this template to start with a simple index.html file for creating mobile apps."
-      },
-      "WindowsPhone8": {
-        "platform_": "wp8",
-        "runtime_": "Cordova 3.x",
-        "name_": "WindowsPhone8",
-        "preferences_": {},
-        "isActive_": true,
-        "appName_": "Favesrus",
-        "appID_": "xdk.intel.blank.template",
-        "appAccess_": "*",
-        "icons_": [],
-        "splashes_": [],
         "iosProvs_": [],
-        "addlPermissions_": "",
-        "excludedLibraries_": "",
         "cordovaCLIVersion_": "3.5",
         "crosswalkVersion_": "stable",
         "appVersion_": "0.0.0.1",
