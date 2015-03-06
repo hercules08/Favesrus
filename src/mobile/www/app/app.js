@@ -2,9 +2,10 @@ define([
   'views/home/home',
   /*'views/thisorthat/thisorthat',
   'views/search/search',*/
-  'views/wishlist/wishlist'/*,
+  'views/wishlist/wishlist',
+  'views/login/login',
   'views/shares/shares',
-  'views/settings/settings'*/
+  'views/settings/settings'
 ], function () {
 
   // create a global container object

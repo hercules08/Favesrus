@@ -81,7 +81,11 @@ a {
 /*Filled in Profile (Contacts) icon*/
 .km-profile-pic-holder:before, .km-profile-pic-holder:after  { 
     content: "\e319";
-    color:white !important; 
+}
+
+#profile-pic, #login-close-btn {
+	font-size: 1.8em !important;
+	color:white !important; 
 }
 
 #profile-pic img {
@@ -91,6 +95,9 @@ a {
 	height: 32px;
 }
 
+.km-close-btn:before, .km-close-btn:after {
+	content: "\e038";
+}
 
 #login-description {
 	font-size: 0.9em !important;
@@ -149,6 +156,10 @@ a {
 	margin-bottom: 20px !important;
 }
 
+#login-fields-container ul li input {
+	width:90% !important;
+}
+
 /* ----------- Fix Kendo UI issues ----------- */
 .km-view-title {
 	line-height: 1em !important;
@@ -162,8 +173,13 @@ a {
 	margin: 1em !important;
 }
 /*Add a bottom border to all li childerin in a list(listview)*/
-.km-ios7 .km-list>li {
+.km-ios7 .km-list>li, #login-fields-container ul li {
 	border-width: 0 0 1px !important;
+	padding-bottom: 1.4em !important;
+}
+/*Enables the second or middle li to show*/
+li {
+	overflow:initial !important;
 }
 /*Remove the box shadow 'line' from the last child*/
 .km-ios7 .km-list>li:last-child {
