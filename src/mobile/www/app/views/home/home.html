@@ -1,10 +1,13 @@
 <!-- Home View -->
-<div data-role="view" id="home-view" data-layout="home-layout">
-    <div id="container">
+<div data-role="view" id="home-view" data-init="viewInit" data-after-show="afterHomeViewShow" data-layout="home-layout">
+<!-- <div data-role="view" id="home-view" data-layout="home-layout"> -->
+    <ul id="products-search-listview"></ul>
+    </ul>
+    <!--<div id="container">
         <h2>
             Home
         </h2>
-    </div>
+    </div>-->
 </div>
 <!-- Home Layout -->
 <div data-role="layout" data-id="home-layout">

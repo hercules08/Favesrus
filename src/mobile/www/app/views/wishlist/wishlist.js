@@ -3,24 +3,24 @@ define([
   'text!views/wishlist/wishlist.html'
 ], function (View, html) {
 
-	var categories = new kendo.data.DataSource({
-	data: [
-		/*{ name: 'Work' },
-		{ name: 'Personal' },
-		{ name: 'Other' }*/
-	]
-	});
+    var categories = new kendo.data.DataSource({
+    data: [
+        /*{ name: 'Work' },
+        { name: 'Personal' },
+        { name: 'Other' }*/
+    ]
+    });
 
-	var model = {
-		categories: categories,
-		title: 'Title'
-	};
+    var model = {
+        categories: categories,
+        title: 'Title'
+    };
 
-	var view = new View('categories', html, model);
+    var view = new View('categories', html, model);
 
-	$.subscribe('/newCategory/add', function (e, text) {
-		categories.add({ name: text });
-	});
+    $.subscribe('/newCategory/add', function (e, text) {
+        categories.add({ name: text });
+    });
 
 });
 
@@ -43,14 +43,16 @@ function afterWishlistViewShow(e) {
         APP.instance.changeLoadingMessage("Please wait...");
         setTimeout(function() {
             APP.instance.hideLoading();
-            APP.instance.navigate("app/views/login/login.html", "overlay:up");
-        }, 1000);
+            //APP.instance.navigate("app/views/login/login.html", "overlay:up");
+            APP.instance.navigate("#login-view", "overlay:down");
+        }, 500);
 
 		if (wishlistShowCounter == 0){
             enableButtonTouchEventListeners("login");
 			//Initiate openFB
 			// Defaults to sessionStorage for storing the Facebook token
-     		//openFB.init({appId: '1549506478654715'});
+     		openFB.init({appId: '1549506478654715'});
             wishlistShowCounter = 1;
 		}
+        //}
 }

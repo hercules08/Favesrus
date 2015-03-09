@@ -15,7 +15,7 @@ function getFacebookProfilePic() {
                 $("#profile-pic img").attr('src', 'http://graph.facebook.com/' + data.id + '/picture?type=small');
             },
             error: function errorHandler(error) {
-        		alert(error.message);
+        		//alert(error.message);
     		}
     	});
 }
@@ -30,12 +30,12 @@ function getFacebookInfo(accessToken) {
             success: function(data) {
                 //console.log(JSON.stringify(data));
                 //Get the facebook profile email, access token, birthday, first name, last name IMPLEMENT LATER!!!!
-                alert("Email: "+ data.email);
+                //alert("Email: "+ data.email);
                 //Send User's facebook info to Faves R Us
-                webService("loginFacebook","email=" + data.email + "&providerkey="+accessToken);
+                webService("loginFacebook","email=" + data.email + "&providerkey="+accessToken+"&firstname="+data.first_name+"&lastname="+data.last_name+"&gender="+data.gender+"&birthday="+data.user_birthday+"&profilepic=http://graph.facebook.com/" + data.id + "/picture?type=small");
             },
             error: function errorHandler(error) {
-        		alert(error.message);
+        		//alert(error.message);
     		}
     	});
 }

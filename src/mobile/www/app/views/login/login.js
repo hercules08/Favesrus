@@ -3,24 +3,24 @@ define([
   'text!views/login/login.html'
 ], function (View, html) {
 
-	var categories = new kendo.data.DataSource({
-	data: [
-		/*{ name: 'Work' },
-		{ name: 'Personal' },
-		{ name: 'Other' }*/
-	]
-	});
+    var categories = new kendo.data.DataSource({
+    data: [
+        /*{ name: 'Work' },
+        { name: 'Personal' },
+        { name: 'Other' }*/
+    ]
+    });
 
-	var model = {
-		categories: categories,
-		title: 'Title'
-	};
+    var model = {
+        categories: categories,
+        title: 'Title'
+    };
 
-	var view = new View('categories', html, model);
+    var view = new View('categories', html, model);
 
-	$.subscribe('/newCategory/add', function (e, text) {
-		categories.add({ name: text });
-	});
+    $.subscribe('/newCategory/add', function (e, text) {
+        categories.add({ name: text });
+    });
 
 });
 
@@ -34,7 +34,7 @@ $(
 /*
 
 */
-function clearTextFields(){
+function resetTextFields(){
 
 }
 
@@ -50,12 +50,79 @@ function onForgetPasswordPrompt(results) {
 }
 
 /*
+    Description:
+    Client side validation
+    Validate the contents of the views in the respective input elements
+        - Check if entries are blank, (Email) if '@' is present, (Password) if length is equal to or greater than 6
+*/
+function validateInputs(viewName) {
+    var status = false;
+    if (viewName === "#login-view") {
+        var el;
+        for(var i = 0; i < $(APP.instance.view().id).find("input:visible").length; i++) {
+            el = $(APP.instance.view().id).find($("input")[i]);
+            //Blank Entries
+            if (el.val() === "") {
+                if(el.attr("type") === "email") {
+                    el.attr("placeholder", "Enter a valid email address!");
+                }
+                else if (el.attr("type") === "password") {
+                    el.attr("placeholder", "Enter a valid password!");
+                }
+                el.addClass("error-placeholder");
+                status=false;
+            }
+            else if (((el.attr("type") === "email") && (el.val() !== "")) || ( (el.attr("type") === "password") && (el.val() !== ""))) {
+                //Check for '@' sign
+                if(el.attr("type") === "email") {
+                    if (el.val().indexOf("@") === -1) {
+                        el.val("");
+                        el.attr("placeholder", "Email: '@' sign required!");
+                    }
+                    else if ((el.val().indexOf("@") === 0) || (el.val().length < 10)) {
+                        el.val("");
+                        el.attr("placeholder", "Enter a valid email address!");
+                    }
+                }
+                else if (el.attr("type") === "password") {
+                    //Password not match
+                    if($("#password-input").val() != $("#confirm-password-input").val()) {
+                        $("#password-input").val("");
+                        $("#password-input").attr("placeholder", "Password does not match!");
+                        $("#confirm-password-input").val("");
+                        $("#confirm-password-input").attr("placeholder", "Password does not match!");
+                        $("#confirm-password-input").addClass("error-placeholder");
+                        i = 10;
+                    }
+                    //Password less than 6 characters
+                    else if (el.val().length < 6) {
+                        el.val("");
+                        el.attr("placeholder", "Password: > 5 characters required!");
+                    }
+                }
+                el.addClass("error-placeholder");
+                status = false;
+            }
+            else {
+                status = true;
+            }
+        }
+    }
+    return status;
+}
+
+
+/*
 	Description:
 	Invoke the Facebook or Email login process
 */
 function login(option){
 	if(option === "facebook"){
-		openFB.login(
+		//Initiate Facebook connection session
+        // Defaults to sessionStorage for storing the Facebook token
+        // openFB.init({appId: '1549506478654715'});
+
+        openFB.login(
             function(response) {
                 if(response.status === 'connected') {
                     alert('Facebook login succeeded, got access token: ' + response.authResponse.token);
@@ -68,10 +135,10 @@ function login(option){
             {scope: 'email,user_birthday'}
         );
 	}
-	else if(option === "register") {
+	else if((option === "register") && (validateInputs(APP.instance.view().id))) {
         webService("registerEmail","email=" + $("#email-input").val() + "&password=" + $("#confirm-password-input").val());
     }
-    else if(option === "email") {
+    else if((option === "email") && (validateInputs(APP.instance.view().id))) {
         webService("loginEmail","email=" + $("#email-input").val() + "&password=" + $("#confirm-password-input").val());
 	}
 }
@@ -109,7 +176,7 @@ function enableButtonTouchEventListeners(view) {
 
         document.getElementById("account-login-btn").addEventListener("touchstart", 
             function (e) {
-            	alert($("#account-login-btn").text());
+            	//alert($("#account-login-btn").text());
             	if($("#account-login-btn").text() === "Create Account") {
                     login("register");
                 }
@@ -134,25 +201,6 @@ function enableButtonTouchEventListeners(view) {
             	//e.preventDefault();
             }, 
         false);
-
-        //Client side validation
-        /*$("#email-input").bind("blur", function() {
-            alert("loss focus");
-            /*if((newRegExp("@").test($("#email-input").text())) === false){
-                alert("this is not a vaild email address.");
-            }
-        });*/
-        /*$("#login-fields-container").on('focusout',function() { //Not working
-           console.log($(this).find( "li" ).length);
-        });*/
-         
-        function myFunction() {
-            alert("Input field lost focus.");
-        }
-          
-        document.getElementById("email-input").addEventListener("focusout", myFunction);
-
-        console.log($("#email-input"));
 	}
 }
 

@@ -3,7 +3,7 @@ define([
   'text!views/shares/shares.html'
 ], function (View, html) {
 
-	var categories = new kendo.data.DataSource({
+var categories = new kendo.data.DataSource({
 	data: [
 		/*{ name: 'Work' },
 		{ name: 'Personal' },
@@ -16,11 +16,12 @@ define([
 		title: 'Title'
 	};
 
-	var view = new View('categories', html, model);
+    //var view = new View('categories', html, model);
+	var view = new View('shares', html, model);
 
 	$.subscribe('/newCategory/add', function (e, text) {
-		categories.add({ name: text });
-	});
+    categories.add({ name: text });
+  });
 
 });
 
