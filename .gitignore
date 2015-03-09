@@ -1,3 +1,5 @@
 **/*.DS_Store
 **/intelxdk.config.*.xml
 **/*.mobileprovision
+**/*.xdk11_bak
+**/*.xdke11_bak
