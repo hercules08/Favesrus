@@ -4,11 +4,11 @@ define([
 ], function (View, html) {
 
 	var categories = new kendo.data.DataSource({
-	data: [
-		/*{ name: 'Work' },
-		{ name: 'Personal' },
-		{ name: 'Other' }*/
-	]
+		data: [
+			/*{ name: 'Work' },
+			{ name: 'Personal' },
+			{ name: 'Other' }*/
+		]
 	});
 
 	var model = {
@@ -16,11 +16,12 @@ define([
 		title: 'Title'
 	};
 
-	var view = new View('categories', html, model);
+    //var view = new View('categories', html, model);
+	var view = new View('settings', html, model);
 
 	$.subscribe('/newCategory/add', function (e, text) {
-		categories.add({ name: text });
-	});
+    categories.add({ name: text });
+  });
 
 });
 

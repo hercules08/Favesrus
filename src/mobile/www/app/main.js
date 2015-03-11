@@ -16,11 +16,14 @@ require.config({
 define([
   'app'
 ], function (app) {
-
-  if (kendo.mobileOs) {
+  if (kendo.support.mobileOS) {
     document.addEventListener('deviceready', function () {
       app.init();
+      //Hide Splashscreen
       navigator.splashscreen.hide();
+      //Keyboard
+      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+      //cordova.plugins.Keyboard.disableScroll(true);
     }, false);
   }
   else {

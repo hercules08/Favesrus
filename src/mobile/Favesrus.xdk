@@ -6,7 +6,11 @@
       "projectTypeName": "com.intel.xdk.projecttype.jsapp",
       "src": "",
       "projectGuid": "e8e03942-8651-4667-af29-645d1fa580eb",
+<<<<<<< HEAD
       "lastModifiedDate": 1425231120389,
+=======
+      "lastModifiedDate": 1425861378073,
+>>>>>>> dev_elroy
       "creationDate": 1424116873926
     },
     "XDK-app-designer": "false",
@@ -31,6 +35,46 @@
         "selectedState": "Included",
         "data": {},
         "paramvals": {}
+      },
+      {
+        "id": "org.apache.cordova.device",
+        "version": "0.2.9",
+        "selectedState": "Included",
+        "data": {},
+        "paramvals": {}
+      },
+      {
+        "id": "org.apache.cordova.inappbrowser",
+        "version": "0.4.0",
+        "selectedState": "Included",
+        "data": {},
+        "paramvals": {}
+      },
+      {
+        "id": "org.apache.cordova.dialogs",
+        "version": "0.2.6",
+        "selectedState": "Included",
+        "data": {},
+        "paramvals": {}
+      },
+      {
+        "id": "org.apache.cordova.geolocation",
+        "version": "0.3.10",
+        "selectedState": "Included",
+        "data": {},
+        "paramvals": {}
+      },
+      {
+        "id": "com.ionic.keyboard",
+        "version": "",
+        "selectedState": "Included",
+        "data": {},
+        "paramvals": {},
+        "custom": "true",
+        "name": "Ionic Keyboard Plugin",
+        "origin": "com.ionic.keyboard",
+        "originType": "cordova.io",
+        "sourceLocation": ""
       }
     ],
     "buildConfigurations": {
