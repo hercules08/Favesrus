@@ -1,4 +1,5 @@
 ﻿using Favesrus.Services;
+using log4net;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -14,6 +15,7 @@ namespace Favesrus.Server.Controllers.WebApi
 {
     public abstract class BaseController : ApiController
     {
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         private FavesrusUserManager userManager;
         private IAuthenticationManager authManager;
         private FavesrusRoleManager roleManager;
@@ -31,6 +33,14 @@ namespace Favesrus.Server.Controllers.WebApi
             UserManager = userManager;
             RoleManager = roleManager;
             AuthManager = authManager;
+        }
+
+        public ILog Log
+        {
+            get
+            {
+                return log;
+            }
         }
 
         protected IHttpActionResult GetErrorResult(IdentityResult result)

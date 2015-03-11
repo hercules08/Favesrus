@@ -224,6 +224,7 @@
     <Compile Include="Controllers\PrepController.cs" />
     <Compile Include="Controllers\WebApi\AccountController.cs" />
     <Compile Include="Controllers\WebApi\BaseController.cs" />
+    <Compile Include="Controllers\WebApi\ModoController.cs" />
     <Compile Include="Dto\FavesrusUser\DtoFavesrusUser.cs" />
     <Compile Include="Dto\FavesrusUser\LoginFacebookModel.cs" />
     <Compile Include="Dto\FavesrusUser\LoginModel.cs" />
