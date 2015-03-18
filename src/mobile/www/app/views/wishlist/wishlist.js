@@ -37,22 +37,27 @@ $(
 	Invoked when the 'data-after-show' event is triggered associated to the wishlist view
 */
 function afterWishlistViewShow(e) {
-	//Open Login Modal View if user hasn't sign in
-	// if () {
+	//Open Login View if user hasn't sign in
+
+	
         APP.instance.showLoading();
         APP.instance.changeLoadingMessage("Please wait...");
         setTimeout(function() {
             APP.instance.hideLoading();
-            //APP.instance.navigate("app/views/login/login.html", "overlay:up");
-            APP.instance.navigate("#login-view", "overlay:down");
+            if ((localStorage.loginstatus === false) || (localStorage.loginstatus === undefined) ) {
+                APP.instance.navigate("#login-view", "overlay:down");
+            }
+            else {
+                console.log("You have already login in!");
+            }
         }, 500);
 
 		if (wishlistShowCounter == 0){
             enableButtonTouchEventListeners("login");
 			//Initiate openFB
 			// Defaults to sessionStorage for storing the Facebook token
-     		openFB.init({appId: '1549506478654715'});
+     		//openFB.init({appId: '1549506478654715'});
             wishlistShowCounter = 1;
 		}
-        //}
+        
 }

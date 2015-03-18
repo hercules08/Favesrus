@@ -69,9 +69,9 @@ pre {
 	display:none !important;
 }
 
-/*.show {
+.show {
 	display:initial;
-}*/
+}
 
 a {
 	color: #007aff !important;
@@ -166,8 +166,10 @@ input.error-placeholder::-webkit-input-placeholder {
 }
 
 /* ----------- Home-View ----------- */
-
-
+/*Keep the clear (X in a Filled Circle)*/
+.km-clear:after, .km-clear:before {
+  content: "\e031" !important;
+}
 
 /* ----------- Fix Kendo UI issues ----------- */
 .km-view-title {
@@ -209,12 +211,44 @@ li {
 }
 
 /*form*/
-.km-filter-form {
+/*.km-filter-form {
+	background: #bdc3c7 !important;*/ /*Silver*/
+/*}*/
+
+#header-search {
+	/*color: #efeff4;*/
 	background: #bdc3c7 !important; /*Silver*/
+	/*-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	-moz-background-clip: content-box;
+	-webkit-background-clip: content-box;
+	background-clip: content-box;
+	width: 100%;
+	padding: .5em 0;
+	border: 1px solid transparent;
+	border-width: 1px 0;
+	-webkit-transform: translatez(0);
+	-moz-transform: translatez(0);
+	-ms-transform: translatez(0);
+	-o-transform: translatez(0);
+	transform: translatez(0);
+	webkit-touch-callout: none;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	font: normal 1em "HelveticaNeue Ultra Light","Roboto Light","Slate Light","Segoe WP",NokiaPureTextLight,sans-serif;
+	-ms-touch-action: none;
+	-ms-content-zooming: none;
+	-ms-user-select: none;
+	-webkit-user-select: none;
+	-webkit-text-size-adjust: none;
+	-moz-text-size-adjust: none;*/
 }
 
 .km-filter-wrap {
 	 background: white !important;
 }
 
-
+/*Set the clear button to hide*/
+/*.km-filter-reset {
+	display:none !important;
+}*/

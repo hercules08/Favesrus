@@ -18,16 +18,23 @@ define([
 ], function (app) {
   if (kendo.support.mobileOS) {
     document.addEventListener('deviceready', function () {
-      app.init();
+      //app.init();
       //Hide Splashscreen
-      navigator.splashscreen.hide();
-      //Keyboard
-      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-      //cordova.plugins.Keyboard.disableScroll(true);
+      try {
+        if(cordova) {
+          navigator.splashscreen.hide();
+          //Keyboard
+          cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+          //cordova.plugins.Keyboard.disableScroll(true);
+        }
+      }
+      catch (error) {
+
+      }
     }, false);
   }
   else {
-    app.init();
+    //app.init();
   }
-
+  app.init();
 });
