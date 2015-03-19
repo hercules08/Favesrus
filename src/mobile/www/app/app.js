@@ -1,7 +1,7 @@
 define([
+  'views/thisorthat/thisorthat',
   'views/home/home',
-  /*'views/thisorthat/thisorthat',
-  'views/search/search',*/
+  /*'views/search/search',*/
   'views/wishlist/wishlist',
   'views/login/login'/*,
   'views/shares/shares',
@@ -15,7 +15,7 @@ define([
     
     // intialize the application
     // APP.instance = new kendo.mobile.Application(document.body, { skin: 'material' });
-    APP.instance = new kendo.mobile.Application(document.body, { skin: 'ios7' }, {initial: "app/views/home/home.html"});
+    APP.instance = new kendo.mobile.Application(document.body, { skin: 'ios7' }, {initial: "app/views/thisorthat/thisorthat.html"});
   };
 
   return {

@@ -76,6 +76,32 @@ pre {
 a {
 	color: #007aff !important;
 }
+
+/* ----------- This or That View ----------- */
+#thisorthat-logo {
+	width: 45%;
+}
+
+.tort-product {
+	width: 80%;
+}
+
+#thisorthat-view .km-pages {
+	color: #16a085 !important;
+}
+
+#thisorthat-or {
+	padding: 1em 2em;
+}
+
+.side-by-side {
+	display: inline-block;
+}
+
+#thisorthat-view td {
+	padding-top: 1em;
+}
+
 /* ----------- Login View ----------- */
 /*profile pic holder icon for profile picture*/
 /*Filled in Profile (Contacts) icon*/
@@ -99,7 +125,7 @@ a {
 	content: "\e038";
 }
 
-#login-description {
+.description {
 	font-size: 0.9em !important;
 }
 

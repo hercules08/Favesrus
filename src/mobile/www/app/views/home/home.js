@@ -117,7 +117,7 @@ function afterHomeViewShow(e){
     Description:
     Associated to the data-init attribute Runs first time
 */
-function viewInit(e) {
+function homeViewInit(e) {
     console.log("home-view init");
     checkLocalCredentials();
     e.view.element.find("#products-search-listview").kendoMobileListView({
