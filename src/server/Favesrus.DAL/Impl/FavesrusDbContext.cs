@@ -2,12 +2,7 @@
 using Favesrus.DAL.Abstract;
 using Favesrus.Model.Entity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Favesrus.DAL.Impl
 {
@@ -15,7 +10,11 @@ namespace Favesrus.DAL.Impl
     {
         static FavesrusDbContext()
         {
-            Database.SetInitializer(new FavesrusDbInit());
+            if (!DebuggingService.RunningInDebugMode())
+                Database.SetInitializer(new NullFavesrusDbInit());
+            else
+                Database.SetInitializer(new FavesrusDbInit());
+
         }
         
         public FavesrusDbContext(): base(Constants.DB_NAME) { }
@@ -33,6 +32,12 @@ namespace Favesrus.DAL.Impl
             modelBuilder.Entity<Microsoft.AspNet.Identity.EntityFramework.IdentityUserLogin>().ToTable("AspNetUserLogins")
                 .Property(c => c.ProviderKey).HasMaxLength(450);
         }
+
+        //public DbSet<FavesrusUser> FavesrusUsers { get; set; }
+        //public DbSet<FavesrusRole> FavesrusRoles { get; set; }
+        public DbSet<GiftItem> GiftItems { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Retailer> Retailers { get; set; }
 
     }
 }

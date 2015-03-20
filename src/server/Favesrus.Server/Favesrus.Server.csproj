@@ -183,6 +183,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -219,11 +220,17 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\GiftItemController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PrepController.cs" />
+    <Compile Include="Controllers\RetailerController.cs" />
     <Compile Include="Controllers\WebApi\AccountController.cs" />
     <Compile Include="Controllers\WebApi\BaseController.cs" />
+    <Compile Include="Controllers\WebApi\CategoryController.cs" />
+    <Compile Include="Controllers\WebApi\GiftItemController.cs" />
     <Compile Include="Controllers\WebApi\ModoController.cs" />
     <Compile Include="Dto\FavesrusUser\DtoFavesrusUser.cs" />
     <Compile Include="Dto\FavesrusUser\LoginFacebookModel.cs" />
@@ -249,6 +256,7 @@
     <Compile Include="Infrastructure\Interface\IAutoMapper.cs" />
     <Compile Include="Infrastructure\WebContainerManager.cs" />
     <Compile Include="Models\NotificationViewModel.cs" />
+    <Compile Include="Models\UserViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -259,6 +267,24 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\Create.cshtml" />
+    <Content Include="Views\Admin\Edit.cshtml" />
+    <Content Include="Views\Retailer\Create.cshtml" />
+    <Content Include="Views\Retailer\Delete.cshtml" />
+    <Content Include="Views\Retailer\Details.cshtml" />
+    <Content Include="Views\Retailer\Edit.cshtml" />
+    <Content Include="Views\Retailer\Index.cshtml" />
+    <Content Include="Views\GiftItem\Create.cshtml" />
+    <Content Include="Views\GiftItem\Delete.cshtml" />
+    <Content Include="Views\GiftItem\Details.cshtml" />
+    <Content Include="Views\GiftItem\Edit.cshtml" />
+    <Content Include="Views\GiftItem\Index.cshtml" />
+    <Content Include="Views\Category\Create.cshtml" />
+    <Content Include="Views\Category\Delete.cshtml" />
+    <Content Include="Views\Category\Details.cshtml" />
+    <Content Include="Views\Category\Edit.cshtml" />
+    <Content Include="Views\Category\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -269,6 +295,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Base\" />
+    <Folder Include="Views\Item\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Favesrus.Common\Favesrus.Common.csproj">
