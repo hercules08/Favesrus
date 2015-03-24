@@ -111,6 +111,16 @@ function validateInputs(viewName) {
     return status;
 }
 
+function facebookAuthSuccess (response) {
+    console.log("Facebook Login Successful");
+    //alert("Result: " + JSON.stringify(response));
+    //alert('Facebook login succeeded, got access token: ' + response.authResponse.accessToken);
+    getFBInfo(response);
+}
+
+function facebookAuthFailure (response) {
+    alert("Facebook Login failed");
+}
 
 /*
 	Description:
@@ -122,7 +132,7 @@ function login(option){
         // Defaults to sessionStorage for storing the Facebook token
         // openFB.init({appId: '1549506478654715'});
 
-        openFB.login(
+        /*openFB.login(
             function(response) {
                 if(response.status === 'connected') {
                     alert('Facebook login succeeded, got access token: ' + response.authResponse.token);
@@ -133,7 +143,11 @@ function login(option){
                 }
             }, 
             {scope: 'email,user_birthday'}
-        );
+        );*/
+        
+        /*facebook Connect Cordova plugin*/
+        //facebookConnectPlugin.browserInit("1549506478654715")
+        facebookConnectPlugin.login(["email","user_birthday"], facebookAuthSuccess, facebookAuthFailure);
 	}
 	else if((option === "register") && (validateInputs(APP.instance.view().id))) {
         webService("registerEmail","email=" + $("#email-input").val() + "&password=" + $("#confirm-password-input").val());

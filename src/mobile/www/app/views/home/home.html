@@ -1,5 +1,5 @@
 <!-- Home View -->
-<div data-role="view" id="home-view" data-init="viewInit" data-after-show="afterHomeViewShow" data-layout="home-layout">
+<div data-role="view" id="home-view" data-init="homeViewInit" data-after-show="afterHomeViewShow" data-layout="home-layout">
 <!-- <div data-role="view" id="home-view" data-layout="home-layout"> -->
     <ul id="products-search-listview"></ul>
     </ul>
@@ -15,7 +15,9 @@
     <div data-role="header">
         <div data-role="navbar">
             <span data-role="view-title"><img class="header-logo" src="images/FavesRUs_logo.png"/></span>
-        </div> 
+        </div>
+        <div id="header-search" class="km-filter-form">
+            <div class="km-filter-wrap"><input type="search" placeholder="Search for products.."><a id="search-reset-btn" class="km-filter-reset hidden" title="Clear" style="display: inline-block"><span class="km-icon km-clear"></span><span class="km-text">Clear</span></a></div></div>
     </div>
     <div data-role="footer">
         <div id="tabstrip" data-role="tabstrip">
