@@ -1,96 +1,80 @@
 <!-- this or that View -->
 <div data-role="view" id="thisorthat-view" data-init="tortViewInit" data-after-show="afterTortViewShow" data-layout="login-layout">
-    <!--<h2>This or That?</h2>-->
+    <div data-role="modalview" id="thisorthat-preferences-modal" data-width="300" data-height="400">
+        <a data-role="button" data-icon="close-btn" class="modal-close-btn"></a>
+        <div class="container">
+            <h2 class="text-center">Recommendations</h2>
+        </div>
+    </div>
     <div class="container center">
         <div class="center">
-            <img id="thisorthat-logo" src="images/thisorthat_logo.png"/>
+            <img id="thisorthat-logo" src="images/thisorthat_logo_greensea.png"/>
         </div>
         <div id="thisorthat-description" class="text-center description">
             Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. 
         </div>
-        <div data-role="scrollview">
-            <div data-role="page">
-                <table>
-                    <tr>
-                        <td><img class="tort-product" src="images/image-placeholder.png"/></td>
-                        <td><img class="tort-product" src="images/image-placeholder.png"/></td>
-                    </tr>
-                    <tr>
-                        <td>Product #1 Name</td>
-                        <td>Product #2 Name</td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">Price</td>
-                    </tr>
-                    <tr>
-                        <td>$25.99</td>
-                        <td>$20.99</td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">Avg. Customer Ratings</td>
-                    </tr>
-                    <tr>
-                        <td>5 stars</td>
-                        <td>4 stars</td>
-                    </tr>
-                    <tr>
-                        <td colspan="2"><div class="center"><a class="side-by-side" data-role="button">This!</a><div id="thisorthat-or" class="side-by-side">or</div><a class="side-by-side" data-role="button">That!</a></div></td>
-                    </tr>
-                </table>
-            </div>
-            <div data-role="page">
-                <table>
-                    <tr>
-                        <td><img class="tort-product" src="images/image-placeholder.png"/></td>
-                        <td><img class="tort-product" src="images/image-placeholder.png"/></td>
-                    </tr>
-                    <tr>
-                        <td>Product #3 Name</td>
-                        <td>Product #4 Name</td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">Price</td>
-                    </tr>
-                    <tr>
-                        <td>$30.99</td>
-                        <td>$20.99</td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">Avg. Customer Ratings</td>
-                    </tr>
-                    <tr>
-                        <td>2 stars</td>
-                        <td>4 stars</td>
-                    </tr>
-                    <tr>
-                        <td colspan="2"><div class="center"><a class="side-by-side" data-role="button">This!</a><div id="thisorthat-or" class="side-by-side">or</div><a class="side-by-side" data-role="button">That!</a></div></td>
-                    </tr>
-                </table>
-            </div>
-            <div data-role="page">
-                <table>
-                    <tr>
-                        <td><img class="tort-product" src="images/image-placeholder.png"/></td>
-                        <td><img class="tort-product" src="images/image-placeholder.png"/></td>
-                    </tr>
-                </table>
-            </div>
-            <div data-role="page">
-                <table>
-                    <tr>
-                        <td><img class="tort-product" src="images/image-placeholder.png"/></td>
-                        <td><img class="tort-product" src="images/image-placeholder.png"/></td>
-                    </tr>
-                </table>
-            </div>
-            <div data-role="page">
-                <table>
-                    <tr>
-                        <td><img class="tort-product" src="images/image-placeholder.png"/></td>
-                        <td><img class="tort-product" src="images/image-placeholder.png"/></td>
-                    </tr>
-                </table>
-            </div>
-        </div>
+        <div id="thisorthat-scrollview" data-role="scrollview"></div>
+        <script id="javascriptTemplate" type="text/x-kendo-template">
+            # for (var i = 0; i < data.length; i++) { #
+                <div data-role="page">
+                    <table>
+                        <tr>
+                            <td><img class="tort-product" src="images/image_placeholder.png"/></td>
+                            <td><img class="tort-product" src="images/image_placeholder.png"/></td>
+                        </tr>
+                        <tr>
+                            <td>#= data[i]# Product1</td>
+                            <td>#= data[i]# Product2</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <div class="divider-container center">
+                                    <img class="divider" src="images/price_divider.png"/>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>$25.99</td>
+                            <td>$20.99</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <div class="divider-container center">
+                                    <img class="divider" src="images/avg_customer_ratings_divider.png"/>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="center">
+                                    <img class="side-by-side star" src="images/star.png"/>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="center">
+                                    <img class="side-by-side star" src="images/star.png"/>
+                                    <img class="side-by-side star" src="images/star.png"/>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <div id="thisorthat-button-container" class="center">
+                                    <a class="side-by-side" data-role="button">
+                                        <img class="button-image" src="images/this.png"/>
+                                    </a>
+                                    <div id="thisorthat-or" class="side-by-side">
+                                        <div style="padding: 2px;">or</div>
+                                    </div>
+                                    <a class="side-by-side" data-role="button">
+                                        <img class="button-image" src="images/that.png"/>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            # } #
+        </script>
     </div>
 </div>

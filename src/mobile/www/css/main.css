@@ -44,12 +44,12 @@
 }
 
 /* ----------- Modal View -----------*/
-.km-shim {
+/*.km-shim {
 	top: 7% !important;
 	height: 84% !important;
-	/*Display shim behind the header*/
-	z-index: 1 !important;
-}
+	/*Display shim behind the header
+	z-index: 1 !important;*/
+/*}*/
 
 .k-animation-container {
 	width: 95% !important;
@@ -79,7 +79,7 @@ a {
 
 /* ----------- This or That View ----------- */
 #thisorthat-logo {
-	width: 45%;
+	width: 55%;
 }
 
 .tort-product {
@@ -87,19 +87,51 @@ a {
 }
 
 #thisorthat-view .km-pages {
-	color: #16a085 !important;
+	color: #16a085 !important; /*Green Sea*/
 }
 
 #thisorthat-or {
-	padding: 1em 2em;
+	margin: 1em 1.5em;
+	color: #e74c3c;
+  	font-weight: bold;
 }
 
 .side-by-side {
 	display: inline-block;
 }
 
+.divider-container {
+	margin-top: 5px;
+}
+
+#thisorthat-button-container {
+	margin-top: 10px;
+}
+
+#thisorthat-button-container .km-button {
+	background-color: #16a085 !important; /*Green Sea*/
+	border-color: #16a085 !important; /*Green Sea*/
+	width: 7.5em;
+  	height: 3em;
+}
+
 #thisorthat-view td {
-	padding-top: 1em;
+	color: #16a085;
+}
+
+.star {
+	  width: 1.5em !important;
+}
+
+.button-image {
+	width: 80% !important;
+}
+
+.modal-close-btn {
+	float: right;
+	border: 0px !important;
+	color: black !important;
+	font-size: 1.5em !important;
 }
 
 /* ----------- Login View ----------- */
@@ -174,7 +206,7 @@ a {
 	width: 90% !important;
 }
 
-#or-divider {
+.divider {
 	width: 90% !important;
 }
 

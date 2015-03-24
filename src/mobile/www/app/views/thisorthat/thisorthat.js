@@ -19,9 +19,9 @@ var categories = new kendo.data.DataSource({
     var view = new View('categories', html, model);
 	//var view = new View('thisorthat', html, model);
 
-	$.subscribe('/newCategory/add', function (e, text) {
+	/*$.subscribe('/newCategory/add', function (e, text) {
     categories.add({ name: text });
-  });
+  });*/
 
 });
 
@@ -32,13 +32,43 @@ $(
 	}
 );
 
-/* TorT short for This or That*/
+/*
+	Description: Set the width and height of a modal
+*/
+function setModalSize(modal_name, width, height) {
+	$("#"+modal_name).attr("data-width", width);
+	$("#"+modal_name).attr("data-height", height);
+}
+
+/*
+*/
+function closeModal(modal_name) { //TODO fix for use
+	//var temp_name = "#"+modal_name;
+	//console.log($(temp_name));
+	//console.log($("#thisorthat-preferences-modal"));
+	//$(temp_name).data("kendoMobileModalView").close();
+	$("#"+modal_name).data("kendoMobileModalView").close();
+}
+
+/*----TorT short for This or That----*/
 /*
     Description:
-    Associated to the data-init attribute Runs first time
+    Fires the first time the view renders.
 */
 function tortViewInit (e) {
 	//alert("This or that View");
+	setTimeout(function () {
+		if(localStorage.TTpreferences === undefined) { //No preferences set
+			alert("No preferences found!");
+			$("#thisorthat-preferences-modal").data("kendoMobileModalView").open();
+			$("#thisorthat-preferences-modal a").click(function(){
+				closeModal("thisorthat-preferences-modal");
+			});
+		}
+		else {
+			console.log("Preferences found!");
+		}
+	}, 500);
 }
 
 

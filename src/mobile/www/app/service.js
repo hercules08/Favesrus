@@ -1,7 +1,7 @@
 /*service.js*/
 
 var temp_obj = null; //global temporary object
-var temp_accessToken = null;
+var temp_deviceID = null;
 
 /*
 	Description:
@@ -21,11 +21,13 @@ function getFBInfo(response) {
 
 					//temporaraly save the result 
 					temp_obj = result;
-					temp_accessToken = response.authResponse.accessToken;
 
-	                //Send User's facebook info to Faves R Us
-            		//Complete submission
-            		webService("registerFacebook","email=" + result.email + "&providerkey="+response.authResponse.accessToken+"&firstname="+result.first_name+"&lastname="+result.last_name+"&gender="+result.gender+"&birthday="+result.birthday+"&profilepic="+result.picture.data.url);
+					if (cordova) {
+						temp_deviceID = device.uuid;
+		                //Send User's facebook info to Faves R Us
+	            		//Complete submission
+	            		webService("loginFacebook","email=" + result.email + "&providerkey="+temp_deviceID+"&firstname="+result.first_name+"&lastname="+result.last_name+"&gender="+result.gender+"&birthday="+result.birthday+"&profilepic="+result.picture.data.url);
+            		}
 			    },
 			    function (result) {
 			        alert("Failed: " + result);
@@ -64,11 +66,6 @@ function webService(requestString, content) {
 		requestURL = "http://dev.favesrus.com/api/account/login";
 		requestType = "POST";
 	}
-
-	else if(requestString == "registerFacebook") {
-		requestURL = "http://dev.favesrus.com/api/account/registerfacebook";
-		requestType = "POST";
-	}
 	else if(requestString == "loginFacebook") {
 		requestURL = "http://dev.favesrus.com/api/account/loginfacebook";
 		requestType = "POST";
@@ -82,7 +79,7 @@ function webService(requestString, content) {
 	})
 	.done(function(data, status, xhr) {		//Replaces the success() method
 	    alert( "success ");
-	    if((requestString === "registerEmail") || (requestString === "loginEmail") || (requestString === "loginFacebook") || (requestString === "registerFacebook")){
+	    if((requestString === "registerEmail") || (requestString === "loginEmail") || (requestString === "loginFacebook")){
 	    	storeLocalcredentials();
 	    	if(APP.instance.view().id === "#login-view") {
 	    		APP.instance.navigate("app/views/wishlist/wishlist.html");
@@ -102,11 +99,11 @@ function webService(requestString, content) {
 			);
 		}
 
-		if(requestString === "registerFacebook"){
+		/*if(requestString === "registerFacebook"){
 			//Attempt to login
 			console.log("Attempt to log into your account with Facebook");
-			webService("loginFacebook","email=" + temp_obj.email + "&providerkey="+temp_accessToken);
-		}
+			webService("loginFacebook","email=" + temp_obj.email + "&providerkey="+temp_deviceID);
+		}*/
 
 	})
 	.always(function(data, status, xhr) {	//Replaces the complete method
@@ -129,13 +126,13 @@ function checkLocalCredentials() {
 /*Local Storage - //Store username and accessToken or password locally for use later during relaunching of the app */
 function storeLocalcredentials() {
 	localStorage.email = temp_obj.email;
-	localStorage.password = temp_accessToken;
+	localStorage.deviceID= temp_deviceID;
 	localStorage.loginstatus = true;
 
 	//Null the  global temp variables
 	/*
 	temp_obj.email = null;
-	temp_accessToken = null;
+	temp_deviceID = null;
 	*/
 }
 
