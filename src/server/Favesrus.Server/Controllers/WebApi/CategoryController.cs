@@ -10,24 +10,30 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using Favesrus.Model.Entity;
 using Favesrus.DAL.Impl;
+using Favesrus.Services.Interfaces;
 
 namespace Favesrus.Server.Controllers.WebApi
 {
     public class CategoryController : ApiController
     {
-        private FavesrusDbContext db = new FavesrusDbContext();
+        private readonly ICategoryService _categoryService = null;
+
+        public CategoryController(ICategoryService categoryService)
+        {
+            _categoryService = categoryService;
+        }
 
         // GET api/Category
         public IQueryable<Category> GetCategories()
         {
-            return db.Categories;
+            return _categoryService.AllCategories;
         }
 
         // GET api/Category/5
         [ResponseType(typeof(Category))]
         public IHttpActionResult GetCategory(int id)
         {
-            Category category = db.Categories.Find(id);
+            Category category = _categoryService.FindCategoryById(id);
             if (category == null)
             {
                 return NotFound();
@@ -49,11 +55,9 @@ namespace Favesrus.Server.Controllers.WebApi
                 return BadRequest();
             }
 
-            db.Entry(category).State = EntityState.Modified;
-
             try
             {
-                db.SaveChanges();
+                _categoryService.UpdateCategory(category);
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -79,8 +83,7 @@ namespace Favesrus.Server.Controllers.WebApi
                 return BadRequest(ModelState);
             }
 
-            db.Categories.Add(category);
-            db.SaveChanges();
+            _categoryService.UpdateCategory(category);
 
             return CreatedAtRoute("DefaultApi", new { id = category.Id }, category);
         }
@@ -89,30 +92,21 @@ namespace Favesrus.Server.Controllers.WebApi
         [ResponseType(typeof(Category))]
         public IHttpActionResult DeleteCategory(int id)
         {
-            Category category = db.Categories.Find(id);
+            Category category = _categoryService.FindCategoryById(id);
             if (category == null)
             {
                 return NotFound();
             }
 
-            db.Categories.Remove(category);
-            db.SaveChanges();
+            _categoryService.DeleteCategory(category.Id);
 
             return Ok(category);
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
         private bool CategoryExists(int id)
         {
-            return db.Categories.Count(e => e.Id == id) > 0;
+            Category entity = _categoryService.FindCategoryById(id);
+            return entity != null;
         }
     }
 }

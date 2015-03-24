@@ -1,8 +1,10 @@
-﻿using Favesrus.Services;
+﻿using Favesrus.Model.Entity;
+using Favesrus.Services;
 using log4net;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using Microsoft.Owin.Security.DataProtection;
 using System.Net.Http;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -15,6 +17,8 @@ namespace Favesrus.Server.Controllers.WebApi
 {
     public abstract class BaseController : ApiController
     {
+        DpapiDataProtectionProvider provider = new DpapiDataProtectionProvider("Sample");
+
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         private FavesrusUserManager userManager;
         private IAuthenticationManager authManager;
@@ -22,7 +26,7 @@ namespace Favesrus.Server.Controllers.WebApi
 
         public BaseController()
         {
-
+            UserManager.UserTokenProvider = new DataProtectorTokenProvider<FavesrusUser>(provider.Create("EmailConfirmation"));
         }
 
         public BaseController
@@ -33,6 +37,7 @@ namespace Favesrus.Server.Controllers.WebApi
             UserManager = userManager;
             RoleManager = roleManager;
             AuthManager = authManager;
+            UserManager.UserTokenProvider = new DataProtectorTokenProvider<FavesrusUser>(provider.Create("EmailConfirmation"));
         }
 
         public ILog Log
@@ -70,6 +75,14 @@ namespace Favesrus.Server.Controllers.WebApi
             }
 
             return null;
+        }
+
+        private void AddErrors(IdentityResult result)
+        {
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError("", error);
+            }
         }
 
         public IAuthenticationManager AuthManager

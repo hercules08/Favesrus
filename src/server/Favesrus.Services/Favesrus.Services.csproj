@@ -74,9 +74,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CategoryService.cs" />
+    <Compile Include="Emailer.cs" />
     <Compile Include="FavesrusRoleManager.cs" />
     <Compile Include="FavesrusUserManager.cs" />
     <Compile Include="Interfaces\ICategoryService.cs" />
+    <Compile Include="Interfaces\IEmailer.cs" />
     <Compile Include="Interfaces\IGiftItemService.cs" />
     <Compile Include="Interfaces\IRetailerService.cs" />
     <Compile Include="GiftItemService.cs" />

@@ -243,6 +243,11 @@
     <Compile Include="Dto\FavesrusUser\MapperConfig\FavesrusUser_RegisterModel.cs" />
     <Compile Include="Dto\FavesrusUser\RegisterFacebookModel.cs" />
     <Compile Include="Dto\FavesrusUser\RegisterModel.cs" />
+    <Compile Include="ErrorHandling\GlobalExceptionHandler.cs" />
+    <Compile Include="ErrorHandling\SimpleErrorResult.cs" />
+    <Compile Include="Exceptions\ChildObjectNotFoundException.cs" />
+    <Compile Include="Exceptions\InvalidModelStateException.cs" />
+    <Compile Include="Exceptions\RootObjectNotFoundException.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -255,8 +260,10 @@
     <Compile Include="Infrastructure\Interface\IAutoMapperTypeConfigurator.cs" />
     <Compile Include="Infrastructure\Interface\IAutoMapper.cs" />
     <Compile Include="Infrastructure\WebContainerManager.cs" />
+    <Compile Include="Models\ForgotPasswordViewModel.cs" />
     <Compile Include="Models\NotificationViewModel.cs" />
     <Compile Include="Models\UserViewModels.cs" />
+    <Compile Include="Processing\ProcessingFavesrusUser\FacebookUserCreatedActionResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -294,6 +301,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Dto\Category\" />
+    <Folder Include="Dto\GiftItem\" />
+    <Folder Include="Dto\Retailer\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\Item\" />
   </ItemGroup>

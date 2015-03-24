@@ -252,3 +252,45 @@ You would like to login/register for Favesrus using facebook
 **Fiddler query string:**
 
 email=elroy@gmail.com&providerkey=12345678
+
+
+(POST)/account/forgotpassword
+------------------
+**Context:**
+You need to reset your password
+	
+**Request:**
+
+	POST: http://dev.favesrus.com/api/account/forgotpassword
+	Content-Type: application/x-www-form-urlencoded
+	
+	Request Data:
+	{
+		"email":"elroy@gmail.com",
+	}
+
+
+**Response:**
+
+	HTTP/1.1 204 No Content
+	
+**Fiddler query string:**
+
+email=elroy@gmail.com
+
+(GET)/category
+------------------
+**Context:**
+You need all the current categorys in the system(aka recommendations in the system)
+	
+**Request:**
+
+	GET: http://dev.favesrus.com/api/category/
+
+**Response:**
+
+	HTTP/1.1 204 No Content
+	
+**Fiddler query string:**
+
+email=elroy@gmail.com

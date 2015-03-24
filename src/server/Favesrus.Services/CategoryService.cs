@@ -26,5 +26,36 @@ namespace Favesrus.Services
         {
             get { return _categoryRepo.All; }
         }
+
+
+        public Category AddCategory(Category entity)
+        {
+            _categoryRepo.Add(entity);
+            _uow.Save();
+            return entity;
+        }
+
+        public Category UpdateCategory(Category entity)
+        {
+            _categoryRepo.Update(entity);
+            _uow.Save();
+            return entity;
+        }
+
+        public Category FindCategoryById(int id)
+        {
+            return _categoryRepo.Get(id);
+        }
+
+        public Category FindCategoryByName(string name)
+        {
+            return _categoryRepo.FindBy(c => c.CategoryName == name);
+        }
+
+        public void DeleteCategory(int id)
+        {
+            _categoryRepo.Delete(id);
+            _uow.Save();
+        }
     }
 }

@@ -11,7 +11,10 @@ namespace Favesrus.DAL.Impl
         static FavesrusDbContext()
         {
             if (!DebuggingService.RunningInDebugMode())
-                Database.SetInitializer(new NullFavesrusDbInit());
+            {
+                //Database.SetInitializer(new NullFavesrusDbInit());
+                Database.SetInitializer(new FavesrusDbInit());
+            }
             else
                 Database.SetInitializer(new FavesrusDbInit());
 
