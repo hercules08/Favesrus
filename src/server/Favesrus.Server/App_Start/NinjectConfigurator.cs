@@ -6,6 +6,8 @@ using Favesrus.Server.Infrastructure.Interface;
 using Ninject;
 using System.Web.Http;
 using Ninject.Web.Common;
+using Favesrus.Services.Interfaces;
+using Favesrus.Services;
 
 namespace Favesrus.Server
 {
@@ -52,6 +54,9 @@ namespace Favesrus.Server
 
         private void ConfigureServices(IKernel container)
         {
+            container.Bind(typeof(IRetailerService)).To(typeof(RetailerService));
+            container.Bind(typeof(IGiftItemService)).To(typeof(GiftItemService));
+            container.Bind(typeof(ICategoryService)).To(typeof(CategoryService));
             //container.Bind<IShopService>().To<ShopService>();
             //container.Bind<IEmailService>().To<EmailService>();
 

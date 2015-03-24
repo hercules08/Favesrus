@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Favesrus.Server.ErrorHandling;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using System.Web.Http.ExceptionHandling;
 
 namespace Favesrus.Server
 {
@@ -9,8 +11,25 @@ namespace Favesrus.Server
     {
         public static void Register(HttpConfiguration config)
         {
-            // Web API configuration and services
+            // Remove xml formatter
+            config.Formatters.Remove(config.Formatters.XmlFormatter);
 
+            //TODO Enable CORS
+            //config.EnableCors();
+            
+            // Web API configuration and services
+            ConfigureRouting(config);
+
+            //TODO Enable tracewriting and logging
+
+            //TODO Enable exception logger
+
+            config.Services.Replace(typeof(IExceptionHandler), new GlobalExceptionHandler());
+            
+        }
+
+        private static void ConfigureRouting(HttpConfiguration config)
+        {
             // Web API routes
             config.MapHttpAttributeRoutes();
 
@@ -20,8 +39,6 @@ namespace Favesrus.Server
                 defaults: new { id = RouteParameter.Optional }
             );
 
-            // Remove xml formatter
-            config.Formatters.Remove(config.Formatters.XmlFormatter);
         }
     }
 }
