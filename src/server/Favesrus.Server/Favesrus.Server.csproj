@@ -254,6 +254,8 @@
     <Compile Include="Helpers\Alert.cs" />
     <Compile Include="Helpers\GravatarHelper.cs" />
     <Compile Include="Helpers\GravatarOptions.cs" />
+    <Compile Include="Helpers\MachineKeyDataProtectionProvider.cs" />
+    <Compile Include="Helpers\MachineKeyDataProtector.cs" />
     <Compile Include="Infrastructure\FavesrusAuthProvider.cs" />
     <Compile Include="Infrastructure\Impl\AutoMapperAdapter.cs" />
     <Compile Include="Infrastructure\Impl\AutoMapperConfigurator.cs" />
