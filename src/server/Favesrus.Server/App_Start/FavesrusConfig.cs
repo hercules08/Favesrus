@@ -1,4 +1,5 @@
 ﻿using Favesrus.DAL.Impl;
+using Favesrus.Server.Infrastructure;
 using Favesrus.Services;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
@@ -25,6 +26,13 @@ namespace Favesrus.Server
             {
                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie
             });
+
+            //app.UseOAuthBearerTokens(new Microsoft.Owin.Security.OAuth.OAuthAuthorizationServerOptions
+            //{
+            //    Provider = new FavesrusAuthProvider(),
+            //    AllowInsecureHttp = true,
+            //    TokenEndpointPath = new PathString("/Authenticate")
+            //});
         }
     }
 }

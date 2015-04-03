@@ -19,5 +19,11 @@
                 }
             }
         }
+
+        public static string FACEBOOK_PROVIDER = "Facebook";
+
+        public static string CUSTOMER_ROLE = "Customer";
+
+        public static string EMAIL_ADDRESS = "damola.omatosho@gmail.com";
     }
 }

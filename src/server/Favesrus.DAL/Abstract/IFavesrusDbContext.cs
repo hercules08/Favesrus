@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Favesrus.DAL.Abstract
 {
-    public interface IFavesrusDbContext
+    public interface IFavesrusDbContext:IDisposable
     {
         int SaveChanges();
     }
