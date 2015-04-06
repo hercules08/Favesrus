@@ -11,6 +11,7 @@ using System.Web.Optimization;
 using Favesrus.Server.Infrastructure.Impl;
 using Favesrus.Server.Infrastructure;
 using Favesrus.Server.Infrastructure.Interface;
+using Newtonsoft.Json.Serialization;
 
 [assembly: log4net.Config.XmlConfigurator(Watch = true)]
 
@@ -42,6 +43,10 @@ namespace Favesrus.Server
             //Prevent Formatting Loops
             GlobalConfiguration.Configuration.Formatters.JsonFormatter
                 .SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+
+            // Use camel casing
+            GlobalConfiguration.Configuration.Formatters.JsonFormatter
+                .SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
         }
     }
 }

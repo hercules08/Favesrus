@@ -17,11 +17,13 @@ namespace Favesrus.Server.Processing.ProcessingFavesrusUser.ActionResult
     {
         private readonly DtoFavesrusUser _dtoFavesrusUser;
         private readonly HttpRequestMessage _requestMessage;
+        private readonly string _message;
 
-        public DtoFavesrusUserRegisteredActionResult(HttpRequestMessage requestMessage, DtoFavesrusUser dtoFavesrusUser)
+        public DtoFavesrusUserRegisteredActionResult(HttpRequestMessage requestMessage, DtoFavesrusUser dtoFavesrusUser, string message)
         {
             _requestMessage = requestMessage;
             _dtoFavesrusUser = dtoFavesrusUser;
+            _message = message;
         }
 
         public Task<HttpResponseMessage> ExecuteAsync(CancellationToken cancellationToken)
@@ -31,13 +33,12 @@ namespace Favesrus.Server.Processing.ProcessingFavesrusUser.ActionResult
 
         public HttpResponseMessage Execute()
         {
-            var responseObject = 
-                ResponseObjectFactory
-                .CreateEntityResponseModel(
-                _dtoFavesrusUser, 
-                Constants.Status.FAVES_USER_REGISTERED);
+            var responseModel = 
+                ResponseFactory.CreateEntityResponseModel(_dtoFavesrusUser, _message);
+            var responseObject = ResponseFactory
+                .CreateResponseObject(Constants.Status.FAVES_USER_REGISTERED, responseModel);
             var responseMessage = _requestMessage.CreateResponse(HttpStatusCode.Created, responseObject);
-            responseMessage.Headers.Location = LocationLinkCalculator.GetLocationLink(_dtoFavesrusUser);
+            //responseMessage.Headers.Location = LocationLinkCalculator.GetLocationLink(_dtoFavesrusUser);
 
             return responseMessage;
         }

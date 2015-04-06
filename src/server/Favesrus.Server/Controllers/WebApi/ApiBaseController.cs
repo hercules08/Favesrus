@@ -20,9 +20,9 @@ namespace Favesrus.Server.Controllers.WebApi
         DpapiDataProtectionProvider provider = new DpapiDataProtectionProvider("Sample");
 
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-        private FavesrusUserManager userManager;
-        private IAuthenticationManager authManager;
-        private FavesrusRoleManager roleManager;
+        private FavesrusUserManager _userManager;
+        private IAuthenticationManager _authManager;
+        private FavesrusRoleManager _roleManager;
 
         public ApiBaseController()
         {
@@ -89,27 +89,30 @@ namespace Favesrus.Server.Controllers.WebApi
         {
             get
             {
-                return authManager ?? 
-                    HttpContext.Current.GetOwinContext()
-                    .Authentication;
+                if(_authManager == null)
+                    AuthManager = HttpContext.Current.GetOwinContext().Authentication;
+                return _authManager;
             }
             private set
             {
-                authManager = value;
+                _authManager = value;
             }
         }
+
+
 
         public FavesrusUserManager UserManager
         {
             get
             {
-                return userManager ?? 
-                    HttpContext.Current.GetOwinContext()
-                    .GetUserManager<FavesrusUserManager>();
+                if (_userManager == null)
+                    UserManager = HttpContext.Current.GetOwinContext().GetUserManager<FavesrusUserManager>();
+
+                return _userManager;
             }
             private set
             {
-                userManager = value;
+                _userManager = value;
             }
         }
 
@@ -117,13 +120,13 @@ namespace Favesrus.Server.Controllers.WebApi
         {
             get
             {
-                return roleManager ?? 
-                    HttpContext.Current.GetOwinContext()
-                    .GetUserManager<FavesrusRoleManager>();
+                if (_roleManager == null)
+                    RoleManager = HttpContext.Current.GetOwinContext().GetUserManager<FavesrusRoleManager>();
+                return _roleManager;
             }
             private set
             {
-                roleManager = value;
+                _roleManager = value;
             }
         }
     }

@@ -18,10 +18,10 @@ namespace Favesrus.Server.Processing
         private readonly string _statusDetail;
 
         public ErrorActionResult(
-            HttpRequestMessage requestMessage, 
-            string status, 
-            string statusDetail, 
-            object entity=null)
+            HttpRequestMessage requestMessage,
+            string status,
+            string statusDetail,
+            object entity = null)
         {
             _requestMessage = requestMessage;
             _entity = entity;
@@ -36,8 +36,27 @@ namespace Favesrus.Server.Processing
 
         public HttpResponseMessage Execute()
         {
-            var responseModel = ResponseObjectFactory.CreateEntityResponseModel(_entity, _statusDetail);
-            var responseObject = ResponseObjectFactory.CreateResponseObject(_status, responseModel);
+            ResponseModel responseModel;
+
+            IEnumerable<object> localEntity = _entity as IEnumerable<object>;
+
+            if(localEntity != null)
+            {
+                if ((localEntity as IEnumerable<object>).Count() > 1)
+                {
+                    responseModel = ResponseFactory.CreateItemsResponseModel(localEntity, _statusDetail);
+                }
+                else
+                {
+                    responseModel = ResponseFactory.CreateEntityResponseModel(localEntity.ElementAtOrDefault(0), _statusDetail);
+                }
+            }
+            else
+            {
+                responseModel = ResponseFactory.CreateEntityResponseModel(_entity, _statusDetail);
+            }
+
+            var responseObject = ResponseFactory.CreateResponseObject(_status, responseModel);
             var responseMessage = _requestMessage.CreateResponse(HttpStatusCode.BadRequest, responseObject);
 
             return responseMessage;

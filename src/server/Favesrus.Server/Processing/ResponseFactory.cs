@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Favesrus.Server.Processing
 {
-    public class ResponseObjectFactory
+    public class ResponseFactory
     {
         public static ResponseObject CreateResponseObject(string status, ResponseModel model)
         {

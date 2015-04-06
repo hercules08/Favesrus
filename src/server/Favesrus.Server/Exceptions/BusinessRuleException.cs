@@ -10,7 +10,7 @@ namespace Favesrus.Server.Exceptions
         private readonly string _status = "";
 
         public BusinessRuleException(string status, string message, object entity = null)
-            : base(message)
+            : base(message, entity)
         {
             _status = status;
         }

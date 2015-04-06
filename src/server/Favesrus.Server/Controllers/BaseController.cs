@@ -11,9 +11,9 @@ namespace Favesrus.Server.Controllers
 {
     public abstract class BaseController : Controller
     {
-        private FavesrusUserManager userManager;
-        private IAuthenticationManager authManager;
-        private FavesrusRoleManager roleManager;
+        private FavesrusUserManager _userManager;
+        private IAuthenticationManager _authManager;
+        private FavesrusRoleManager _roleManager;
 
         public void Success(string message, bool dismissable = false)
         {
@@ -76,13 +76,13 @@ namespace Favesrus.Server.Controllers
         {
             get
             {
-                return authManager ??
-                    HttpContext.GetOwinContext()
-                    .Authentication;
+                if (_authManager == null)
+                    AuthManager = HttpContext.GetOwinContext().Authentication;
+                return _authManager;
             }
             private set
             {
-                authManager = value;
+                _authManager = value;
             }
         }
 
@@ -90,13 +90,14 @@ namespace Favesrus.Server.Controllers
         {
             get
             {
-                return userManager ??
-                    HttpContext.GetOwinContext()
-                    .GetUserManager<FavesrusUserManager>();
+                if(_userManager == null)
+                    UserManager = HttpContext.GetOwinContext().GetUserManager<FavesrusUserManager>();
+                
+                return _userManager;    
             }
             private set
             {
-                userManager = value;
+                _userManager = value;
             }
         }
 
@@ -104,13 +105,13 @@ namespace Favesrus.Server.Controllers
         {
             get
             {
-                return roleManager ??
-                    HttpContext.GetOwinContext()
-                    .GetUserManager<FavesrusRoleManager>();
+                if(_roleManager == null)
+                 RoleManager = HttpContext.GetOwinContext().GetUserManager<FavesrusRoleManager>();
+                return _roleManager;
             }
             private set
             {
-                roleManager = value;
+                _roleManager = value;
             }
         }
 	}

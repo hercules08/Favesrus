@@ -273,7 +273,6 @@
     <Compile Include="Models\NotificationViewModel.cs" />
     <Compile Include="Models\UserViewModels.cs" />
     <Compile Include="Processing\ErrorActionResult.cs" />
-    <Compile Include="Processing\InvalidModelStateActionResult.cs" />
     <Compile Include="Processing\LocationLinkCalculator.cs" />
     <Compile Include="Processing\ProcessingFavesrusUser\ActionResult\DtoFavesrusUserRegisteredActionResult.cs" />
     <Compile Include="Processing\ProcessingFavesrusUser\Implmentation\FavesrusUserProcessor.cs" />
@@ -281,7 +280,7 @@
     <Compile Include="Processing\ResponseObject.cs" />
     <Compile Include="Processing\ProcessingFavesrusUser\ActionResult\FacebookUserCreatedActionResult.cs" />
     <Compile Include="Processing\ResponseModel.cs" />
-    <Compile Include="Processing\ResponseObjectFactory.cs" />
+    <Compile Include="Processing\ResponseFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

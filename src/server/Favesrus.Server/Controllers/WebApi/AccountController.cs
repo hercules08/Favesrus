@@ -30,7 +30,8 @@ namespace Favesrus.Server.Controllers.WebApi
         private IAutoMapper _mapper;
         private IFavesrusUserProcessor _favesrusUserProcessor;
 
-        public AccountController(IAutoMapper mapper, IFavesrusUserProcessor favesrusUserProcessor)
+        public AccountController(IAutoMapper mapper,
+            IFavesrusUserProcessor favesrusUserProcessor)
             : base()
         {
             _mapper = mapper;
@@ -54,9 +55,14 @@ namespace Favesrus.Server.Controllers.WebApi
         [ValidateModel]
         public async Task<IHttpActionResult> Register(HttpRequestMessage requestMessage, RegisterModel model)
         {
+            string successMessage = "Successfully registered Faves 'R' Us user.";
+
             DtoFavesrusUser dtoFavesrusUser =  await _favesrusUserProcessor.RegisterUserAsync(model);
 
-            var result = new DtoFavesrusUserRegisteredActionResult(requestMessage, dtoFavesrusUser);
+            var result = new DtoFavesrusUserRegisteredActionResult(
+                requestMessage, 
+                dtoFavesrusUser,
+                successMessage);
 
             return result;
         }

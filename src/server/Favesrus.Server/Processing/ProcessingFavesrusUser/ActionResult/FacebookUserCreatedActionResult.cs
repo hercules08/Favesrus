@@ -33,7 +33,7 @@ namespace Favesrus.Server.Processing.ProcessingFavesrusUser.ActionResult
 
         public HttpResponseMessage Execute()
         {
-            var responseObject = ResponseObjectFactory.CreateEntityResponseModel(_user, Constants.Status.FACEBOOK_USER_CREATED);
+            var responseObject = ResponseFactory.CreateEntityResponseModel(_user, Constants.Status.FACEBOOK_USER_CREATED);
             var responseMessage = _requestMessage.CreateResponse(HttpStatusCode.Created, responseObject);
             responseMessage.Headers.Location = LocationLinkCalculator.GetLocationLink(_user);
 

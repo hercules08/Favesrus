@@ -1,4 +1,5 @@
-﻿using Favesrus.Server.Processing;
+﻿using Favesrus.Common;
+using Favesrus.Server.Processing;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,8 +29,15 @@ namespace Favesrus.Server.Filters
                     invalidModelStates.Add(invalidItem);
                 }
 
-                actionContext.Response = 
-                    new InvalidModelStateActionResult(actionContext.Request,invalidModelStates).Execute();
+                actionContext.Response =
+                    new ErrorActionResult(
+                        actionContext.Request,
+                        Constants.Status.INVALID_MODELSTATE,
+                        "Bad model state",
+                        invalidModelStates).Execute();
+
+                    //new InvalidModelStateActionResult(
+                    //    actionContext.Request,invalidModelStates).Execute();
             }
         }
 

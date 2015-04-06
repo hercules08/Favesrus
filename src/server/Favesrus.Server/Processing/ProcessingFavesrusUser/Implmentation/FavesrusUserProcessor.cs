@@ -26,6 +26,12 @@ namespace Favesrus.Server.Processing.ProcessingFavesrusUser.Implmentation
         private FavesrusRoleManager _roleManager;
         private readonly IAutoMapper _mapper;
 
+        public FavesrusUserProcessor(IAutoMapper mapper)
+        {
+            _mapper = mapper;
+        }
+
+
         public FavesrusUserProcessor(
             IAutoMapper mapper,
             FavesrusUserManager userManager,
@@ -37,11 +43,15 @@ namespace Favesrus.Server.Processing.ProcessingFavesrusUser.Implmentation
             _roleManager = roleManager;
         }
 
+
         public FavesrusUserManager UserManager
         {
             get
             {
-                return _userManager ?? HttpContext.Current.GetOwinContext().GetUserManager<FavesrusUserManager>();
+                if (_userManager == null)
+                    UserManager = HttpContext.Current.GetOwinContext().GetUserManager<FavesrusUserManager>();
+
+                return _userManager;
             }
             private set
             {
@@ -53,9 +63,9 @@ namespace Favesrus.Server.Processing.ProcessingFavesrusUser.Implmentation
         {
             get
             {
-                return _roleManager ??
-                    HttpContext.Current.GetOwinContext()
-                    .GetUserManager<FavesrusRoleManager>();
+                if (_roleManager == null)
+                    RoleManager = HttpContext.Current.GetOwinContext().GetUserManager<FavesrusRoleManager>();
+                return _roleManager;
             }
             private set
             {
@@ -74,7 +84,7 @@ namespace Favesrus.Server.Processing.ProcessingFavesrusUser.Implmentation
 
 
             // Step 1 - Create the user
-            step_1_result = UserManager.CreateAsync(user, model.Password).Result;
+            step_1_result = UserManager.Create(user, model.Password);
             if (!step_1_result.Succeeded)
             {
                 var errors = GetErrorsFromIdentityResult(step_1_result);
@@ -85,8 +95,8 @@ namespace Favesrus.Server.Processing.ProcessingFavesrusUser.Implmentation
             }
 
             // Step 2 - Add the user to the customer role
-            step_2_result = UserManager.AddToRoleAsync(user.Id, Faves.Constants.CUSTOMER_ROLE).Result;
-            if(!step_2_result.Succeeded)
+            step_2_result = UserManager.AddToRole(user.Id, Faves.Constants.CUSTOMER_ROLE);
+            if (!step_2_result.Succeeded)
             {
                 var errors = GetErrorsFromIdentityResult(step_1_result);
                 throw new BusinessRuleException(
@@ -117,6 +127,7 @@ namespace Favesrus.Server.Processing.ProcessingFavesrusUser.Implmentation
 
                 invalidItem.ErrorItem = "issue" + i;
                 invalidItem.Reason = error;
+                invalidModelStates.Add(invalidItem);
                 i++;
             }
 
