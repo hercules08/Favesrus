@@ -48,10 +48,17 @@ function setProductData(e) {
     }, 1000);
     setTimeout(function() {
         //Add Products to list view
-        e.view.element.find("#products-search-listview").data("kendoMobileListView").replace([ "Mario Amiibo", "Fox Amiibo", "Link Amiibo" ]);
-        /*if(cordova){
-            cordova.plugins.Keyboard.close();
-        }*/
+        /*e.view.element.find("#products-search-listview").data("kendoMobileListView").replace([ "Mario Amiibo", "Fox Amiibo", "Link Amiibo" ]);
+        */
+        var template = kendo.template($("#productSearchTemplate").html()); //Get the external template definition
+        var temp_data = '{"Status":"recommendations", "Model":{"items":[{"id":"345435","name":"Mario Amiibo","image":"images/image_placeholder.png", "description":"Interactive Play with Nintendo console games"},{"id":"3545354","name":"Luigi Amiibo","image":"images/image_placeholder.png", "description":"Interactive Play with Nintendo console games"},{"id":"3454363","name":"Peach Amiibo","image":"images/image_placeholder.png", "description":"Interactive Play with Nintendo console games"},{"id":"3454398","name":"Wario Amiibo","image":"images/image_placeholder.png", "description":"Interactive Play with Nintendo console games"},{"id":"3454005","name":"Pit Amiibo","image":"images/image_placeholder.png", "description":"Interactive Play with Nintendo console games"}]}}';
+        //var data = ["Recommendation1", "Recommendation2", "Recommendation3", "Recommendation4", "Recommendation5"]; //Create some dummy data
+        var data = JSON.parse(temp_data);
+        
+        var result = template(data); //Execute the template
+        console.log(data);
+        APP.instance.view().element.find("#products-search-listview").html(result); //Append the result
+
         try {
         	if(cordova){
             	cordova.plugins.Keyboard.close();
@@ -102,7 +109,8 @@ function afterHomeViewShow(e){
       		//Reset the input to empty
       		$(".km-filter-wrap input").val("");
       		e.view.element.find("#products-search-listview").data("kendoMobileListView").replace([ "No Products shown..." ]);
-		});
+            $("#products-search-listview>li:first-child").addClass("text-center");
+        });
         //homeShowCounter++;
     //}
     //if(homeShowCounter === 0) {
@@ -120,12 +128,12 @@ function afterHomeViewShow(e){
 function homeViewInit(e) {
     console.log("home-view init");
     checkLocalCredentials();
-    e.view.element.find("#products-search-listview").kendoMobileListView({
-		dataSource: [ "No Products shown..." ],
+    /*e.view.element.find("#products-search-listview").kendoMobileListView({
+		dataSource: [ "No Products shown..." ]
 		/*filterable: {
 		     placeholder: "Search for products..",
 		     autoFilter: false
 		}*/
-    });
+    /*});*/
     $("#products-search-listview>li:first-child").addClass("text-center");
 }

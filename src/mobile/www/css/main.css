@@ -40,7 +40,12 @@
 }
 
 #tabstrip a {
-	color: #16a085 !important;
+	color: #16a085 !important; /*Green Sea*/
+}
+
+.km-tabstrip {
+	border-color: #16a085 !important;
+	background-color: white !important;
 }
 
 /* ----------- Modal View -----------*/
@@ -127,11 +132,39 @@ a {
 	width: 80% !important;
 }
 
+/* ------ Modal View ------ */
+.km-modalview .km-view-title {
+	  line-height: 2.5em !important;
+}
+
 .modal-close-btn {
-	float: right;
 	border: 0px !important;
-	color: black !important;
-	font-size: 1.5em !important;
+	color: white !important;
+	/*font-size: 1.5em !important;*/
+}
+
+.recommendations {
+	width: 40%;
+	height: 20%;
+	background-color: #e74c3c;
+	border: 2px solid #e74c3c; /*Alizarin*/
+	border-radius: 15px;
+	display: inline-block;
+	margin: 0.5em;
+	color: white;
+}
+
+.selected {
+	background-color: #16a085;
+	border: 2px solid #16a085; /*Green Sea*/
+}
+
+.recommendations img {
+	width: 60%;
+}
+
+.recommendation-name {
+	font-style: italic;
 }
 
 /* ----------- Login View ----------- */
@@ -229,6 +262,44 @@ input.error-placeholder::-webkit-input-placeholder {
   content: "\e031" !important;
 }
 
+/*  ------ Product Search results ------ */
+.item-image {
+	width: 20%;
+} 
+
+.item-image, .item-name, .item-description, #myprofile-list-item img {
+	float: left;
+}
+.item-name {
+	font-size: 0.9em;
+	/*line-height: 1.4em;*/
+	margin: .3em 1em 0 .6em;
+}
+
+.item-description {
+	font-size: .65em;
+	/*line-height: 1em;*/
+	width: 53%;
+	margin: 0.4em 0 0 0em;
+}
+
+.wishlist-operation {
+	width: 15%;
+}
+
+li a {
+	color: black !important;
+}
+
+/* ----------- Settings-View ----------- */
+#myprofile-list-item img {
+	width: 15%;
+}
+
+#myprofile-list-item p {
+	  margin-left: 4.5em !important;
+}
+
 /* ----------- Fix Kendo UI issues ----------- */
 .km-view-title {
 	line-height: 1em !important;
@@ -310,3 +381,4 @@ li {
 /*.km-filter-reset {
 	display:none !important;
 }*/
+

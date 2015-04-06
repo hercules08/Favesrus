@@ -47,6 +47,7 @@ function afterWishlistViewShow(e) {
         }
         else {
             console.log("You have already logged in!");
+            //TODO Attempt to auth user
             //TODO attempt to GET wishlist items
         }
     }, 500);

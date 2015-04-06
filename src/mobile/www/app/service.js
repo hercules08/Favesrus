@@ -99,12 +99,6 @@ function webService(requestString, content) {
 			);
 		}
 
-		/*if(requestString === "registerFacebook"){
-			//Attempt to login
-			console.log("Attempt to log into your account with Facebook");
-			webService("loginFacebook","email=" + temp_obj.email + "&providerkey="+temp_deviceID);
-		}*/
-
 	})
 	.always(function(data, status, xhr) {	//Replaces the complete method
 	    //alert( "complete " + response);
