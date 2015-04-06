@@ -15,7 +15,7 @@ using System.Web.Http.ModelBinding;
 
 namespace Favesrus.Server.Controllers.WebApi
 {
-    public abstract class BaseController : ApiController
+    public abstract class ApiBaseController : ApiController
     {
         DpapiDataProtectionProvider provider = new DpapiDataProtectionProvider("Sample");
 
@@ -24,12 +24,12 @@ namespace Favesrus.Server.Controllers.WebApi
         private IAuthenticationManager authManager;
         private FavesrusRoleManager roleManager;
 
-        public BaseController()
+        public ApiBaseController()
         {
             UserManager.UserTokenProvider = new DataProtectorTokenProvider<FavesrusUser>(provider.Create("EmailConfirmation"));
         }
 
-        public BaseController
+        public ApiBaseController
             (FavesrusUserManager userManager, 
                 FavesrusRoleManager roleManager, 
                 IAuthenticationManager authManager)

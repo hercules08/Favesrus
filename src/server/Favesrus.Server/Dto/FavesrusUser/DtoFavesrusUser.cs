@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Favesrus.Server.Dto.FavesrusUser
 {
-    public class DtoFavesrusUser
+    public class DtoFavesrusUser:ILinkContaining
     {
         public DtoFavesrusUser()
         {
@@ -19,5 +19,12 @@ namespace Favesrus.Server.Dto.FavesrusUser
         public DateTime? Birthday { get; set; }
         //public Gender Gender { get; set; }
         public string ProfilePic { get; set; }
+
+        public List<Link> Links { get; set; }
+
+        public void AddLink(Link link)
+        {
+            Links.Add(link);
+        }
     }
 }

@@ -1,10 +1,14 @@
-﻿using Favesrus.Server.Exceptions;
+﻿using Favesrus.Common;
+using Favesrus.Server.Exceptions;
+using Favesrus.Server.Filters;
+using Favesrus.Server.Processing;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Http.ExceptionHandling;
+using System.IdentityModel.Tokens;
 
 namespace Favesrus.Server.ErrorHandling
 {
@@ -15,6 +19,7 @@ namespace Favesrus.Server.ErrorHandling
             var exception = context.Exception;
 
             var httpException = exception as HttpException;
+
             if (httpException != null)
             {
                 context.Result = new SimpleErrorResult(context.Request,
@@ -22,36 +27,49 @@ namespace Favesrus.Server.ErrorHandling
                 return;
             }
 
-            //if (exception is SecurityTokenValidationException)
-            //{
-            //    context.Result = new SimpleErrorResult(context.Request, HttpStatusCode.Unauthorized,
-            //        exception.Message);
-            //    return;
-            //}
+            if (exception is SecurityTokenValidationException)
+            {
+                context.Result = new SimpleErrorResult(context.Request, HttpStatusCode.Unauthorized,
+                    exception.Message);
+                return;
+            }
+
+            var baseErrorException = exception as BaseErrorException;
 
             if (exception is RootObjectNotFoundException)
             {
-                context.Result = new SimpleErrorResult(context.Request, HttpStatusCode.NotFound, exception.Message);
+                context.Result =
+                    new ErrorActionResult(
+                        context.Request,
+                        Constants.Status.ROOT_OBJECT_NOT_FOUND,
+                        baseErrorException.Message,
+                        baseErrorException.Entity);
                 return;
             }
 
             if (exception is ChildObjectNotFoundException)
             {
-                context.Result = new SimpleErrorResult(context.Request, HttpStatusCode.Conflict, exception.Message);
+                context.Result =
+                    new ErrorActionResult(
+                        context.Request,
+                        Constants.Status.CHILD_OBJECT_NOT_FOUND,
+                        baseErrorException.Message,
+                        baseErrorException.Entity);
                 return;
             }
 
-
-            if(exception is InvalidModelStateException)
+            if (exception is BusinessRuleException)
             {
-                context.Result = new SimpleErrorResult(context.Request, HttpStatusCode.BadRequest, exception.Message);
+                var businessRuleException = exception as BusinessRuleException;
+
+                context.Result =
+                    new ErrorActionResult(
+                        context.Request,
+                        businessRuleException.Status,
+                        businessRuleException.Message,
+                        businessRuleException.Entity);
+                return;
             }
-            //if (exception is BusinessRuleViolationException)
-            //{
-            //    context.Result = new SimpleErrorResult(context.Request, HttpStatusCode.PaymentRequired,
-            //        exception.Message);
-            //    return;
-            //}
 
             context.Result = new SimpleErrorResult(context.Request, HttpStatusCode.InternalServerError,
                 exception.Message);

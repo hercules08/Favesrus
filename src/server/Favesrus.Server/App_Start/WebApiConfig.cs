@@ -11,6 +11,8 @@ namespace Favesrus.Server
     {
         public static void Register(HttpConfiguration config)
         {
+            //config.DependencyResolver = new NinjectDependencyResolver();
+
             // Remove xml formatter
             config.Formatters.Remove(config.Formatters.XmlFormatter);
 

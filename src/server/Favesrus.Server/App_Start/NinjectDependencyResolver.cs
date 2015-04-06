@@ -14,6 +14,11 @@ namespace Favesrus.Server
             get { return _container; }
         }
 
+        public NinjectDependencyResolver() : this(new StandardKernel())
+        {
+
+        }
+
         public NinjectDependencyResolver(IKernel container)
         {
             _container = container;

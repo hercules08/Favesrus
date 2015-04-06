@@ -5,9 +5,9 @@ using System.Web;
 
 namespace Favesrus.Server.Exceptions
 {
-    public class RootObjectNotFoundException:Exception
+    public class RootObjectNotFoundException:BaseErrorException
     {
-        public RootObjectNotFoundException(string message) : base(message)
+        public RootObjectNotFoundException(string message, object entity = null) : base(message)
         {
 
         }

@@ -8,6 +8,8 @@ using System.Web.Http;
 using Ninject.Web.Common;
 using Favesrus.Services.Interfaces;
 using Favesrus.Services;
+using Favesrus.Server.Processing.ProcessingFavesrusUser.Interface;
+using Favesrus.Server.Processing.ProcessingFavesrusUser.Implmentation;
 
 namespace Favesrus.Server
 {
@@ -42,6 +44,9 @@ namespace Favesrus.Server
 
             // AutoMapper Config
             ConfigureAutoMapper(container);
+
+            // Processor Config
+            ConfigureProcessors(container);
 
         }
 
@@ -85,6 +90,12 @@ namespace Favesrus.Server
             container.Bind<IAutoMapperTypeConfigurator>()
                 .To<FavesrusUser_RegisterModel>()
                 .InSingletonScope();
+        }
+
+        private void ConfigureProcessors(IKernel container)
+        {
+            container.Bind<IFavesrusUserProcessor>()
+                .To<FavesrusUserProcessor>();
         }
     }
 }

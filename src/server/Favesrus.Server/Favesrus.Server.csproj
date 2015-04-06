@@ -108,6 +108,7 @@
     <Reference Include="Owin">
       <HintPath>..\..\..\libs\Owin.1.0\lib\net40\Owin.dll</HintPath>
     </Reference>
+    <Reference Include="System.IdentityModel" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -228,7 +229,7 @@
     <Compile Include="Controllers\PrepController.cs" />
     <Compile Include="Controllers\RetailerController.cs" />
     <Compile Include="Controllers\WebApi\AccountController.cs" />
-    <Compile Include="Controllers\WebApi\BaseController.cs" />
+    <Compile Include="Controllers\WebApi\ApiBaseController.cs" />
     <Compile Include="Controllers\WebApi\CategoryController.cs" />
     <Compile Include="Controllers\WebApi\GiftItemController.cs" />
     <Compile Include="Controllers\WebApi\ModoController.cs" />
@@ -243,11 +244,17 @@
     <Compile Include="Dto\FavesrusUser\MapperConfig\FavesrusUser_RegisterModel.cs" />
     <Compile Include="Dto\FavesrusUser\RegisterFacebookModel.cs" />
     <Compile Include="Dto\FavesrusUser\RegisterModel.cs" />
+    <Compile Include="Dto\ILinkContaining.cs" />
+    <Compile Include="Dto\Interface1.cs" />
+    <Compile Include="Dto\Link.cs" />
     <Compile Include="ErrorHandling\GlobalExceptionHandler.cs" />
     <Compile Include="ErrorHandling\SimpleErrorResult.cs" />
+    <Compile Include="Exceptions\BaseErrorException.cs" />
+    <Compile Include="Exceptions\BusinessRuleException.cs" />
     <Compile Include="Exceptions\ChildObjectNotFoundException.cs" />
-    <Compile Include="Exceptions\InvalidModelStateException.cs" />
     <Compile Include="Exceptions\RootObjectNotFoundException.cs" />
+    <Compile Include="Filters\InvalidModelState.cs" />
+    <Compile Include="Filters\ValidateModelAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -265,7 +272,16 @@
     <Compile Include="Models\ForgotPasswordViewModel.cs" />
     <Compile Include="Models\NotificationViewModel.cs" />
     <Compile Include="Models\UserViewModels.cs" />
-    <Compile Include="Processing\ProcessingFavesrusUser\FacebookUserCreatedActionResult.cs" />
+    <Compile Include="Processing\ErrorActionResult.cs" />
+    <Compile Include="Processing\InvalidModelStateActionResult.cs" />
+    <Compile Include="Processing\LocationLinkCalculator.cs" />
+    <Compile Include="Processing\ProcessingFavesrusUser\ActionResult\DtoFavesrusUserRegisteredActionResult.cs" />
+    <Compile Include="Processing\ProcessingFavesrusUser\Implmentation\FavesrusUserProcessor.cs" />
+    <Compile Include="Processing\ProcessingFavesrusUser\Interface\IFavesrusUserProcessor.cs" />
+    <Compile Include="Processing\ResponseObject.cs" />
+    <Compile Include="Processing\ProcessingFavesrusUser\ActionResult\FacebookUserCreatedActionResult.cs" />
+    <Compile Include="Processing\ResponseModel.cs" />
+    <Compile Include="Processing\ResponseObjectFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

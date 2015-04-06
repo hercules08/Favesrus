@@ -15,8 +15,6 @@ namespace Favesrus.Services
         private string _fromAddress;
         private string _message;
         private string _subject;
-        private string _password;
-        private NetworkCredential _credential;
         private MailMessage _mailMessage;
         private SmtpClient _smtpClient;
 

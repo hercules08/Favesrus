@@ -18,131 +18,54 @@ using System.Web.Http.ModelBinding;
 using Faves = Favesrus.Common;
 using System.Net.Mail;
 using System.Web;
+using Favesrus.Server.Filters;
+using Favesrus.Server.Processing.ProcessingFavesrusUser.Interface;
+using Favesrus.Server.Processing.ProcessingFavesrusUser.ActionResult;
 
 namespace Favesrus.Server.Controllers.WebApi
 {
     [RoutePrefix("api/account")]
-    public class AccountController : BaseController
+    public class AccountController : ApiBaseController
     {
-        private IAutoMapper mapper;
+        private IAutoMapper _mapper;
+        private IFavesrusUserProcessor _favesrusUserProcessor;
 
-        public AccountController(IAutoMapper mapper)
+        public AccountController(IAutoMapper mapper, IFavesrusUserProcessor favesrusUserProcessor)
             : base()
         {
-            this.mapper = mapper;
+            _mapper = mapper;
+            _favesrusUserProcessor = favesrusUserProcessor;
         }
 
         public AccountController
             (IAutoMapper mapper,
+                IFavesrusUserProcessor favesrusUserProcessor,
                 FavesrusUserManager userManager,
                 FavesrusRoleManager roleManager,
                 IAuthenticationManager authManager)
             : base(userManager, roleManager, authManager)
         {
-            this.mapper = mapper;
+            _mapper = mapper;
+            _favesrusUserProcessor = favesrusUserProcessor;
         }
-
-        //[HttpPost]
-        //[Route("registerfacebook")]
-        //public async Task<IHttpActionResult> RegisterFacebook(RegisterFacebookModel model)
-        //{
-
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
-
-        //    UserLoginInfo loginInfo =
-        //        new UserLoginInfo(Faves.Constants.FACEBOOK_PROVIDER,
-        //                model.ProviderKey);
-
-        //    FavesrusUser user = await UserManager.FindAsync(loginInfo);
-
-        //    if (user == null)
-        //    {
-        //        user = mapper.Map<FavesrusUser>(model);
-        //        user.UserName = model.Email;
-
-        //        return await RegisterUser(user, loginInfo, null);
-        //    }
-        //    else
-        //    {
-        //        return BadRequest("The user already exists!");
-        //    }
-        //}
 
         [HttpPost]
         [Route("register")]
-        public async Task<IHttpActionResult> Register(RegisterModel model)
+        [ValidateModel]
+        public async Task<IHttpActionResult> Register(HttpRequestMessage requestMessage, RegisterModel model)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+            DtoFavesrusUser dtoFavesrusUser =  await _favesrusUserProcessor.RegisterUserAsync(model);
 
-            FavesrusUser user = mapper.Map<FavesrusUser>(model);
-            user.UserName = model.Email;
+            var result = new DtoFavesrusUserRegisteredActionResult(requestMessage, dtoFavesrusUser);
 
-            return await RegisterUser(user, null, model.Password);
-        }
-
-        private async Task<IHttpActionResult> RegisterUser(FavesrusUser user, UserLoginInfo loginInfo = null, string password = null)
-        {
-            IdentityResult result;
-            IHttpActionResult errorResult;
-
-            if (string.IsNullOrEmpty(password))
-            {
-                result = await UserManager.CreateAsync(user);
-
-                // Unable to create user
-                if (!result.Succeeded)
-                    return GetErrorResult(result);
-
-                result = await UserManager.AddLoginAsync(user.Id, loginInfo);
-            }
-            else
-            {
-                result = await UserManager.CreateAsync(user, password);
-            }
-
-            errorResult = GetErrorResult(result);
-
-            if (errorResult != null)
-            {
-                //return errorResult;
-
-
-                //Dictionary<string, object> error = new Dictionary<string, object>();
-                //error.Add("Message", "Username is already taken");
-                ////error.Add("ErrorMessage", "Something really bad happened");
-                ////return BadRequest(error);
-
-                //HttpResponseMessage response = Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Username is already taken");
-
-                return BadRequest("Username is already taken.");
-            }
-
-            // Add to customer role
-            if (!RoleManager.RoleExists(Faves.Constants.CUSTOMER_ROLE))
-                await RoleManager.CreateAsync(new FavesrusRole(Faves.Constants.CUSTOMER_ROLE));
-
-            await UserManager.AddToRoleAsync(user.Id, Faves.Constants.CUSTOMER_ROLE);
-
-            var dtoFavesrusUser = mapper.Map<DtoFavesrusUser>(user);
-
-            return Ok(dtoFavesrusUser);
+            return result;
         }
 
         [HttpPost]
         [Route("login")]
+        [ValidateModel]
         public async Task<IHttpActionResult> Login(HttpRequestMessage request, LoginModel model)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
             FavesrusUser user = await UserManager.FindByNameAsync(model.UserName);
 
             if (user != null)
@@ -155,7 +78,7 @@ namespace Favesrus.Server.Controllers.WebApi
                     AuthManager.SignOut();
                     AuthManager.SignIn(new AuthenticationProperties { IsPersistent = true }, ident);
 
-                    var dtoFavesUser = mapper.Map<DtoFavesrusUser>(user);
+                    var dtoFavesUser = _mapper.Map<DtoFavesrusUser>(user);
 
                     return Ok(dtoFavesUser);
                 }
@@ -170,11 +93,10 @@ namespace Favesrus.Server.Controllers.WebApi
 
         [HttpPost]
         [Route("loginfacebook")]
+        [ValidateModel]
         public async Task<IHttpActionResult> LoginFacebook(HttpRequestMessage request, LoginFacebookModel model)
         {
             Log.Info(string.Format("Attempt register as {0} with provider key {1}", model.Email, model.ProviderKey));
-
-            if (!ModelState.IsValid) { return BadRequest(ModelState); }
 
             FavesrusUser user = await UserManager.FindByNameAsync(model.Email);
 
@@ -226,7 +148,7 @@ namespace Favesrus.Server.Controllers.WebApi
                     AuthManager.SignIn(
                         new AuthenticationProperties { IsPersistent = true }, ident);
 
-                    var dtoFavesUser = mapper.Map<DtoFavesrusUser>(user);
+                    var dtoFavesUser = _mapper.Map<DtoFavesrusUser>(user);
 
                     return Ok(dtoFavesUser);
                 }
@@ -255,7 +177,7 @@ namespace Favesrus.Server.Controllers.WebApi
         }
 
         [HttpGet]
-        [Route("confirmfacebookemail",Name="ConfirmFacebookEmail")]
+        [Route("confirmfacebookemail", Name = "ConfirmFacebookEmail")]
         //[Route("confirmfacebookemail/userid={userId}&code={code}&providerkey={providerKey}", Name="ConfirmFacebookEmail")]
         public void ConfirmFacebookEmail(string userId, string code, string providerKey)
         {

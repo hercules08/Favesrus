@@ -12,6 +12,7 @@ namespace Favesrus.Server.Dto.FavesrusUser
         public string LastName { get; set; }
         [Required]
         public string Email { get; set; }
+        [Required]
         public string Password { get; set; }
         public int Gender { get; set; }
         public DateTime? Birthday { get; set; }
