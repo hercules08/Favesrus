@@ -1,11 +1,5 @@
 <!-- this or that View -->
 <div data-role="view" id="thisorthat-view" data-init="tortViewInit" data-after-show="afterTortViewShow" data-layout="login-layout">
-    <div data-role="modalview" id="thisorthat-preferences-modal" data-width="300" data-height="400">
-        <a data-role="button" data-icon="close-btn" class="modal-close-btn"></a>
-        <div class="container">
-            <h2 class="text-center">Recommendations</h2>
-        </div>
-    </div>
     <div class="container center">
         <div class="center">
             <img id="thisorthat-logo" src="images/thisorthat_logo_greensea.png"/>
@@ -14,7 +8,7 @@
             Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. 
         </div>
         <div id="thisorthat-scrollview" data-role="scrollview"></div>
-        <script id="javascriptTemplate" type="text/x-kendo-template">
+        <script id="tortTemplate" type="text/x-kendo-template">
             # for (var i = 0; i < data.length; i++) { #
                 <div data-role="page">
                     <table>
@@ -73,6 +67,28 @@
                             </td>
                         </tr>
                     </table>
+                </div>
+            # } #
+        </script>
+    </div>
+</div>
+
+<div data-role="modalview" id="thisorthat-recommendations-modal" style="width:90%">
+    <div data-role="header">
+        <div data-role="navbar">
+            <a data-role="button" data-icon="close-btn" class="modal-close-btn" data-align="right"></a>
+            <span>Recommendations</span>
+        </div>
+    </div>
+    <div class="text-center container">
+        Select up to 3 items.
+    </div>
+    <div id="thisorthat-Recommendations-container" class="center">
+        <script id="tortRecommendationsTemplate" type="text/x-kendo-template">
+            # for (var i = 0; i < data.Model.items.length; i++) { #
+                <div id="#= data.Model.items[i].id#-button" class="center recommendations">
+                    <img src="#= data.Model.items[i].image#"/>
+                    <div class="recommendation-name">#= data.Model.items[i].name#</div>
                 </div>
             # } #
         </script>

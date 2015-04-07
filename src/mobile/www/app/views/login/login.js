@@ -218,9 +218,11 @@ function enableButtonTouchEventListeners(view) {
 	}
 }
 
+//TODO Change the click event handler for the return to Home tab 
+
 /*
   Description: Return to two previous pages back
 */
-function returnToPrevious() {
+function returnHome() {
     APP.instance.navigate("app/views/home/home.html");
 }

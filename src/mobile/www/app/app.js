@@ -2,11 +2,10 @@
 define([
 	'views/thisorthat/thisorthat',
 	'views/home/home',
-	/*'views/search/search',*/
+	'views/login/login',
 	'views/wishlist/wishlist',
-	'views/login/login'/*,
 	'views/shares/shares',
-	'views/settings/settings'*/
+	'views/settings/settings'
 ], function () {
 
 	// create a global container object
@@ -29,13 +28,14 @@ define([
 	Description: Set all necessary components at application initialization 
 */
 function initialize() {
-	setModalSize("thisorthat-preferences-modal", window.innerWidth*0.95, window.innerHeight*0.90);
+	// setModalSize("thisorthat-recommendations-modal", window.innerWidth*0.95, window.innerHeight*0.90);
 	//setTimeout(function() {
 	//APP.instance.showLoading();
+	//TODO Webservice call to server
     //APP.instance.changeLoadingMessage("Please wait...");
 	    //setTimeout(function() {
 	        //APP.instance.hideLoading();
-		    var template = kendo.template($("#javascriptTemplate").html()); //Get the external template definition
+		    var template = kendo.template($("#tortTemplate").html()); //Get the external template definition
 		    var data = ["Set1", "Set2", "Set3", "Set4", "Set5"]; //Create some dummy data
 		    var result = template(data); //Execute the template
 		    //alert(JSON.stringify(result))

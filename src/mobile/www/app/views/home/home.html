@@ -1,14 +1,22 @@
 <!-- Home View -->
 <div data-role="view" id="home-view" data-init="homeViewInit" data-after-show="afterHomeViewShow" data-layout="home-layout">
 <!-- <div data-role="view" id="home-view" data-layout="home-layout"> -->
-    <ul id="products-search-listview"></ul>
+    <ul id="products-search-listview" data-role="listview" data-bind="source: source">
     </ul>
-    <!--<div id="container">
-        <h2>
-            Home
-        </h2>
-    </div>-->
 </div>
+
+<script id="productSearchTemplate" type="text/x-kendo-template">
+    # for (var i = 0; i < data.Model.items.length; i++) { #
+        <li>
+            <img class="item-image" src="#= data.Model.items[i].image#"/>
+            <p class="item-name">#= data.Model.items[i].name#</p>
+            <p class="item-description">#= data.Model.items[i].description#</p>
+            <img class="wishlist-operation" src="images/image_placeholder.png"/>
+        </li>
+    # } #
+</script>
+
+
 <!-- Home Layout -->
 <div data-role="layout" data-id="home-layout">
     <!-- Header -->

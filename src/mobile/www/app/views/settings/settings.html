@@ -1,7 +1,26 @@
-<!-- login View -->
-<!-- <div data-role="modalview" id="login-modal" style="width: 95%; height: 95%;"> -->
-<div data-role="view" id="settings-view" data-layout="settings-layout">
-    <h2>Settings</h2>
+<!-- Settings View -->
+<div data-role="view" id="settings-view" data-init="settingsViewInit" data-layout="settings-layout">
+    <ul data-role="listview" data-style="inset" data-type="group">
+        <li>
+            Profile
+            <ul>
+                <li id="myprofile-list-item">
+                    <script id="myProfileTemplate" type="text/x-kendo-template">
+                        <a><img src="#= data.entity.profilePic#" /><p>#= data.entity.firstName+" "+data.entity.lastName#</p></a>
+                    </script>
+                </li>
+            </ul>
+        </li>
+        <li>
+            Help
+            <ul>
+                <li><a>How Faves'R US Works</a></li>
+                <li><a>FAQs</a></li>
+                <li><a>Send Feedback</a></li>
+                <li><a>About Faves 'R Us</a></li>
+            </ul>
+        </li>
+    </ul>
 </div>
 
 
@@ -10,7 +29,7 @@
     <!-- Header -->
     <div data-role="header">
         <div data-role="navbar">
-            <a id="profile-pic" data-align="left" data-icon="profile-pic-holder" data-role="button"></a>
+            <!-- <a id="profile-pic" data-align="left" data-icon="profile-pic-holder" data-role="button"></a> -->
             <span data-role="view-title"><img class="header-logo" src="images/FavesRUs_logo.png"/></span>
         </div> 
     </div>
