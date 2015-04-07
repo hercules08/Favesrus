@@ -48,6 +48,11 @@
 	background-color: white !important;
 }
 
+/* For Header buttons */
+.km-navbar a {
+	color: white !important;
+}
+
 /* ----------- Modal View -----------*/
 /*.km-shim {
 	top: 7% !important;
@@ -78,7 +83,7 @@ pre {
 	display:initial;
 }
 
-a {
+#forgot-password-link {
 	color: #007aff !important;
 }
 
@@ -231,7 +236,7 @@ a {
 	font-size: 1.2em !important;
 }
 
-.login-btn, .login-email-btngroup {
+.login-btn, .logout-btn, .login-email-btngroup {
 	width: 80% !important;
 }
 
@@ -298,6 +303,26 @@ li a {
 
 #myprofile-list-item p {
 	  margin-left: 4.5em !important;
+}
+
+#settings-view .km-list>li {
+	line-height: 1.6em !important;
+}
+
+#settings-view #myprofile-list-item {
+	padding: .5em .7em 0em !important;
+}
+
+#settings-view .km-group-title {
+	border-top-width: 0;
+	padding: 0 !important;
+	background-color: #95a5a6 !important;
+  	color: white !important;
+}
+
+/* ----------- myprofile-View ----------- */
+#myprofile-view .km-navbar a {
+	margin-top: 1rem !important;
 }
 
 /* ----------- Fix Kendo UI issues ----------- */

@@ -5,16 +5,17 @@
             Profile
             <ul>
                 <li id="myprofile-list-item">
-                    <script id="myProfileTemplate" type="text/x-kendo-template">
-                        <a><img src="#= data.entity.profilePic#" /><p>#= data.entity.firstName+" "+data.entity.lastName#</p></a>
-                    </script>
+                    <a href="#myprofile-view">
+                    	<img src="images/image_placeholder.png" data-bind="attr: { src: profilePic}"/>
+                    	<p data-bind="text: name">Name</p>
+                    </a>
                 </li>
             </ul>
         </li>
         <li>
             Help
             <ul>
-                <li><a>How Faves'R US Works</a></li>
+                <li><a>How Faves'R Us Works</a></li>
                 <li><a>FAQs</a></li>
                 <li><a>Send Feedback</a></li>
                 <li><a>About Faves 'R Us</a></li>
@@ -23,6 +24,28 @@
     </ul>
 </div>
 
+<div data-role="view" id="myprofile-view" data-layout="myprofile-layout" data-transition="slide:left">
+	<div class="center container">
+		<a data-role="button" class="logout-btn green">LOG OUT</a>
+	</div>
+</div>
+
+<div data-role="layout" data-id="myprofile-layout">
+    <div data-role="header">
+        <div data-role="navbar">
+            <a data-align="left" data-role="backbutton">Back</a>
+            <span data-role="view-title"><img class="header-logo" src="images/FavesRUs_logo.png"/></span>
+        </div> 
+    </div>
+    <!-- <div data-role="footer">
+        <div id="tabstrip" data-role="tabstrip">
+            <a href="app/views/home/home.html" data-icon="home">Home</a>
+            <a name="wishlist-tab" href="app/views/wishlist/wishlist.html" data-icon="favorites">Wishlist</a>
+            <a href="app/views/shares/shares.html" data-icon="contacts">Shares</a>
+            <a href="app/views/settings/settings.html" data-icon="settings">Settings</a>
+        </div>
+    </div> -->
+</div>
 
 <!-- login Layout -->
 <div data-role="layout" data-id="settings-layout">
