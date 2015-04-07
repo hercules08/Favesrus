@@ -1,6 +1,11 @@
-﻿using System;
+﻿using Favesrus.DAL.Impl;
+using Favesrus.Model.Entity;
+using Favesrus.Server.Exceptions;
+using Favesrus.Server.Filters;
+using Favesrus.Server.Processing.ProcessingFavesrusUser.ActionResult;
+using Microsoft.AspNet.Identity;
 using System.Collections.Generic;
-using System.Data;
+using System.ComponentModel.DataAnnotations;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
@@ -8,12 +13,13 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using Favesrus.Model.Entity;
-using Favesrus.DAL.Impl;
+using System.Web.Http.ModelBinding;
+
 
 namespace Favesrus.Server.Controllers.WebApi
 {
-    public class GiftItemController : ApiController
+    [RoutePrefix("api/giftItem")]
+    public class GiftItemController : ApiBaseController
     {
         private FavesrusDbContext db = new FavesrusDbContext();
 
@@ -21,6 +27,62 @@ namespace Favesrus.Server.Controllers.WebApi
         public IQueryable<GiftItem> GetGiftItems()
         {
             return db.GiftItems;
+        }
+
+        public class WishListAddModel
+        {
+            [Required]
+            public string UserId { get; set; }
+            [Required]
+            public int GiftItemId { get; set; }
+        }
+
+        [HttpGet]
+        [Route("getgiftitemsbycatgoryid")]
+        public IHttpActionResult GetGiftItemsByCategoryId(HttpRequestMessage requestMessage, int categoryId)
+        {
+            var results = db.GiftItems.Where(g => g.Category.Where(c => c.Id == categoryId).Count() != 0);
+            return new BaseActionResult<IEnumerable<GiftItem>>(requestMessage, results, "Found gift items for the category", "found_giftitems_for_categoryId");
+        }
+
+
+        [HttpPost]
+        [Route("addgiftitemtowishlist")]
+        //[Authorize]
+        [ValidateModel]
+        public IHttpActionResult AddGiftItemToWishlist(HttpRequestMessage requestMessage, WishListAddModel model)
+        {
+            var user = UserManager.FindById(model.UserId);
+
+            if(user != null)
+            {
+                var foundItem = db.GiftItems.Find(model.GiftItemId);
+
+                if(foundItem != null)
+                {
+                    if(user.WishListItems.Where(g => g.Id == foundItem.Id).Count() == 0)
+                    {
+                        user.WishListItems.Add(foundItem);
+                        db.Users.Attach(user);
+                        db.SaveChanges();
+
+                        return new BaseActionResult<string>(requestMessage, "Successful add to wishlist", "Successful add to wishlist", "successful_wishlist_add");
+                    }
+                }
+                throw new BusinessRuleException("giftitem_not_found", "The gift item could not be found");
+            }
+            throw new BusinessRuleException("user_not_found", "The user could not be found.");
+        }
+
+        [HttpGet]
+        public IHttpActionResult GetGiftItemsWithTerm(HttpRequestMessage requestMessage, string searchText)
+        {
+            var term = searchText.ToLower();
+
+            var searchResults = db.GiftItems.Where(g => g.ItemName.ToLower().Contains(term)
+                || g.Description.ToLower().Contains(term)).ToList();
+
+            return new BaseActionResult<IEnumerable<GiftItem>>(requestMessage, searchResults, "Found Matches", "matching_products");
         }
 
         // GET api/GiftItem/5

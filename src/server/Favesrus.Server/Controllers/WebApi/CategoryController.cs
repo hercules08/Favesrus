@@ -11,6 +11,7 @@ using System.Web.Http.Description;
 using Favesrus.Model.Entity;
 using Favesrus.DAL.Impl;
 using Favesrus.Services.Interfaces;
+using Favesrus.Server.Processing.ProcessingFavesrusUser.ActionResult;
 
 namespace Favesrus.Server.Controllers.WebApi
 {
@@ -24,9 +25,9 @@ namespace Favesrus.Server.Controllers.WebApi
         }
 
         // GET api/Category
-        public IQueryable<Category> GetCategories()
+        public IHttpActionResult GetCategories(HttpRequestMessage requestMessage)
         {
-            return _categoryService.AllCategories;
+            return new BaseActionResult<IEnumerable<Category>>(requestMessage, _categoryService.AllCategories, "Found Categories", "found_categories");
         }
 
         // GET api/Category/5

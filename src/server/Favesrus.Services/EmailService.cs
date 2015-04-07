@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Favesrus.Services
 {
-    public class Emailer
+    public class EmailService
     {
         private string _toAddresses;
         private string _fromAddress;
@@ -18,10 +18,9 @@ namespace Favesrus.Services
         private MailMessage _mailMessage;
         private SmtpClient _smtpClient;
 
-        public Emailer()
+        public EmailService()
         {
             _fromAddress = Constants.EMAIL_ADDRESS;
-            //_password = Constants.PASSWORD;
             SetupSmtp();
         }
 
@@ -29,12 +28,6 @@ namespace Favesrus.Services
         {
 
             _smtpClient = new SmtpClient();
-            //_smtpClient.Host =  Constants.GMAIL_SERVER;
-            //_smtpClient.Port = Constants.GMAIL_PORT;
-            //_smtpClient.UseDefaultCredentials = false;
-            //_smtpClient.EnableSsl = true;
-            //_smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
-            //_smtpClient.Credentials = new NetworkCredential(_fromAddress, _password);
 
             return _smtpClient;
         }

@@ -12,5 +12,6 @@ namespace Favesrus.Server.Dto.FavesrusUser
         public string Email { get; set; }
         [Required]
         public string ProviderKey { get; set; }
+        public string DeviceInfo { get; set; }
     }
 }
