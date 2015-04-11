@@ -3,16 +3,16 @@ Favit
 
 **Links**
 
-- Home -	[favit.io](http://favit.io)
-- Dev - 	[dev.favit.io](dev.favit.io)
-- Api - 	[api.favit.io](api.favit.io)
-- Seller - 	[sell.favit.io](sell.favit.io)
+- Home -	[favesrus.com](http://favesrus.com
+- Dev - 	[dev.favesrus.com](dev.favesrus.com)
+- Api - 	[api.favesrus.com](api.favesrus.com)
+- Seller - 	[sell.favesrus.com](sell.favesrus.com)
 
 **Front End Architecture**
 
-- Developed In - Intel XDK
+- Developed In - Intel XDK, Sublime, xCode
 - Design - KendoUI
-- Structure - Backbone.js
+- Structure - KendoUI
 - Testing - QUnit
 
 **Back End Architecture**
@@ -27,7 +27,3 @@ Authors
 - Elroy Ashtian, Jr.
 
 - [Damola Omotosho](http://damolaomotosho.com)
-
-- Wale Ogundipe
-
-- Jeff Lofvers

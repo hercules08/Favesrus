@@ -1,4 +1,7 @@
-# Intel® HTML5 Samples License Terms and Conditions
+# Faves 'R' Us License Terms and Conditions
+
+
+# TODO (FIGURE OUT LICENSE & TERMS OF AGGREEMENT)
 
 Copyright © 2012-2014, Intel Corporation. All rights reserved.
 
