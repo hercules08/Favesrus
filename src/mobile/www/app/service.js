@@ -53,7 +53,7 @@ function webService(requestString, content) {
 	var requestURL, requestType;
 
 	if(requestString == "forgetPassword") {
-		requestURL = ""; //TODO
+		requestURL = "http://dev.favesrus.com/api/account/forgotpassword"; 
 		requestType = "POST";
 	}
 
@@ -70,6 +70,11 @@ function webService(requestString, content) {
 		requestURL = "http://dev.favesrus.com/api/account/loginfacebook";
 		requestType = "POST";
 	}
+	else if(requestString == "logout") {
+		requestURL = ""; //TODO
+		requestType = "POST";
+	}
+
 
 	//Make the AJAX call
 	$.ajax({
@@ -117,7 +122,9 @@ function checkLocalCredentials() {
 }
 
 
-/*Local Storage - //Store username and accessToken or password locally for use later during relaunching of the app */
+/*
+Description: Local Storage - //Store username and accessToken or password locally for use later during relaunching of the app
+*/
 function storeLocalcredentials() {
 	localStorage.email = temp_obj.email;
 	localStorage.deviceID= temp_deviceID;
@@ -130,5 +137,11 @@ function storeLocalcredentials() {
 	*/
 }
 
+/*
+	Description: Remove the stored login credentials
+*/
+function removeLocalcredentials() {
+//TODO
+}
 
 

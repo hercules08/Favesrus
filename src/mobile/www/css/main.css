@@ -76,11 +76,11 @@ pre {
 }
 
 .hidden {
-	display:none !important;
+	display: none !important;
 }
 
 .show {
-	display:initial;
+	display: initial;
 }
 
 #forgot-password-link {
@@ -90,6 +90,29 @@ pre {
 /* ----------- This or That View ----------- */
 #thisorthat-logo {
 	width: 55%;
+}
+
+/*.km-heart-recommendations:before, .km-heart-recommendations:after {
+	content: "\e044";
+}*/
+
+#recommendations-btn {
+	border: 0px !important;
+	color: red !important;
+	font-size: 1.6em;
+	padding: 0px !important;
+	left: 0.5em;
+	position: absolute;
+	background-color: transparent !important;
+}
+
+#recommendations-btn .km-badge{
+	font-size: 0.5em !important;	
+}
+
+.recommendations a {
+	color: #f1c40f;
+	position: absolute;;
 }
 
 .tort-product {
@@ -262,9 +285,16 @@ input.error-placeholder::-webkit-input-placeholder {
 }
 
 /* ----------- Home-View ----------- */
+#home-view .km-content{
+	/*background-image: url("../images/blank_product_search.png") !important;
+	background-size: 50% !important;
+	background-repeat: no-repeat !important;
+	background-position: center !important;*/
+}
+
 /*Keep the clear (X in a Filled Circle)*/
 .km-clear:after, .km-clear:before {
-  content: "\e031" !important;
+ 	content: "\e031" !important;
 }
 
 /*  ------ Product Search results ------ */
@@ -360,9 +390,22 @@ li {
 /*input field*/
 .km-filter-wrap input {
 	font-size: 1.0em !important;
-	background: white !important;
+	/*background-color: #84EDD9 !important;*/
 	color: black !important;
 }
+/* Product Search placeholder color*/
+/*.km-filter-wrap input::-webkit-input-placeholder {
+    color: white !important;
+}
+.km-filter-wrap input:-moz-placeholder {
+    color: white !important;
+}
+.km-filter-wrap input::-moz-placeholder {
+    color: white !important;
+}
+.km-filter-wrap input:-ms-input-placeholder {
+    color: white !important;
+}*/
 
 /*form*/
 /*.km-filter-form {
@@ -371,7 +414,7 @@ li {
 
 #header-search {
 	/*color: #efeff4;*/
-	background: #bdc3c7 !important; /*Silver*/
+	background: #16a085 !important; /*Emerald green*/
 	/*-moz-box-sizing: border-box;
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
@@ -399,7 +442,7 @@ li {
 }
 
 .km-filter-wrap {
-	 background: white !important;
+	 background: white !important; /*Bubblegum green*/
 }
 
 /*Set the clear button to hide*/

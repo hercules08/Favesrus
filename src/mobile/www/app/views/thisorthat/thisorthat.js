@@ -61,7 +61,7 @@ function tortViewInit (e) {
 	setTimeout(function () {
 		if(localStorage.TTpreferences === undefined) { //No preferences set
 			//alert("No preferences found!");
-			$("#thisorthat-recommendations-modal").data("kendoMobileModalView").open();
+			// $("#thisorthat-recommendations-modal").data("kendoMobileModalView").open();
 			$("#thisorthat-recommendations-modal .km-rightitem").click(function(){
 				closeModal("thisorthat-recommendations-modal");
 			});
@@ -77,6 +77,11 @@ function tortViewInit (e) {
 			returnHome();
 		});
 	}, 500);
+
+	$("#recommendations-btn").click(function(){
+		$("#thisorthat-recommendations-modal").data("kendoMobileModalView").open();
+	});	
+
 }
 
 
@@ -109,9 +114,13 @@ function loadRecommendations() {
     	$("#"+element.id+"-button").click(function(){
 			if ($("#thisorthat-Recommendations-container").find(".selected").length < 3) {
 				$("#"+element.id+"-button").toggleClass("selected");
+				$("#"+element.id+"-button>a").toggleClass("hidden");
+				$("#recommendations-btn").kendoMobileButton({ badge: $("#thisorthat-Recommendations-container").find(".selected").length });
 			}
 			else {
 				$("#"+element.id+"-button").removeClass("selected");
+				$("#"+element.id+"-button>a").addClass("hidden");
+				$("#recommendations-btn").kendoMobileButton({ badge: $("#thisorthat-Recommendations-container").find(".selected").length });
 			}
 		});
     });

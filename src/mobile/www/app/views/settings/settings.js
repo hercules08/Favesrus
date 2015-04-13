@@ -34,10 +34,23 @@ $(
 
 /*
 	Description:
+	Apply event handler for all settings view buttons
+*/
+function enableSettingsButtonEventHandlers(){
+	$("#logout-btn").click(function(){
+		alert("You are about to be logged out");
+		//TODO Remove Local storage keys
+		//TODO Invoke webservice call
+		//webService("logout",)
+	});	
+}
+
+/*
+	Description:
 	Fires the first time the view renders.
 */
 function settingsViewInit(e) {
-	//TODO Webservice call
+	//TODO Leverage Local Storage keys
 	console.log("settings-view init");
 	var temp_data = '{"entity":{"firstName":"John","lastName":"Doe","profilePic":"images/image_placeholder.png"}}';
     var data = JSON.parse(temp_data);
@@ -49,4 +62,6 @@ function settingsViewInit(e) {
 	//Bind  viewModel to desired element
 	kendo.bind($("#myprofile-list-item img"), viewModel);
 	kendo.bind($("#myprofile-list-item p"), viewModel);
+
+	enableSettingsButtonEventHandlers();
 }

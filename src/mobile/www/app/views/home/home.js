@@ -128,6 +128,7 @@ function afterHomeViewShow(e){
 function homeViewInit(e) {
     console.log("home-view init");
     checkLocalCredentials();
+    e.view.element.find("#products-search-listview").data("kendoMobileListView").append([ "No Products shown..." ]);
     /*e.view.element.find("#products-search-listview").kendoMobileListView({
 		dataSource: [ "No Products shown..." ]
 		/*filterable: {
