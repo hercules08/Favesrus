@@ -50,28 +50,29 @@ function alertDismissed() {
 	content - JSON object with the relevant information for the request
 */
 function webService(requestString, content) {
-	var requestURL, requestType;
+	var requestURL, requestType,
+		domainName = "http://dev.favesrus.com/";
 
 	if(requestString == "forgetPassword") {
-		requestURL = "http://dev.favesrus.com/api/account/forgotpassword"; 
+		requestURL = domainName + "api/account/forgotpassword"; 
 		requestType = "POST";
 	}
 
 	else if(requestString == "registerEmail") {
-		requestURL = "http://dev.favesrus.com/api/account/register";
+		requestURL = domainName + "api/account/register";
 		requestType = "POST";
 	}
 
 	else if(requestString == "loginEmail") {
-		requestURL = "http://dev.favesrus.com/api/account/login";
+		requestURL = domainName + "api/account/login";
 		requestType = "POST";
 	}
 	else if(requestString == "loginFacebook") {
-		requestURL = "http://dev.favesrus.com/api/account/loginfacebook";
+		requestURL = domainName + "api/account/loginfacebook";
 		requestType = "POST";
 	}
 	else if(requestString == "logout") {
-		requestURL = ""; //TODO
+		requestURL = domainName + "api/account/logout";
 		requestType = "POST";
 	}
 
@@ -83,7 +84,7 @@ function webService(requestString, content) {
 		data: content		//Specifies data to be sent to the server
 	})
 	.done(function(data, status, xhr) {		//Replaces the success() method
-	    alert( "success ");
+	    alert( requestString+" success ");
 	    if((requestString === "registerEmail") || (requestString === "loginEmail") || (requestString === "loginFacebook")){
 	    	storeLocalcredentials();
 	    	if(APP.instance.view().id === "#login-view") {
@@ -94,7 +95,7 @@ function webService(requestString, content) {
 	})
 	.fail(function(data, status, xhr) {		//Replaces the error() method
 	    //alert( "error " + response.message);
-	    console.log(JSON.stringify(data)+" Status: "+JSON.stringify(status));
+	    alert(JSON.stringify(data)+" Status: "+JSON.stringify(status));
 	    if (navigator.notification) {
 		    navigator.notification.alert(
 			    JSON.parse(data.responseText).Message,  	// message
@@ -114,10 +115,10 @@ function webService(requestString, content) {
 function checkLocalCredentials() {
 	if ((localStorage.email !== undefined) && (localStorage.password !== undefined) ) {
 		//email & password against faves R us server
-		alert("User credentials defined!");
+		console.log("User credentials defined!");
 	}
 	else {
-		alert("Email & password undefined");
+		console.log("Email & password undefined");
 	}
 }
 
@@ -141,7 +142,12 @@ function storeLocalcredentials() {
 	Description: Remove the stored login credentials
 */
 function removeLocalcredentials() {
-//TODO
+	localStorage.removeItem("email");
+	localStorage.removeItem("deviceID");
+	localStorage.removeItem("loginstatus");
+	//Reset Image source
+	$("#profile-pic span").remove("img");
+	$("#profile-pic span").addClass("km-profile-pic-holder");
 }
 
 

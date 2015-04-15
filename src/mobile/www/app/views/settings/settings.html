@@ -1,5 +1,5 @@
 <!-- Settings View -->
-<div data-role="view" id="settings-view" data-init="settingsViewInit" data-layout="settings-layout">
+<div data-role="view" id="settings-view" data-init="settingsViewInit" data-after-show="afterSettingsViewShow" data-layout="settings-layout">
     <ul data-role="listview" data-style="inset" data-type="group">
         <li>
             Profile
@@ -51,7 +51,7 @@
     <div data-role="footer">
         <div id="tabstrip" data-role="tabstrip">
             <a href="app/views/home/home.html" data-icon="home">Home</a>
-            <a name="wishlist-tab" href="app/views/wishlist/wishlist.html" data-icon="favorites">Wishlist</a>
+            <a name="wishlist-tab" href="app/views/wishlist/wishlist.html" data-icon="wish-list">Wishlist</a>
             <a href="app/views/shares/shares.html" data-icon="contacts">Shares</a>
             <a href="app/views/settings/settings.html" data-icon="settings">Settings</a>
         </div>

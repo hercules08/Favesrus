@@ -53,6 +53,11 @@
 	color: white !important;
 }
 
+/*List with pluses*/
+.km-wish-list:before,.km-wish-list:after {
+	content: "\e078";
+}
+
 /* ----------- Modal View -----------*/
 /*.km-shim {
 	top: 7% !important;
@@ -112,7 +117,7 @@ pre {
 
 .recommendations a {
 	color: #f1c40f;
-	position: absolute;;
+	position: absolute;
 }
 
 .tort-product {
@@ -318,12 +323,32 @@ input.error-placeholder::-webkit-input-placeholder {
 	margin: 0.4em 0 0 0em;
 }
 
-.wishlist-operation {
+.wishlist-operation { /*No Longer used*/
 	width: 15%;
+}
+
+.product-add {
+	font-size: 3em !important;
+	background: -webkit-linear-gradient(#e74c3c 45%, #16a085 36%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
 }
 
 li a {
 	color: black !important;
+}
+
+.secondary-search-container {
+	background: #ecf0f1 !important; /*Clouds*/
+	border-bottom: 1px solid #16a085 !important;
+}
+
+.secondary-search-container img:first-child {
+	width: 80%;
+}
+
+.secondary-search-container img:nth-child(3) {
+	width: 35%;
 }
 
 /* ----------- Settings-View ----------- */

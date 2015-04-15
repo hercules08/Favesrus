@@ -46,7 +46,7 @@ function resetTextFields(){
 function onForgotPasswordPrompt(results) {
     // results.buttonIndex = 1 for the first button, 2 for the second button, etc.
     // results.input1 = inputed text
-    console.log("Inputted Email"+results.input1);
+    console.log("Inputted Email"+JSON.parse(results.input1));
     webService("forgotPassword",results.input1);
     
 }
@@ -228,3 +228,4 @@ function enableButtonTouchEventListeners(view) {
 function returnHome() {
     APP.instance.navigate("app/views/home/home.html");
 }
+

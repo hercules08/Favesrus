@@ -37,7 +37,8 @@ $(
 	Invoked when the 'data-after-show' event is triggered associated to the wishlist view
 */
 function afterWishlistViewShow(e) {
-	//Open Login View if user hasn't sign in
+	setWishlistIcon();
+    //Open Login View if user hasn't sign in
     APP.instance.showLoading();
     APP.instance.changeLoadingMessage("Please wait...");
     setTimeout(function() {

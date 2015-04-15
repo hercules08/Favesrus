@@ -76,6 +76,7 @@ function setProductData(e) {
 */
 function afterHomeViewShow(e){
     console.log("After Home View Event");
+    setWishlistIcon();
     //alert($("form").length+"Forms");
     //Remove unnecssary search box if needed
     /*for(var i =0; i < $("form").length; i++){
@@ -100,6 +101,8 @@ function afterHomeViewShow(e){
         $(".km-filter-wrap input").focus(function(event) {
       		$("#header-search").find($(".km-filter-reset")[0]).removeClass("hidden");
       		$("#header-search").find($(".km-filter-reset")[0]).addClass("show");
+            //Hide This or That option (Dual Search)
+            $(".secondary-search-container").addClass("hidden");
         });
 
         $("#search-reset-btn").unbind("click");
@@ -110,6 +113,8 @@ function afterHomeViewShow(e){
       		$(".km-filter-wrap input").val("");
       		e.view.element.find("#products-search-listview").data("kendoMobileListView").replace([ "No Products shown..." ]);
             $("#products-search-listview>li:first-child").addClass("text-center");
+            //Show this or that option (Dual Search)
+            $(".secondary-search-container").removeClass("hidden");
         });
         //homeShowCounter++;
     //}
@@ -117,24 +122,29 @@ function afterHomeViewShow(e){
         $("#search-reset-btn>span:first-child").attr("style","content: '/\e031'");
         /*homeShowCounter++;
     }*/
-    //alert($(".km-filter-wrap input")[0].outerHTML);
-    //console.log("Keypress Registered: "+ (jQuery._data( $(".km-filter-wrap input")[0], "events" ).keypress !== undefined));
+    $("#dual-search-img").unbind("click");
+    $("#dual-search-img").click(function(){
+        APP.instance.navigate("thisorthat-view", "zoom");
+    });
 }
 
 /*
     Description:
-    Associated to the data-init attribute Runs first time
+    Associated to the data-init attribute Runs first time before UI applied
 */
 function homeViewInit(e) {
     console.log("home-view init");
     checkLocalCredentials();
     e.view.element.find("#products-search-listview").data("kendoMobileListView").append([ "No Products shown..." ]);
-    /*e.view.element.find("#products-search-listview").kendoMobileListView({
-		dataSource: [ "No Products shown..." ]
-		/*filterable: {
-		     placeholder: "Search for products..",
-		     autoFilter: false
-		}*/
-    /*});*/
     $("#products-search-listview>li:first-child").addClass("text-center");
+}
+
+/*
+    Description:
+    Set the wishlist icon in place for the tabstrip (footer)
+*/
+function setWishlistIcon() {
+    $(".km-footer").find("a:nth-child(2)>span:first-child").removeClass("km-icon");
+    $(".km-footer").find("a:nth-child(2)>span:first-child").removeClass("km-wish-list");
+    $(".km-footer").find("a:nth-child(2)>span:first-child").addClass("icon-wishlist");
 }

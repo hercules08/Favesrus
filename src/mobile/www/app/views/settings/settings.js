@@ -38,10 +38,11 @@ $(
 */
 function enableSettingsButtonEventHandlers(){
 	$("#logout-btn").click(function(){
-		alert("You are about to be logged out");
+		console.log("You are about to be logged out");
 		//TODO Remove Local storage keys
 		//TODO Invoke webservice call
-		//webService("logout",)
+		webService("logout","");
+		removeLocalcredentials();
 	});	
 }
 
@@ -64,4 +65,9 @@ function settingsViewInit(e) {
 	kendo.bind($("#myprofile-list-item p"), viewModel);
 
 	enableSettingsButtonEventHandlers();
+}
+
+/**/
+function afterSettingsViewShow(e) {
+	setWishlistIcon();
 }
