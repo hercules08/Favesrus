@@ -34,15 +34,40 @@ $(
 
 /*
 	Description:
+	Apply event handler for all settings view buttons
+*/
+function enableSettingsButtonEventHandlers(){
+	$("#logout-btn").click(function(){
+		console.log("You are about to be logged out");
+		//TODO Remove Local storage keys
+		//TODO Invoke webservice call
+		webService("logout","");
+		removeLocalcredentials();
+	});	
+}
+
+/*
+	Description:
 	Fires the first time the view renders.
 */
 function settingsViewInit(e) {
-	//TODO Webservice call
+	//TODO Leverage Local Storage keys
 	console.log("settings-view init");
-	var template = kendo.template($("#myProfileTemplate").html()); //Get the external template definition
-    var temp_data = '{"entity":{"firstName":"John","lastName":"Doe","profilePic":"images/image_placeholder.png"}}';
-    //Create some dummy data
+	var temp_data = '{"entity":{"firstName":"John","lastName":"Doe","profilePic":"images/image_placeholder.png"}}';
     var data = JSON.parse(temp_data);
-    var result = template(data); //Execute the template
-    e.view.element.find("#myprofile-list-item").html(result); //Append the result*/
+    //View-Model declaration
+    var viewModel = kendo.observable({
+    	name: data.entity.firstName+" "+data.entity.lastName,
+	    profilePic: data.entity.profilePic
+	});
+	//Bind  viewModel to desired element
+	kendo.bind($("#myprofile-list-item img"), viewModel);
+	kendo.bind($("#myprofile-list-item p"), viewModel);
+
+	enableSettingsButtonEventHandlers();
+}
+
+/**/
+function afterSettingsViewShow(e) {
+	setWishlistIcon();
 }

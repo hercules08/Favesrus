@@ -60,17 +60,28 @@ function tortViewInit (e) {
 	//alert("This or that View");
 	setTimeout(function () {
 		if(localStorage.TTpreferences === undefined) { //No preferences set
-			alert("No preferences found!");
-			$("#thisorthat-recommendations-modal").data("kendoMobileModalView").open();
+			//alert("No preferences found!");
+			// $("#thisorthat-recommendations-modal").data("kendoMobileModalView").open();
 			$("#thisorthat-recommendations-modal .km-rightitem").click(function(){
 				closeModal("thisorthat-recommendations-modal");
 			});
 			loadRecommendations();
 		}
 		else {
-			console.log("Preferences found!");
+			//console.log("Preferences found!");
 		}
+		$("#thisorthat-view .km-rightitem").click(function(){
+			returnHome();
+		});
+		$("#login-view .km-rightitem").click(function(){
+			returnHome();
+		});
 	}, 500);
+
+	$("#recommendations-btn").click(function(){
+		$("#thisorthat-recommendations-modal").data("kendoMobileModalView").open();
+	});	
+
 }
 
 
@@ -92,20 +103,24 @@ function afterTortViewShow(e){
 */
 function loadRecommendations() {
 	var template = kendo.template($("#tortRecommendationsTemplate").html()); //Get the external template definition
-    var temp_data = '{"Status":"recommendations", "Model":{"items":[{"id":"345435","name":"Amiibos","image":"images/image_placeholder.png"},{"id":"3545354","name":"Celebrity Items","image":"images/image_placeholder.png"},{"id":"3454367","name":"Jeans","image":"images/image_placeholder.png"},{"id":"3454363","name":"Watches","image":"images/image_placeholder.png"},{"id":"3454398","name":"Shades","image":"images/image_placeholder.png"},{"id":"3454006","name":"Restaurants","image":"images/image_placeholder.png"},{"id":"3454005","name":"Big & Tall","image":"images/image_placeholder.png"}]}}';
+    var temp_data = '{"Status":"recommendations", "model":{"items":[{"id":"345435","name":"Amiibos","image":"images/image_placeholder.png"},{"id":"3545354","name":"Celebrity Items","image":"images/image_placeholder.png"},{"id":"3454367","name":"Jeans","image":"images/image_placeholder.png"},{"id":"3454363","name":"Watches","image":"images/image_placeholder.png"},{"id":"3454398","name":"Shades","image":"images/image_placeholder.png"},{"id":"3454006","name":"Restaurants","image":"images/image_placeholder.png"},{"id":"3454005","name":"Big & Tall","image":"images/image_placeholder.png"}]}}';
     //var data = ["Recommendation1", "Recommendation2", "Recommendation3", "Recommendation4", "Recommendation5"]; //Create some dummy data
     var data = JSON.parse(temp_data);
     var result = template(data); //Execute the template
     $("#thisorthat-Recommendations-container").html(result); //Append the result
 
     //Enable Button Click Handler for each item returned
-    data.Model.items.forEach(function (element, index, array) {
+    data.model.items.forEach(function (element, index, array) {
     	$("#"+element.id+"-button").click(function(){
 			if ($("#thisorthat-Recommendations-container").find(".selected").length < 3) {
 				$("#"+element.id+"-button").toggleClass("selected");
+				$("#"+element.id+"-button>a").toggleClass("hidden");
+				$("#recommendations-btn").kendoMobileButton({ badge: $("#thisorthat-Recommendations-container").find(".selected").length });
 			}
 			else {
 				$("#"+element.id+"-button").removeClass("selected");
+				$("#"+element.id+"-button>a").addClass("hidden");
+				$("#recommendations-btn").kendoMobileButton({ badge: $("#thisorthat-Recommendations-container").find(".selected").length });
 			}
 		});
     });

@@ -11,7 +11,7 @@
             <img class="item-image" src="#= data.Model.items[i].image#"/>
             <p class="item-name">#= data.Model.items[i].name#</p>
             <p class="item-description">#= data.Model.items[i].description#</p>
-            <img class="wishlist-operation" src="images/image_placeholder.png"/>
+            <a data-role="button" class="icon-gift product-add"></a>
         </li>
     # } #
 </script>
@@ -22,15 +22,17 @@
     <!-- Header -->
     <div data-role="header">
         <div data-role="navbar">
+            <a id="profile-pic" data-align="left" data-icon="profile-pic-holder" data-role="button"></a>
             <span data-role="view-title"><img class="header-logo" src="images/FavesRUs_logo.png"/></span>
         </div>
         <div id="header-search" class="km-filter-form">
             <div class="km-filter-wrap"><input type="search" placeholder="Search for products.."><a id="search-reset-btn" class="km-filter-reset hidden" title="Clear" style="display: inline-block"><span class="km-icon km-clear"></span><span class="km-text">Clear</span></a></div></div>
+            <div class="center secondary-search-container"><img src="images/or_divider.png"/><br><img id="dual-search-img" src="images/dual_search.png"/></div>
     </div>
     <div data-role="footer">
         <div id="tabstrip" data-role="tabstrip">
             <a href="app/views/home/home.html" data-icon="home">Home</a>
-            <a name="wishlist-tab" href="app/views/wishlist/wishlist.html" data-icon="favorites">Wishlist</a>
+            <a name="wishlist-tab" href="app/views/wishlist/wishlist.html">Wishlist</a>
             <a href="app/views/shares/shares.html" data-icon="contacts">Shares</a>
             <a href="app/views/settings/settings.html" data-icon="settings">Settings</a>
         </div>

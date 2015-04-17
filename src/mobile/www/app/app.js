@@ -1,7 +1,7 @@
 /*The order of the views matters*/
 define([
-	'views/thisorthat/thisorthat',
 	'views/home/home',
+	'views/thisorthat/thisorthat',
 	'views/login/login',
 	'views/wishlist/wishlist',
 	'views/shares/shares',
@@ -15,7 +15,7 @@ define([
     
     // intialize the application
     // APP.instance = new kendo.mobile.Application(document.body, { skin: 'material' });
-    APP.instance = new kendo.mobile.Application(document.body, { skin: 'ios7' }, {init: initialize()}, {initial: "#thisorthat-view"});
+    APP.instance = new kendo.mobile.Application(document.body, { skin: 'ios7' }, {init: initialize()}, {initial: "#home-view"});
 	};
 
 	return {
@@ -43,3 +43,4 @@ function initialize() {
 	    //}, 1000);
     //}, 500);
 }
+

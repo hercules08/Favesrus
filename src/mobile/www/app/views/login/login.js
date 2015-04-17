@@ -43,9 +43,11 @@ function resetTextFields(){
 	Callback function invoked when the Prompt confirmation dialog's buttons are pressed
 	//TODO Send the inputted password to the FavesRUs web service to reset password
 */
-function onForgetPasswordPrompt(results) {
+function onForgotPasswordPrompt(results) {
     // results.buttonIndex = 1 for the first button, 2 for the second button, etc.
     // results.input1 = inputed text
+    console.log("Inputted Email"+JSON.parse(results.input1));
+    webService("forgotPassword",results.input1);
     
 }
 
@@ -206,7 +208,7 @@ function enableButtonTouchEventListeners(view) {
             	if (navigator.notification) {
 		            navigator.notification.prompt(
 		                "Please enter your account's email address to receive your temporary password!",  // message
-		                onForgetPasswordPrompt,         	// callback
+		                onForgotPasswordPrompt,         	// callback
 		                'Password Reset',   // title
 		                ["Send","Cancel"],  // buttonName
 		            	""					//Default test
@@ -226,3 +228,4 @@ function enableButtonTouchEventListeners(view) {
 function returnHome() {
     APP.instance.navigate("app/views/home/home.html");
 }
+

@@ -2,10 +2,12 @@
 <div data-role="view" id="thisorthat-view" data-init="tortViewInit" data-after-show="afterTortViewShow" data-layout="login-layout">
     <div class="container center">
         <div class="center">
+            <a id="recommendations-btn" data-role="button" data-badge="0" class="fa fa-check-square-o"></a>
             <img id="thisorthat-logo" src="images/thisorthat_logo_greensea.png"/>
         </div>
         <div id="thisorthat-description" class="text-center description">
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. 
+            Swipe between 10 different products from your desired recommendations.
+            <br>Choose products to add to your wishlist.
         </div>
         <div id="thisorthat-scrollview" data-role="scrollview"></div>
         <script id="tortTemplate" type="text/x-kendo-template">
@@ -85,10 +87,11 @@
     </div>
     <div id="thisorthat-Recommendations-container" class="center">
         <script id="tortRecommendationsTemplate" type="text/x-kendo-template">
-            # for (var i = 0; i < data.Model.items.length; i++) { #
-                <div id="#= data.Model.items[i].id#-button" class="center recommendations">
-                    <img src="#= data.Model.items[i].image#"/>
-                    <div class="recommendation-name">#= data.Model.items[i].name#</div>
+            # for (var i = 0; i < data.model.items.length; i++) { #
+                <div id="#= data.model.items[i].id#-button" class="center recommendations">
+                    <a data-role="button" class="fa fa-check fa-lg hidden"></a>
+                    <img src="#= data.model.items[i].image#"/>
+                    <div class="recommendation-name">#= data.model.items[i].name#</div>
                 </div>
             # } #
         </script>
