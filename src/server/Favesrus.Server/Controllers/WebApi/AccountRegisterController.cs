@@ -35,7 +35,7 @@ namespace Favesrus.Server.Controllers.WebApi
 
             DtoFavesrusUser dtoFavesrusUser = await _favesrusUserProcessor.RegisterUserAsync(model);
 
-            var result = new DtoFavesrusUserRegisteredActionResult(
+            var result = new RegisterDtoFavesrusActionResult(
                 requestMessage,
                 dtoFavesrusUser,
                 successMessage);

@@ -9,6 +9,6 @@ namespace Favesrus.Server.Processing
     {
         public IEnumerable<object> Items { get; set; }
         public object Entity { get; set; }
-        public string Message { get; set; }
+        
     }
 }

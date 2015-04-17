@@ -30,9 +30,14 @@ namespace Favesrus.Server.Controllers.WebApi
         private IAutoMapper _mapper;
         private IFavesrusUserProcessor _favesrusUserProcessor;
 
+        //public AccountController()
+        //    :base()
+        //{
+
+        //}
+
         public AccountController(IAutoMapper mapper,
             IFavesrusUserProcessor favesrusUserProcessor)
-            : base()
         {
             _mapper = mapper;
             _favesrusUserProcessor = favesrusUserProcessor;
@@ -50,7 +55,10 @@ namespace Favesrus.Server.Controllers.WebApi
             _favesrusUserProcessor = favesrusUserProcessor;
         }
 
-        [HttpPost]
+        /// <summary>
+        /// Sign out of Faves 'R' Us
+        /// </summary>
+        /// <returns></returns>
         [Authorize]
         [Route("logout")]
         public IHttpActionResult Logout()

@@ -17,65 +17,39 @@ using Favesrus.Common;
 using Microsoft.AspNet.Identity;
 using System.Collections.Generic;
 using Favesrus.Server.Filters;
+using CutUp.Services.Interfaces;
+using Favesrus.Server.Processing.ProcessingFavesrusUser.ActionResult;
+using System;
+using Favesrus.Server.Controllers.WebApi;
+using System.Net.Http;
+using System.Web.Http;
 
 namespace Favesrus.Server.Processing.ProcessingFavesrusUser.Implmentation
 {
-    public class FavesrusUserProcessor : IFavesrusUserProcessor
+    public class FavesrusUserProcessor : BaseProcessor, IFavesrusUserProcessor
     {
-        private FavesrusUserManager _userManager;
-        private FavesrusRoleManager _roleManager;
-        private readonly IAutoMapper _mapper;
-
-        public FavesrusUserProcessor(IAutoMapper mapper)
+        public FavesrusUserProcessor(
+            IEmailer emailer,
+            IAutoMapper mapper)
+            : base(emailer, mapper)
         {
-            _mapper = mapper;
-        }
 
+        }
 
         public FavesrusUserProcessor(
-            IAutoMapper mapper,
             FavesrusUserManager userManager,
-            FavesrusRoleManager roleManager
-            )
+            FavesrusRoleManager roleManager,
+            IAuthenticationManager authManager,
+            IEmailer emailer,
+            IAutoMapper mapper)
+            :base(userManager, roleManager, authManager, emailer, mapper)
         {
-            _mapper = mapper;
-            _userManager = userManager;
-            _roleManager = roleManager;
-        }
 
-
-        public FavesrusUserManager UserManager
-        {
-            get
-            {
-                if (_userManager == null)
-                    UserManager = HttpContext.Current.GetOwinContext().GetUserManager<FavesrusUserManager>();
-
-                return _userManager;
-            }
-            private set
-            {
-                _userManager = value;
-            }
-        }
-
-        public FavesrusRoleManager RoleManager
-        {
-            get
-            {
-                if (_roleManager == null)
-                    RoleManager = HttpContext.Current.GetOwinContext().GetUserManager<FavesrusRoleManager>();
-                return _roleManager;
-            }
-            private set
-            {
-                _roleManager = value;
-            }
         }
 
         public DtoFavesrusUser RegisterUser(RegisterModel model)
         {
-            FavesrusUser user = _mapper.Map<FavesrusUser>(model);
+            FavesrusUser user = Mapper.Map<FavesrusUser>(model);
             user.UserName = model.Email; // In Faves user name is email addy.            
 
             IdentityResult step_1_result;
@@ -106,7 +80,7 @@ namespace Favesrus.Server.Processing.ProcessingFavesrusUser.Implmentation
             }
 
             // End Result
-            dtoFavesrusUser = _mapper.Map<DtoFavesrusUser>(user);
+            dtoFavesrusUser = Mapper.Map<DtoFavesrusUser>(user);
 
             return dtoFavesrusUser;
         }
@@ -116,74 +90,286 @@ namespace Favesrus.Server.Processing.ProcessingFavesrusUser.Implmentation
             return System.Threading.Tasks.Task.FromResult(RegisterUser(model));
         }
 
-        private List<InvalidModelProperty> GetErrorsFromIdentityResult(IdentityResult result)
+        public DtoFavesrusUser LoginUser(LoginModel model)
         {
-            List<InvalidModelProperty> invalidModelStates = new List<InvalidModelProperty>();
-            int i = 1;
+            FavesrusUser user = UserManager.FindByName(model.UserName);
 
-            foreach (string error in result.Errors)
+            if (user != null)
             {
-                InvalidModelProperty invalidItem = new InvalidModelProperty();
+                var result = UserManager.CheckPassword(user, model.Password);
 
-                invalidItem.ErrorItem = "issue" + i;
-                invalidItem.Reason = error;
-                invalidModelStates.Add(invalidItem);
-                i++;
+                if (result != false)
+                {
+                    ClaimsIdentity ident = UserManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
+                    AuthManager.SignOut();
+                    AuthManager.SignIn(new AuthenticationProperties { IsPersistent = true }, ident);
+
+                    var dtoFavesUser = Mapper.Map<DtoFavesrusUser>(user);
+
+                    return dtoFavesUser;
+
+                }
+
+                throw new BusinessRuleException("incorrect_user_password", "Incorrect user password!");
             }
-
-            return invalidModelStates;
+            else
+            {
+                throw new BusinessRuleException("no_user_found", "User not found in Faves 'R' Us");
+            }
         }
 
-        //private void AddErrors(IdentityResult result)
-        //{
-        //    foreach (var error in result.Errors)
-        //    {
-        //        int separatorIndex = model.Key.IndexOf(".") + 1; //breaks up the 'model.ProviderKey' to just 'ProviderKey'
-        //        string modelKey = model.Key;
-        //        InvalidModelProperty invalidItem = new InvalidModelProperty();
-        //        invalidItem.ErrorItem = modelKey.Remove(0, separatorIndex);
-        //        invalidItem.Reason = model.Value.Errors[0].ErrorMessage;
-        //        invalidModelStates.Add(invalidItem);
+        public Task<DtoFavesrusUser> LoginUserAsync(LoginModel model)
+        {
+            return System.Threading.Tasks.Task.FromResult(LoginUser(model));
+        }
 
-        //        ModelState.AddModelError("", error);
-        //    }
-        //}
+        public Task<IHttpActionResult> LoginFacebookAsync(LoginFacebookModel model, HttpRequestMessage requestMessage, AccountController controller)
+        {
+            return System.Threading.Tasks.Task.FromResult(LoginFacebook(model, requestMessage, controller));
+        }
 
-        //private void AddErrorsFromResult(IdentityResult result)
-        //{
-        //    foreach (string error in result.Errors)
-        //    {
-        //        ModelState.AddModelError("", error);
-        //    }
-        //}
+        public IHttpActionResult LoginFacebook(LoginFacebookModel model, HttpRequestMessage requestMessage, AccountController controller)
+        {
+            FavesrusUser user = UserManager.FindByName(model.Email);
 
-        //private IHttpActionResult GetErrorResult(IdentityResult result)
-        //{
-        //    if (result == null)
-        //    {
-        //        return InternalServerError();
-        //    }
+            if (user == null) // User is not registered
+            {
+                Log.Info(string.Format("User {0} is not registered.", model.Email));
+                user = new FavesrusUser
+                {
+                    Email = model.Email,
+                    UserName = model.Email
+                };
 
-        //    if (!result.Succeeded)
-        //    {
-        //        if (result.Errors != null)
-        //        {
-        //            foreach (string error in result.Errors)
-        //            {
-        //                ModelState.AddModelError("", error);
-        //            }
-        //        }
+                IdentityResult result = UserManager.Create(user);
 
-        //        if (ModelState.IsValid)
-        //        {
-        //            // No ModelState errors are available to send, so just return an empty BadRequest.
-        //            return BadRequest();
-        //        }
+                if (result.Succeeded)
+                {
+                    // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
+                    // Send an email with this link
+                    string code = UserManager.GenerateEmailConfirmationToken(user.Id);
+                    try
+                    {
+                        var callbackUrl = controller.Url.Link("ConfirmFacebookEmail", new { userId = user.Id, code = code, providerKey = model.ProviderKey });
+                        //UserManager.SendEmail(user.Id, "Confirm Faves 'R' Us Account", "Please confirm your Faves account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-        //        return BadRequest(ModelState);
-        //    }
+                        Emailer.SendEmail(Favesrus.Common.Constants.EMAIL_ADDRESS, "Confirm Faves 'R' Us Account", "Please confirm your Faves account by clicking <a href=\"" + callbackUrl + "\">here</a>", user.Email);
+                        return new BaseActionResult<string>(requestMessage, "Email sent", string.Format("Email sent to {0}", user.Email), "facebook_register_email_sent");
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.Error(ex.Message);
+                    }
+                }
+                else
+                {
+                    throw new BusinessRuleException("unable_to_create_facebook_user", "Unable to create user from facebook", result);
+                }
+            }
+            else // User is registered
+            {
+                Log.Info(string.Format("User {0} is registered.", model.Email));
+                UserLoginInfo loginInfo = new UserLoginInfo(Faves.Constants.FACEBOOK_PROVIDER, model.ProviderKey);
 
-        //    return null;
-        //}
+                FavesrusUser userWithValidLoginInfo = UserManager.Find(loginInfo);
+
+                if (userWithValidLoginInfo != null) // Users login info is in DB 
+                {
+                    ClaimsIdentity ident = UserManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
+                    AuthManager.SignOut();
+                    AuthManager.SignIn(
+                        new AuthenticationProperties { IsPersistent = true }, ident);
+
+                    var dtoFavesUser = Mapper.Map<DtoFavesrusUser>(user);
+
+                    //return dtoFavesUser;
+                    return new BaseActionResult<DtoFavesrusUser>(requestMessage, dtoFavesUser, "Facebook login success.", "facebook_login_success");
+                }
+                else // Users login info is not in DB
+                {
+                    // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
+                    // Send an email with this link
+                    string code = UserManager.GenerateEmailConfirmationToken(user.Id);
+                    try
+                    {
+                        var callbackUrl = controller.Url.Link("ConfirmFacebookEmail", new { userId = user.Id, code = code, providerKey = model.ProviderKey });
+                        //UserManager.SendEmail(user.Id, "Confirm Faves 'R' Us Account", "Please confirm your Faves account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+
+                        EmailService emailSender = new EmailService();
+                        emailSender.SendEmail(Favesrus.Common.Constants.EMAIL_ADDRESS, "Confirm Faves 'R' Us Account", "Please confirm your Faves account by clicking <a href=\"" + callbackUrl + "\">here</a>", user.Email);
+                        return new BaseActionResult<string>(requestMessage, "Email sent", string.Format("Email sent to {0}", user.Email), "facebook_register_email_sent");
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.Error(ex.Message);
+                    }
+                }
+            }
+
+            Log.Info(string.Format("Confirm email request sent for {0} with provider key {1}", model.Email, model.ProviderKey));
+            return new BaseActionResult<string>(requestMessage, "Email sent", string.Format("Email sent to {0}", user.Email), "facebook_register_email_sent");
+        }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//private void AddErrors(IdentityResult result)
+//{
+//    foreach (var error in result.Errors)
+//    {
+//        int separatorIndex = model.Key.IndexOf(".") + 1; //breaks up the 'model.ProviderKey' to just 'ProviderKey'
+//        string modelKey = model.Key;
+//        InvalidModelProperty invalidItem = new InvalidModelProperty();
+//        invalidItem.ErrorItem = modelKey.Remove(0, separatorIndex);
+//        invalidItem.Reason = model.Value.Errors[0].ErrorMessage;
+//        invalidModelStates.Add(invalidItem);
+
+//        ModelState.AddModelError("", error);
+//    }
+//}
+
+//private void AddErrorsFromResult(IdentityResult result)
+//{
+//    foreach (string error in result.Errors)
+//    {
+//        ModelState.AddModelError("", error);
+//    }
+//}
+
+//private IHttpActionResult GetErrorResult(IdentityResult result)
+//{
+//    if (result == null)
+//    {
+//        return InternalServerError();
+//    }
+
+//    if (!result.Succeeded)
+//    {
+//        if (result.Errors != null)
+//        {
+//            foreach (string error in result.Errors)
+//            {
+//                ModelState.AddModelError("", error);
+//            }
+//        }
+
+//        if (ModelState.IsValid)
+//        {
+//            // No ModelState errors are available to send, so just return an empty BadRequest.
+//            return BadRequest();
+//        }
+
+//        return BadRequest(ModelState);
+//    }
+
+//    return null;
+//}

@@ -40,14 +40,6 @@ namespace Favesrus.Server.Controllers.WebApi
             UserManager.UserTokenProvider = new DataProtectorTokenProvider<FavesrusUser>(provider.Create("EmailConfirmation"));
         }
 
-        public ILog Log
-        {
-            get
-            {
-                return log;
-            }
-        }
-
         protected IHttpActionResult GetErrorResult(IdentityResult result)
         {
             if (result == null)
@@ -85,6 +77,14 @@ namespace Favesrus.Server.Controllers.WebApi
             }
         }
 
+        public ILog Log
+        {
+            get
+            {
+                return log;
+            }
+        }
+
         public IAuthenticationManager AuthManager
         {
             get
@@ -98,8 +98,6 @@ namespace Favesrus.Server.Controllers.WebApi
                 _authManager = value;
             }
         }
-
-
 
         public FavesrusUserManager UserManager
         {

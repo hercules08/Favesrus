@@ -10,6 +10,7 @@ using Favesrus.Services.Interfaces;
 using Favesrus.Services;
 using Favesrus.Server.Processing.ProcessingFavesrusUser.Interface;
 using Favesrus.Server.Processing.ProcessingFavesrusUser.Implmentation;
+using CutUp.Services.Interfaces;
 
 namespace Favesrus.Server
 {
@@ -63,7 +64,7 @@ namespace Favesrus.Server
             container.Bind(typeof(IGiftItemService)).To(typeof(GiftItemService));
             container.Bind(typeof(ICategoryService)).To(typeof(CategoryService));
             //container.Bind<IShopService>().To<ShopService>();
-            //container.Bind<IEmailService>().To<EmailService>();
+            container.Bind<IEmailer>().To<EmailService>();
 
             // BLL
             //container.Bind<IShopFinder>().To<ShopFinder>();

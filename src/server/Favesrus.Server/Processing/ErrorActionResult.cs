@@ -39,24 +39,26 @@ namespace Favesrus.Server.Processing
             ResponseModel responseModel;
 
             IEnumerable<object> localEntity = _entity as IEnumerable<object>;
+            bool hasItems = false;
 
             if(localEntity != null)
             {
                 if ((localEntity as IEnumerable<object>).Count() > 1)
                 {
-                    responseModel = ResponseFactory.CreateItemsResponseModel(localEntity, _statusDetail);
+                    responseModel = ResponseFactory.CreateItemsResponseModel(localEntity);
+                    hasItems = true;
                 }
                 else
                 {
-                    responseModel = ResponseFactory.CreateEntityResponseModel(localEntity.ElementAtOrDefault(0), _statusDetail);
+                    responseModel = ResponseFactory.CreateEntityResponseModel(localEntity.ElementAtOrDefault(0));
                 }
             }
             else
             {
-                responseModel = ResponseFactory.CreateEntityResponseModel(_entity, _statusDetail);
+                responseModel = ResponseFactory.CreateEntityResponseModel(_entity);
             }
 
-            var responseObject = ResponseFactory.CreateResponseObject(_status, responseModel);
+            var responseObject = ResponseFactory.CreateResponseObject(_status, _statusDetail, responseModel, hasItems);
             var responseMessage = _requestMessage.CreateResponse(HttpStatusCode.BadRequest, responseObject);
 
             return responseMessage;

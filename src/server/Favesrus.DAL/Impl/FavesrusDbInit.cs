@@ -28,6 +28,10 @@ namespace Favesrus.DAL.Impl
             if (!roleMgr.RoleExists(roleName))
                 roleMgr.Create(new FavesrusRole(roleName));
 
+            // Check if role exists and create if not
+            if (!roleMgr.RoleExists("Customer"))
+                roleMgr.Create(new FavesrusRole("Customer"));
+
             // Check if user exits and create if not
             FavesrusUser user = userMgr.FindByName(userName);
             if (user == null)

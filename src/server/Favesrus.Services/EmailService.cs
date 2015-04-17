@@ -1,4 +1,5 @@
-﻿using Favesrus.Common;
+﻿using CutUp.Services.Interfaces;
+using Favesrus.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Favesrus.Services
 {
-    public class EmailService
+    public class EmailService:IEmailer
     {
         private string _toAddresses;
         private string _fromAddress;

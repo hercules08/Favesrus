@@ -16,17 +16,20 @@ namespace Favesrus.Server.Processing.ProcessingFavesrusUser.ActionResult
         private readonly HttpRequestMessage _requestMessage;
         private string _message;
         private string _status;
+        private HttpStatusCode _responseStatus;
 
         public BaseActionResult(
             HttpRequestMessage requestMessage,
             T entity,
             string message,
-            string status)
+            string status,
+            HttpStatusCode responseStatus = HttpStatusCode.OK)
         {
             _requestMessage = requestMessage;
             _entity = entity;
             _message = message;
             _status = status;
+            _responseStatus = responseStatus;
         }
 
         public Task<HttpResponseMessage> ExecuteAsync(CancellationToken cancellationToken)
@@ -40,25 +43,28 @@ namespace Favesrus.Server.Processing.ProcessingFavesrusUser.ActionResult
 
             IEnumerable<object> localEntity = _entity as IEnumerable<object>;
 
+            bool hasItems = false;
+
             if (localEntity != null)
             {
                 if ((localEntity as IEnumerable<object>).Count() > 1)
                 {
-                    responseModel = ResponseFactory.CreateItemsResponseModel(localEntity, _message);
+                    responseModel = ResponseFactory.CreateItemsResponseModel(localEntity);
+                    hasItems = true;
                 }
                 else
                 {
-                    responseModel = ResponseFactory.CreateEntityResponseModel(localEntity.ElementAtOrDefault(0), _message);
+                    responseModel = ResponseFactory.CreateEntityResponseModel(localEntity.ElementAtOrDefault(0));
                 }
             }
             else
             {
-                responseModel = ResponseFactory.CreateEntityResponseModel(_entity, _message);
+                responseModel = ResponseFactory.CreateEntityResponseModel(_entity);
             }
 
             var responseObject = ResponseFactory
-                .CreateResponseObject(_status, responseModel);
-            var responseMessage = _requestMessage.CreateResponse(HttpStatusCode.OK, responseObject);
+                .CreateResponseObject(_status, _message, responseModel, hasItems);
+            var responseMessage = _requestMessage.CreateResponse(_responseStatus, responseObject);
             //responseMessage.Headers.Location = LocationLinkCalculator.GetLocationLink(_dtoFavesrusUser);
 
             return responseMessage;

@@ -7,29 +7,24 @@ namespace Favesrus.Server.Processing
 {
     public class ResponseFactory
     {
-        public static ResponseObject CreateResponseObject(string status, ResponseModel model)
+        public static ResponseObject CreateResponseObject(string status, string message, ResponseModel model, bool hasItems)
         {
-            return new ResponseObject(status, model);
+            return new ResponseObject(status, message, model, hasItems);
         }
 
-        public static ResponseModel CreateMessageResponseModel(string message)
+        public static ResponseModel CreateItemsResponseModel(IEnumerable<object> items)
         {
-            return new ResponseModel { Message = message };
+            return new ResponseModel { Items = items };
         }
 
-        public static ResponseModel CreateItemsResponseModel(IEnumerable<object> items, string message)
+        public static ResponseModel CreateEntityResponseModel(object entity)
         {
-            return new ResponseModel { Message = message, Items = items };
+            return new ResponseModel { Entity = entity };
         }
 
-        public static ResponseModel CreateEntityResponseModel(object entity, string message)
+        public static ResponseModel CreateFullResponseModel(ICollection<object> items, object entity)
         {
-            return new ResponseModel { Message = message, Entity = entity };
-        }
-
-        public static ResponseModel CreateFullResponseModel(ICollection<object> items, object entity, string message)
-        {
-            return new ResponseModel { Items = items, Entity = entity, Message = message };
+            return new ResponseModel { Items = items, Entity = entity };
         }
     }
 }

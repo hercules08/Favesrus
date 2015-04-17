@@ -26,37 +26,31 @@ namespace Favesrus.Server.Controllers.WebApi
 {
     public partial class AccountController : ApiBaseController
     {
+        /// <summary>
+        /// Log In to Faves 'R' Us with your email and password
+        /// </summary>
+        /// <param name="model"></param>
         [HttpPost]
         [Route("login")]
         [ValidateModel]
         public async Task<IHttpActionResult> Login(HttpRequestMessage request, LoginModel model)
         {
-            FavesrusUser user = await UserManager.FindByNameAsync(model.UserName);
+            string successStatus = "login_success";
+            string successMessage = "Successfully logged in to Faves 'R' Us.";
 
-            if (user != null)
-            {
-                var result = await UserManager.CheckPasswordAsync(user, model.Password);
+            DtoFavesrusUser dtoFavesrusUser = await _favesrusUserProcessor.LoginUserAsync(model);
 
-                if (result != false)
-                {
-                    ClaimsIdentity ident = await UserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
-                    AuthManager.SignOut();
-                    AuthManager.SignIn(new AuthenticationProperties { IsPersistent = true }, ident);
+            var result = new LoginDtoFavesrusActionResult(
+                request,dtoFavesrusUser,
+                successMessage,successStatus, 
+                HttpStatusCode.OK);
 
-                    var dtoFavesUser = _mapper.Map<DtoFavesrusUser>(user);
-
-                    return new BaseActionResult<DtoFavesrusUser>(request, dtoFavesUser, "Login success.", "login_success");
-
-                }
-
-                throw new BusinessRuleException("incorrect_user_password", "Incorrect user password!");
-            }
-            else
-            {
-                throw new BusinessRuleException("no_user_found", "User not found in Faves 'R' Us");
-            }
+            return result;
         }
 
+        /// <summary>
+        /// Log In to Faves 'R' us with Facebook
+        /// </summary>
         [HttpPost]
         [Route("loginfacebook")]
         [ValidateModel]
@@ -64,86 +58,18 @@ namespace Favesrus.Server.Controllers.WebApi
         {
             Log.Info(string.Format("Attempt register as {0} with provider key {1}", model.Email, model.ProviderKey));
 
-            FavesrusUser user = await UserManager.FindByNameAsync(model.Email);
+            var result = await _favesrusUserProcessor.LoginFacebookAsync(model, requestMessage, this);
 
-            if (user == null) // User is not registered
-            {
-                Log.Info(string.Format("User {0} is not registered.", model.Email));
-                user = new FavesrusUser
-                {
-                    Email = model.Email,
-                    UserName = model.Email
-                };
-
-                IdentityResult result = await UserManager.CreateAsync(user);
-
-                if (result.Succeeded)
-                {
-                    // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                    // Send an email with this link
-                    string code = UserManager.GenerateEmailConfirmationToken(user.Id);
-                    try
-                    {
-                        var callbackUrl = Url.Link("ConfirmFacebookEmail", new { userId = user.Id, code = code, providerKey = model.ProviderKey });
-                        //UserManager.SendEmail(user.Id, "Confirm Faves 'R' Us Account", "Please confirm your Faves account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-
-                        EmailService emailSender = new EmailService();
-                        emailSender.SendEmail(Favesrus.Common.Constants.EMAIL_ADDRESS, "Confirm Faves 'R' Us Account", "Please confirm your Faves account by clicking <a href=\"" + callbackUrl + "\">here</a>", user.Email);
-                        return new BaseActionResult<string>(requestMessage, "Email sent", string.Format("Email sent to {0}", user.Email), "facebook_register_email_sent");
-                    }
-                    catch (Exception ex)
-                    {
-                        Log.Error(ex.Message);
-                    }
-                }
-                else
-                {
-                    throw new BusinessRuleException("unable_to_create_facebook_user", "Unable to create user from facebook", result);
-                }
-            }
-            else // User is registered
-            {
-                Log.Info(string.Format("User {0} is registered.", model.Email));
-                UserLoginInfo loginInfo = new UserLoginInfo(Faves.Constants.FACEBOOK_PROVIDER, model.ProviderKey);
-
-                FavesrusUser userWithValidLoginInfo = await UserManager.FindAsync(loginInfo);
-
-                if (userWithValidLoginInfo != null) // Users login info is in DB 
-                {
-                    ClaimsIdentity ident = await UserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
-                    AuthManager.SignOut();
-                    AuthManager.SignIn(
-                        new AuthenticationProperties { IsPersistent = true }, ident);
-
-                    var dtoFavesUser = _mapper.Map<DtoFavesrusUser>(user);
-
-                    return new BaseActionResult<DtoFavesrusUser>(requestMessage, dtoFavesUser, "Facebook login success.", "facebook_login_success");
-                }
-                else // Users login info is not in DB
-                {
-                    // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                    // Send an email with this link
-                    string code = UserManager.GenerateEmailConfirmationToken(user.Id);
-                    try
-                    {
-                        var callbackUrl = Url.Link("ConfirmFacebookEmail", new { userId = user.Id, code = code, providerKey = model.ProviderKey });
-                        //UserManager.SendEmail(user.Id, "Confirm Faves 'R' Us Account", "Please confirm your Faves account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-
-                        EmailService emailSender = new EmailService();
-                        emailSender.SendEmail(Favesrus.Common.Constants.EMAIL_ADDRESS, "Confirm Faves 'R' Us Account", "Please confirm your Faves account by clicking <a href=\"" + callbackUrl + "\">here</a>", user.Email);
-                        return new BaseActionResult<string>(requestMessage, "Email sent", string.Format("Email sent to {0}", user.Email), "facebook_register_email_sent");
-                    }
-                    catch (Exception ex)
-                    {
-                        Log.Error(ex.Message);
-                    }
-                }
-            }
-
-            Log.Info(string.Format("Confirm email request sent for {0} with provider key {1}", model.Email, model.ProviderKey));
-            return new BaseActionResult<string>(requestMessage, "Email sent", string.Format("Email sent to {0}", user.Email), "facebook_register_email_sent");
+            return result as IHttpActionResult;
+            
         }
 
+        /// <summary>
+        /// Confirms Facebook Faves 'R' Us sign in
+        /// </summary>
+        /// <param name="userId">The Faves 'R' Us users id</param>
+        /// <param name="code">The auto-generated confirm code sent with the email</param>
+        /// <param name="providerKey">The newly generated provider key from the users device</param>
         [HttpGet]
         [Route("confirmfacebookemail", Name = "ConfirmFacebookEmail")]
         public void ConfirmFacebookEmail(string userId, string code, string providerKey)
