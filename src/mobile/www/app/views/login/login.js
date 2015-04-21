@@ -226,6 +226,6 @@ function enableButtonTouchEventListeners(view) {
   Description: Return to two previous pages back
 */
 function returnHome() {
-    APP.instance.navigate("app/views/home/home.html");
+    APP.instance.navigate("#home-view");
 }
 

@@ -51,7 +51,7 @@ function setProductData(e) {
         /*e.view.element.find("#products-search-listview").data("kendoMobileListView").replace([ "Mario Amiibo", "Fox Amiibo", "Link Amiibo" ]);
         */
         var template = kendo.template($("#productSearchTemplate").html()); //Get the external template definition
-        var temp_data = '{"Status":"recommendations", "Model":{"items":[{"id":"345435","name":"Mario Amiibo","image":"images/image_placeholder.png", "description":"Interactive Play with Nintendo console games"},{"id":"3545354","name":"Luigi Amiibo","image":"images/image_placeholder.png", "description":"Interactive Play with Nintendo console games"},{"id":"3454363","name":"Peach Amiibo","image":"images/image_placeholder.png", "description":"Interactive Play with Nintendo console games"},{"id":"3454398","name":"Wario Amiibo","image":"images/image_placeholder.png", "description":"Interactive Play with Nintendo console games"},{"id":"3454005","name":"Pit Amiibo","image":"images/image_placeholder.png", "description":"Interactive Play with Nintendo console games"}]}}';
+        var temp_data = '{"Status":"search", "Model":{"items":[{"id":"345435","name":"Mario Amiibo","image":"images/image_placeholder.png", "description":"Interactive Play with Nintendo console games"},{"id":"3545354","name":"Luigi Amiibo","image":"images/image_placeholder.png", "description":"Interactive Play with Nintendo console games"},{"id":"3454363","name":"Peach Amiibo","image":"images/image_placeholder.png", "description":"Interactive Play with Nintendo console games"},{"id":"3454398","name":"Wario Amiibo","image":"images/image_placeholder.png", "description":"Interactive Play with Nintendo console games"},{"id":"3454005","name":"Pit Amiibo","image":"images/image_placeholder.png", "description":"Interactive Play with Nintendo console games"}]}}';
         //var data = ["Recommendation1", "Recommendation2", "Recommendation3", "Recommendation4", "Recommendation5"]; //Create some dummy data
         var data = JSON.parse(temp_data);
         
@@ -67,6 +67,13 @@ function setProductData(e) {
         catch (error){
         	console.log("Cordova object is not defined.")
         }
+        //Add the click event listener to all product add gift icons
+        $.each($("#home-view .product-add"), function (index, element) {
+            $(this).click(function () {
+                console.log("Item ID: "+$(this).parent().find(".item-name").attr("id") + " and Item Name: " +$(this).parent().find(".item-name").html());
+                //TODO Add product info to image on wishlist view
+            })
+        });
     }, 1000);
 }
 
