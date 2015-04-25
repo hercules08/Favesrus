@@ -30,7 +30,7 @@ namespace Favesrus.Server.Controllers
         {
             if (ModelState.IsValid)
             {
-                FavesrusUser user = await UserManager.FindAsync(model.UserName, model.Password);
+                FavesrusUser user = await UserManager.FindAsync(model.Email, model.Password);
 
                 if (user == null)
                 {

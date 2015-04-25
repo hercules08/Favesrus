@@ -21,6 +21,7 @@ using System.Web;
 using Favesrus.Server.Filters;
 using Favesrus.Server.Processing.ProcessingFavesrusUser.Interface;
 using Favesrus.Server.Processing.ProcessingFavesrusUser.ActionResult;
+using Favesrus.Server.Processing;
 
 namespace Favesrus.Server.Controllers.WebApi
 {
@@ -42,6 +43,8 @@ namespace Favesrus.Server.Controllers.WebApi
             // Send an email with this link
             string code = UserManager.GeneratePasswordResetToken(user.Id);
             var callbackUrl = Url.Link("ResetPassword", new { controller = "Account", userId = user.Id, code = code });
+            new EmailService()
+                .SendEmail(Favesrus.Common.Constants.EMAIL_ADDRESS, "Reset Faves 'R' Us Password", "Please confirm your Faves password reset by clicking <a href=\"" + callbackUrl + "\">here</a>", user.Email);
             UserManager.SendEmail(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
             return new BaseActionResult<string>(requestMessage, "Email sent", "Email sent", "forgot_password_email_sent");
         }
@@ -60,7 +63,7 @@ namespace Favesrus.Server.Controllers.WebApi
             var user = UserManager.FindById(userId);
             if (user != null)
             {
-                var result = UserManager.ResetPassword(userId, code, "temporary1");
+                var result = UserManager.ResetPassword(userId, code, "tempsorary1");
                 if (result.Succeeded)
                 {
                     EmailService emailSender = new EmailService();

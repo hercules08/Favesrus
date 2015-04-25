@@ -331,10 +331,10 @@
     <Compile Include="Models\UserViewModels.cs" />
     <Compile Include="Processing\ErrorActionResult.cs" />
     <Compile Include="Processing\LocationLinkCalculator.cs" />
-    <Compile Include="Processing\ProcessingFavesrusUser\ActionResult\BaseActionResult.cs" />
+    <Compile Include="Processing\BaseActionResult.cs" />
     <Compile Include="Processing\ProcessingFavesrusUser\ActionResult\LoginDtoFavesrusActionResult.cs" />
     <Compile Include="Processing\ProcessingFavesrusUser\ActionResult\RegisterDtoFavesrusActionResult.cs" />
-    <Compile Include="Processing\ProcessingFavesrusUser\Implmentation\BaseProcessor.cs" />
+    <Compile Include="Processing\BaseProcessor.cs" />
     <Compile Include="Processing\ProcessingFavesrusUser\Implmentation\FavesrusUserProcessor.cs" />
     <Compile Include="Processing\ProcessingFavesrusUser\Interface\IFavesrusUserProcessor.cs" />
     <Compile Include="Processing\ResponseObject.cs" />

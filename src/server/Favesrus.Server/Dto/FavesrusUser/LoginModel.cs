@@ -12,7 +12,7 @@ namespace Favesrus.Server.Dto.FavesrusUser
         /// Faves 'R' Us User Name
         /// </summary>
         [Required]
-        public string UserName { get; set; }
+        public string Email { get; set; }
         /// <summary>
         /// Faves 'R' Us User Password
         /// </summary>

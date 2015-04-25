@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 
-namespace Favesrus.Server.Processing.ProcessingFavesrusUser.ActionResult
+namespace Favesrus.Server.Processing
 {
     public class BaseActionResult<T> : IHttpActionResult
     {

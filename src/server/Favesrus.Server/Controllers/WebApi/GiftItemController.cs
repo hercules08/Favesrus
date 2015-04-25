@@ -2,6 +2,7 @@
 using Favesrus.Model.Entity;
 using Favesrus.Server.Exceptions;
 using Favesrus.Server.Filters;
+using Favesrus.Server.Processing;
 using Favesrus.Server.Processing.ProcessingFavesrusUser.ActionResult;
 using Microsoft.AspNet.Identity;
 using System.Collections.Generic;
@@ -18,6 +19,7 @@ using System.Web.Http.ModelBinding;
 
 namespace Favesrus.Server.Controllers.WebApi
 {
+    [Authorize]
     [RoutePrefix("api/giftItem")]
     public class GiftItemController : ApiBaseController
     {
@@ -35,6 +37,8 @@ namespace Favesrus.Server.Controllers.WebApi
             public string UserId { get; set; }
             [Required]
             public int GiftItemId { get; set; }
+            [Required]
+            public int WishListId { get; set; }
         }
 
         [HttpGet]
@@ -60,14 +64,18 @@ namespace Favesrus.Server.Controllers.WebApi
 
                 if(foundItem != null)
                 {
-                    if(user.WishListItems.Where(g => g.Id == foundItem.Id).Count() == 0)
-                    {
-                        user.WishListItems.Add(foundItem);
-                        db.Users.Attach(user);
-                        db.SaveChanges();
+                    var foundWishList = db.WishLists.Find(model.WishListId);
 
-                        return new BaseActionResult<string>(requestMessage, "Successful add to wishlist", "Successful add to wishlist", "successful_wishlist_add");
-                    }
+                    //if(user.WishListItems.Where(g => g.Id == foundItem.Id).Count() == 0)
+                    //{
+                    //    user.WishListItems.Add(foundItem);
+                    //    db.Users.Attach(user);
+                    //    db.SaveChanges();
+
+                    //    return new BaseActionResult<string>(requestMessage, "Successful add to wishlist", "Successful add to wishlist", "successful_wishlist_add");
+                    //}
+
+                    return new BaseActionResult<string>(requestMessage, "Successful add to wishlist", "Successful add to wishlist", "successful_wishlist_add");
                 }
                 throw new BusinessRuleException("giftitem_not_found", "The gift item could not be found");
             }

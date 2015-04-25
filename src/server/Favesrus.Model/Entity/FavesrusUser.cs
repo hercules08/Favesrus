@@ -21,6 +21,6 @@ namespace Favesrus.Model.Entity
         public virtual DateTime? Birthday { get; set; }
         public virtual Gender Gender { get; set; }
         public virtual string ProfilePic { get; set; }
-        public virtual ICollection<GiftItem> WishListItems { get; set; }
+        public virtual ICollection<WishList> WishLists { get; set; }
     }
 }

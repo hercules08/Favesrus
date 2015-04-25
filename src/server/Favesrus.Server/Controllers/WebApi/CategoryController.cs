@@ -12,6 +12,7 @@ using Favesrus.Model.Entity;
 using Favesrus.DAL.Impl;
 using Favesrus.Services.Interfaces;
 using Favesrus.Server.Processing.ProcessingFavesrusUser.ActionResult;
+using Favesrus.Server.Processing;
 
 namespace Favesrus.Server.Controllers.WebApi
 {

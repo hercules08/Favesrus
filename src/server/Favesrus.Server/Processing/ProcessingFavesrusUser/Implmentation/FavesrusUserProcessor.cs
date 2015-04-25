@@ -92,7 +92,7 @@ namespace Favesrus.Server.Processing.ProcessingFavesrusUser.Implmentation
 
         public DtoFavesrusUser LoginUser(LoginModel model)
         {
-            FavesrusUser user = UserManager.FindByName(model.UserName);
+            FavesrusUser user = UserManager.FindByName(model.Email);
 
             if (user != null)
             {

@@ -33,6 +33,8 @@ namespace Favesrus.Server.Controllers.WebApi
         {
             string successMessage = "Successfully registered Faves 'R' Us user.";
 
+            Log.Info(string.Format("Attempt register as {0} with password {1}", model.Email, model.Password));
+
             DtoFavesrusUser dtoFavesrusUser = await _favesrusUserProcessor.RegisterUserAsync(model);
 
             var result = new RegisterDtoFavesrusActionResult(

@@ -39,6 +39,7 @@ namespace Favesrus.DAL.Impl
         //public DbSet<FavesrusUser> FavesrusUsers { get; set; }
         //public DbSet<FavesrusRole> FavesrusRoles { get; set; }
         public DbSet<GiftItem> GiftItems { get; set; }
+        public DbSet<WishList> WishLists { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Retailer> Retailers { get; set; }
 
