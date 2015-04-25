@@ -24,6 +24,8 @@ define([
 
 });
 
+
+
 /*
 	Description: Set all necessary components at application initialization 
 */
@@ -35,11 +37,7 @@ function initialize() {
     //APP.instance.changeLoadingMessage("Please wait...");
 	    //setTimeout(function() {
 	        //APP.instance.hideLoading();
-		    var template = kendo.template($("#tortTemplate").html()); //Get the external template definition
-		    var data = ["Set1", "Set2", "Set3", "Set4", "Set5"]; //Create some dummy data
-		    var result = template(data); //Execute the template
-		    //alert(JSON.stringify(result))
-		    $("#thisorthat-scrollview").html(result); //Append the result
+		    // loadTortItems();
 	    //}, 1000);
     //}, 500);
 }

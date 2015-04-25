@@ -2,75 +2,75 @@
 <div data-role="view" id="thisorthat-view" data-init="tortViewInit" data-after-show="afterTortViewShow" data-layout="login-layout">
     <div class="container center">
         <div class="center">
-            <a id="recommendations-btn" data-role="button" data-badge="0" class="fa fa-check-square-o"></a>
+            <a id="recommendations-btn" data-role="button" data-badge="0" class="fa fa-check-square-o red"></a>
             <img id="thisorthat-logo" src="images/thisorthat_logo_greensea.png"/>
         </div>
         <div id="thisorthat-description" class="text-center description">
             Swipe between 10 different products from your desired recommendations.
             <br>Choose products to add to your wishlist.
         </div>
-        <div id="thisorthat-scrollview" data-role="scrollview"></div>
+        <p class="center no-recommendations-message red">No Recommendations Selected!</p>
+        <div id="pages-container"></div>
+        <div id="thisorthat-scrollview" data-role="scrollview" data-enable-pager="true" data-template="tortTemplate"><!--<div data-role="page">foo</div><div data-role="page">bar</div>--></div>
         <script id="tortTemplate" type="text/x-kendo-template">
-            # for (var i = 0; i < data.length; i++) { #
-                <div data-role="page">
-                    <table>
-                        <tr>
-                            <td><img class="tort-product" src="images/image_placeholder.png"/></td>
-                            <td><img class="tort-product" src="images/image_placeholder.png"/></td>
-                        </tr>
-                        <tr>
-                            <td>#= data[i]# Product1</td>
-                            <td>#= data[i]# Product2</td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">
-                                <div class="divider-container center">
-                                    <img class="divider" src="images/price_divider.png"/>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>$25.99</td>
-                            <td>$20.99</td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">
-                                <div class="divider-container center">
-                                    <img class="divider" src="images/avg_customer_ratings_divider.png"/>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="center">
-                                    <img class="side-by-side star" src="images/star.png"/>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="center">
-                                    <img class="side-by-side star" src="images/star.png"/>
-                                    <img class="side-by-side star" src="images/star.png"/>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">
-                                <div id="thisorthat-button-container" class="center">
-                                    <a class="side-by-side" data-role="button">
-                                        <img class="button-image" src="images/this.png"/>
-                                    </a>
-                                    <div id="thisorthat-or" class="side-by-side">
-                                        <div style="padding: 2px;">or</div>
-                                    </div>
-                                    <a class="side-by-side" data-role="button">
-                                        <img class="button-image" src="images/that.png"/>
-                                    </a>
-                                </div>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-            # } #
+        	<div>
+			    <table>
+			        <tr>
+			            <td><img class="tort-product" src="images/image_placeholder.png"/></td>
+			            <td><img class="tort-product" src="images/image_placeholder.png"/></td>
+			        </tr>
+			        <tr>
+			            <td>#= name#</td>
+			            <td></td>
+			        </tr>
+			        <tr>
+			            <td colspan="2">
+			                <div class="divider-container center">
+			                    <img class="divider" src="images/price_divider.png"/>
+			                </div>
+			            </td>
+			        </tr>
+			        <tr>
+			            <td>$25.99</td>
+			            <td>$20.99</td>
+			        </tr>
+			        <tr>
+			            <td colspan="2">
+			                <div class="divider-container center">
+			                    <img class="divider" src="images/avg_customer_ratings_divider.png"/>
+			                </div>
+			            </td>
+			        </tr>
+			        <tr>
+			            <td>
+			                <div class="center">
+			                    <img class="side-by-side star" src="images/star.png"/>
+			                </div>
+			            </td>
+			            <td>
+			                <div class="center">
+			                    <img class="side-by-side star" src="images/star.png"/>
+			                    <img class="side-by-side star" src="images/star.png"/>
+			                </div>
+			            </td>
+			        </tr>
+			        <tr>
+			            <td colspan="2">
+			                <div id="thisorthat-button-container" class="center">
+			                    <a class="side-by-side" data-role="button">
+			                        <img class="button-image" src="images/this.png"/>
+			                    </a>
+			                    <div id="thisorthat-or" class="side-by-side">
+			                        <div style="padding: 2px;">or</div>
+			                    </div>
+			                    <a class="side-by-side" data-role="button">
+			                        <img class="button-image" src="images/that.png"/>
+			                    </a>
+			                </div>
+			            </td>
+			        </tr>
+			    </table>
+			</div>
         </script>
     </div>
 </div>
@@ -78,6 +78,7 @@
 <div data-role="modalview" id="thisorthat-recommendations-modal" style="width:90%">
     <div data-role="header">
         <div data-role="navbar">
+            <a data-role="button" class="fa fa-check modal-close-btn" data-align="left"></a>
             <a data-role="button" data-icon="close-btn" class="modal-close-btn" data-align="right"></a>
             <span>Recommendations</span>
         </div>

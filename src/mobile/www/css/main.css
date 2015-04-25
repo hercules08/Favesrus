@@ -103,12 +103,20 @@ pre {
 
 #recommendations-btn {
 	border: 0px !important;
-	color: red !important;
 	font-size: 1.6em;
 	padding: 0px !important;
 	left: 0.5em;
 	position: absolute;
 	background-color: transparent !important;
+}
+
+.red {
+	color: red !important;
+}
+
+.no-recommendations-message {
+	font-size: 1.2em;
+	font-weight: bold;
 }
 
 #recommendations-btn .km-badge{
@@ -329,7 +337,7 @@ input.error-placeholder::-webkit-input-placeholder {
 
 .product-add {
 	font-size: 3em !important;
-	background: -webkit-linear-gradient(#e74c3c 45%, #16a085 36%);
+	background: -webkit-linear-gradient(#e74c3c 42%, #16a085 36%);
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 }
@@ -343,11 +351,11 @@ li a {
 	border-bottom: 1px solid #16a085 !important;
 }
 
-.secondary-search-container img:first-child {
+/*.secondary-search-container img:first-child {
 	width: 80%;
-}
+}*/
 
-.secondary-search-container img:nth-child(3) {
+.secondary-search-container img:nth-child(1) {
 	width: 35%;
 }
 
