@@ -37,14 +37,15 @@ $(
 	Invoked when the 'data-after-show' event is triggered associated to the wishlist view
 */
 function afterWishlistViewShow(e) {
-	setWishlistIcon();
+	//setWishlistIcon();
     //Open Login View if user hasn't sign in
     APP.instance.showLoading();
     APP.instance.changeLoadingMessage("Please wait...");
     setTimeout(function() {
         APP.instance.hideLoading();
-        if ((localStorage.loginstatus === false) || (localStorage.loginstatus === undefined)) {
+        if ((localStorage.loginstatus === "false") || (localStorage.loginstatus === undefined)) {
             APP.instance.navigate("#login-view", "overlay:down");
+            console.log("login-view Disabled");
         }
         else {
             console.log("You have already logged in!");
@@ -57,4 +58,18 @@ function afterWishlistViewShow(e) {
         enableButtonTouchEventListeners("login");
         wishlistShowCounter = 1;
 	}
+    setWishlistTabBadge();
 }
+
+/*
+    Description:
+*/
+function setWishlistTabBadge() {
+    $.each($(".tabstrip"), function (index, element) {
+        if($("#wishlist-view .gallery").find("img").length > 0) {
+            $(this).data("kendoMobileTabStrip").badge(1,$("#wishlist-view .gallery").find("img").length);
+            console.log("increase wishlist badge");
+        }
+    });
+}
+

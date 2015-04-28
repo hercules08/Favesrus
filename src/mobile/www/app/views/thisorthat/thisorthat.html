@@ -11,16 +11,16 @@
         </div>
         <p class="center no-recommendations-message red">No Recommendations Selected!</p>
         <div id="pages-container"></div>
-        <div id="thisorthat-scrollview" data-role="scrollview" data-enable-pager="true" data-template="tortTemplate"><!--<div data-role="page">foo</div><div data-role="page">bar</div>--></div>
+        <div id="thisorthat-scrollview" data-role="scrollview" data-enable-pager="true" data-template="tortTemplate"></div>
         <script id="tortTemplate" type="text/x-kendo-template">
         	<div>
 			    <table>
 			        <tr>
-			            <td><img class="tort-product" src="images/image_placeholder.png"/></td>
-			            <td><img class="tort-product" src="images/image_placeholder.png"/></td>
+			            <td><img class="tort-product" src="#= image#"/></td>
+			            <td><img class="tort-product" src="#= image#"/></td>
 			        </tr>
 			        <tr>
-			            <td>#= name#</td>
+			            <td id="#= id#">#= name#</td>
 			            <td></td>
 			        </tr>
 			        <tr>
@@ -31,8 +31,8 @@
 			            </td>
 			        </tr>
 			        <tr>
-			            <td>$25.99</td>
-			            <td>$20.99</td>
+			            <td>$25.99*</td>
+			            <td>$20.99*</td>
 			        </tr>
 			        <tr>
 			            <td colspan="2">
@@ -57,13 +57,13 @@
 			        <tr>
 			            <td colspan="2">
 			                <div id="thisorthat-button-container" class="center">
-			                    <a class="side-by-side" data-role="button">
+			                    <a id="#= id#-button" class="side-by-side tort-add" data-role="button">
 			                        <img class="button-image" src="images/this.png"/>
 			                    </a>
 			                    <div id="thisorthat-or" class="side-by-side">
 			                        <div style="padding: 2px;">or</div>
 			                    </div>
-			                    <a class="side-by-side" data-role="button">
+			                    <a class="side-by-side tort-add" data-role="button">
 			                        <img class="button-image" src="images/that.png"/>
 			                    </a>
 			                </div>
@@ -73,6 +73,9 @@
 			</div>
         </script>
     </div>
+    <ul id="tort-addItem-actionsheet" data-role="actionsheet" data-cancel="Close">
+        <li><a data-action="">Add to Default Wishlist</a></li>
+    </ul>
 </div>
 
 <div data-role="modalview" id="thisorthat-recommendations-modal" style="width:90%">

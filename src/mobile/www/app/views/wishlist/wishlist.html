@@ -1,9 +1,14 @@
 <!-- wishlist View -->
 <div data-role="view" id="wishlist-view" data-layout="wishlist-layout" data-after-show="afterWishlistViewShow">
-    <div id="container">
-        <h2>
-            Wishlist
-        </h2>
+    <div class="container">
+        <!-- <div data-role="scrollview"> --> <!--TODO Use with templates-->
+            <div class="wishlist-header center">
+                <div id="wishlist-title">Default List</div>
+            </div>
+            <div id="default-wishlist" class="gallery container">
+                
+            </div>
+        <!-- </div> -->
     </div>
 </div>
 
@@ -17,11 +22,11 @@
         </div> 
     </div>
     <div data-role="footer">
-        <div id="tabstrip" data-role="tabstrip">
-            <a href="#home-view" data-icon="home">Home</a>
-            <a name="wishlist-tab" href="app/views/wishlist/wishlist.html" >Wishlist</a>
-            <a href="app/views/shares/shares.html" data-icon="contacts">Shares</a>
-            <a href="app/views/settings/settings.html" data-icon="settings">Settings</a>
+        <div id="tabstrip" class="tabstrip" data-role="tabstrip">
+            <a href="#home-view" data-icon="search">Search</a>
+            <a name="wishlist-tab" href="#wishlist-view" data-icon="wish-list">Wishlist</a>
+            <a href="#shares-view" data-icon="contacts">Shares</a>
+            <a href="#settings-view" data-icon="settings">Settings</a>
         </div>
     </div>
 </div>
