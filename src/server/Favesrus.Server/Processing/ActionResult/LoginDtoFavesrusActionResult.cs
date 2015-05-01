@@ -7,7 +7,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace Favesrus.Server.Processing.ProcessingFavesrusUser.ActionResult
+namespace Favesrus.Server.Processing.ActionResult
 {
     public class LoginDtoFavesrusActionResult : BaseActionResult<DtoFavesrusUser>
     {

@@ -2,7 +2,7 @@
 using Favesrus.Model.Entity;
 using Favesrus.Server.Dto.FavesrusUser;
 using Favesrus.Server.Infrastructure.Interface;
-using Favesrus.Server.Processing.ProcessingFavesrusUser.Interface;
+using Favesrus.Server.Processing;
 using Favesrus.Services;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
@@ -17,14 +17,15 @@ using Favesrus.Common;
 using Microsoft.AspNet.Identity;
 using System.Collections.Generic;
 using Favesrus.Server.Filters;
-using CutUp.Services.Interfaces;
-using Favesrus.Server.Processing.ProcessingFavesrusUser.ActionResult;
+using Favesrus.Server.Processing.ActionResult;
 using System;
 using Favesrus.Server.Controllers.WebApi;
 using System.Net.Http;
 using System.Web.Http;
+using Favesrus.Server.Processing.Interface;
+using Favesrus.Services.Interfaces;
 
-namespace Favesrus.Server.Processing.ProcessingFavesrusUser.Implmentation
+namespace Favesrus.Server.Processing.Impl
 {
     public class FavesrusUserProcessor : BaseProcessor, IFavesrusUserProcessor
     {

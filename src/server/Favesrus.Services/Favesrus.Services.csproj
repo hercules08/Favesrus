@@ -80,8 +80,10 @@
     <Compile Include="Interfaces\ICategoryService.cs" />
     <Compile Include="Interfaces\IEmailer.cs" />
     <Compile Include="Interfaces\IGiftItemService.cs" />
+    <Compile Include="Interfaces\IRecommendationService.cs" />
     <Compile Include="Interfaces\IRetailerService.cs" />
     <Compile Include="GiftItemService.cs" />
+    <Compile Include="RecommendationService.cs" />
     <Compile Include="RetailerService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

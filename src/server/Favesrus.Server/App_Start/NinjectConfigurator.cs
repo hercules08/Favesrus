@@ -8,9 +8,11 @@ using System.Web.Http;
 using Ninject.Web.Common;
 using Favesrus.Services.Interfaces;
 using Favesrus.Services;
-using Favesrus.Server.Processing.ProcessingFavesrusUser.Interface;
-using Favesrus.Server.Processing.ProcessingFavesrusUser.Implmentation;
-using CutUp.Services.Interfaces;
+using Favesrus.Server.Processing.Interface;
+using Favesrus.Server.Processing.Impl;
+using Favesrus.Server.Dto.GiftItem;
+using Favesrus.Server.Dto.GiftItem.MapperConfig;
+using Favesrus.Server.Processing.Impl;
 
 namespace Favesrus.Server
 {
@@ -91,12 +93,23 @@ namespace Favesrus.Server
             container.Bind<IAutoMapperTypeConfigurator>()
                 .To<FavesrusUser_RegisterModel>()
                 .InSingletonScope();
+
+            container.Bind<IAutoMapperTypeConfigurator>()
+                .To<DtoGiftItem_GiftItem>()
+                .InSingletonScope();
+
+            container.Bind<IAutoMapperTypeConfigurator>()
+                .To<GiftItem_DtoGiftItem>()
+                .InSingletonScope();
         }
 
         private void ConfigureProcessors(IKernel container)
         {
             container.Bind<IFavesrusUserProcessor>()
                 .To<FavesrusUserProcessor>();
+
+            container.Bind<IRecommendationsProcessor>()
+                .To<RecommendationsProcessor>();
         }
     }
 }

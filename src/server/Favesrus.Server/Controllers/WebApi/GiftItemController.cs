@@ -3,7 +3,7 @@ using Favesrus.Model.Entity;
 using Favesrus.Server.Exceptions;
 using Favesrus.Server.Filters;
 using Favesrus.Server.Processing;
-using Favesrus.Server.Processing.ProcessingFavesrusUser.ActionResult;
+using Favesrus.Server.Processing.ActionResult;
 using Microsoft.AspNet.Identity;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

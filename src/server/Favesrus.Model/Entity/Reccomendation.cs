@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Favesrus.Server.Dto
+namespace Favesrus.Model.Entity
 {
-    interface Interface1
+    public class Reccomendation:Category
     {
     }
 }

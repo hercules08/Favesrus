@@ -1,4 +1,5 @@
 ﻿using Favesrus.Common;
+using Favesrus.Model.Entity;
 using Favesrus.Server.Dto;
 using Favesrus.Server.Dto.FavesrusUser;
 using System;
@@ -11,19 +12,18 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 
-namespace Favesrus.Server.Processing.ProcessingFavesrusUser.ActionResult
+namespace Favesrus.Server.Processing.ActionResult
 {
-    public class RegisterDtoFavesrusActionResult:IHttpActionResult
+    public class FacebookUserCreatedActionResult:IHttpActionResult
     {
-        private readonly DtoFavesrusUser _dtoFavesrusUser;
+        private readonly DtoFavesrusUser _user;
         private readonly HttpRequestMessage _requestMessage;
-        private readonly string _message;
 
-        public RegisterDtoFavesrusActionResult(HttpRequestMessage requestMessage, DtoFavesrusUser dtoFavesrusUser, string message)
+        public FacebookUserCreatedActionResult(HttpRequestMessage requestMessage,
+            DtoFavesrusUser user)
         {
             _requestMessage = requestMessage;
-            _dtoFavesrusUser = dtoFavesrusUser;
-            _message = message;
+            _user = user;
         }
 
         public Task<HttpResponseMessage> ExecuteAsync(CancellationToken cancellationToken)
@@ -33,12 +33,9 @@ namespace Favesrus.Server.Processing.ProcessingFavesrusUser.ActionResult
 
         public HttpResponseMessage Execute()
         {
-            var responseModel = 
-                ResponseFactory.CreateEntityResponseModel(_dtoFavesrusUser);
-            var responseObject = ResponseFactory
-                .CreateResponseObject(Constants.Status.FAVES_USER_REGISTERED, _message, responseModel, false);
+            var responseObject = ResponseFactory.CreateEntityResponseModel(_user);
             var responseMessage = _requestMessage.CreateResponse(HttpStatusCode.Created, responseObject);
-            //responseMessage.Headers.Location = LocationLinkCalculator.GetLocationLink(_dtoFavesrusUser);
+            responseMessage.Headers.Location = LocationLinkCalculator.GetLocationLink(_user);
 
             return responseMessage;
         }

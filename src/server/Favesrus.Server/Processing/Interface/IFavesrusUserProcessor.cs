@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
 
-namespace Favesrus.Server.Processing.ProcessingFavesrusUser.Interface
+namespace Favesrus.Server.Processing.Interface
 {
     public interface IFavesrusUserProcessor
     {

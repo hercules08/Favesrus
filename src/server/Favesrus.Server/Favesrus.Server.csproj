@@ -290,6 +290,7 @@
     <Compile Include="Controllers\WebApi\AccountLoginController.cs" />
     <Compile Include="Controllers\WebApi\GiftItemController.cs" />
     <Compile Include="Controllers\WebApi\ModoController.cs" />
+    <Compile Include="Controllers\WebApi\ReccomendationController.cs" />
     <Compile Include="Dto\FavesrusUser\DtoFavesrusUser.cs" />
     <Compile Include="Dto\FavesrusUser\LoginFacebookModel.cs" />
     <Compile Include="Dto\FavesrusUser\LoginModel.cs" />
@@ -301,8 +302,10 @@
     <Compile Include="Dto\FavesrusUser\MapperConfig\FavesrusUser_RegisterModel.cs" />
     <Compile Include="Dto\FavesrusUser\RegisterFacebookModel.cs" />
     <Compile Include="Dto\FavesrusUser\RegisterModel.cs" />
+    <Compile Include="Dto\GiftItem\DtoGiftItem.cs" />
+    <Compile Include="Dto\GiftItem\MapperConfig\DtoGiftItem_GiftItem.cs" />
+    <Compile Include="Dto\GiftItem\MapperConfig\GiftItem_DtoGiftItem.cs" />
     <Compile Include="Dto\ILinkContaining.cs" />
-    <Compile Include="Dto\Interface1.cs" />
     <Compile Include="Dto\Link.cs" />
     <Compile Include="ErrorHandling\GlobalExceptionHandler.cs" />
     <Compile Include="ErrorHandling\SimpleErrorResult.cs" />
@@ -328,17 +331,20 @@
     <Compile Include="Infrastructure\WebContainerManager.cs" />
     <Compile Include="Models\ForgotPasswordViewModel.cs" />
     <Compile Include="Models\NotificationViewModel.cs" />
+    <Compile Include="Models\Reccomendation\GetReccomendationsModel.cs" />
     <Compile Include="Models\UserViewModels.cs" />
     <Compile Include="Processing\ErrorActionResult.cs" />
-    <Compile Include="Processing\LocationLinkCalculator.cs" />
+    <Compile Include="Dto\LocationLinkCalculator.cs" />
     <Compile Include="Processing\BaseActionResult.cs" />
-    <Compile Include="Processing\ProcessingFavesrusUser\ActionResult\LoginDtoFavesrusActionResult.cs" />
-    <Compile Include="Processing\ProcessingFavesrusUser\ActionResult\RegisterDtoFavesrusActionResult.cs" />
+    <Compile Include="Processing\ActionResult\LoginDtoFavesrusActionResult.cs" />
+    <Compile Include="Processing\ActionResult\RegisterDtoFavesrusActionResult.cs" />
     <Compile Include="Processing\BaseProcessor.cs" />
-    <Compile Include="Processing\ProcessingFavesrusUser\Implmentation\FavesrusUserProcessor.cs" />
-    <Compile Include="Processing\ProcessingFavesrusUser\Interface\IFavesrusUserProcessor.cs" />
+    <Compile Include="Processing\Impl\FavesrusUserProcessor.cs" />
+    <Compile Include="Processing\Impl\RecommendationsProcessor.cs" />
+    <Compile Include="Processing\Interface\IFavesrusUserProcessor.cs" />
+    <Compile Include="Processing\Interface\IRecommendationsProcessor.cs" />
     <Compile Include="Processing\ResponseObject.cs" />
-    <Compile Include="Processing\ProcessingFavesrusUser\ActionResult\FacebookUserCreatedActionResult.cs" />
+    <Compile Include="Processing\ActionResult\FacebookUserCreatedActionResult.cs" />
     <Compile Include="Processing\ResponseModel.cs" />
     <Compile Include="Processing\ResponseFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -378,8 +384,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Dto\Category\" />
-    <Folder Include="Dto\GiftItem\" />
+    <Folder Include="Dto\Reccomendation\" />
     <Folder Include="Dto\Retailer\" />
+    <Folder Include="Models\GiftItem\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\Item\" />
   </ItemGroup>

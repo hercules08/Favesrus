@@ -19,8 +19,8 @@ using Faves = Favesrus.Common;
 using System.Net.Mail;
 using System.Web;
 using Favesrus.Server.Filters;
-using Favesrus.Server.Processing.ProcessingFavesrusUser.Interface;
-using Favesrus.Server.Processing.ProcessingFavesrusUser.ActionResult;
+using Favesrus.Server.Processing.Interface;
+using Favesrus.Server.Processing.ActionResult;
 using Favesrus.Server.Processing;
 
 namespace Favesrus.Server.Controllers.WebApi

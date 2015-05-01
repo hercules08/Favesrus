@@ -541,7 +541,7 @@
             <param name="code">The auto-generated confirm code sent with the email</param>
             <param name="providerKey">The newly generated provider key from the users device</param>
         </member>
-        <member name="P:Favesrus.Server.Dto.FavesrusUser.LoginModel.UserName">
+        <member name="P:Favesrus.Server.Dto.FavesrusUser.LoginModel.Email">
             <summary>
             Faves 'R' Us User Name
             </summary>

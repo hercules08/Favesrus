@@ -1,6 +1,6 @@
 ﻿using System.Net.Mail;
 
-namespace CutUp.Services.Interfaces
+namespace Favesrus.Services.Interfaces
 {
     public interface IEmailer
     {

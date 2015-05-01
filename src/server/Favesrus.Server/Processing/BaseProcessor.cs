@@ -1,7 +1,7 @@
-﻿using CutUp.Services.Interfaces;
-using Favesrus.Server.Filters;
+﻿using Favesrus.Server.Filters;
 using Favesrus.Server.Infrastructure.Interface;
 using Favesrus.Services;
+using Favesrus.Services.Interfaces;
 using log4net;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Web;
 
-namespace Favesrus.Server.Processing.ProcessingFavesrusUser.Implmentation
+namespace Favesrus.Server.Processing
 {
     public abstract class BaseProcessor
     {
