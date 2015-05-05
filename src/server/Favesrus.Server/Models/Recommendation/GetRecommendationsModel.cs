@@ -4,13 +4,13 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace Favesrus.Server.Models.Reccomendation
+namespace Favesrus.Server.Models.Recommendation
 {
-    public class GetReccomendationsModel
+    public class GetRecommendationsModel
     {
         [Required]
         public string UserId { get; set; }
-        public List<int> CategoryIds { get; set; }
+        public List<int> RecommendationIds { get; set; }
         public int ReturnedSetNumber { get; set; }
     }
 }

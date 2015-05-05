@@ -1,5 +1,5 @@
 ﻿using Favesrus.Server.Dto.GiftItem;
-using Favesrus.Server.Models.Reccomendation;
+using Favesrus.Server.Models.Recommendation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +10,7 @@ namespace Favesrus.Server.Processing.Interface
 {
     public interface IRecommendationsProcessor
     {
-        ICollection<DtoGiftItem> GetReccomendations(GetReccomendationsModel model);
-        Task<ICollection<DtoGiftItem>> GetReccomendationsAsync(GetReccomendationsModel model);
+        ICollection<DtoGiftItem> GetToT(GetRecommendationsModel model);
+        Task<ICollection<DtoGiftItem>> GetToTAsync(GetRecommendationsModel model);
     }
 }

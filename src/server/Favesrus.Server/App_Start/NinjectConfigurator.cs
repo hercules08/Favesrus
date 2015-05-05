@@ -65,6 +65,7 @@ namespace Favesrus.Server
             container.Bind(typeof(IRetailerService)).To(typeof(RetailerService));
             container.Bind(typeof(IGiftItemService)).To(typeof(GiftItemService));
             container.Bind(typeof(ICategoryService)).To(typeof(CategoryService));
+            container.Bind(typeof(IRecommendationService)).To(typeof(RecommendationService));
             //container.Bind<IShopService>().To<ShopService>();
             container.Bind<IEmailer>().To<EmailService>();
 

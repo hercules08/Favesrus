@@ -281,6 +281,7 @@
     <Compile Include="Controllers\GiftItemController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PrepController.cs" />
+    <Compile Include="Controllers\RecommendationController.cs" />
     <Compile Include="Controllers\RetailerController.cs" />
     <Compile Include="Controllers\WebApi\AccountController.cs" />
     <Compile Include="Controllers\WebApi\AccountPasswordController.cs" />
@@ -290,7 +291,8 @@
     <Compile Include="Controllers\WebApi\AccountLoginController.cs" />
     <Compile Include="Controllers\WebApi\GiftItemController.cs" />
     <Compile Include="Controllers\WebApi\ModoController.cs" />
-    <Compile Include="Controllers\WebApi\ReccomendationController.cs" />
+    <Compile Include="Controllers\WebApi\RecommendationController.cs" />
+    <Compile Include="Controllers\WebApi\WishlistController.cs" />
     <Compile Include="Dto\FavesrusUser\DtoFavesrusUser.cs" />
     <Compile Include="Dto\FavesrusUser\LoginFacebookModel.cs" />
     <Compile Include="Dto\FavesrusUser\LoginModel.cs" />
@@ -331,8 +333,9 @@
     <Compile Include="Infrastructure\WebContainerManager.cs" />
     <Compile Include="Models\ForgotPasswordViewModel.cs" />
     <Compile Include="Models\NotificationViewModel.cs" />
-    <Compile Include="Models\Reccomendation\GetReccomendationsModel.cs" />
+    <Compile Include="Models\Recommendation\GetRecommendationsModel.cs" />
     <Compile Include="Models\UserViewModels.cs" />
+    <Compile Include="Models\WishListAddModel.cs" />
     <Compile Include="Processing\ErrorActionResult.cs" />
     <Compile Include="Dto\LocationLinkCalculator.cs" />
     <Compile Include="Processing\BaseActionResult.cs" />
@@ -375,6 +378,11 @@
     <Content Include="Views\Category\Details.cshtml" />
     <Content Include="Views\Category\Edit.cshtml" />
     <Content Include="Views\Category\Index.cshtml" />
+    <Content Include="Views\Recommendation\Create.cshtml" />
+    <Content Include="Views\Recommendation\Delete.cshtml" />
+    <Content Include="Views\Recommendation\Details.cshtml" />
+    <Content Include="Views\Recommendation\Edit.cshtml" />
+    <Content Include="Views\Recommendation\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

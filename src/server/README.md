@@ -51,10 +51,60 @@ Favesrus Status Codes
 Testing using Advanced Rest Client or Fiddler the Content-Type must be set to application/x-www-form-urlencoded.
 
 
+Recommendations
+=
+
+(GET)/recommendation/getrecommendations
+-
+
+**Context:** Get the list of recommendations and their id's
+
+
+**Request:**
+
+	GET: http://dev.favesrus.com/api/recommendation/getrecommendations
+
+**Response:**
+
+	HTTP/1.1 201 OK
+	Content-Type: application/json; charset=utf-8
+
+	{
+	  "status": "get_recommendations_success",
+	  "model": {
+      "items": [
+      		{"id": 1, "categoryName": "Amibo", "giftItems": []},
+      		{"id": 2, "categoryName": "Shoes", "giftItems": []},
+      		{"id": 3, "categoryName": "Cars", "giftItems": []}
+     	],
+      "entity": null
+	  },
+	  "message": "Successfully retrieved recommendations list",
+	  "hasItems": true
+	}
+
+
+**Error Response :**
+	
+	HTTP/1.1 400 Error
+	Content-Type: application/json; charset=utf-8
+
+	{
+		"status": "invalid_modelstate",
+		"model": {
+			"items": null,
+			"entity": {
+				"errorItem": "Email",
+				"reason": "The Email field is required."
+			}
+		},
+		"message": "Bad model state",
+		"hasItems": false
+	}
+
+
 Account
 ===
-
-
 
 (POST)http://dev.favesrus.com/authenticate
 ---

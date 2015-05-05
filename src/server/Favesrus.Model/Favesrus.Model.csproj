@@ -57,7 +57,7 @@
     <Compile Include="Entity\FavesrusRole.cs" />
     <Compile Include="Entity\FavesrusUser.cs" />
     <Compile Include="Entity\GiftItem.cs" />
-    <Compile Include="Entity\Reccomendation.cs" />
+    <Compile Include="Entity\Recommendation.cs" />
     <Compile Include="Entity\Retailer.cs" />
     <Compile Include="Entity\WishList.cs" />
     <Compile Include="Enum\Gender.cs" />

@@ -1,9 +1,13 @@
 ﻿using Favesrus.DAL.Impl;
 using Favesrus.Model.Entity;
+using Favesrus.Server.Dto.GiftItem;
 using Favesrus.Server.Exceptions;
 using Favesrus.Server.Filters;
+using Favesrus.Server.Infrastructure.Interface;
+using Favesrus.Server.Models.Recommendation;
 using Favesrus.Server.Processing;
 using Favesrus.Server.Processing.ActionResult;
+using Favesrus.Server.Processing.Interface;
 using Microsoft.AspNet.Identity;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -12,6 +16,7 @@ using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using System.Web.Http.ModelBinding;
@@ -25,20 +30,45 @@ namespace Favesrus.Server.Controllers.WebApi
     {
         private FavesrusDbContext db = new FavesrusDbContext();
 
+
+        IAutoMapper _mapper;
+        IRecommendationsProcessor _recommendationsProcessor;
+
+        public GiftItemController(IAutoMapper mapper,
+            IRecommendationsProcessor recommendationProcessor)
+        {
+            _mapper = mapper;
+            _recommendationsProcessor = recommendationProcessor;
+        }
+
+        public GiftItemController()
+        {
+
+        }
+
         // GET api/GiftItem
         public IQueryable<GiftItem> GetGiftItems()
         {
             return db.GiftItems;
         }
 
-        public class WishListAddModel
+        // Gets the gifitem sets from the user provided
+        // recommendations list
+        [ValidateModel]
+        public async Task<IHttpActionResult> GetToT(
+            HttpRequestMessage requestMessage,
+            GetRecommendationsModel model)
         {
-            [Required]
-            public string UserId { get; set; }
-            [Required]
-            public int GiftItemId { get; set; }
-            [Required]
-            public int WishListId { get; set; }
+            string successStatus = "get_recommendations_success";
+            string successMessage = "Successfully retireved recommendations";
+
+            ICollection<DtoGiftItem> giftItems = await _recommendationsProcessor.GetToTAsync(model);
+
+            return new BaseActionResult<ICollection<DtoGiftItem>>(
+                requestMessage,
+                giftItems,
+                successMessage,
+                successStatus);
         }
 
         [HttpGet]
@@ -47,39 +77,6 @@ namespace Favesrus.Server.Controllers.WebApi
         {
             var results = db.GiftItems.Where(g => g.Category.Where(c => c.Id == categoryId).Count() != 0);
             return new BaseActionResult<IEnumerable<GiftItem>>(requestMessage, results, "Found gift items for the category", "found_giftitems_for_categoryId");
-        }
-
-
-        [HttpPost]
-        [Route("addgiftitemtowishlist")]
-        //[Authorize]
-        [ValidateModel]
-        public IHttpActionResult AddGiftItemToWishlist(HttpRequestMessage requestMessage, WishListAddModel model)
-        {
-            var user = UserManager.FindById(model.UserId);
-
-            if(user != null)
-            {
-                var foundItem = db.GiftItems.Find(model.GiftItemId);
-
-                if(foundItem != null)
-                {
-                    var foundWishList = db.WishLists.Find(model.WishListId);
-
-                    //if(user.WishListItems.Where(g => g.Id == foundItem.Id).Count() == 0)
-                    //{
-                    //    user.WishListItems.Add(foundItem);
-                    //    db.Users.Attach(user);
-                    //    db.SaveChanges();
-
-                    //    return new BaseActionResult<string>(requestMessage, "Successful add to wishlist", "Successful add to wishlist", "successful_wishlist_add");
-                    //}
-
-                    return new BaseActionResult<string>(requestMessage, "Successful add to wishlist", "Successful add to wishlist", "successful_wishlist_add");
-                }
-                throw new BusinessRuleException("giftitem_not_found", "The gift item could not be found");
-            }
-            throw new BusinessRuleException("user_not_found", "The user could not be found.");
         }
 
         [HttpGet]
