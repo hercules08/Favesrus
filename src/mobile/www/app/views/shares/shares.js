@@ -34,5 +34,6 @@ $(
 /*
 */
 function afterSharesViewShow(e) {
-	setWishlistIcon()
+	setWishlistIcon();
+	setWishlistTabBadge();
 }

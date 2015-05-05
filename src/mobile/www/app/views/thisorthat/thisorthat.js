@@ -84,9 +84,6 @@ function tortViewInit (e) {
 		$("#thisorthat-view .km-rightitem").click(function(){
 			returnHome();
 		});
-		$("#login-view .km-rightitem").click(function(){
-			returnHome();
-		});
 	}, 500);
 
 	$("#recommendations-btn").click(function(){
@@ -150,12 +147,20 @@ function loadTortItems() {
     	$("#thisorthat-scrollview").removeClass("hidden");
     	//$("#thisorthat-view #pages-container").removeClass("hidden");
     	//TODO websService
-    	var temp_data = '{"Status":"search", "Model":{"items":[{"id":"345435","name":"Mario Amiibo","image":"images/image_placeholder.png", "description":"Interactive Play with Nintendo console games"},{"id":"3545354","name":"Luigi Amiibo","image":"images/image_placeholder.png", "description":"Interactive Play with Nintendo console games"},{"id":"3454363","name":"Peach Amiibo","image":"images/image_placeholder.png", "description":"Interactive Play with Nintendo console games"}]}}';
+    	var temp_data = '{"Status":"search", "Model":{"items":[{"id":"345435","name":"Mario Amiibo","image":"http://www.gamestop.com/common/images/lbox/104546b.jpg", "description":"Interactive Play with Nintendo console games"},{"id":"3545354","name":"Luigi Amiibo","image":"http://www.gamestop.com/common/images/lbox/106342b.jpg", "description":"Interactive Play with Nintendo console games"},{"id":"3454363","name":"Peach Amiibo","image":"images/image_placeholder.png", "description":"Interactive Play with Nintendo console games"},{"id":"3545354","name":"Pit Amiibo","image":"images/image_placeholder.png", "description":"Interactive Play with Nintendo console games"},{"id":"3545354","name":"Ness Amiibo","image":"images/image_placeholder.png", "description":"Interactive Play with Nintendo console games"}]}}';
     	var data = JSON.parse(temp_data);
     	$("#thisorthat-scrollview").data("kendoMobileScrollView").setDataSource(data.Model.items); //Works (By it's self)
     	// $("#thisorthat-scrollview").data("kendoMobileScrollView").refresh();
     	$("#thisorthat-scrollview>div:first-child").css("height", 0.65*window.innerHeight);
     	//$("#thisorthat-view #pages-container").html($($(".km-scrollview").children("ol").get(0))); //Move pager to top
+    	//TODO Add the click event listener to this or that buttons
+        $.each($("#thisorthat-button-container .tort-add"), function (index, element) {
+            $(this).click(function () {
+                /*itemID = $(this).parent().find(".item-name").attr("id");
+                itemName = $(this).parent().find(".item-name").html();*/
+                $("#addItem-actionsheet").data("kendoMobileActionSheet").open();
+            })
+        });
     }
     else {
     	console.log("hide This or That items");
