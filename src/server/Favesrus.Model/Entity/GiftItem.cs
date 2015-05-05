@@ -19,5 +19,6 @@ namespace Favesrus.Model.Entity
         public Nullable<decimal> ItemPrice { get; set; }
         public virtual ICollection<Category> Category { get; set; }
         public virtual ICollection<Retailer> Retailer { get; set; }
+        public virtual ICollection<WishList> WishList { get; set; }
     }
 }

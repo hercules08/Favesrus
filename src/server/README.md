@@ -50,6 +50,112 @@ Favesrus Status Codes
 
 Testing using Advanced Rest Client or Fiddler the Content-Type must be set to application/x-www-form-urlencoded.
 
+Wish List
+=
+
+(POST)/wishlist/addgiftitemtowishlist
+-
+
+**Context:** Add a giftitem to a user wishlist
+
+
+**Request:**
+
+	POST: http://dev.favesrus.com/api/wishlist/addgiftitemtowishlist
+	Content-Type: application/x-www-form-urlencoded
+	
+	Request Data:
+	{
+		"userId": "12345678",
+		"giftItemId": "10",
+		"wishListId": "1"
+	}
+
+**Response:**
+
+	HTTP/1.1 201 OK
+	Content-Type: application/json; charset=utf-8
+
+	{
+		"status": "successful_wishlist_add",
+		"model": {
+			"items": null,
+			"entity": "Successful add to wishlist"
+		},
+		"message": "Successful add to wishlist",
+		"hasItems": false
+	}
+
+**Error Response :**
+	
+	HTTP/1.1 400 Error
+	Content-Type: application/json; charset=utf-8
+
+	{
+		"status": "invalid_modelstate",
+		"model": {
+			"items": null,
+			"entity": {
+				"errorItem": "Email",
+				"reason": "The Email field is required."
+			}
+		},
+		"message": "Bad model state",
+		"hasItems": false
+	}
+
+(POST)/wishlist/removegiftitemfromwishlist
+-
+
+**Context:** Remove a giftitem to a user wishlist
+
+
+**Request:**
+
+	POST: http://dev.favesrus.com/api/wishlist/addgiftitemtowishlist
+	Content-Type: application/x-www-form-urlencoded
+	
+	Request Data:
+	{
+		"userId": "12345678",
+		"giftItemId": "10",
+		"wishListId": "1"
+	}
+
+**Response:**
+
+	HTTP/1.1 201 OK
+	Content-Type: application/json; charset=utf-8
+
+	{
+		"status": "successful_wishlist_delete",
+		"model": {
+			"items": null,
+			"entity": "Successful delete from wishlist"
+		},
+		"message": "Successful delete from wishlist",
+		"hasItems": false
+	}
+
+
+
+**Error Response :**
+	
+	HTTP/1.1 400 Error
+	Content-Type: application/json; charset=utf-8
+
+	{
+		"status": "invalid_modelstate",
+		"model": {
+			"items": null,
+			"entity": {
+				"errorItem": "Email",
+				"reason": "The Email field is required."
+			}
+		},
+		"message": "Bad model state",
+		"hasItems": false
+	}
 
 Recommendations
 =
