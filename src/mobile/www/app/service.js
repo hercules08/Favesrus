@@ -21,13 +21,10 @@ function getFBInfo(response) {
 
 					//temporaraly save the result 
 					temp_obj = result;
-
-					if (cordova) {
-						temp_deviceID = device.uuid;
-		                //Send User's facebook info to Faves R Us
-	            		//Complete submission
-	            		webService("loginFacebook","email=" + result.email + "&providerkey="+temp_deviceID+"&firstname="+result.first_name+"&lastname="+result.last_name+"&gender="+result.gender+"&birthday="+result.birthday+"&profilepic="+result.picture.data.url);
-            		}
+					temp_deviceID = getDeviceID();
+	                //Send User's facebook info to Faves R Us
+            		//Complete submission
+            		webService("loginFacebook","email=" + result.email + "&providerkey="+temp_deviceID+"&firstname="+result.first_name+"&lastname="+result.last_name+"&gender="+result.gender+"&birthday="+result.birthday+"&profilepic="+result.picture.data.url);
 			    },
 			    function (result) {
 			        alert("Failed: " + result);
@@ -38,6 +35,17 @@ function getFBInfo(response) {
 			alert(exception);
 		}
 }
+
+/*
+	Description:
+*/
+
+function getDeviceID () {
+	if (cordova) {
+		return device.uuid;
+	}
+}
+
 
 function alertDismissed() {
 	
@@ -53,7 +61,7 @@ function webService(requestString, content) {
 	var requestURL, requestType,
 		domainName = "http://dev.favesrus.com/";
 
-	if(requestString == "forgetPassword") {
+	if(requestString == "forgotPassword") {
 		requestURL = domainName + "api/account/forgotpassword"; 
 		requestType = "POST";
 	}
@@ -76,6 +84,7 @@ function webService(requestString, content) {
 		requestType = "POST";
 	}
 
+	//console.log("Data sent "+content);
 
 	//Make the AJAX call
 	$.ajax({
@@ -84,21 +93,31 @@ function webService(requestString, content) {
 		data: content		//Specifies data to be sent to the server
 	})
 	.done(function(data, status, xhr) {		//Replaces the success() method
-	    alert( requestString+" success ");
+	    // alert( JSON.stringify(data)+" Status: "+JSON.stringify(status));
+	    if (navigator.notification) {
+		    navigator.notification.alert(
+			    JSON.stringify(data)+" Status: "+JSON.stringify(status),  	// message
+			    alertDismissed,         					// callback
+			    'Success',            						// title
+			    'OK'                						// buttonName
+			);
+		}
+
+
 	    if((requestString === "registerEmail") || (requestString === "loginEmail") || (requestString === "loginFacebook")){
-	    	storeLocalcredentials();
+	    	storeLocalcredentials(content);
 	    	if(APP.instance.view().id === "#login-view") {
-	    		APP.instance.navigate("app/views/wishlist/wishlist.html");
+	    		APP.instance.navigate("#wishlist-view");
 	    		alert("view the Wishlist View");
 	    	}
 	    }
 	})
-	.fail(function(data, status, xhr) {		//Replaces the error() method
-	    //alert( "error " + response.message);
-	    alert(JSON.stringify(data)+" Status: "+JSON.stringify(status));
+	.fail(function(xhr, status, error) {		//Replaces the error() method
+	    console.log(xhr.responseText);
+	    //alert(JSON.stringify(data)+" Status: "+JSON.stringify(status));
 	    if (navigator.notification) {
 		    navigator.notification.alert(
-			    JSON.parse(data.responseText).Message,  	// message
+			    JSON.stringify(xhr.model.entity.reason),  	// message
 			    alertDismissed,         					// callback
 			    'Error',            						// title
 			    'OK'                						// buttonName
@@ -126,16 +145,10 @@ function checkLocalCredentials() {
 /*
 Description: Local Storage - //Store username and accessToken or password locally for use later during relaunching of the app
 */
-function storeLocalcredentials() {
-	localStorage.email = temp_obj.email;
-	localStorage.deviceID= temp_deviceID;
+function storeLocalcredentials(data) {
+	localStorage.email = data.split("&")[0].split("=")[1];
+	localStorage.deviceID= getDeviceID();
 	localStorage.loginstatus = true;
-
-	//Null the  global temp variables
-	/*
-	temp_obj.email = null;
-	temp_deviceID = null;
-	*/
 }
 
 /*

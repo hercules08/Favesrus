@@ -24,12 +24,30 @@ define([
 
 });
 
+var loginViewShowCounter = 0;
+var orignalFacebookBtnX = 0; orignalFacebookBtnY = 0;
+
 //Execute after the DOM finishes loading
 $(
 	function () {
 	}
 );
 
+
+/*
+    Description:
+    Associated to the data-after-show attribute (Recurring execution) which executes afte the data-init attribute
+*/
+function afterLoginViewShow(e){
+    // alert("login");
+    if (loginViewShowCounter === 0) {
+        $("#login-view .km-rightitem").click(function(){
+            console.log("hello");
+            returnHome();
+        });
+        loginViewShowCounter = 1;
+    }
+}
 
 /*
 
@@ -46,8 +64,9 @@ function resetTextFields(){
 function onForgotPasswordPrompt(results) {
     // results.buttonIndex = 1 for the first button, 2 for the second button, etc.
     // results.input1 = inputed text
-    console.log("Inputted Email"+JSON.parse(results.input1));
-    webService("forgotPassword",results.input1);
+    /*console.log(results);
+    console.log("Inputted Email "+results.input1);*/
+    webService("forgotPassword","email="+results.input1);
     
 }
 
@@ -57,12 +76,12 @@ function onForgotPasswordPrompt(results) {
     Validate the contents of the views in the respective input elements
         - Check if entries are blank, (Email) if '@' is present, (Password) if length is equal to or greater than 6
 */
-function validateInputs(viewName) {
+function validateInputs(viewName, loginOption) {
     var status = false;
     if (viewName === "#login-view") {
         var el;
         for(var i = 0; i < $(APP.instance.view().id).find("input:visible").length; i++) {
-            el = $(APP.instance.view().id).find($("input")[i]);
+            el = $(APP.instance.view().id).find($("input:visible")[i]);
             //Blank Entries
             if (el.val() === "") {
                 if(el.attr("type") === "email") {
@@ -74,7 +93,12 @@ function validateInputs(viewName) {
                 el.addClass("error-placeholder");
                 status=false;
             }
-            else if (((el.attr("type") === "email") && (el.val() !== "")) || ( (el.attr("type") === "password") && (el.val() !== ""))) {
+            else if ($("#password-input").val() === $("#confirm-password-input").val()) {
+                status = true;
+            }
+            else if (((el.attr("type") === "email") && (el.val() !== "")) || ( ( (el.attr("type") === "password") && (el.val() !== "") ) && (loginOption === "register") )) {
+                console.log("check "+el.attr("type"));
+                console.log((((el.attr("type") === "email") && (el.val() !== "")) || ( ( (el.attr("type") === "password") && (el.val() !== "") ) && (loginOption === "register") )));
                 //Check for '@' sign
                 if(el.attr("type") === "email") {
                     if (el.val().indexOf("@") === -1) {
@@ -106,10 +130,13 @@ function validateInputs(viewName) {
                 status = false;
             }
             else {
+                console.log("check "+el.attr("type")+"set to true");
                 status = true;
-            }
+            }        
         }
+        console.log(loginOption);
     }
+    console.log(status);
     return status;
 }
 
@@ -129,33 +156,16 @@ function facebookAuthFailure (response) {
 	Invoke the Facebook or Email login process
 */
 function login(option){
-	if(option === "facebook"){
-		//Initiate Facebook connection session
-        // Defaults to sessionStorage for storing the Facebook token
-        // openFB.init({appId: '1549506478654715'});
-
-        /*openFB.login(
-            function(response) {
-                if(response.status === 'connected') {
-                    alert('Facebook login succeeded, got access token: ' + response.authResponse.token);
-                    getFacebookProfilePic();
-                    getFacebookInfo(response.authResponse.token);
-                } else {
-                    alert('Facebook login failed: ' + response.error);
-                }
-            }, 
-            {scope: 'email,user_birthday'}
-        );*/
-        
+	if(option === "facebook"){ 
         /*facebook Connect Cordova plugin*/
         //facebookConnectPlugin.browserInit("1549506478654715")
         facebookConnectPlugin.login(["email","user_birthday"], facebookAuthSuccess, facebookAuthFailure);
 	}
-	else if((option === "register") && (validateInputs(APP.instance.view().id))) {
+	else if((option === "register") && (validateInputs(APP.instance.view().id, "register"))) {
         webService("registerEmail","email=" + $("#email-input").val() + "&password=" + $("#confirm-password-input").val());
     }
-    else if((option === "email") && (validateInputs(APP.instance.view().id))) {
-        webService("loginEmail","email=" + $("#email-input").val() + "&password=" + $("#confirm-password-input").val());
+    else if((option === "email") && (validateInputs(APP.instance.view().id, "signin"))) {
+        webService("loginEmail","email=" + $("#email-input").val() + "&password=" + $("#password-input").val());
 	}
 }
 
@@ -166,11 +176,16 @@ function login(option){
 */
 function enableButtonTouchEventListeners(view) {
 	if (view === "login"){
-		//Add touchstart event to the create account button
-        document.getElementById("facebook-login-btn").addEventListener("touchstart", 
-            function (e) {
-            	login("facebook");
-            	//e.preventDefault(); //What is the Experience?
+        
+        addTouchSMEvents("facebook-login-btn", "inner-shadow");
+        //Add touchstart event to the create account button
+        document.getElementById("facebook-login-btn").addEventListener("touchend", 
+            function (evt) {
+            	if( (evt.changedTouches[0].clientX >= orignalFacebookBtnX-50 && evt.changedTouches[0].clientX <= orignalFacebookBtnX+50) && (evt.changedTouches[0].clientY >= orignalFacebookBtnY-10 && evt.changedTouches[0].clientY <= orignalFacebookBtnY+10) ) {
+                    $("#search-reset-btn span").removeClass("inner-shadow"); 
+                    login("facebook");
+                	//e.preventDefault(); //Prevents default event of the browser that follows this action
+                }
             }, 
         false);
 
@@ -194,9 +209,11 @@ function enableButtonTouchEventListeners(view) {
             function (e) {
             	//alert($("#account-login-btn").text());
             	if($("#account-login-btn").text() === "Create Account") {
+                    console.log("Register with Email");
                     login("register");
                 }
                 else if($("#account-login-btn").text() === "Sign In"){
+                    console.log("Login with Email");
                     login("email");
                 }
             	//e.preventDefault();

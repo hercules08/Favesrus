@@ -43,6 +43,7 @@ function enableSettingsButtonEventHandlers(){
 		//TODO Invoke webservice call
 		webService("logout","");
 		removeLocalcredentials();
+		returnHome();
 	});	
 }
 
@@ -69,5 +70,6 @@ function settingsViewInit(e) {
 
 /**/
 function afterSettingsViewShow(e) {
-	setWishlistIcon();
+	//setWishlistIcon();
+	setWishlistTabBadge();
 }
