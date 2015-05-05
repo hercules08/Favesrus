@@ -45,7 +45,7 @@ function afterWishlistViewShow(e) {
         APP.instance.hideLoading();
         if ((localStorage.loginstatus === "false") || (localStorage.loginstatus === undefined)) {
             APP.instance.navigate("#login-view", "overlay:down");
-            console.log("login-view Disabled");
+            //console.log("login-view Disabled");
         }
         else {
             console.log("You have already logged in!");
