@@ -69,15 +69,33 @@ GiftItem
 	Content-Type: application/json; charset=utf-8
 
 	{
-		"status": "successful_wishlist_add",
-		"model": {
-			"items": null,
-			"entity": "Successful add to wishlist"
-		},
-		"message": "Successful add to wishlist",
-		"hasItems": false
+	  "status": "get_all_giftItems",
+	  "model": {
+	    "items": [
+	      {
+	        "category": [],
+	        "retailer": [],
+	        "itemName": "A",
+	        "itemImage": null,
+	        "description": null,
+	        "itemPrice": null,
+	        "id": 1
+	      },
+	      {
+	        "category": [],
+	        "retailer": [],
+	        "itemName": "B",
+	        "itemImage": null,
+	        "description": null,
+	        "itemPrice": null,
+	        "id": 2
+	      }
+	    ],
+	    "entity": null
+	  },
+	  "message": "Successfully retireved gift items.",
+	  "hasItems": true
 	}
-
 
 (POST)/giftitem/gettotlist
 -
