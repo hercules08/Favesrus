@@ -107,7 +107,9 @@ namespace Favesrus.Server.Controllers.WebApi
                 || g.Description.ToLower().Contains(term)).ToList();
 
             List<DtoGiftItem> dtoGiftItems = new List<DtoGiftItem>();
-
+            //Add dummy 
+            dtoGiftItems.Add(new DtoGiftItem() { Image = "dummy.jpg", Name = "dummy", Description = "dummy description" });
+            dtoGiftItems.Add(new DtoGiftItem() { Image = "dummy2.jpg", Name = "dummy2", Description = "dummy2 description" });
             foreach (var giftItem in searchResults)
             {
                 dtoGiftItems.Add(Mapper.Map<DtoGiftItem>(giftItem));
