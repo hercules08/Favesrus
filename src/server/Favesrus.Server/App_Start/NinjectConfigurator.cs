@@ -1,18 +1,16 @@
 ﻿using Favesrus.DAL.Abstract;
 using Favesrus.DAL.Impl;
 using Favesrus.Server.Dto.FavesrusUser.MapperConfig;
+using Favesrus.Server.Dto.GiftItem.MapperConfig;
 using Favesrus.Server.Infrastructure.Impl;
 using Favesrus.Server.Infrastructure.Interface;
-using Ninject;
-using System.Web.Http;
-using Ninject.Web.Common;
-using Favesrus.Services.Interfaces;
-using Favesrus.Services;
+using Favesrus.Server.Processing.Impl;
 using Favesrus.Server.Processing.Interface;
-using Favesrus.Server.Processing.Impl;
-using Favesrus.Server.Dto.GiftItem;
-using Favesrus.Server.Dto.GiftItem.MapperConfig;
-using Favesrus.Server.Processing.Impl;
+using Favesrus.Services;
+using Favesrus.Services.Interfaces;
+using Ninject;
+using Ninject.Web.Common;
+using System.Web.Http;
 
 namespace Favesrus.Server
 {
@@ -106,8 +104,8 @@ namespace Favesrus.Server
 
         private void ConfigureProcessors(IKernel container)
         {
-            container.Bind<IFavesrusUserProcessor>()
-                .To<FavesrusUserProcessor>();
+            container.Bind<IAccountProcessor>()
+                .To<AcccountProcessor>();
 
             container.Bind<IRecommendationsProcessor>()
                 .To<RecommendationsProcessor>();

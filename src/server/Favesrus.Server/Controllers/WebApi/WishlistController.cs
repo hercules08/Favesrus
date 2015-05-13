@@ -114,7 +114,7 @@ namespace Favesrus.Server.Controllers.WebApi
                         {
                             foundWishList.GiftItems.Remove(foundItem);
                             db.SaveChanges();
-                            return new BaseActionResult<string>(requestMessage, "Successful delete from wishlist", "Successful add to wishlist", "successful_wishlist_delete");
+                            return new BaseActionResult<string>(requestMessage, "Successful delete from wishlist", "Successful delete from wishlist", "successful_wishlist_delete");
                         }
                     }
                     throw new BusinessRuleException("wishlist_not_found", "The wish list could not be found");

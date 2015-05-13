@@ -1,11 +1,7 @@
 ﻿using Favesrus.Model.Entity;
 using Favesrus.Server.Models;
 using Microsoft.AspNet.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Favesrus.Server.Controllers

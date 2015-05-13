@@ -38,7 +38,7 @@ namespace Favesrus.Server.Controllers.WebApi
             string successStatus = "login_success";
             string successMessage = "Successfully logged in to Faves 'R' Us.";
 
-            DtoFavesrusUser dtoFavesrusUser = await _favesrusUserProcessor.LoginUserAsync(model);
+            DtoFavesrusUser dtoFavesrusUser = await _accountProcessor.LoginUserAsync(model);
 
             var result = new LoginDtoFavesrusActionResult(
                 request,dtoFavesrusUser,
@@ -58,7 +58,7 @@ namespace Favesrus.Server.Controllers.WebApi
         {
             Log.Info(string.Format("Attempt register as {0} with provider key {1}", model.Email, model.ProviderKey));
 
-            var result = await _favesrusUserProcessor.LoginFacebookAsync(model, requestMessage, this);
+            var result = await _accountProcessor.LoginFacebookAsync(model, requestMessage, this);
 
             return result as IHttpActionResult;
             

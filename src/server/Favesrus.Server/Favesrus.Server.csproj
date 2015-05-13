@@ -40,6 +40,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Angela.Core">
+      <HintPath>..\..\..\libs\AngelaSmith.1.1.0\lib\net45\Angela.Core.dll</HintPath>
+    </Reference>
     <Reference Include="Antlr3.Runtime">
       <HintPath>..\..\..\libs\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
@@ -342,9 +345,9 @@
     <Compile Include="Processing\ActionResult\LoginDtoFavesrusActionResult.cs" />
     <Compile Include="Processing\ActionResult\RegisterDtoFavesrusActionResult.cs" />
     <Compile Include="Processing\BaseProcessor.cs" />
-    <Compile Include="Processing\Impl\FavesrusUserProcessor.cs" />
+    <Compile Include="Processing\Impl\AccountProcessor.cs" />
     <Compile Include="Processing\Impl\RecommendationsProcessor.cs" />
-    <Compile Include="Processing\Interface\IFavesrusUserProcessor.cs" />
+    <Compile Include="Processing\Interface\IAccountProcessor.cs" />
     <Compile Include="Processing\Interface\IRecommendationsProcessor.cs" />
     <Compile Include="Processing\ResponseObject.cs" />
     <Compile Include="Processing\ActionResult\FacebookUserCreatedActionResult.cs" />

@@ -1,12 +1,9 @@
-﻿using Favesrus.Model.Entity;
-using Favesrus.DAL.Impl;
-using System;
-using System.Collections.Generic;
+﻿using Favesrus.DAL.Impl;
+using Favesrus.Model.Entity;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using System.Data.Entity;
 
 namespace Favesrus.Server.Controllers
 {

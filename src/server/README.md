@@ -50,7 +50,97 @@ Favesrus Status Codes
 
 Testing using Advanced Rest Client or Fiddler the Content-Type must be set to application/x-www-form-urlencoded.
 
-Wish List
+
+GiftItem
+=
+
+(GET)/giftitem/getgiftitems
+-
+
+**Context:** You want all the gift items in the system 
+
+**Request:** 
+
+	GET: http://dev.favesrus.com/api/giftitem/getgiftitems
+ 
+**Response:**
+
+	HTTP/1.1 201 OK
+	Content-Type: application/json; charset=utf-8
+
+	{
+		"status": "successful_wishlist_add",
+		"model": {
+			"items": null,
+			"entity": "Successful add to wishlist"
+		},
+		"message": "Successful add to wishlist",
+		"hasItems": false
+	}
+
+
+(POST)/giftitem/gettotlist
+-
+**Context:** You want a list of item pairs for "This or That"
+
+**Request:**
+
+	POST: http://dev.favesrus.com/api/giftitem/gettotlist
+	Content-Type: application/x-www-form-urlencoded
+	
+	RequestData:
+	{
+		"userid":"12jsdfij42342",
+		"recommendationIds": ["1", "2", "3"],
+		"returnedSetNumber": 5
+	}
+
+**Response:**
+
+	HTTP/1.1 201 OK
+	Content-Type: application/json; charset=utf-8
+
+	{
+	  "status": "get_recommendations_success",
+	  "model": {
+	    "items": [
+	      {
+	        "id": 1,
+	        "itemName": "add",
+	        "itemImage": "http://www.gamasutra.com/db_area/images/blog/231001/contrastmario.jpg",
+	        "description": "Mario",
+	        "itemPrice": null
+	      },
+	      {
+	        "id": 2,
+	        "itemName": "subtract",
+	        "itemImage": "http://assets2.ignimgs.com/2015/01/29/luigi-1jpg-c41e5d.jpg",
+	        "description": "Luigi",
+	        "itemPrice": null
+	      },
+	      {
+	        "id": 3,
+	        "itemName": "multiply",
+	        "itemImage": "https://assets.pokemon.com/static2/_ui/img/chrome/external_link_bumper.png",
+	        "description": "Pikchachu",
+	        "itemPrice": null
+	      },
+	      {
+	        "id": 4,
+	        "itemName": "divide",
+	        "itemImage": "http://assets22.pokemon.com/assets/cms2/img/pokedex/full/007.png",
+	        "description": "Squirtle",
+	        "itemPrice": null
+	      }
+	    ],
+	    "entity": null
+	  },
+	  "message": "Successfully retireved recommendations",
+	  "hasItems": true
+	}
+
+
+Wishlist
 =
 
 (POST)/wishlist/addgiftitemtowishlist
@@ -157,8 +247,25 @@ Wish List
 		"hasItems": false
 	}
 
-Recommendations
+Category & Recommendations
 =
+
+(GET)/api/category
+------------------
+**Context:**
+You need all the current category's in the system.
+	
+**Request:**
+
+	GET: http://dev.favesrus.com/api/category/
+
+**Response:**
+
+	HTTP/1.1 204 No Content
+	
+**Fiddler query string:**
+
+email=elroy@gmail.com
 
 (GET)/recommendation/getrecommendations
 -
@@ -210,56 +317,21 @@ Recommendations
 
 
 Account
-===
+=
+(POST)/account/forgotpassword
+-
+**Context:** You forgot your password & need to temporarily reset it.
 
-(POST)http://dev.favesrus.com/authenticate
----
+**Request:** 
 
-**Context:** Get authorization token when using basic authentication
-
-
-**Request:**
-
-	POST: http://dev.favesrus.com/autenticate
+	POST: http://dev.favesrus.com/account/forgotpassword
 	Content-Type: application/x-www-form-urlencoded
 	
 	Request Data:
 	{
-		"grant_type": "password",
-		"username": "damola.omotosho@gmail.com",
-		"password": "12345678"
+		"email":"damola.omotosho@gmail.com"
 	}
-
 **Response:**
-
-	HTTP/1.1 201 OK
-	Content-Type: application/json; charset=utf-8
-
-	{
-		"access_token":"eytWGFHJEWJFOI23IRYH23J14N2J4N123MR4N132L432K4YOI3241234J2314I2341234456781324KJ2LJHUFOYHAKJFNEWKLFEWFKEWFWEF",
-		"token_type":"bearer",
-		"expires_in":1199
-	}
-
-**Error Response :**
-	
-	HTTP/1.1 400 Error
-	Content-Type: application/json; charset=utf-8
-
-	{ 
-		"error":"invalid_grant", 
-		"error_description":"The username or password is incorrect" 
-	}
-
-**Fiddler query string:**
-
-grant_type=password&username=damola.omotosho%40gmail.com&password=12345678
-
-**Notes:**
-
-- You must attach the bearer token for all request that require authentication
- 
-- Auth token expires after 20 minutes.
 
 
 (POST)/account/register
@@ -434,19 +506,49 @@ You need to reset your password
 
 email=elroy@gmail.com
 
-(GET)/category
-------------------
-**Context:**
-You need all the current categorys in the system(aka recommendations in the system)
-	
+(POST)http://dev.favesrus.com/authenticate
+-
+**Context:** Get authorization token when using basic authentication
+
 **Request:**
 
-	GET: http://dev.favesrus.com/api/category/
+	POST: http://dev.favesrus.com/autenticate
+	Content-Type: application/x-www-form-urlencoded
+	
+	Request Data:
+	{
+		"grant_type": "password",
+		"username": "damola.omotosho@gmail.com",
+		"password": "12345678"
+	}
 
 **Response:**
 
-	HTTP/1.1 204 No Content
+	HTTP/1.1 201 OK
+	Content-Type: application/json; charset=utf-8
+
+	{
+		"access_token":"eytWGFHJEWJFOI23IRYH23J14N2J4N123MR4N132L432K4YOI3241234J2314I2341234456781324KJ2LJHUFOYHAKJFNEWKLFEWFKEWFWEF",
+		"token_type":"bearer",
+		"expires_in":1199
+	}
+
+**Error Response :**
 	
+	HTTP/1.1 400 Error
+	Content-Type: application/json; charset=utf-8
+
+	{ 
+		"error":"invalid_grant", 
+		"error_description":"The username or password is incorrect" 
+	}
+
 **Fiddler query string:**
 
-email=elroy@gmail.com
+grant_type=password&username=damola.omotosho%40gmail.com&password=12345678
+
+**Notes:**
+
+- You must attach the bearer token for all request that require authentication
+ 
+- Auth token expires after 20 minutes.

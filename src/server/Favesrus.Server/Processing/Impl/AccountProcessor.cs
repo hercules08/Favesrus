@@ -1,25 +1,30 @@
-﻿using Faves = Favesrus.Common;
-using Favesrus.Model.Entity;
+﻿using Favesrus.Model.Entity;
+using FavesApi = Favesrus.Server.Controllers.WebApi;
 using Favesrus.Server.Dto.FavesrusUser;
+using Favesrus.Server.Exceptions;
+using Favesrus.Server.Filters;
 using Favesrus.Server.Infrastructure.Interface;
+using Favesrus.Server.Models;
+using Favesrus.Server.Processing.Interface;
 using Favesrus.Services;
+using Favesrus.Services.Interfaces;
+using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
+using System;
+using System.Net.Http;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Favesrus.Server.Exceptions;
-using Microsoft.AspNet.Identity;
-using System;
-using Favesrus.Server.Controllers.WebApi;
-using System.Net.Http;
 using System.Web.Http;
-using Favesrus.Server.Processing.Interface;
-using Favesrus.Services.Interfaces;
+using Faves = Favesrus.Common;
+using Angela.Core;
+using System.IO;
+using System.Collections.Generic;
 
 namespace Favesrus.Server.Processing.Impl
 {
-    public class FavesrusUserProcessor : BaseProcessor, IFavesrusUserProcessor
+    public class AcccountProcessor : BaseProcessor, IAccountProcessor
     {
-        public FavesrusUserProcessor(
+        public AcccountProcessor(
             IEmailer emailer,
             IAutoMapper mapper)
             : base(emailer, mapper)
@@ -27,13 +32,13 @@ namespace Favesrus.Server.Processing.Impl
 
         }
 
-        public FavesrusUserProcessor(
+        public AcccountProcessor(
             FavesrusUserManager userManager,
             FavesrusRoleManager roleManager,
             IAuthenticationManager authManager,
             IEmailer emailer,
             IAutoMapper mapper)
-            :base(userManager, roleManager, authManager, emailer, mapper)
+            : base(userManager, roleManager, authManager, emailer, mapper)
         {
 
         }
@@ -48,7 +53,12 @@ namespace Favesrus.Server.Processing.Impl
             DtoFavesrusUser dtoFavesrusUser;
 
 
-            // Step 1 - Create the user
+            // Step 1 - Create default wishlist for user
+            if (user.WishLists == null)
+                user.WishLists = new List<WishList>();
+            user.WishLists.Add(new WishList() { WishListName = "Default" });
+
+            // Step 2 - Create the user
             step_1_result = UserManager.Create(user, model.Password);
             if (!step_1_result.Succeeded)
             {
@@ -59,7 +69,7 @@ namespace Favesrus.Server.Processing.Impl
                     errors);
             }
 
-            // Step 2 - Add the user to the customer role
+            // Step 3 - Add the user to the customer role
             step_2_result = UserManager.AddToRole(user.Id, Faves.Constants.CUSTOMER_ROLE);
             if (!step_2_result.Succeeded)
             {
@@ -78,7 +88,7 @@ namespace Favesrus.Server.Processing.Impl
 
         public Task<DtoFavesrusUser> RegisterUserAsync(RegisterModel model)
         {
-            return System.Threading.Tasks.Task.FromResult(RegisterUser(model));
+            return Task.FromResult(RegisterUser(model));
         }
 
         public DtoFavesrusUser LoginUser(LoginModel model)
@@ -111,15 +121,102 @@ namespace Favesrus.Server.Processing.Impl
 
         public Task<DtoFavesrusUser> LoginUserAsync(LoginModel model)
         {
-            return System.Threading.Tasks.Task.FromResult(LoginUser(model));
+            return Task.FromResult(LoginUser(model));
         }
 
-        public Task<IHttpActionResult> LoginFacebookAsync(LoginFacebookModel model, HttpRequestMessage requestMessage, AccountController controller)
+        public IHttpActionResult ResetPassword(string userId, string code, HttpRequestMessage requestMessage)
         {
-            return System.Threading.Tasks.Task.FromResult(LoginFacebook(model, requestMessage, controller));
+            if (userId == null || code == null)
+            {
+                Log.Info("User Id or Generated Code was empty. When resetting");
+                throw new BusinessRuleException(
+                    "userid_or_code_missing_status",
+                    "User id or code was null", new { userId = userId, code = code });
+            }
+
+            //TODO Check that the user actually exists
+            var user = UserManager.FindById(userId);
+            if (user != null)
+            {
+                var temporaryPassword = Path.GetRandomFileName().Replace(".", "").Substring(0, 6);
+
+                var result = UserManager.ResetPassword(userId, code, temporaryPassword);
+                if (result.Succeeded)
+                {
+                    EmailService emailSender = new EmailService();
+                    emailSender.SendEmail(
+                        Favesrus.Common.Constants.EMAIL_ADDRESS,
+                        "Faves Password Reset",
+                        "Your Faves account password has been reset to: " + temporaryPassword, user.Email);
+                    Log.Info(string.Format("Successfully reset password {0}", user.UserName));
+                    return new BaseActionResult<string>(
+                        requestMessage,
+                        "",
+                        "Temporary password created",
+                        "password_reset_success_status");
+                }
+                else
+                {
+                    throw new BusinessRuleException(
+                    "unable_to_reset_password",
+                    "Unable to reset user password.");
+                }
+            }
+            else
+            {
+                throw new BusinessRuleException(
+                    "user_does_not_exist_status",
+                    "The user does not exist in the system.");
+            }
         }
 
-        public IHttpActionResult LoginFacebook(LoginFacebookModel model, HttpRequestMessage requestMessage, AccountController controller)
+        public Task<IHttpActionResult> ResetPasswordAsync(string userId, string code, HttpRequestMessage requestMessage)
+        {
+            return Task.FromResult(ResetPassword(userId, code, requestMessage));
+        }
+
+        public IHttpActionResult ForgotPassword(ForgotPasswordViewModel model,
+            HttpRequestMessage requestMessage,
+            FavesApi.AccountController controller)
+        {
+            var user = UserManager.FindByEmail(model.Email);
+            if (user == null)
+            {
+                var entity = new InvalidModelProperty("issue1", "The user does not exist.");
+                throw new BusinessRuleException("user_not_registered.", "User not registered with Faves", entity);
+            }
+
+            // For more information on how to enable account confirmation and password reset please visit
+            // http://go.microsoft.com/fwlink/?LinkID=320771
+
+            // Send an email with this link
+            string code = UserManager.GeneratePasswordResetToken(user.Id);
+            var callbackUrl = controller.Url.Link("ResetPassword",
+                new
+                {
+                    controller = "Account",
+                    userId = user.Id,
+                    code = code
+                });
+            new EmailService()
+                .SendEmail(Faves.Constants.EMAIL_ADDRESS,
+                "Reset Faves 'R' Us Password",
+                "Please confirm your Faves password reset by clicking <a href=\"" + callbackUrl + "\">here</a>",
+                user.Email);
+            UserManager.SendEmail(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
+            return new BaseActionResult<string>(requestMessage, "Email sent", "Email sent", "forgot_password_email_sent");
+        }
+
+        public Task<IHttpActionResult> ForgotPasswordAsync(ForgotPasswordViewModel model,
+            HttpRequestMessage requestMessage,
+            FavesApi.AccountController controller)
+        {
+            return Task.FromResult(ForgotPassword(model, requestMessage, controller));
+        }
+
+        public IHttpActionResult LoginFacebook(LoginFacebookModel model,
+            HttpRequestMessage requestMessage,
+            FavesApi.AccountController controller)
         {
             FavesrusUser user = UserManager.FindByName(model.Email);
 
@@ -131,6 +228,11 @@ namespace Favesrus.Server.Processing.Impl
                     Email = model.Email,
                     UserName = model.Email
                 };
+
+                // Create default user wishlist
+                if (user.WishLists == null)
+                    user.WishLists = new List<WishList>();
+                user.WishLists.Add(new WishList() { WishListName = "Default" });
 
                 IdentityResult result = UserManager.Create(user);
 
@@ -199,6 +301,15 @@ namespace Favesrus.Server.Processing.Impl
 
             Log.Info(string.Format("Confirm email request sent for {0} with provider key {1}", model.Email, model.ProviderKey));
             return new BaseActionResult<string>(requestMessage, "Email sent", string.Format("Email sent to {0}", user.Email), "facebook_register_email_sent");
+        }
+
+
+        public Task<IHttpActionResult> LoginFacebookAsync(
+            LoginFacebookModel model, 
+            HttpRequestMessage requestMessage, 
+            FavesApi.AccountController controller)
+        {
+            return Task.FromResult(LoginFacebook(model, requestMessage, controller));
         }
     }
 }

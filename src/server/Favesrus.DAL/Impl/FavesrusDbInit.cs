@@ -32,14 +32,15 @@ namespace Favesrus.DAL.Impl
             if (!roleMgr.RoleExists("Customer"))
                 roleMgr.Create(new FavesrusRole("Customer"));
 
-            // Check if user exits and create if not
+            // Check if user exists and create if not
             FavesrusUser user = userMgr.FindByName(userName);
             if (user == null)
             {
                 userMgr.Create(new FavesrusUser
                 {
                     UserName = userName,
-                    Email = email
+                    Email = email,
+                    WishLists = new List<WishList>() { new WishList() { WishListName = "Default"}}
                 }, password);
                 user = userMgr.FindByName(userName);
             }

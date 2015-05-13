@@ -1,26 +1,9 @@
-﻿using Favesrus.Model.Entity;
-using Favesrus.Server.Dto.FavesrusUser;
-using Favesrus.Server.ErrorHandling;
-using Favesrus.Server.Exceptions;
-using Favesrus.Server.Infrastructure.Interface;
-using Favesrus.Server.Models;
+﻿using Favesrus.Server.Infrastructure.Interface;
+using Favesrus.Server.Processing.Interface;
 using Favesrus.Services;
-using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
-using System;
-using System.Net;
-using System.Net.Http;
-using System.Security.Claims;
-using System.Threading.Tasks;
 using System.Web.Http;
-using System.Web.Http.ModelBinding;
-using Faves = Favesrus.Common;
-using System.Net.Mail;
-using System.Web;
-using Favesrus.Server.Filters;
-using Favesrus.Server.Processing.Interface;
-using Favesrus.Server.Processing.ActionResult;
 
 namespace Favesrus.Server.Controllers.WebApi
 {
@@ -28,7 +11,7 @@ namespace Favesrus.Server.Controllers.WebApi
     public partial class AccountController : ApiBaseController
     {
         private IAutoMapper _mapper;
-        private IFavesrusUserProcessor _favesrusUserProcessor;
+        private IAccountProcessor _accountProcessor;
 
         //public AccountController()
         //    :base()
@@ -37,22 +20,22 @@ namespace Favesrus.Server.Controllers.WebApi
         //}
 
         public AccountController(IAutoMapper mapper,
-            IFavesrusUserProcessor favesrusUserProcessor)
+            IAccountProcessor favesrusUserProcessor)
         {
             _mapper = mapper;
-            _favesrusUserProcessor = favesrusUserProcessor;
+            _accountProcessor = favesrusUserProcessor;
         }
 
         public AccountController
             (IAutoMapper mapper,
-                IFavesrusUserProcessor favesrusUserProcessor,
+                IAccountProcessor favesrusUserProcessor,
                 FavesrusUserManager userManager,
                 FavesrusRoleManager roleManager,
                 IAuthenticationManager authManager)
             : base(userManager, roleManager, authManager)
         {
             _mapper = mapper;
-            _favesrusUserProcessor = favesrusUserProcessor;
+            _accountProcessor = favesrusUserProcessor;
         }
 
         /// <summary>

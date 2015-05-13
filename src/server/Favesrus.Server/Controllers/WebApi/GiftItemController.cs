@@ -1,16 +1,12 @@
 ﻿using Favesrus.DAL.Impl;
 using Favesrus.Model.Entity;
 using Favesrus.Server.Dto.GiftItem;
-using Favesrus.Server.Exceptions;
 using Favesrus.Server.Filters;
 using Favesrus.Server.Infrastructure.Interface;
 using Favesrus.Server.Models.Recommendation;
 using Favesrus.Server.Processing;
-using Favesrus.Server.Processing.ActionResult;
 using Favesrus.Server.Processing.Interface;
-using Microsoft.AspNet.Identity;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
@@ -24,7 +20,7 @@ using System.Web.Http.ModelBinding;
 
 namespace Favesrus.Server.Controllers.WebApi
 {
-    [Authorize]
+    //[Authorize]
     [RoutePrefix("api/giftItem")]
     public class GiftItemController : ApiBaseController
     {
@@ -47,15 +43,28 @@ namespace Favesrus.Server.Controllers.WebApi
         }
 
         // GET api/GiftItem
-        public IQueryable<GiftItem> GetGiftItems()
+        [HttpGet]
+        [Route("getgiftitems")]
+        public IHttpActionResult GetGiftItems()
         {
-            return db.GiftItems;
+            string successStatus = "get_all_giftItems";
+            string successMessage = "Successfully retireved gift items.";
+
+            var giftItems = db.GiftItems.ToList();
+
+            return new BaseActionResult<ICollection<GiftItem>>(
+                Request,
+                giftItems,
+                successMessage,
+                successStatus);
         }
 
         // Gets the gifitem sets from the user provided
         // recommendations list
         [ValidateModel]
-        public async Task<IHttpActionResult> GetToT(
+        [HttpPost]
+        [Route("gettotlist")]
+        public async Task<IHttpActionResult> GetToTList(
             HttpRequestMessage requestMessage,
             GetRecommendationsModel model)
         {

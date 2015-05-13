@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Angela.Core">
+      <HintPath>..\..\..\libs\AngelaSmith.1.1.0\lib\net45\Angela.Core.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\..\..\libs\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -55,6 +58,7 @@
     <Compile Include="Abstract\IFavesrusDbContext.cs" />
     <Compile Include="Abstract\IRepository.cs" />
     <Compile Include="Abstract\IUnitOfWork.cs" />
+    <Compile Include="FavesrusSeeder.cs" />
     <Compile Include="Impl\FavesrusDbContext.cs" />
     <Compile Include="Impl\FavesrusDbInit.cs" />
     <Compile Include="Impl\NullFavesrusDbInit.cs" />
