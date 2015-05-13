@@ -11,7 +11,10 @@ namespace Favesrus.Server.Dto.GiftItem.MapperConfig
     {
         public void Configure()
         {
-            Mapper.CreateMap<Favesrus.Model.Entity.GiftItem,DtoGiftItem>();
+            Mapper.CreateMap<Favesrus.Model.Entity.GiftItem,DtoGiftItem>()
+                .ForMember(entity => entity.Name, x => x.MapFrom(dto => dto.ItemName))
+                .ForMember(entity => entity.Price, x => x.MapFrom(dto => dto.ItemPrice))
+                .ForMember(entity => entity.Image, x => x.MapFrom(dto => dto.ItemImage));
         }
     }
 }

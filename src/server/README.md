@@ -54,6 +54,80 @@ Testing using Advanced Rest Client or Fiddler the Content-Type must be set to ap
 GiftItem
 =
 
+(GET)/giftitem/getgiftitemsbycategoryid
+-
+
+**Context:** You want to retrieve all the gift items for a category or recommendation selection.
+
+**Request:** 
+
+	GET: http://dev.favesrus.com/api/giftitem/getgiftitemsbycategoryid?categoryId=1
+ 
+	Request Data: (apiroute)/?categoryId={a_category_id_number_goes_here}
+
+**Response:**
+
+	HTTP/1.1 200 OK
+	Content-Type: application/json; charset=utf-8
+
+	{
+	  "status": "found_giftitems_for_categoryId",
+	  "model": {
+	    "items": [
+	      {
+	        "id": 1,
+	        "name": "add",
+	        "image": "http://www.gamasutra.com/db_area/images/blog/231001/contrastmario.jpg",
+	        "description": "Mario",
+	        "price": null
+	      },
+	      {
+	        "id": 2,
+	        "name": "subtract",
+	        "image": "http://assets2.ignimgs.com/2015/01/29/luigi-1jpg-c41e5d.jpg",
+	        "description": "Luigi",
+	        "price": null
+	      }
+	    ],
+	    "entity": null
+	  },
+	  "message": "Found gift items for the category",
+	  "hasItems": true
+	}
+
+(GET)/giftitem/getgiftitemswithterm
+-
+
+**Context:** You want to search Faves for gift items that have a particular search term in the name
+
+**Request:** 
+
+	GET: http://dev.favesrus.com/api/giftitem/getgiftitemswithterm?searchText=Mar
+ 
+	Request Data: (apiroute)/?searchText={search_text_goes_here}
+
+**Response:**
+
+	HTTP/1.1 200 OK
+	Content-Type: application/json; charset=utf-8
+
+	{
+	  "status": "matching_products",
+	  "model": {
+	    "items": null,
+	    "entity": {
+	      "id": 1,
+	      "name": "Mario Game",
+	      "image": "http://www.gamasutra.com/db_area/images/blog/231001/contrastmario.jpg",
+	      "description": "Mario",
+	      "price": null
+	    }
+	  },
+	  "message": "Found Matches",
+	  "hasItems": false
+	}
+
+
 (GET)/giftitem/getgiftitems
 -
 
@@ -65,7 +139,7 @@ GiftItem
  
 **Response:**
 
-	HTTP/1.1 201 OK
+	HTTP/1.1 200 OK
 	Content-Type: application/json; charset=utf-8
 
 	{
@@ -109,13 +183,13 @@ GiftItem
 	RequestData:
 	{
 		"userid":"12jsdfij42342",
-		"recommendationIds": ["1", "2", "3"],
+		"recommendationIds": [1, 2, 3],
 		"returnedSetNumber": 5
 	}
 
 **Response:**
 
-	HTTP/1.1 201 OK
+	HTTP/1.1 200 OK
 	Content-Type: application/json; charset=utf-8
 
 	{
@@ -124,21 +198,21 @@ GiftItem
 	    "items": [
 	      {
 	        "id": 1,
-	        "itemName": "add",
-	        "itemImage": "http://www.gamasutra.com/db_area/images/blog/231001/contrastmario.jpg",
+	        "name": "add",
+	        "image": "http://www.gamasutra.com/db_area/images/blog/231001/contrastmario.jpg",
 	        "description": "Mario",
-	        "itemPrice": null
+	        "price": null
 	      },
 	      {
 	        "id": 2,
-	        "itemName": "subtract",
-	        "itemImage": "http://assets2.ignimgs.com/2015/01/29/luigi-1jpg-c41e5d.jpg",
+	        "name": "subtract",
+	        "image": "http://assets2.ignimgs.com/2015/01/29/luigi-1jpg-c41e5d.jpg",
 	        "description": "Luigi",
-	        "itemPrice": null
+	        "price": null
 	      },
 	      {
 	        "id": 3,
-	        "itemName": "multiply",
+	        "name": "multiply",
 	        "itemImage": "https://assets.pokemon.com/static2/_ui/img/chrome/external_link_bumper.png",
 	        "description": "Pikchachu",
 	        "itemPrice": null

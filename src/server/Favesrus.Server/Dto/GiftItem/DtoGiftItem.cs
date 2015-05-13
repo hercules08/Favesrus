@@ -8,9 +8,9 @@ namespace Favesrus.Server.Dto.GiftItem
     public class DtoGiftItem
     {
         public int Id { get; set; }
-        public string ItemName { get; set; }
-        public string ItemImage { get; set; }
+        public string Name { get; set; }
+        public string Image { get; set; }
         public string Description { get; set; }
-        public Nullable<decimal> ItemPrice { get; set; }
+        public Nullable<decimal> Price { get; set; }
     }
 }

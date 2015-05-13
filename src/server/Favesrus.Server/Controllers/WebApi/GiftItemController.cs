@@ -1,4 +1,5 @@
-﻿using Favesrus.DAL.Impl;
+﻿using AutoMapper;
+using Favesrus.DAL.Impl;
 using Favesrus.Model.Entity;
 using Favesrus.Server.Dto.GiftItem;
 using Favesrus.Server.Filters;
@@ -81,14 +82,23 @@ namespace Favesrus.Server.Controllers.WebApi
         }
 
         [HttpGet]
-        [Route("getgiftitemsbycatgoryid")]
+        [Route("getgiftitemsbycategoryid")]
         public IHttpActionResult GetGiftItemsByCategoryId(HttpRequestMessage requestMessage, int categoryId)
         {
-            var results = db.GiftItems.Where(g => g.Category.Where(c => c.Id == categoryId).Count() != 0);
-            return new BaseActionResult<IEnumerable<GiftItem>>(requestMessage, results, "Found gift items for the category", "found_giftitems_for_categoryId");
+            var giftItems = db.GiftItems.Where(g => g.Category.Where(c => c.Id == categoryId).Count() != 0);
+
+            List<DtoGiftItem> dtoGiftItems = new List<DtoGiftItem>();
+
+            foreach(var giftItem in giftItems)
+            {
+                dtoGiftItems.Add(Mapper.Map<DtoGiftItem>(giftItem));
+            }
+
+            return new BaseActionResult<ICollection<DtoGiftItem>>(requestMessage, dtoGiftItems, "Found gift items for the category", "found_giftitems_for_categoryId");
         }
 
         [HttpGet]
+        [Route("getgiftitemswithterm")]
         public IHttpActionResult GetGiftItemsWithTerm(HttpRequestMessage requestMessage, string searchText)
         {
             var term = searchText.ToLower();
@@ -96,7 +106,15 @@ namespace Favesrus.Server.Controllers.WebApi
             var searchResults = db.GiftItems.Where(g => g.ItemName.ToLower().Contains(term)
                 || g.Description.ToLower().Contains(term)).ToList();
 
-            return new BaseActionResult<IEnumerable<GiftItem>>(requestMessage, searchResults, "Found Matches", "matching_products");
+            List<DtoGiftItem> dtoGiftItems = new List<DtoGiftItem>();
+
+            foreach (var giftItem in searchResults)
+            {
+                dtoGiftItems.Add(Mapper.Map<DtoGiftItem>(giftItem));
+            }
+
+
+            return new BaseActionResult<ICollection<DtoGiftItem>>(requestMessage, dtoGiftItems, "Found Matches", "matching_products");
         }
 
         // GET api/GiftItem/5
