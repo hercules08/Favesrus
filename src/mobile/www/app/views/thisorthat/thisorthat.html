@@ -52,15 +52,16 @@
         <div data-role="navbar">
             <a id="tort-close-btn" data-align="left" data-icon="close-btn" data-role="button"></a>
             <span data-role="view-title"><img class="header-logo" src="images/FavesRUs_logo.png"/></span>
-            <a id="recommendations-btn" data-align="right" data-icon="heart-recommendations" data-badge="0" data-role="button"></a>
+            <!-- <a id="recommendations-btn" data-align="right" data-icon="heart-recommendations" data-badge="0" data-role="button"></a> -->
+            <a id="recommendations-btn" data-align="right" class="fa fa-check-square-o" data-badge="0" data-role="button"></a>
         </div> 
     </div>
 </div>
 
 <script id="tortProductDetailsTemplate" type="text/x-kendo-template">
-        <div class="product-name">#= data.name#</div>
-        <img class="product-image" src="#= data.image#"/>
-        <div class="description">#= data.description#</div>
+    <div class="product-name">#= data.name#</div>
+    <img class="product-image" src="#= data.image#"/>
+    <div class="description">#= data.description#</div>
 </script>
 
 <script id="productRetailersTemplate" type="text/x-kendo-template">
@@ -103,31 +104,38 @@
                 </td>
 	        </tr>
 	        <tr>
-	            <td><img id="#= data[0].id#-img" class="tort-product" src="#= data[0].image#" alt="0"/></td>
-	            <td><img id="#= data[1].id#-img" class="tort-product" src="#= data[1].image#" alt="1"/></td>
+	            <td>
+		            <div class="image-container">
+			            <img id="#= data[0].id#-img" class="tort-product" src="#= data[0].image#" alt="0"/>
+			            <div id="#= data[0].id#-menu-container" class="menu-container  right-40" title="0">
+			            	<div class="side-by-side menu transparent"><div class="menu-option-back"><img id="#= data[0].id#-menu-icon" class="menu svg" src="images/menu_icon_filled.svg" alt="0"/></div></div>
+			            	<div class="side-by-side hidden menu-option"><div class="menu-option-back"><img id="#= data[0].id#-info-icon" class="menu svg" src="images/info_icon.svg" alt="0"/></div></div>
+					        <div class="side-by-side hidden menu-option"><div class="menu-option-back"><img id="#= data[0].id#-heart-plus-icon" class="menu svg" src="images/heart_plus_icon.svg" alt="0"/></div></div>
+					        <div class="side-by-side hidden menu-option"><div class="menu-option-back"><img id="#= data[0].id#-list-plus-icon" class="menu svg" src="images/list_plus_icon.svg" alt="0"/></div></div>
+			            </div>
+		            </div>
+	            </td>
+	            <td>
+	            	<div class="image-container">
+	            		<img id="#= data[1].id#-img" class="tort-product" src="#= data[1].image#" alt="1"/>
+	            		<div id="#= data[1].id#-menu-container" class="menu-container right-40" title="1">
+			            	<div class="side-by-side menu transparent"><div class="menu-option-back"><img id="#= data[1].id#-menu-icon" class="menu svg" src="images/menu_icon_filled.svg" alt="1"/></div></div>
+			            	<div class="side-by-side hidden menu-option"><div class="menu-option-back"><img id="#= data[1].id#-info-icon" class="menu svg" src="images/info_icon.svg" alt="1"/></div></div>
+					        <div class="side-by-side hidden menu-option"><div class="menu-option-back"><img id="#= data[1].id#-heart-plus-icon" class="menu svg" src="images/heart_plus_icon.svg" alt="1"/></div></div>
+					        <div class="side-by-side hidden menu-option"><div class="menu-option-back"><img id="#= data[1].id#-list-plus-icon" class="menu svg" src="images/list_plus_icon.svg" alt="1"/></div></div>
+			            </div>
+			  
+	            	</div>
+	            </td>
 	        </tr>
 	        <tr>
 	            <td id="#= data[0].id#">#= data[0].name#</td>
 	            <td id="#= data[1].id#">#= data[1].name#</td>
 	        </tr>
-	        <!--<tr>
-	            <td colspan="2">
-	                <div class="divider-container center">
-	                    <img class="divider" src="images/price_divider.png"/>
-	                </div>
-	            </td>
-	        </tr>-->
 	        <tr>
 	            <td>$25.99*</td>
 	            <td>$20.99*</td>
 	        </tr>
-	        <!--<tr>
-	            <td colspan="2">
-	                <div class="divider-container center">
-	                    <img class="divider" src="images/avg_customer_ratings_divider.png"/>
-	                </div>
-	            </td>
-	        </tr>-->
 	        <tr>
 	            <td>
 	                <div class="center">
@@ -144,19 +152,21 @@
             <tr>
                 <td>
                     <div class="center">
-                        <div class="fa fa-shopping-cart"></div>
-                        <div class="fa fa-shopping-cart green-text"></div>
-                        <div class="fa fa-shopping-cart"></div>
-                        <div class="fa fa-shopping-cart"></div>
+                        <img class="svg store" src="images/store_icon.svg"/>
+                        <img class="svg best-price store" src="images/store_icon.svg"/>
+                    	<img class="svg store" src="images/store_icon.svg"/>
+                    	<img class="svg store" src="images/store_icon.svg"/>
                     </div>
                 </td>
                 <td>
                     <div class="center">
-                        <div class="fa fa-shopping-cart"></div>
-                        <div class="fa fa-shopping-cart"></div>
+                        <img class="svg store" src="images/store_icon.svg"/>
+                        <img class="svg best-price store" src="images/store_icon.svg"/>
                     </div>
                 </td>
             </tr>
 	    </table>
 	</div>
 </script>
+
+

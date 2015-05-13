@@ -56,45 +56,13 @@ function setSelectedItemInfo(id, name, src) {
     Set the appropriate information in the datasource for products list view display
 */
 function setProductData(e) {
-    APP.instance.showLoading();
-    APP.instance.changeLoadingMessage("Loading Products...");
-    setTimeout(function() {
-        APP.instance.hideLoading();
-    }, 1000);
-    setTimeout(function() {
         //Add Products to list view
-        var template = kendo.template($("#productSearchTemplate").html()); //Get the external template definition
-        var temp_data = '{"Status":"search", "Model":{"items":[{"id":"345435","name":"Mario Amiibo","image":"http://www.gamestop.com/common/images/lbox/104546b.jpg", "description":"Interactive Play with Nintendo console games"},{"id":"3545354","name":"Luigi Amiibo","image":"http://www.gamestop.com/common/images/lbox/106342b.jpg", "description":"Interactive Play with Nintendo console games"},{"id":"3454363","name":"Peach Amiibo","image":"http://www.gamestop.com/common/images/lbox/104547b.jpg", "description":"Interactive Play with Nintendo console games"},{"id":"3454398","name":"Wario Amiibo","image":"http://i5.walmartimages.com/dfw/dce07b8c-2652/k2-_771924f6-f385-4dec-b08a-a5aa1cced6c3.v1.jpg", "description":"Interactive Play with Nintendo console games"},{"id":"3454005","name":"Pit Amiibo","image":"http://www.gamestop.com/common/images/lbox/106338b.jpg", "description":"Interactive Play with Nintendo console games"}]}}';
-        var data = JSON.parse(temp_data);
-        
-        var result = template(data); //Execute the template
-        //console.log(data);
-        $("#trending-container").addClass("hidden");
-        $("#products-search-listview").removeClass("hidden");
-        APP.instance.view().element.find("#products-search-listview").html(result); //Append the result
-
-        try {
-            if(cordova){
-                cordova.plugins.Keyboard.close();
-            }
-        }
-        catch (error){
-            console.log("Cordova object is not defined.")
-        }
-        //Add the touch event listener to all product add gift icons
-        $.each($("#home-view .product-add"), function (index, element) {
-            element.addEventListener("touchstart", function (evt) {
-                    //console.log("touchstart")
-                    /*itemID = $(this).parent().find(".item-name").attr("id");
-                    itemName = $(this).parent().find(".item-name").html();
-                    itemImageSrc = $(this).parent().find(".item-image").attr("src");*/
-                    setSelectedItemInfo($(this).parent().find(".item-name").attr("id"), $(this).parent().find(".item-name").html(), $(this).parent().find(".item-image").attr("src"));
-                    $("#addItem-actionsheet").data("kendoMobileActionSheet").open();
-                    //evt.preventDefault(); 
-                }, 
-            false);
-        });
-    }, 1000);
+        /*var temp_data = '{"Status":"search", "Model":{"items":[{"id":"345435","name":"Mario Amiibo","image":"http://www.gamestop.com/common/images/lbox/104546b.jpg", "description":"Interactive Play with Nintendo console games"},{"id":"3545354","name":"Luigi Amiibo","image":"http://www.gamestop.com/common/images/lbox/106342b.jpg", "description":"Interactive Play with Nintendo console games"},{"id":"3454363","name":"Peach Amiibo","image":"http://www.gamestop.com/common/images/lbox/104547b.jpg", "description":"Interactive Play with Nintendo console games"},{"id":"3454398","name":"Wario Amiibo","image":"http://i5.walmartimages.com/dfw/dce07b8c-2652/k2-_771924f6-f385-4dec-b08a-a5aa1cced6c3.v1.jpg", "description":"Interactive Play with Nintendo console games"},{"id":"3454005","name":"Pit Amiibo","image":"http://www.gamestop.com/common/images/lbox/106338b.jpg", "description":"Interactive Play with Nintendo console games"}]}}';
+        var data = JSON.parse(temp_data);*/
+        console.log("Search text: "+$(".km-filter-wrap input").val());
+        webService("getgiftitemswithterm",'searchText='+$(".km-filter-wrap input").val());
+        APP.instance.showLoading();
+        APP.instance.changeLoadingMessage("Loading Products...");
 }
 
 /*
@@ -144,7 +112,7 @@ function afterHomeViewShow(e){
             $("#header-search").find($(".km-filter-reset")[0]).addClass("show");
             //Hide This or That option (Dual Search)
             $(".secondary-search-container").addClass("hidden");
-            $("#trending-container").addClass("hidden");
+            $("#home-popular-container").addClass("hidden");
         }
         
     });
@@ -159,7 +127,7 @@ function afterHomeViewShow(e){
             e.view.element.find("#products-search-listview").data("kendoMobileListView").replace([ "" ]);
             $("#products-search-listview").addClass("hidden");
             $(".secondary-search-container").removeClass("hidden");
-            $("#trending-container").removeClass("hidden");
+            $("#home-popular-container").removeClass("hidden");
         }
     });
     document.getElementById("search-reset-btn").removeEventListener("touchstart", function(){});
@@ -184,7 +152,7 @@ function afterHomeViewShow(e){
             // $(".km-filter-wrap input").blur();
             //Show this or that option (Dual Search)
             $(".secondary-search-container").removeClass("hidden");
-            $("#trending-container").removeClass("hidden");
+            $("#home-popular-container").removeClass("hidden");
         }
         
     });
@@ -277,3 +245,50 @@ function addTouchSMEvents(element, className) {
         //evt.preventDefault();
     });
 }
+
+
+
+/*
+
+*/
+function setHomeViewProductData(webServiceResponse) {
+    var data = webServiceResponse;
+    console.log(JSON.stringify(data));
+    if (data.model.items.length > 2) {
+        var template = kendo.template($("#productSearchTemplate").html()); //Get the external template definition
+        console.log("Inside the template: "+JSON.stringify(data));
+        var result = template(data); //Execute the template
+        //console.log(data);
+        $("#home-popular-container").addClass("hidden");
+        $("#products-search-listview").removeClass("hidden");
+        APP.instance.view().element.find("#products-search-listview").html(result); //Append the result
+
+        try {
+            if(cordova){
+                cordova.plugins.Keyboard.close();
+            }
+        }
+        catch (error){
+            console.log("Cordova object is not defined.")
+        }
+        //Add the touch event listener to all product add gift icons
+        $.each($("#home-view .product-add"), function (index, element) {
+            element.addEventListener("touchstart", function (evt) {
+                    //console.log("touchstart")
+                    /*itemID = $(this).parent().find(".item-name").attr("id");
+                    itemName = $(this).parent().find(".item-name").html();
+                    itemImageSrc = $(this).parent().find(".item-image").attr("src");*/
+                    setSelectedItemInfo($(this).parent().find(".item-name").attr("id"), $(this).parent().find(".item-name").html(), $(this).parent().find(".item-image").attr("src"));
+                    $("#addItem-actionsheet").data("kendoMobileActionSheet").open();
+                    //evt.preventDefault(); 
+                }, 
+            false);
+        });
+    }
+    else {
+        //TODO
+        console.log("No items available.");
+    }
+    APP.instance.hideLoading();
+}
+

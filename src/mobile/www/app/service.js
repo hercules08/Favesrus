@@ -3,6 +3,9 @@
 var temp_obj = null; //global temporary object
 var temp_deviceID = null;
 
+/*Global webServiceResponse*/
+var webServiceResponse = "";
+
 /*
 	Description:
 	Get the user's facebook profile picture
@@ -59,7 +62,7 @@ function alertDismissed() {
 */
 function webService(requestString, content) {
 	var requestURL, requestType,
-		domainName = "http://dev.favesrus.com/";
+		domainName = "http://dev.favesrus.com/", contentType = "application/x-www-form-urlencoded; charset=UTF-8";
 
 	if(requestString == "forgotPassword") {
 		requestURL = domainName + "api/account/forgotpassword"; 
@@ -83,6 +86,20 @@ function webService(requestString, content) {
 		requestURL = domainName + "api/account/logout";
 		requestType = "POST";
 	}
+	else if(requestString == "getrecommendations") {
+		requestURL = domainName + "api/recommendation/getrecommendations";
+		requestType = "GET";
+	}
+	else if(requestString == "gettotlist") {
+		requestURL = domainName + "api/giftitem/gettotlist";
+		requestType = "POST";
+		contentType = "application/json";
+	}
+	else if(requestString == "getgiftitemswithterm") {
+		requestURL = domainName + "api/giftitem/"+requestString;
+		requestType = "GET";
+		// contentType = "application/json";
+	}
 
 	//console.log("Data sent "+content);
 
@@ -90,7 +107,8 @@ function webService(requestString, content) {
 	$.ajax({
 		type: requestType,	//Specifies the type of request. (GET or POST)
 		url: requestURL,	//Specifies the URL to send the request to. Default is the current page
-		data: content		//Specifies data to be sent to the server
+		data: content,		//Specifies data to be sent to the server
+		contentType: contentType	//Specifies the 
 	})
 	.done(function(data, status, xhr) {		//Replaces the success() method
 	    // alert( JSON.stringify(data)+" Status: "+JSON.stringify(status));
@@ -110,6 +128,12 @@ function webService(requestString, content) {
 	    		APP.instance.navigate("#wishlist-view");
 	    		alert("view the Wishlist View");
 	    	}
+	    }
+	    else if (requestString === "gettotlist"){
+	    	setTortScrollViewData(data);
+	    }
+	    else if(requestString === "getgiftitemswithterm"){
+	    	setHomeViewProductData(data);
 	    }
 	})
 	.fail(function(xhr, status, error) {		//Replaces the error() method

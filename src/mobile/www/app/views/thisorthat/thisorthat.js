@@ -121,6 +121,7 @@ function afterTortViewShow(e){
 function loadRecommendations() {
 	console.log("load recommendations");
 	var template = kendo.template($("#tortRecommendationsTemplate").html()); //Get the external template definition
+	//TODO webService
     var temp_data = '{"Status":"recommendations", "model":{"items":[{"id":"345415","name":"Amiibos","image":"images/image_placeholder.png"},{"id":"3545399","name":"Celebrity Items","image":"images/image_placeholder.png"},{"id":"3454367","name":"Jeans","image":"images/image_placeholder.png"},{"id":"3454363","name":"Watches","image":"images/image_placeholder.png"},{"id":"3454398","name":"Shades","image":"images/image_placeholder.png"},{"id":"3454006","name":"Restaurants","image":"images/image_placeholder.png"},{"id":"3454005","name":"Big & Tall","image":"images/image_placeholder.png"}]}}';
     //var data = ["Recommendation1", "Recommendation2", "Recommendation3", "Recommendation4", "Recommendation5"]; //Create some dummy data
     var data = JSON.parse(temp_data);
@@ -157,11 +158,11 @@ function loadTortItems() {
     	$(".no-recommendations-message").addClass("hidden");
     	$("#thisorthat-scrollview").removeClass("hidden");
     	//TODO websService
-    	var temp_data = '{"Status":"search", "Model":{"items":[{"id":"3454388","name":"Mario Amiibo","image":"http://www.gamestop.com/common/images/lbox/104546b.jpg", "description":"Interactive Play with Nintendo console games", "retailers":[{"id":"12332","name":"BestBuy","image":"http://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Best_Buy_Logo.svg/300px-Best_Buy_Logo.svg.png","price":"$12.96","lowest":"0"},{"id":"12334","name":"Walmart","image":"http://upload.wikimedia.org/wikipedia/commons/thumb/7/76/New_Walmart_Logo.svg/1000px-New_Walmart_Logo.svg.png","price":"$12.95","lowest":"1"}]},{"id":"3545354","name":"Luigi Amiibo","image":"http://www.gamestop.com/common/images/lbox/106342b.jpg", "description":"Interactive Play with Nintendo console games", "retailers":[{"id":"12332","name":"BestBuy","image":"http://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Best_Buy_Logo.svg/300px-Best_Buy_Logo.svg.png","price":"$12.96","lowest":"0"},{"id":"12334","name":"Walmart","image":"http://upload.wikimedia.org/wikipedia/commons/thumb/7/76/New_Walmart_Logo.svg/1000px-New_Walmart_Logo.svg.png","price":"$12.95","lowest":"1"},{"id":"12335","name":"Sears","image":"http://www.buyvia.com/i/2013/10/Sears-logo.png","price":"$13.96","lowest":"0"}]},{"id":"3454363","name":"Peach Amiibo","image":"http://www.gamestop.com/common/images/lbox/104547b.jpg", "description":"Interactive Play with Nintendo console games"},{"id":"3545388","name":"Pit Amiibo","image":"http://www.gamestop.com/common/images/lbox/106338b.jpg", "description":"Interactive Play with Nintendo console games"},{"id":"35453578","name":"Bowser Amiibo","image":"http://www.gamestop.com/common/images/lbox/108110b.jpg", "description":"Interactive Play with Nintendo console games"},{"id":"3545124","name":"Diddy Kong Amiibo","image":"http://www.gamestop.com/common/images/lbox/106346b.jpg", "description":"Interactive Play with Nintendo console games"},{"id":"3545394","name":"? Amiibo","image":"images/image_placeholder.png", "description":"Interactive Play with Nintendo console games"},{"id":"3545359","name":"? Amiibo","image":"images/image_placeholder.png", "description":"Interactive Play with Nintendo console games"},{"id":"3545984","name":"? Amiibo","image":"images/image_placeholder.png", "description":"Interactive Play with Nintendo console games"},{"id":"35453674","name":"? Amiibo","image":"images/image_placeholder.png", "description":"Interactive Play with Nintendo console games"}]}}';
-    	var data = JSON.parse(temp_data);
-    	$("#thisorthat-scrollview").data("kendoMobileScrollView").setDataSource(data.Model.items); //Works (By it's self)
-    	// $("#thisorthat-scrollview").data("kendoMobileScrollView").refresh();
-    	$("#thisorthat-scrollview>div:first-child").css("height", 0.70*window.innerHeight);
+    	/*var temp_data = '{"Status":"search", "Model":{"items":[{"id":"3454388","name":"Mario Amiibo","image":"http://www.gamestop.com/common/images/lbox/104546b.jpg", "description":"Interactive Play with Nintendo console games", "retailers":[{"id":"12332","name":"BestBuy","image":"http://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Best_Buy_Logo.svg/300px-Best_Buy_Logo.svg.png","price":"$12.96","lowest":"0"},{"id":"12334","name":"Walmart","image":"http://upload.wikimedia.org/wikipedia/commons/thumb/7/76/New_Walmart_Logo.svg/1000px-New_Walmart_Logo.svg.png","price":"$12.95","lowest":"1"}]},{"id":"3545354","name":"Luigi Amiibo","image":"http://www.gamestop.com/common/images/lbox/106342b.jpg", "description":"Interactive Play with Nintendo console games", "retailers":[{"id":"12332","name":"BestBuy","image":"http://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Best_Buy_Logo.svg/300px-Best_Buy_Logo.svg.png","price":"$12.96","lowest":"0"},{"id":"12334","name":"Walmart","image":"http://upload.wikimedia.org/wikipedia/commons/thumb/7/76/New_Walmart_Logo.svg/1000px-New_Walmart_Logo.svg.png","price":"$12.95","lowest":"1"},{"id":"12335","name":"Sears","image":"http://www.buyvia.com/i/2013/10/Sears-logo.png","price":"$13.96","lowest":"0"}]},{"id":"3454363","name":"Peach Amiibo","image":"http://www.gamestop.com/common/images/lbox/104547b.jpg", "description":"Interactive Play with Nintendo console games"},{"id":"3545388","name":"Pit Amiibo","image":"http://www.gamestop.com/common/images/lbox/106338b.jpg", "description":"Interactive Play with Nintendo console games"},{"id":"35453578","name":"Bowser Amiibo","image":"http://www.gamestop.com/common/images/lbox/108110b.jpg", "description":"Interactive Play with Nintendo console games"},{"id":"3545124","name":"Diddy Kong Amiibo","image":"http://www.gamestop.com/common/images/lbox/106346b.jpg", "description":"Interactive Play with Nintendo console games"},{"id":"3545394","name":"? Amiibo","image":"images/image_placeholder.png", "description":"Interactive Play with Nintendo console games"},{"id":"3545359","name":"? Amiibo","image":"images/image_placeholder.png", "description":"Interactive Play with Nintendo console games"},{"id":"3545984","name":"? Amiibo","image":"images/image_placeholder.png", "description":"Interactive Play with Nintendo console games"},{"id":"35453674","name":"? Amiibo","image":"images/image_placeholder.png", "description":"Interactive Play with Nintendo console games"}]}}';
+    	var data = JSON.parse(temp_data);*/
+    	webService("gettotlist",'{userId: "732cb952-3392-493c-ad27-432113110081",recommendationIds: [1,2],returnedSetNumber: 2}');
+    	APP.instance.showLoading();
+		APP.instance.changeLoadingMessage("Loading Products...");
     }
     else {
     	console.log("hide This or That items");
@@ -203,10 +204,10 @@ function loadProductDetails(data) {
 }
 
 /*
-	Description: Get This or That (Dual Search) product information in thesame column of the touched button
+	Description: Get This or That (Dual Search) product information in the same column of the touched button
 */
 function getTortProduct(element, data) {
-	$(this).find("img").attr("src")
+	// $(this).find("img").attr("src")
 	if ($(element).find("img").attr("src").indexOf("this") > -1) { //this 0
 		console.log(data[0].name);
 		setSelectedItemInfo(data[0].id, data[0].name, data[0].image);
@@ -241,7 +242,7 @@ function getViewableProductChange(e){
 				$("#tort-addItem-actionsheet").data("kendoMobileActionSheet").open();
 			}
 		});
-
+		
 		document.getElementById(e.data[i].id+"-img").removeEventListener("touchstart", function(){});
 		document.getElementById(e.data[i].id+"-img").addEventListener("touchstart", function (evt) {
 			originalTouchX = evt.changedTouches[0].clientX;
@@ -258,5 +259,87 @@ function getViewableProductChange(e){
 				}
 			}
 		});
+		//Add Touch events to menu container
+		document.getElementById(e.data[i].id+"-menu-container").removeEventListener("touchstart", function(){});
+		document.getElementById(e.data[i].id+"-menu-container").addEventListener("touchstart", function (evt) {
+			originalTouchX = evt.changedTouches[0].clientX;
+		});
+		document.getElementById(e.data[i].id+"-menu-container").removeEventListener("touchend", function(){});
+		document.getElementById(e.data[i].id+"-menu-container").addEventListener("touchend", function (evt) {
+			if(((originalTouchX - evt.changedTouches[0].clientX) < 20) && ((originalTouchX - evt.changedTouches[0].clientX) > -1)){
+				console.log("Button: "+$(this).attr("alt"));
+				//Open display the menu options
+				if ($(this).attr("title") === "0"){
+					console.log("First item: "+e.data[0].id);
+					$("#"+e.data[0].id+"-menu-container .menu").addClass("hidden");
+					$("#"+e.data[0].id+"-main-menu-back").addClass("hidden");
+					$("#"+e.data[0].id+"-menu-container").removeClass("right-40");
+					$("#"+e.data[0].id+"-menu-container").addClass("right-15");
+					$("#"+e.data[0].id+"-menu-container .menu-option").removeClass("hidden");
+					$("#"+e.data[0].id+"-info-icon").attr("class","menu svg");
+					$("#"+e.data[0].id+"-heart-plus-icon").attr("class","menu svg");
+					$("#"+e.data[0].id+"-list-plus-icon").attr("class","menu svg");
+				}
+				else if ($(this).attr("title") === "1"){
+					console.log("Second item: "+e.data[1].id);
+					$("#"+e.data[1].id+"-menu-container .menu").addClass("hidden");
+					$("#"+e.data[1].id+"-main-menu-back").addClass("hidden");
+					$("#"+e.data[1].id+"-menu-container").removeClass("right-40");
+					$("#"+e.data[1].id+"-menu-container").addClass("right-15");
+					$("#"+e.data[1].id+"-menu-container .menu-option").removeClass("hidden");
+					$("#"+e.data[1].id+"-info-icon").attr("class","menu svg");
+					$("#"+e.data[1].id+"-heart-plus-icon").attr("class","menu svg");
+					$("#"+e.data[1].id+"-list-plus-icon").attr("class","menu svg");
+				}
+			}
+		});
 	}
+	replaceSVGImage();
+}
+
+
+
+/*
+	Description: Replace SVG images with inline SVG
+*/
+function replaceSVGImage() {
+	$('img.svg').each(function(){
+	    var img = $(this);
+	    var imgID = img.attr('id');
+	    var imgClass = img.attr('class');
+	    var imgURL = img.attr('src');
+
+	    $.get(imgURL, function(data) {
+	        // Get the SVG tag, ignore the rest
+	        var svg = $(data).find('svg');
+
+	        // Add replaced image's ID to the new SVG
+	        if(typeof imgID !== 'undefined') {
+	            svg = svg.attr('id', imgID);
+	        }
+	        // Add replaced image's classes to the new SVG
+	        if(typeof imgClass !== 'undefined') {
+	            svg = svg.attr('class', imgClass+' replaced-svg');
+	        }
+
+	        // Remove any invalid XML tags as per http://validator.w3.org
+	        svg = svg.removeAttr('xmlns:a');
+
+	        // Replace image with new SVG
+	        img.replaceWith(svg);
+
+	    }, 'xml');
+
+	});
+}
+
+
+function setTortScrollViewData(webServiceResponse) {
+	var data = webServiceResponse;
+	console.log(JSON.stringify(data));
+	console.log(JSON.stringify(data.model.items));
+	$("#thisorthat-scrollview").data("kendoMobileScrollView").setDataSource(data.model.items); //Works (By it's self)
+	// $("#thisorthat-scrollview").data("kendoMobileScrollView").refresh();
+	$("#thisorthat-scrollview>div:first-child").css("height", 0.70*window.innerHeight);
+	APP.instance.hideLoading();
 }

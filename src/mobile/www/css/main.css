@@ -14,8 +14,16 @@
 }
 
 /* ----------- Common styles ----------- */
-.header-logo {
-	width:38%;
+@media screen and (min-width: 361px) {
+	.header-logo {
+		width:15%;
+	}
+}
+
+@media screen and (max-width: 360px) {
+	.header-logo {
+		width:38%;
+	}
 }
 
 .container {
@@ -68,7 +76,7 @@
 .inner-shadow {
 	-moz-box-shadow: inset 0 0 10px #000000;
 	-webkit-box-shadow: inset 0 0 10px #000000;
-	box-shadow: inset 0 0 10px #000000; 
+	box-shadow: inset 0 0 10px #000000;
 }
 /* ----------- Modal View -----------*/
 /*.km-shim {
@@ -87,35 +95,38 @@ pre {
 	margin: 0 !important;	
 }
 
-.emerald {
-	background-color: #2ecc71 !important;
+.black-tint {
+	background-color: rgba(0, 0, 0,0.4) !important;
+}
+.emerald-tint {
+	background-color: rgba(46, 204, 113,0.4) !important;
 }
 
 .green {
 	background-color: #16a085 !important;
 }
 
-.river-blue {
-	background-color: #3498db !important;
+.river-blue-tint {
+	background-color: rgba(52, 152, 219,0.4) !important;
 }
 
-.alizarin {
-	background-color: #e74c3c !important;
+.alizarin-tint {
+	background-color: rgba(231, 76, 60,0.4) !important;
 }
 
-.amethyst {
-	background-color: #9b59b6 !important;
+.amethyst-tint {
+	background-color: rgba(155, 89, 182,0.4) !important;
 }
 
-.carrot-orange {
-	background-color: #e67e22 !important;
+.carrot-orange-tint {
+	background-color: rgba(230, 126, 34,0.4) !important;
 }
 
-.sunflower-yellow {
-	background-color: #f1c40f !important;
+.sunflower-yellow-tint {
+	background-color: rgba(241, 196, 15,0.4) !important;
 }
 
-.emerald, .green, .alizarin, .river-blue, .amethyst, .carrot-orange, .sunflower-yellow {
+.black-tint, .emerald-tint, .green, .alizarin-tint, .river-blue-tint, .amethyst-tint, .carrot-orange-tint, .sunflower-yellow-tint {
 	color: white !important;
 }
 
@@ -197,8 +208,93 @@ pre {
 	width: 100%;
 }
 
+.image-container {
+	position: relative;
+}
+
+.menu-container {
+	position: absolute;
+	bottom: 20%;
+	z-index: 2;
+}
+
+.right-40 {
+	right: 40% !important;
+}
+
+.right-15 {
+	right: 15% !important;
+}
+
+.menu {
+	width: 2em;
+	height: 2em;
+}
+
+.main-menu-back {
+	position: absolute;
+	bottom: 27%;
+	right: 43%;
+	background-color: white;
+	width: 1.6em;
+	height: 0.6em;
+	z-index: 1;
+}
+
+.menu-option-back {
+	/*position: absolute;
+	top: 21%;
+	left: 24%;*/
+	background-color: white;
+	/*width: 1.3em;
+	height: 1.3em;*/
+	border-radius: 30px;
+	z-index: -1;
+	height: 2.2em !important;
+	width: 2.2em;
+	line-height: 3.5em;
+	box-shadow: 1px 2px 5px #272727;
+}
+
+.menu, .menu-option {
+	position:relative;
+}
+
+
+.popular-category-image {
+	position: relative;
+  	z-index: -1;
+	width: 62% !important;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 0.5rem;
+}
+
+.popular-category-name-container {
+	position: absolute;
+	top: 45%;
+	width: 100% !important;
+	font-size: 1.2em !important;
+	/*left: 20%;*/
+}
+
+.menu path {
+    stroke: white;
+ 	/*stroke-width: 20px;*/
+}
+
+.menu path, .best-price {
+    fill: #16a085;
+}
+
+
 #thisorthat-view .km-pages {
 	color: #16a085 !important; /*Green Sea*/
+}
+
+.store {
+	width: 1.5em !important;
+	height: 1.5em !important;
 }
 
 #thisorthat-or {
@@ -266,7 +362,7 @@ pre {
 
 .recommendations {
 	width: 40%;
-	height: 20%;
+	height: 10rem;
 	background-color: #e74c3c;
 	border: 2px solid #e74c3c; /*Alizarin*/
 	border-radius: 15px;
@@ -444,29 +540,36 @@ li a {
 }
 
 .secondary-search-container {
-	background: #ecf0f1 !important; /*Clouds*/
-	border-bottom: 1px solid #16a085 !important;
+	/*background: #ecf0f1 !important;*/ /*Clouds*/
+	/*border-bottom: 1px solid #16a085 !important;*/
+	display: inline-block !important;
 }
 
-/*.secondary-search-container img:first-child {
-	width: 80%;
-}*/
 
 .secondary-search-container img:nth-child(1) {
-	width: 35%;
+	width: 3rem;
 }
 
-.trending {
-	width: 40% !important;
-  	height: 6rem !important;
-  	border-radius: 0px 20px; /*THe shape of a leaf*/
+.flexbox {
+	display: -webkit-flex; /*Safari, Chrome*/
+	-webkit-flex-wrap: wrap;
+	-webkit-justify-content: center;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.popular {
+	position: relative !important;
+	width: 9rem !important;
+  	height: 9rem !important;
+  	/*border-radius: 0px 20px;*/ /*THe shape of a leaf*/
   	/*padding-top: 40px;*/
 }
 
-.trending-description {
-	font-size: 1.1em !important;
-	font-weight: bold !important;
-	text-align: left !important;
+.popular-description {
+  	font-size: 1.3em !important;
+	font-weight: 500 !important;
 }
 
 /* ----------- Wishlist-View ----------- */
@@ -474,7 +577,7 @@ li a {
 	width: 30% !important;
 }
 
-.gallery-image, .trending {
+.gallery-image, .popular {
 	margin: 4px !important;
 }
 
@@ -554,56 +657,19 @@ li {
 	/*background-color: #84EDD9 !important;*/
 	color: black !important;
 }
-/* Product Search placeholder color*/
-/*.km-filter-wrap input::-webkit-input-placeholder {
-    color: white !important;
-}
-.km-filter-wrap input:-moz-placeholder {
-    color: white !important;
-}
-.km-filter-wrap input::-moz-placeholder {
-    color: white !important;
-}
-.km-filter-wrap input:-ms-input-placeholder {
-    color: white !important;
-}*/
 
-/*form*/
-/*.km-filter-form {
-	background: #bdc3c7 !important;*/ /*Silver*/
-/*}*/
 
 #header-search {
-	/*color: #efeff4;*/
 	background: #16a085 !important; /*Emerald green*/
-	/*-moz-box-sizing: border-box;
-	-webkit-box-sizing: border-box;
-	box-sizing: border-box;
-	-moz-background-clip: content-box;
-	-webkit-background-clip: content-box;
-	background-clip: content-box;
-	width: 100%;
-	padding: .5em 0;
-	border: 1px solid transparent;
-	border-width: 1px 0;
-	-webkit-transform: translatez(0);
-	-moz-transform: translatez(0);
-	-ms-transform: translatez(0);
-	-o-transform: translatez(0);
-	transform: translatez(0);
-	webkit-touch-callout: none;
-	-webkit-tap-highlight-color: rgba(0,0,0,0);
-	font: normal 1em "HelveticaNeue Ultra Light","Roboto Light","Slate Light","Segoe WP",NokiaPureTextLight,sans-serif;
-	-ms-touch-action: none;
-	-ms-content-zooming: none;
-	-ms-user-select: none;
-	-webkit-user-select: none;
-	-webkit-text-size-adjust: none;
-	-moz-text-size-adjust: none;*/
+	display:-webkit-flex !important;
+	-webkit-align-items:center;
+	display:inline-flex !important;
+	align-items:center;
 }
 
 .km-filter-wrap {
-	 background: white !important; /*Bubblegum green*/
+	 background: white !important; /*White*/
+	 padding: .2em 0em;
 }
 
 /*Set the clear button to hide*/
