@@ -80,7 +80,7 @@ function addToDefaultWishlist() {
     Description:
 */
 function insertIntoWishlist(wishlistName) {
-    $("#"+wishlistName+"-wishlist").append('<img id="'+itemID+'-'+itemName+'"'+'class="gallery-image" src="'+itemImageSrc+'"/>');
+    $("#"+wishlistName+"-wishlist").append('<div class="gallery-image-container"><img id="'+itemID+'-'+itemName+'"'+'class="gallery-image" src="'+itemImageSrc+'"/></div>');
 }
 
 /*
