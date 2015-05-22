@@ -13,42 +13,48 @@ namespace Favesrus.DAL.Impl
     public class FavesrusDbInit:
         DropCreateDatabaseIfModelChanges<FavesrusDbContext>
     {      
-        protected override void Seed(FavesrusDbContext context)
+        protected override void Seed(FavesrusDbContext context, bool seedMe = true)
         {
-            UserManager<FavesrusUser> userMgr = 
-                new UserManager<FavesrusUser>(new UserStore<FavesrusUser>(context));
-            RoleManager<FavesrusRole> roleMgr = new RoleManager<FavesrusRole>(new RoleStore<FavesrusRole>(context));
-
-            string roleName = "Admin";
-            string userName = "Admin";
-            string password = "favesrus1";
-            string email = "favesrus@gmail.com";
-
-            // Check if role exists and create if not
-            if (!roleMgr.RoleExists(roleName))
-                roleMgr.Create(new FavesrusRole(roleName));
-
-            // Check if role exists and create if not
-            if (!roleMgr.RoleExists("Customer"))
-                roleMgr.Create(new FavesrusRole("Customer"));
-
-            // Check if user exists and create if not
-            FavesrusUser user = userMgr.FindByName(userName);
-            if (user == null)
+            if (seedMe)
             {
-                userMgr.Create(new FavesrusUser
-                {
-                    UserName = userName,
-                    Email = email,
-                    WishLists = new List<WishList>() { new WishList() { WishListName = "Default"}}
-                }, password);
-                user = userMgr.FindByName(userName);
-            }
+                UserManager<FavesrusUser> userMgr =
+                    new UserManager<FavesrusUser>(new UserStore<FavesrusUser>(context));
+                RoleManager<FavesrusRole> roleMgr = new RoleManager<FavesrusRole>(new RoleStore<FavesrusRole>(context));
 
-            // Check if user is in role and add if not
-            if (!userMgr.IsInRole(user.Id, roleName))
-                userMgr.AddToRole(user.Id, roleName);
-            
+                string roleName = "Admin";
+                string userName = "Admin";
+                string password = "favesrus1";
+                string email = "favesrus@gmail.com";
+
+                // Check if role exists and create if not
+                if (!roleMgr.RoleExists(roleName))
+                    roleMgr.Create(new FavesrusRole(roleName));
+
+                // Check if role exists and create if not
+                if (!roleMgr.RoleExists("Customer"))
+                    roleMgr.Create(new FavesrusRole("Customer"));
+
+                // Check if user exists and create if not
+                FavesrusUser user = userMgr.FindByName(userName);
+                if (user == null)
+                {
+                    userMgr.Create(new FavesrusUser
+                    {
+                        UserName = userName,
+                        Email = email,
+                        WishLists = new List<WishList>() { new WishList() { WishListName = "Default" } }
+                    }, password);
+                    user = userMgr.FindByName(userName);
+                }
+
+                // Check if user is in role and add if not
+                if (!userMgr.IsInRole(user.Id, roleName))
+                    userMgr.AddToRole(user.Id, roleName);
+            }
+            else
+            {
+
+            }
             base.Seed(context);
         }
     }
