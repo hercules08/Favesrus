@@ -1,7 +1,35 @@
 <!-- shares View -->
-<div data-role="view" id="shares-view" data-after-show="afterSharesViewShow" data-layout="shares-layout">
-    <h2>Shares</h2>
+<div data-role="view" id="shares-view" data-init="initSharesView" data-after-show="afterSharesViewShow" data-layout="shares-layout">
+    <div class="container center">
+        <div class="description">
+            Send Requests to your friends, family and that special someone to view thier wishlist(s).
+        </div>
+        <a id="send-wishlist-request-btn" data-role="button" class="common-margin-top green">
+            <pre class="fa fa-paper-plane fa-lg"></pre>&nbsp;&nbsp;&nbsp;&nbsp;Send Wishlist Request
+        </a>
+        <div class="text-center common-margin-top  green-text ">
+            <a id="request-pending-btn" class="no-border green-text" data-role="button">
+                <pre class="fa fa-exclamation-circle fa-lg"></pre>&nbsp;0 Request Pending Approval
+            </a>
+        </div>
+    </div>
+    <div id="shares-wishlist-container">
+        <ul id="shares-wishlist-listview" data-role="listview" data-bind="source: source">
+        </ul>
+    </div>
 </div>
+
+<script id="sharesWishlistTemplate" type="text/x-kendo-template">
+    # for (var i = 0; i < data.Model.items.length; i++) { #
+        <li>
+            <img class="item-image" src="#= data.Model.items[i].image#"/>
+            <p id="#= data.Model.items[i].id#" class="item-name">#= data.Model.items[i].name#</p>
+            <p class="item-description">#= data.Model.items[i].description#</p>
+            <a data-role="button" class="icon-gift product-add"></a>
+        </li>
+    # } #
+</script>
+
 
 <!-- shares Layout -->
 <div data-role="layout" data-id="shares-layout">

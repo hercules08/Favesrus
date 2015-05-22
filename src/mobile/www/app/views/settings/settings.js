@@ -25,6 +25,9 @@ define([
 
 });
 
+var originalLogOutBtnX = 0, originalLogOutBtnY = 0;
+
+
 //Execute after the DOM finishes loading
 $(
 	function () {
@@ -37,14 +40,19 @@ $(
 	Apply event handler for all settings view buttons
 */
 function enableSettingsButtonEventHandlers(){
-	$("#logout-btn").click(function(){
-		console.log("You are about to be logged out");
-		//TODO Remove Local storage keys
-		//TODO Invoke webservice call
-		webService("logout","");
-		removeLocalcredentials();
-		returnHome();
-	});	
+	addTouchSMEvents("account-logout-btn", "inner-shadow");
+
+	document.getElementById("account-logout-btn").addEventListener("touchend", 
+        function (evt) {
+			console.log("You are about to be logged out");
+			//TODO Remove Local storage keys
+			//TODO Invoke webservice call
+			webService("logout","");
+			removeLocalcredentials();
+			returnHome();
+		},
+		false
+	);	
 }
 
 /*
@@ -54,7 +62,7 @@ function enableSettingsButtonEventHandlers(){
 function settingsViewInit(e) {
 	//TODO Leverage Local Storage keys
 	console.log("settings-view init");
-	var temp_data = '{"entity":{"firstName":"John","lastName":"Doe","profilePic":"images/image_placeholder.png"}}';
+	var temp_data = '{"entity":{"firstName":"First Name","lastName":"Last Name","profilePic":"images/image_placeholder.png"}}';
     var data = JSON.parse(temp_data);
     //View-Model declaration
     var viewModel = kendo.observable({
