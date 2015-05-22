@@ -1,5 +1,6 @@
 ﻿using Favesrus.Server.ErrorHandling;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.ExceptionHandling;
 
 namespace Favesrus.Server
@@ -13,8 +14,9 @@ namespace Favesrus.Server
             // Remove xml formatter
             config.Formatters.Remove(config.Formatters.XmlFormatter);
 
-            //TODO Enable CORS
-            //config.EnableCors();
+            // Enable CORS
+            var cors = new EnableCorsAttribute("*", "*", "*");
+            config.EnableCors(cors);
             
             // Web API configuration and services
             ConfigureRouting(config);
