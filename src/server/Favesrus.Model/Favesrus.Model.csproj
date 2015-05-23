@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\AbstractEntityBase.cs" />
+    <Compile Include="Entity\BaseCategory.cs" />
     <Compile Include="Entity\Category.cs" />
     <Compile Include="Entity\FavesrusRole.cs" />
     <Compile Include="Entity\FavesrusUser.cs" />

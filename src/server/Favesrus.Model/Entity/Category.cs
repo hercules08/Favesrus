@@ -7,11 +7,8 @@ using System.Threading.Tasks;
 
 namespace Favesrus.Model.Entity
 {
-    public class Category:AbstractEntityBase
+    public class Category : BaseCategory
     {
-        public virtual string CategoryName { get; set; }
-        public virtual ICollection<GiftItem> GiftItems { get; set; }
-
         //internal Category()
         //{
         //    this.GiftItems = new List<GiftItem>();

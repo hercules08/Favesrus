@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Favesrus.Model.Entity
 {
-    public class Recommendation:Category
+    public class Recommendation : BaseCategory
     {
     }
 }

@@ -61,7 +61,7 @@ GiftItem
 
 **Request:** 
 
-	GET: http://dev.favesrus.com/api/giftitem/getgiftitemsbycategoryid?categoryId=1
+	GET: http://dev.favesrus.com/api/giftitem/getgiftitemsbycategoryid?git acategoryId=1
  
 	Request Data: (apiroute)/?categoryId={a_category_id_number_goes_here}
 

@@ -34,6 +34,10 @@ namespace Favesrus.DAL.Impl
 
             modelBuilder.Entity<Microsoft.AspNet.Identity.EntityFramework.IdentityUserLogin>().ToTable("AspNetUserLogins")
                 .Property(c => c.ProviderKey).HasMaxLength(450);
+
+            modelBuilder.Entity<Category>().ToTable("Categories");
+            modelBuilder.Entity<Recommendation>().ToTable("Recommendations");
+
         }
 
         //public DbSet<FavesrusUser> FavesrusUsers { get; set; }
