@@ -1,103 +1,198 @@
 <!-- this or that View -->
-<div data-role="view" id="thisorthat-view" data-init="tortViewInit" data-after-show="afterTortViewShow" data-layout="login-layout">
+<div data-role="view" id="thisorthat-view" data-init="tortViewInit" data-after-show="afterTortViewShow" data-layout="thisorthat-layout" class="center">
     <div class="container center">
         <div class="center">
-            <a id="recommendations-btn" data-role="button" data-badge="0" class="fa fa-check-square-o red"></a>
-            <img id="thisorthat-logo" src="images/thisorthat_logo_greensea.png"/>
+            <!-- <a id="recommendations-btn" data-role="button" data-badge="0" class="fa fa-check-square-o red"></a> -->
+            <!-- <img id="thisorthat-logo" src="images/thisorthat_logo_greensea.png"/> -->
         </div>
-        <div id="thisorthat-description" class="text-center description">
+        <!--<div id="thisorthat-description" class="text-center description">
             Swipe between 10 different products from your desired recommendations.
             <br>Choose products to add to your wishlist.
-        </div>
+        </div>-->
         <p class="center no-recommendations-message red">No Recommendations Selected!</p>
-        <div id="pages-container"></div>
-        <div id="thisorthat-scrollview" data-role="scrollview" data-enable-pager="true" data-template="tortTemplate"></div>
-        <script id="tortTemplate" type="text/x-kendo-template">
-        	<div>
-			    <table>
-			        <tr>
-			            <td><img class="tort-product" src="#= image#"/></td>
-			            <td><img class="tort-product" src="#= image#"/></td>
-			        </tr>
-			        <tr>
-			            <td id="#= id#">#= name#</td>
-			            <td></td>
-			        </tr>
-			        <tr>
-			            <td colspan="2">
-			                <div class="divider-container center">
-			                    <img class="divider" src="images/price_divider.png"/>
-			                </div>
-			            </td>
-			        </tr>
-			        <tr>
-			            <td>$25.99*</td>
-			            <td>$20.99*</td>
-			        </tr>
-			        <tr>
-			            <td colspan="2">
-			                <div class="divider-container center">
-			                    <img class="divider" src="images/avg_customer_ratings_divider.png"/>
-			                </div>
-			            </td>
-			        </tr>
-			        <tr>
-			            <td>
-			                <div class="center">
-			                    <img class="side-by-side star" src="images/star.png"/>
-			                </div>
-			            </td>
-			            <td>
-			                <div class="center">
-			                    <img class="side-by-side star" src="images/star.png"/>
-			                    <img class="side-by-side star" src="images/star.png"/>
-			                </div>
-			            </td>
-			        </tr>
-			        <tr>
-			            <td colspan="2">
-			                <div id="thisorthat-button-container" class="center">
-			                    <a id="#= id#-button" class="side-by-side tort-add" data-role="button">
-			                        <img class="button-image" src="images/this.png"/>
-			                    </a>
-			                    <div id="thisorthat-or" class="side-by-side">
-			                        <div style="padding: 2px;">or</div>
-			                    </div>
-			                    <a class="side-by-side tort-add" data-role="button">
-			                        <img class="button-image" src="images/that.png"/>
-			                    </a>
-			                </div>
-			            </td>
-			        </tr>
-			    </table>
-			</div>
-        </script>
+        <div id="thisorthat-scrollview" class="" data-role="scrollview" data-enable-pager="true" data-items-per-page="2" data-page-size="12" data-template="tortTemplate" data-change="getViewableProductChange"></div>
+
     </div>
+    <!-- <div id="thisorthat-wishlist-btn-container"> -->
+    <a id="thisorthat-wishlist-btn" data-role="button" class="green">View Wishlist</a>
+    <!-- </div> -->
     <ul id="tort-addItem-actionsheet" data-role="actionsheet" data-cancel="Close">
-        <li><a data-action="">Add to Default Wishlist</a></li>
+        <li><a data-action="addToDefaultWishlist">Add to Default Wishlist</a></li>
     </ul>
 </div>
 
 <div data-role="modalview" id="thisorthat-recommendations-modal" style="width:90%">
     <div data-role="header">
         <div data-role="navbar">
-            <a data-role="button" class="fa fa-check modal-close-btn" data-align="left"></a>
-            <a data-role="button" data-icon="close-btn" class="modal-close-btn" data-align="right"></a>
+            <a data-role="button" data-icon="close-btn" class="modal-close-btn" data-align="left"></a>
+            <a data-role="button" class="fa fa-check modal-close-btn" data-align="right"></a>
             <span>Recommendations</span>
         </div>
     </div>
     <div class="text-center container">
         Select up to 3 items.
     </div>
-    <div id="thisorthat-Recommendations-container" class="center">
-        <script id="tortRecommendationsTemplate" type="text/x-kendo-template">
-            # for (var i = 0; i < data.model.items.length; i++) { #
-                <div id="#= data.model.items[i].id#-button" class="center recommendations">
-                    <a data-role="button" class="fa fa-check fa-lg hidden"></a>
-                    <img src="#= data.model.items[i].image#"/>
-                    <div class="recommendation-name">#= data.model.items[i].name#</div>
-                </div>
-            # } #
-        </script>
+    <div id="thisorthat-Recommendations-container" class="center flexbox"></div>
+</div>
+
+<div data-role="modalview" id="thisorthat-products-details-modal" data-init="initDetailsModal" style="width:50%">
+    <div data-role="header">
+        <div data-role="navbar">
+            <a data-role="button" data-icon="close-btn" class="modal-close-btn" data-align="left"></a>
+            <span>Details</span>
+        </div>
+    </div>
+    <div id="thisorthat-products-details-container" class="text-center container">
+        Details.
+    </div>
+    <div id="product-retailers-container">
+        <ul id="product-retailers-listview" data-role="listview" data-bind="source: source"></ul>
     </div>
 </div>
+
+<!-- thisorthat Layout -->
+<div data-role="layout" data-id="thisorthat-layout">
+    <div data-role="header">
+        <div data-role="navbar">
+            <a id="tort-close-btn" data-align="left" data-icon="close-btn" data-role="button"></a>
+            <span data-role="view-title"><img class="header-logo" src="images/FavesRUs_logo.png"/></span>
+            <!-- <a id="recommendations-btn" data-align="right" data-icon="heart-recommendations" data-badge="0" data-role="button"></a> -->
+            <a id="recommendations-btn" data-align="right" class="fa fa-check-square-o" data-badge="0" data-role="button"></a>
+        </div> 
+    </div>
+</div>
+
+<!-- Kendo UI Templates -->
+<script id="tortProductDetailsTemplate" type="text/x-kendo-template">
+    <div class="product-name">#= data.name#</div>
+    <img class="product-image" src="#= data.image#"/>
+    <div class="description">#= data.description#</div>
+</script>
+
+<script id="productRetailersTemplate" type="text/x-kendo-template">
+    # for (var i = 0; i < data.length; i++) { #
+        <li>
+            <img class="retailer-image" src="#= data[i].image#"/>
+            <p id="#= data[i].id#" class="retailer-name">#= data[i].name#</p>
+            <p class="">#= data[i].price#</p>
+            <!--<a data-role="button" class="icon-gift product-add"></a>-->
+        </li>
+    # } #
+</script>
+
+<script id="tortRecommendationsTemplate" type="text/x-kendo-template">
+    # for (var i = 0; i < data.model.items.length; i++) { #
+        <!--<div id="#= data.model.items[i].id#-button" class="center recommendations">
+            <a data-role="button" class="fa fa-check fa-lg hidden"></a>
+            <img src="#= data.model.items[i].image#"/>
+            <div class="recommendation-name">#= data.model.items[i].name#</div>
+        </div>-->
+        <div id="#= data.model.items[i].id#-button" class="popular side-by-side black-tint">
+            <a data-role="button" class="fa fa-check fa-lg hidden top-center"></a>
+            <img src="#= data.model.items[i].image#" class="popular-category-image"/>
+            <div class="popular-category-name-container"><span >#= data.model.items[i].name#</span></div>
+        </div>
+    # } #
+</script>
+
+<script id="tortTemplate" type="text/x-kendo-template">
+	<div>
+	    <table>
+	        <!--<tr>
+	            <div id="tort-or" class="text-center green-text">or</div>
+	            <td class="thisorthat-button-container">
+                    <a id="#= data[0].id#-btn" class="tort-add green" data-role="button">
+                        <img class="button-image" src="images/this.png"/>
+                        <div class="fa fa-plus-circle top-center"></div>
+                    </a>
+                </td>
+                <td class="thisorthat-button-container">
+                    <a id="#= data[1].id#-btn" class="tort-add green" data-role="button">
+                        <img class="button-image" src="images/that.png"/>
+                        <div class="fa fa-plus-circle top-center"></div>
+                    </a>
+                </td>
+	        </tr>-->
+            <tr>
+                <td class="category-header" colspan="2">#= data[0].category#</td>
+            </tr>
+	        <tr>
+	            <td>
+		            <div class="image-container">
+			            <div class="menu-option"><!--<div class="menu-option-back">--><img id="#= data[0].id#-heart-plus-icon" class="menu svg" src="images/heart_plus_icon.svg" alt="0"/><!--</div>--></div>
+                        <img id="#= data[0].id#-img" class="tort-product" src="#= data[0].image#" alt="0"/>
+			            <!--<div id="#= data[0].id#-menu-container" class="menu-container  right-40" title="0">
+			            	<div class="side-by-side menu transparent"><div class="menu-option-back"><img id="#= data[0].id#-menu-icon" class="menu svg" src="images/menu_icon_filled.svg" alt="0"/></div></div>
+			            	<div class="side-by-side hidden menu-option"><div class="menu-option-back"><img id="#= data[0].id#-info-icon" class="menu svg" src="images/info_icon.svg" alt="0"/></div></div>
+					        <div class="side-by-side hidden menu-option"><div class="menu-option-back"><img id="#= data[0].id#-heart-plus-icon" class="menu svg" src="images/heart_plus_icon.svg" alt="0"/></div></div>
+					        <div class="side-by-side hidden menu-option"><div class="menu-option-back"><img id="#= data[0].id#-list-plus-icon" class="menu svg" src="images/list_plus_icon.svg" alt="0"/></div></div>
+			            </div>-->
+		            </div>
+	            </td>
+	            <td>
+	            	<div class="image-container">
+                        <div class="menu-option"><!--<div class="menu-option-back">--><img id="#= data[0].id#-heart-plus-icon" class="menu svg" src="images/heart_plus_icon.svg" alt="0"/><!--</div>--></div>
+	            		<img id="#= data[1].id#-img" class="tort-product" src="#= data[1].image#" alt="1"/>
+	            		<!--<div id="#= data[1].id#-menu-container" class="menu-container right-40" title="1">
+			            	<div class="side-by-side menu transparent"><div class="menu-option-back"><img id="#= data[1].id#-menu-icon" class="menu svg" src="images/menu_icon_filled.svg" alt="1"/></div></div>
+			            	<div class="side-by-side hidden menu-option"><div class="menu-option-back"><img id="#= data[1].id#-info-icon" class="menu svg" src="images/info_icon.svg" alt="1"/></div></div>
+					        <div class="side-by-side hidden menu-option"><div class="menu-option-back"><img id="#= data[1].id#-heart-plus-icon" class="menu svg" src="images/heart_plus_icon.svg" alt="1"/></div></div>
+					        <div class="side-by-side hidden menu-option"><div class="menu-option-back"><img id="#= data[1].id#-list-plus-icon" class="menu svg" src="images/list_plus_icon.svg" alt="1"/></div></div>
+			            </div>-->
+			  
+	            	</div>
+	            </td>
+	        </tr>
+            <tr>
+                <td class="thisorthat-button-container">
+                    <a id="#= data[0].id#-btn" class="tort-add this" data-role="button">Add to Wishlist</a>
+                </td>
+                <td class="thisorthat-button-container">
+                    <a id="#= data[1].id#-btn" class="tort-add that" data-role="button">Add to Wishlist</a>
+                </td>
+            </tr>
+	        <tr>
+                <td id="#= data[0].id#">#= data[0].name#</td>
+                <td id="#= data[1].id#">#= data[1].name#</td>
+            </tr>
+	        <tr>
+	            <td>$9.99* - 12.99*</td>
+	            <td>$15.99* - 19.99*</td>
+	        </tr>
+	        <tr>
+	            <td>
+	                <div class="center">
+	                    <img class="side-by-side star" src="images/star.png"/>
+                        <img class="side-by-side star" src="images/star.png"/>
+                        <img class="side-by-side star" src="images/star.png"/>
+                        <img class="side-by-side star" src="images/star.png"/>
+	                </div>
+	            </td>
+	            <td>
+	                <div class="center">
+	                    <img class="side-by-side star" src="images/star.png"/>
+	                    <img class="side-by-side star" src="images/star.png"/>
+	                </div>
+	            </td>
+	        </tr>
+            <!--<tr>
+                <td>
+                    <div class="center">
+                        <img class="svg store" src="images/store_icon.svg"/>
+                        <img class="svg best-price store" src="images/store_icon.svg"/>
+                    	<img class="svg store" src="images/store_icon.svg"/>
+                    	<img class="svg store" src="images/store_icon.svg"/>
+                    </div>
+                </td>
+                <td>
+                    <div class="center">
+                        <img class="svg store" src="images/store_icon.svg"/>
+                        <img class="svg best-price store" src="images/store_icon.svg"/>
+                    </div>
+                </td>
+            </tr>-->
+	    </table>
+	</div>
+</script>
+
+

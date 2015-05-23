@@ -25,7 +25,7 @@ define([
 });
 
 var loginViewShowCounter = 0;
-var orignalFacebookBtnX = 0; orignalFacebookBtnY = 0;
+var orignalFacebookBtnX = 0; orignalFacebookBtnY = 0, orignalAccountBtnX = 0, orignalAccountBtnY = 0;
 
 //Execute after the DOM finishes loading
 $(
@@ -41,8 +41,8 @@ $(
 function afterLoginViewShow(e){
     // alert("login");
     if (loginViewShowCounter === 0) {
-        $("#login-view .km-rightitem").click(function(){
-            console.log("hello");
+        $("#login-view .km-leftitem").click(function(){
+            //console.log("hello");
             returnHome();
         });
         loginViewShowCounter = 1;
@@ -52,8 +52,10 @@ function afterLoginViewShow(e){
 /*
 
 */
-function resetTextFields(){
-
+function resetTextFields() {
+    $("#email-input").val("");
+    $("#password-input").val("");
+    $("#confirm-password-input").val("");
 }
 
 /*
@@ -67,7 +69,6 @@ function onForgotPasswordPrompt(results) {
     /*console.log(results);
     console.log("Inputted Email "+results.input1);*/
     webService("forgotPassword","email="+results.input1);
-    
 }
 
 /*
@@ -159,7 +160,20 @@ function login(option){
 	if(option === "facebook"){ 
         /*facebook Connect Cordova plugin*/
         //facebookConnectPlugin.browserInit("1549506478654715")
-        facebookConnectPlugin.login(["email","user_birthday"], facebookAuthSuccess, facebookAuthFailure);
+        try {
+            facebookConnectPlugin.login(["email","user_birthday"], facebookAuthSuccess, facebookAuthFailure);
+        }
+        catch(ex) {
+            if (navigator.notification) {
+                navigator.notification.alert(
+                    "A connection to Facebook is unable to be established.",    // message
+                    alertDismissed,                             // callback
+                    'Unable to Connect via Facebook',                                  // title
+                    'OK'                                        // buttonName
+                );
+            }
+            else {alert("A connection to Facebook is unable to be established.");}
+        }
 	}
 	else if((option === "register") && (validateInputs(APP.instance.view().id, "register"))) {
         webService("registerEmail","email=" + $("#email-input").val() + "&password=" + $("#confirm-password-input").val());
@@ -191,6 +205,7 @@ function enableButtonTouchEventListeners(view) {
 
         document.getElementById("create-account-btn").addEventListener("touchstart", 
             function (e) {
+                resetTextFields()
             	$("#login-fields-container ul li:last-child").removeClass("hidden");
             	$("#forgot-password-link").addClass("hidden");
             	$("#account-login-btn").text("Create Account");
@@ -199,28 +214,35 @@ function enableButtonTouchEventListeners(view) {
 
         document.getElementById("sign-in-btn").addEventListener("touchstart", 
             function (e) {
+                resetTextFields();
             	$("#login-fields-container ul li:last-child").addClass("hidden");
             	$("#forgot-password-link").removeClass("hidden");
             	$("#account-login-btn").text("Sign In");
             }, 
         false);
 
-        document.getElementById("account-login-btn").addEventListener("touchstart", 
-            function (e) {
-            	//alert($("#account-login-btn").text());
-            	if($("#account-login-btn").text() === "Create Account") {
-                    console.log("Register with Email");
-                    login("register");
-                }
-                else if($("#account-login-btn").text() === "Sign In"){
-                    console.log("Login with Email");
-                    login("email");
-                }
-            	//e.preventDefault();
-            }, 
-        false);
+        addTouchSMEvents("account-login-btn", "inner-shadow");
+        //Add touchstart event to the create account button
+        document.getElementById("account-login-btn").addEventListener("touchend", 
+            function (evt) {
+                if ( (evt.changedTouches[0].clientX >= orignalAccountBtnX-50 && evt.changedTouches[0].clientX <= orignalAccountBtnX+50) && (evt.changedTouches[0].clientY >= orignalAccountBtnY-10 && evt.changedTouches[0].clientY <= orignalAccountBtnY+10) ) {
+                    $("#account-login-btn").removeClass("inner-shadow"); 
 
-        document.getElementById("forgot-password-link").addEventListener("touchstart", 
+                	if($("#account-login-btn").text() === "Create Account") {
+                        console.log("Register with Email");
+                        login("register");
+                    }
+                    else if($("#account-login-btn").text() === "Sign In"){
+                        console.log("Login with Email");
+                        login("email");
+                    }
+                	//e.preventDefault();
+                }
+            }, 
+            false
+        );
+
+        document.getElementById("forgot-password-link").addEventListener("touchend", 
             function (e) {
             	if (navigator.notification) {
 		            navigator.notification.prompt(

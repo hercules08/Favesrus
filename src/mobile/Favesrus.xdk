@@ -2,12 +2,10 @@
   "project": {
     "projectSettingsVersion": "1.2",
     "creationData": {
-      "type": "Demo",
       "projectTypeName": "com.intel.xdk.projecttype.jsapp",
-      "src": "",
-      "projectGuid": "e8e03942-8651-4667-af29-645d1fa580eb",
-      "lastModifiedDate": 1425861378073,
-      "creationDate": 1424116873926
+      "projectGuid": "b6d585cb-c81f-445f-8f9d-d6cc68d37aff",
+      "lastModifiedDate": 1430842679729,
+      "creationDate": 1430839389257
     },
     "XDK-app-designer": "false",
     "sourceDirectory": "www",
@@ -19,46 +17,58 @@
     "cordovaPluginsDirectory": "plugins",
     "cordovaPlugins": [
       {
-        "id": "org.apache.cordova.splashscreen",
-        "version": "0.3.0",
-        "selectedState": "Included",
-        "data": {},
-        "paramvals": {}
-      },
-      {
-        "id": "org.apache.cordova.statusbar",
-        "version": "0.1.7",
-        "selectedState": "Included",
-        "data": {},
-        "paramvals": {}
-      },
-      {
         "id": "org.apache.cordova.device",
-        "version": "0.2.9",
+        "version": "0.2.13",
         "selectedState": "Included",
         "data": {},
-        "paramvals": {}
+        "paramvals": {},
+        "dependsOn": [],
+        "dependedBy": []
       },
       {
-        "id": "org.apache.cordova.inappbrowser",
-        "version": "0.4.0",
+        "id": "org.apache.cordova.splashscreen",
+        "version": "0.3.5",
         "selectedState": "Included",
         "data": {},
-        "paramvals": {}
-      },
-      {
-        "id": "org.apache.cordova.dialogs",
-        "version": "0.2.6",
-        "selectedState": "Included",
-        "data": {},
-        "paramvals": {}
+        "paramvals": {},
+        "dependsOn": [],
+        "dependedBy": []
       },
       {
         "id": "org.apache.cordova.geolocation",
-        "version": "0.3.10",
+        "version": "0.3.11",
         "selectedState": "Included",
         "data": {},
-        "paramvals": {}
+        "paramvals": {},
+        "dependsOn": [],
+        "dependedBy": []
+      },
+      {
+        "id": "org.apache.cordova.inappbrowser",
+        "version": "0.5.4",
+        "selectedState": "Included",
+        "data": {},
+        "paramvals": {},
+        "dependsOn": [],
+        "dependedBy": []
+      },
+      {
+        "id": "org.apache.cordova.dialogs",
+        "version": "0.2.11",
+        "selectedState": "Included",
+        "data": {},
+        "paramvals": {},
+        "dependsOn": [],
+        "dependedBy": []
+      },
+      {
+        "id": "org.apache.cordova.statusbar",
+        "version": "0.1.9",
+        "selectedState": "Included",
+        "data": {},
+        "paramvals": {},
+        "dependsOn": [],
+        "dependedBy": []
       },
       {
         "id": "com.ionic.keyboard",
@@ -66,6 +76,8 @@
         "selectedState": "Included",
         "data": {},
         "paramvals": {},
+        "dependsOn": [],
+        "dependedBy": [],
         "custom": "true",
         "name": "Ionic Keyboard Plugin",
         "origin": "com.ionic.keyboard",
@@ -81,11 +93,12 @@
         "preferences_": {
           "android-minSdkVersion": "10",
           "android-targetSdkVersion": "19",
-          "android-installLocation": "auto"
+          "android-installLocation": "auto",
+          "Orientation": "portrait"
         },
         "isActive_": true,
         "appName_": "Favesrus",
-        "appID_": "xdk.intel.blank.template",
+        "appID_": "xdk.projectf.blank.template",
         "appAccess_": [
           {
             "origin": "*"
@@ -96,11 +109,11 @@
         "addlPermissions_": "",
         "excludedLibraries_": "",
         "iosProvs_": [],
-        "cordovaCLIVersion_": "3.5",
-        "crosswalkVersion_": "stable",
+        "cordovaCLIVersion_": "4.1.2",
+        "crosswalkVersion_": "11",
         "appVersion_": "0.0.1",
-        "appDescription_": "Use this template to start with a simple index.html file for creating mobile apps.",
-        "appAuthor_": "",
+        "appDescription_": "Universal init code for Intel XDK and Cordova device ready detection.",
+        "appAuthor_": "Intel XDK",
         "appVersionCode_": "1"
       },
       "Android-Crosswalk": {
@@ -114,22 +127,18 @@
         },
         "isActive_": true,
         "appName_": "Favesrus",
-        "appID_": "xdk.intel.blank.template",
-        "appAccess_": [
-          {
-            "origin": "*"
-          }
-        ],
+        "appID_": "xdk.intel.blank.template.crosswalk",
+        "appAccess_": [],
         "icons_": [],
         "splashes_": [],
         "addlPermissions_": "",
         "excludedLibraries_": "",
         "iosProvs_": [],
-        "cordovaCLIVersion_": "3.5",
-        "crosswalkVersion_": "10",
+        "cordovaCLIVersion_": "4.1.2",
+        "crosswalkVersion_": "11",
         "appVersion_": "0.0.1",
-        "appDescription_": "Use this template to start with a simple index.html file for creating mobile apps.",
-        "appAuthor_": "",
+        "appDescription_": "Universal init code for Intel XDK and Cordova device ready detection.",
+        "appAuthor_": "Intel XDK",
         "appVersionCode_": "1"
       },
       "iOS": {
@@ -137,26 +146,23 @@
         "runtime_": "Cordova 3.x",
         "name_": "iOS",
         "preferences_": {
-          "ios-target": "5",
+          "ios-target": "6",
           "ios-configuration": "adhoc"
         },
         "isActive_": true,
         "appName_": "Favesrus",
         "appID_": "xdk.intel.blank.template",
-        "appAccess_": [
-          {
-            "origin": "*"
-          }
-        ],
+        "appAccess_": [],
         "icons_": [],
         "splashes_": [],
         "addlPermissions_": "",
         "excludedLibraries_": "",
         "iosProvs_": [],
-        "cordovaCLIVersion_": "3.5",
-        "crosswalkVersion_": "stable",
+        "cordovaCLIVersion_": "4.1.2",
+        "crosswalkVersion_": "11",
         "appVersion_": "0.0.1",
-        "appDescription_": "Use this template to start with a simple index.html file for creating mobile apps."
+        "appAuthor_": "Intel XDK",
+        "appDescription_": "Universal init code for Intel XDK and Cordova device ready detection."
       },
       "Windows8": {
         "platform_": "windows8",
@@ -169,6 +175,26 @@
         "isActive_": true,
         "appName_": "Favesrus",
         "appID_": "xdk.intel.blank.template",
+        "appAccess_": [],
+        "icons_": [],
+        "splashes_": [],
+        "addlPermissions_": "",
+        "excludedLibraries_": "",
+        "iosProvs_": [],
+        "cordovaCLIVersion_": "4.1.2",
+        "crosswalkVersion_": "11",
+        "appVersion_": "0.0.0.1",
+        "appAuthor_": "Intel XDK",
+        "appDescription_": "Universal init code for Intel XDK and Cordova device ready detection."
+      },
+      "WebApp": {
+        "platform_": "webapp",
+        "runtime_": "W3C",
+        "name_": "WebApp",
+        "preferences_": {},
+        "isActive_": false,
+        "appName_": "Favesrus",
+        "appID_": "not.yet.specified",
         "appAccess_": [
           {
             "origin": "*"
@@ -178,11 +204,64 @@
         "splashes_": [],
         "addlPermissions_": "",
         "excludedLibraries_": "",
-        "iosProvs_": [],
-        "cordovaCLIVersion_": "3.5",
-        "crosswalkVersion_": "stable",
-        "appVersion_": "0.0.0.1",
-        "appDescription_": "Use this template to start with a simple index.html file for creating mobile apps."
+        "appVersion_": "0.0.1"
+      },
+      "Firefox": {
+        "platform_": "firefoxos",
+        "runtime_": "W3C on Firefox OS",
+        "name_": "Firefox",
+        "preferences_": {},
+        "isActive_": false,
+        "appName_": "Favesrus",
+        "appID_": "not.yet.specified",
+        "appAccess_": [
+          {
+            "origin": "*"
+          }
+        ],
+        "icons_": [],
+        "splashes_": [],
+        "addlPermissions_": "",
+        "excludedLibraries_": "",
+        "appVersion_": "0.0.1"
+      },
+      "Chrome": {
+        "platform_": "chromeos",
+        "runtime_": "W3C on Chrome OS",
+        "name_": "Chrome",
+        "preferences_": {},
+        "isActive_": false,
+        "appName_": "Favesrus",
+        "appID_": "not.yet.specified",
+        "appAccess_": [
+          {
+            "origin": "*"
+          }
+        ],
+        "icons_": [],
+        "splashes_": [],
+        "addlPermissions_": "",
+        "excludedLibraries_": "",
+        "appVersion_": "0.0.1"
+      },
+      "Facebook": {
+        "platform_": "facebook",
+        "runtime_": "W3C on Facebook",
+        "name_": "Facebook",
+        "preferences_": {},
+        "isActive_": false,
+        "appName_": "Favesrus",
+        "appID_": "not.yet.specified",
+        "appAccess_": [
+          {
+            "origin": "*"
+          }
+        ],
+        "icons_": [],
+        "splashes_": [],
+        "addlPermissions_": "",
+        "excludedLibraries_": "",
+        "appVersion_": "0.0.1"
       }
     },
     "gameAssetDirectory": "asset",
