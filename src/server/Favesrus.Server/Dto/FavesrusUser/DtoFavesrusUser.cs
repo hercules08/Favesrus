@@ -19,6 +19,7 @@ namespace Favesrus.Server.Dto.FavesrusUser
         public DateTime? Birthday { get; set; }
         //public Gender Gender { get; set; }
         public string ProfilePic { get; set; }
+        public ICollection<DtoWishlist> WishLists { get; set; }
 
         public List<Link> Links { get; set; }
 

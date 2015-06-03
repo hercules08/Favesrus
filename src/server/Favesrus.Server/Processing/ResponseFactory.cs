@@ -21,10 +21,5 @@ namespace Favesrus.Server.Processing
         {
             return new ResponseModel { Entity = entity };
         }
-
-        public static ResponseModel CreateFullResponseModel(ICollection<object> items, object entity)
-        {
-            return new ResponseModel { Items = items, Entity = entity };
-        }
     }
 }

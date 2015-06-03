@@ -303,9 +303,11 @@
     <Compile Include="Controllers\WebApi\RecommendationController.cs" />
     <Compile Include="Controllers\WebApi\WishlistController.cs" />
     <Compile Include="Dto\FavesrusUser\DtoFavesrusUser.cs" />
+    <Compile Include="Dto\FavesrusUser\DtoWishlist.cs" />
     <Compile Include="Dto\FavesrusUser\LoginFacebookModel.cs" />
     <Compile Include="Dto\FavesrusUser\LoginModel.cs" />
     <Compile Include="Dto\FavesrusUser\MapperConfig\DtoFavesrusUser_FavesrusUser.cs" />
+    <Compile Include="Dto\FavesrusUser\MapperConfig\DtoWishlist_Wishlist.cs" />
     <Compile Include="Dto\FavesrusUser\MapperConfig\FavesrusUser_DtoFavesrusUser.cs" />
     <Compile Include="Dto\FavesrusUser\MapperConfig\FavesrusUser_RegisterFacebookModel.cs" />
     <Compile Include="Dto\FavesrusUser\MapperConfig\RegisterFacebookModel_FavesrusUser.cs" />
