@@ -2,19 +2,26 @@
 <div data-role="view" id="login-view" data-after-show="afterLoginViewShow" data-layout="login-layout">
     <div class="container center">
         <div id="login-description" class="text-center description">
-            Login with your Facebook account or email address.<br>Your Wishlist will be synced across all of devices.
+            Login with your Faves'R'Us account or with Facebook.<!--<br>Your Wishlist will be synced across all of devices.-->
         </div>
-        <a id="facebook-login-btn" class="common-margin-top login-btn facebook-style center" data-role="button">
-            <pre class="fa fa-facebook fa-lg"></pre>&nbsp;&nbsp;&nbsp;&nbsp;Sign in With Facebook
-        </a>
-        <div class="common-margin-top center">
-            <img class="divider" src="images/or_divider.png"/>
-        </div>
+
         <ul data-role="buttongroup" class="common-margin-top center login-email-btngroup" data-index="0">
             <li id="create-account-btn">Create Account</li>
             <li id="sign-in-btn">Sign in</li>
         </ul>
         <div id="login-fields-container">
+            <!-- <div class="flexbox common-margin-top"> -->
+            <table>
+                <tr>
+                    <td>
+                        <a class="fa fa-square-o fa-2x"></a><span>&nbsp;&nbsp;&nbsp;Male</span>
+                    </td>
+                    <td>
+                        <a class="fa fa-square-o fa-2x"></a><span>&nbsp;&nbsp;&nbsp;Female</span>
+                    </td>
+                </tr>
+            </table>
+            <!-- </div> -->
             <ul data-role="listview" data-style="inset" class="text-left login-form">
                 <li>
                     <input id="email-input" type="email" placeholder="Email" value="" />
@@ -29,6 +36,15 @@
             <a id="forgot-password-link" class="hidden" href="">Forgot Password?</a>
         </div>
         <a id="account-login-btn" class="common-margin-top login-btn text-center green" data-role="button">Create Account</a>
+
+        <div class="common-margin-top center">
+            <img class="divider" src="images/or_divider.png"/>
+        </div>
+
+        <a id="facebook-login-btn" class="common-margin-top login-btn facebook-style center" data-role="button">
+            <pre class="fa fa-facebook fa-lg"></pre>&nbsp;&nbsp;&nbsp;&nbsp;Sign in With Facebook
+        </a>
+        
     </div>
 </div>
 

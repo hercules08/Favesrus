@@ -29,5 +29,28 @@
     <!-- <script src="bower_components/jquery/jquery.min.js"></script> -->
     <script src="bower_components/jquery-tiny-pubsub/dist/ba-tiny-pubsub.js"></script>
     <script src="bower_components/requirejs/require.js" data-main="app/main.js"></script>
+    <div data-role="layout" data-id="main-layout">
+        <!-- Header -->
+        <div data-role="header">
+            <div data-role="navbar">
+                <a id="wishlist-backbtn" data-align="left" data-role="backbutton" class="hidden">Back</a>
+                <span data-role="view-title"><img class="header-logo" src="images/FavesRUs_logo.png"/></span>
+                <a id="profile-pic" data-align="right" data-icon="profile-pic-holder" data-role="button"></a>
+            </div>
+            <div id="header-search" class="km-filter-form">
+                <div class="km-filter-wrap"><form onSubmit="return false;"><input type="search" placeholder="Search Products or Categories" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="true"/><a id="search-reset-btn" class="km-filter-reset hidden" title="Clear" style="display: inline-block"><span class="km-icon km-clear"></span><span class="km-text">Clear</span></a></form></div></div>
+                
+        </div>
+        <div data-role="footer">
+            <div id="tabstrip" class="tabstrip" data-role="tabstrip">
+                <a href="#home-view" data-icon="search">Search</a>
+                <a name="wishlist-tab" href="#wishlist-view" data-icon="wish-list"><!--<img src="images/wishlist_icon.png" />-->Wishlist</a>
+                <a href="#thisorthat-view"><img src="images/thisorthat_icon.png" /></a>
+                <a href="#shares-view" data-icon="contacts">Shares</a>
+                <a href="#settings-view" data-icon="settings">Settings</a>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>

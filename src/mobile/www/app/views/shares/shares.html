@@ -1,5 +1,5 @@
 <!-- shares View -->
-<div data-role="view" id="shares-view" data-init="initSharesView" data-after-show="afterSharesViewShow" data-layout="shares-layout">
+<div data-role="view" id="shares-view" data-init="initSharesView" data-after-show="afterSharesViewShow">
     <div class="container center">
         <div class="description">
             Send Requests to your friends, family and that special someone to view thier wishlist(s).
@@ -19,33 +19,23 @@
     </div>
 </div>
 
+<div data-role="view" id="shares-retailers-view" data-after-show="afterSharesRetailersViewShow">
+    
+</div>
+
 <script id="sharesWishlistTemplate" type="text/x-kendo-template">
-    # for (var i = 0; i < data.Model.items.length; i++) { #
+    # for (var i = 0; i < data.model.items.length; i++) { #
         <li>
-            <img class="item-image" src="#= data.Model.items[i].image#"/>
-            <p id="#= data.Model.items[i].id#" class="item-name">#= data.Model.items[i].name#</p>
-            <p class="item-description">#= data.Model.items[i].description#</p>
-            <a data-role="button" class="icon-gift product-add"></a>
+            <table>
+                <tr>
+                    <td rowspan="2"><img class="shares-image" src="#= data.model.items[i].image#"/></td>
+                    <td class="item-name-column"><p id="#= data.model.items[i].id#" class="item-name">#= data.model.items[i].name#</p></td>
+                    <td rowspan="2"><a data-role="button" data-icon="wish-list" class="shares-wishlist no-border km-widget km-button"><span class="km-text"><span class="km-icon km-wish-list"></span></span><span class="km-badge">#= data.model.items[i].numGifts#</span></a></td>
+                </tr>
+                <tr>
+                    <td><p class="item-description">#= data.model.items[i].description#</p></td>        
+                </tr>
+            </table>
         </li>
     # } #
 </script>
-
-
-<!-- shares Layout -->
-<div data-role="layout" data-id="shares-layout">
-    <!-- Header -->
-    <div data-role="header">
-        <div data-role="navbar">
-            <a id="profile-pic" data-align="left" data-icon="profile-pic-holder" data-role="button"></a>
-            <span data-role="view-title"><img class="header-logo" src="images/FavesRUs_logo.png"/></span>
-        </div> 
-    </div>
-    <div data-role="footer">
-        <div id="tabstrip" class="tabstrip" data-role="tabstrip">
-            <a href="#home-view" data-icon="search">Search</a>
-            <a name="wishlist-tab" href="#wishlist-view" data-icon="wish-list">Wishlist</a>
-            <a href="#shares-view" data-icon="contacts">Shares</a>
-            <a href="#settings-view" data-icon="settings">Settings</a>
-        </div>
-    </div>
-</div>

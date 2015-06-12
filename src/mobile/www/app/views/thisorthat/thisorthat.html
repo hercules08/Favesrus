@@ -2,20 +2,12 @@
 <div data-role="view" id="thisorthat-view" data-init="tortViewInit" data-after-show="afterTortViewShow" data-layout="thisorthat-layout" class="center">
     <div class="container center">
         <div class="center">
-            <!-- <a id="recommendations-btn" data-role="button" data-badge="0" class="fa fa-check-square-o red"></a> -->
-            <!-- <img id="thisorthat-logo" src="images/thisorthat_logo_greensea.png"/> -->
         </div>
-        <!--<div id="thisorthat-description" class="text-center description">
-            Swipe between 10 different products from your desired recommendations.
-            <br>Choose products to add to your wishlist.
-        </div>-->
         <p class="center no-recommendations-message red">No Recommendations Selected!</p>
         <div id="thisorthat-scrollview" class="" data-role="scrollview" data-enable-pager="true" data-items-per-page="2" data-page-size="12" data-template="tortTemplate" data-change="getViewableProductChange"></div>
 
     </div>
-    <!-- <div id="thisorthat-wishlist-btn-container"> -->
     <a id="thisorthat-wishlist-btn" data-role="button" class="green">View Wishlist</a>
-    <!-- </div> -->
     <ul id="tort-addItem-actionsheet" data-role="actionsheet" data-cancel="Close">
         <li><a data-action="addToDefaultWishlist">Add to Default Wishlist</a></li>
     </ul>
@@ -56,7 +48,6 @@
         <div data-role="navbar">
             <a id="tort-close-btn" data-align="left" data-icon="close-btn" data-role="button"></a>
             <span data-role="view-title"><img class="header-logo" src="images/FavesRUs_logo.png"/></span>
-            <!-- <a id="recommendations-btn" data-align="right" data-icon="heart-recommendations" data-badge="0" data-role="button"></a> -->
             <a id="recommendations-btn" data-align="right" class="fa fa-check-square-o" data-badge="0" data-role="button"></a>
         </div> 
     </div>
@@ -65,8 +56,22 @@
 <!-- Kendo UI Templates -->
 <script id="tortProductDetailsTemplate" type="text/x-kendo-template">
     <div class="product-name">#= data.name#</div>
-    <img class="product-image" src="#= data.image#"/>
+    <div class="image-container">
+        <div class="details-like-container">
+            <div class="menu-option">
+                <div id="#= data.id#-heart-plus-icon-container">
+                    <img id="#= data.id#-heart-plus-icon" class="menu svg" src="images/heart_plus_icon.svg" alt="0"/>
+                </div>
+                <a id="#= data.id#-heart-icon" data-role="button" data-icon="heart-like" class="no-border hidden">
+                </a>
+            </div>
+        </div>
+        <img class="product-image" src="#= data.image#"/>
+    </div>
     <div class="description">#= data.description#</div>
+    <div class="menu-option">
+        <img id="#= data.id#-wishlist-gift-icon" class="menu this plus" src="images/add_gift_icon.png" alt="0"/>
+    </div>
 </script>
 
 <script id="productRetailersTemplate" type="text/x-kendo-template">
@@ -82,11 +87,6 @@
 
 <script id="tortRecommendationsTemplate" type="text/x-kendo-template">
     # for (var i = 0; i < data.model.items.length; i++) { #
-        <!--<div id="#= data.model.items[i].id#-button" class="center recommendations">
-            <a data-role="button" class="fa fa-check fa-lg hidden"></a>
-            <img src="#= data.model.items[i].image#"/>
-            <div class="recommendation-name">#= data.model.items[i].name#</div>
-        </div>-->
         <div id="#= data.model.items[i].id#-button" class="popular side-by-side black-tint">
             <a data-role="button" class="fa fa-check fa-lg hidden top-center"></a>
             <img src="#= data.model.items[i].image#" class="popular-category-image"/>
@@ -96,103 +96,89 @@
 </script>
 
 <script id="tortTemplate" type="text/x-kendo-template">
-	<div>
-	    <table>
-	        <!--<tr>
-	            <div id="tort-or" class="text-center green-text">or</div>
-	            <td class="thisorthat-button-container">
-                    <a id="#= data[0].id#-btn" class="tort-add green" data-role="button">
-                        <img class="button-image" src="images/this.png"/>
-                        <div class="fa fa-plus-circle top-center"></div>
-                    </a>
-                </td>
-                <td class="thisorthat-button-container">
-                    <a id="#= data[1].id#-btn" class="tort-add green" data-role="button">
-                        <img class="button-image" src="images/that.png"/>
-                        <div class="fa fa-plus-circle top-center"></div>
-                    </a>
-                </td>
-	        </tr>-->
+    <div>
+        <table>
             <tr>
                 <td class="category-header" colspan="2">#= data[0].category#</td>
             </tr>
-	        <tr>
-	            <td>
-		            <div class="image-container">
-			            <div class="menu-option"><!--<div class="menu-option-back">--><img id="#= data[0].id#-heart-plus-icon" class="menu svg" src="images/heart_plus_icon.svg" alt="0"/><!--</div>--></div>
-                        <img id="#= data[0].id#-img" class="tort-product" src="#= data[0].image#" alt="0"/>
-			            <!--<div id="#= data[0].id#-menu-container" class="menu-container  right-40" title="0">
-			            	<div class="side-by-side menu transparent"><div class="menu-option-back"><img id="#= data[0].id#-menu-icon" class="menu svg" src="images/menu_icon_filled.svg" alt="0"/></div></div>
-			            	<div class="side-by-side hidden menu-option"><div class="menu-option-back"><img id="#= data[0].id#-info-icon" class="menu svg" src="images/info_icon.svg" alt="0"/></div></div>
-					        <div class="side-by-side hidden menu-option"><div class="menu-option-back"><img id="#= data[0].id#-heart-plus-icon" class="menu svg" src="images/heart_plus_icon.svg" alt="0"/></div></div>
-					        <div class="side-by-side hidden menu-option"><div class="menu-option-back"><img id="#= data[0].id#-list-plus-icon" class="menu svg" src="images/list_plus_icon.svg" alt="0"/></div></div>
-			            </div>-->
-		            </div>
-	            </td>
-	            <td>
-	            	<div class="image-container">
-                        <div class="menu-option"><!--<div class="menu-option-back">--><img id="#= data[0].id#-heart-plus-icon" class="menu svg" src="images/heart_plus_icon.svg" alt="0"/><!--</div>--></div>
-	            		<img id="#= data[1].id#-img" class="tort-product" src="#= data[1].image#" alt="1"/>
-	            		<!--<div id="#= data[1].id#-menu-container" class="menu-container right-40" title="1">
-			            	<div class="side-by-side menu transparent"><div class="menu-option-back"><img id="#= data[1].id#-menu-icon" class="menu svg" src="images/menu_icon_filled.svg" alt="1"/></div></div>
-			            	<div class="side-by-side hidden menu-option"><div class="menu-option-back"><img id="#= data[1].id#-info-icon" class="menu svg" src="images/info_icon.svg" alt="1"/></div></div>
-					        <div class="side-by-side hidden menu-option"><div class="menu-option-back"><img id="#= data[1].id#-heart-plus-icon" class="menu svg" src="images/heart_plus_icon.svg" alt="1"/></div></div>
-					        <div class="side-by-side hidden menu-option"><div class="menu-option-back"><img id="#= data[1].id#-list-plus-icon" class="menu svg" src="images/list_plus_icon.svg" alt="1"/></div></div>
-			            </div>-->
-			  
-	            	</div>
-	            </td>
-	        </tr>
             <tr>
-                <td class="thisorthat-button-container">
-                    <a id="#= data[0].id#-btn" class="tort-add this" data-role="button">Add to Wishlist</a>
+                <td>
+                    <div class="image-container">
+                        <div class="menu-option-container invisible">
+                            <div class="menu-option side-by-side">
+                                <div id="#= data[0].id#-heart-plus-icon-container">
+                                    <img id="#= data[0].id#-heart-plus-icon" class="menu svg" src="images/heart_plus_icon.svg" alt="0"/>
+                                </div>
+                                <a id="#= data[0].id#-heart-icon" data-role="button" data-icon="heart-like" class="no-border hidden">
+                                </a>
+                            </div>
+                            <div class="menu-option side-by-side">
+                                <img id="#= data[0].id#-wishlist-gift-icon" class="menu this plus" src="images/add_gift_icon.png" alt="0"/>
+                            </div>
+                        </div>
+                        <img id="#= data[0].id#-img" class="tort-product" src="#= data[0].image#" alt="0"/>
+                    </div>
                 </td>
-                <td class="thisorthat-button-container">
-                    <a id="#= data[1].id#-btn" class="tort-add that" data-role="button">Add to Wishlist</a>
+                <td>
+                    <div class="image-container">
+                        <div class="menu-option-container invisible">
+                            <div class="menu-option side-by-side">
+                                <div id="#= data[1].id#-heart-plus-icon-container">
+                                    <img id="#= data[1].id#-heart-plus-icon" class="menu svg" src="images/heart_plus_icon.svg" alt="1"/>
+                                </div>
+                                <a id="#= data[1].id#-heart-icon" data-role="button" data-icon="heart-like" class="no-border hidden">
+                                </a>
+                            </div>
+                            <div class="menu-option side-by-side">
+                                <img id="#= data[1].id#-wishlist-gift-icon" class="menu that plus" src="images/add_gift_icon.png" alt="1"/>
+                            </div>
+                        </div>
+                        <img id="#= data[1].id#-img" class="tort-product" src="#= data[1].image#" alt="1"/>
+                    </div>
                 </td>
             </tr>
-	        <tr>
+            <tr>
+                <td class="">
+                    <span class="gray-text">#= data[0].numLikes#</span><a id="#= data[0].id#-likes" data-icon="heart-like" class="no-border no-padding" data-role="button"></a>
+                </td>
+                <td class="">
+                    <span class="gray-text">#= data[1].numLikes#</span><a id="#= data[1].id#-likes" data-icon="heart-like" class="no-border no-padding" data-role="button"></a>
+                </td>
+            </tr>
+            <tr>
                 <td id="#= data[0].id#">#= data[0].name#</td>
                 <td id="#= data[1].id#">#= data[1].name#</td>
             </tr>
-	        <tr>
-	            <td>$9.99* - 12.99*</td>
-	            <td>$15.99* - 19.99*</td>
-	        </tr>
-	        <tr>
-	            <td>
-	                <div class="center">
-	                    <img class="side-by-side star" src="images/star.png"/>
-                        <img class="side-by-side star" src="images/star.png"/>
-                        <img class="side-by-side star" src="images/star.png"/>
-                        <img class="side-by-side star" src="images/star.png"/>
-	                </div>
-	            </td>
-	            <td>
-	                <div class="center">
-	                    <img class="side-by-side star" src="images/star.png"/>
-	                    <img class="side-by-side star" src="images/star.png"/>
-	                </div>
-	            </td>
-	        </tr>
-            <!--<tr>
+            <tr>
+                <td><span>#= data[0].numRetailers#</span><img class="thisorthat-icon svg" src="images/store_icon.svg"/></td>
+                <td><span>#= data[1].numRetailers#</span><img class="thisorthat-icon svg" src="images/store_icon.svg"/></td>
+            </tr>
+            <tr>
                 <td>
                     <div class="center">
-                        <img class="svg store" src="images/store_icon.svg"/>
-                        <img class="svg best-price store" src="images/store_icon.svg"/>
-                    	<img class="svg store" src="images/store_icon.svg"/>
-                    	<img class="svg store" src="images/store_icon.svg"/>
+                        # for (var i = 0; i < Number(data[0].avgRating); i++) { #
+                            <a data-icon="full-star" data-role="button" class="no-border no-padding sunflower-yellow-text"/>
+                        # } #
+                        # for (var i = 0; i < (5 - Number(data[0].avgRating)); i++) { #
+                            <a data-icon="full-star" data-role="button" class="no-border no-padding asbestos-text"/>
+                        # } #
+                        <br><span>(#= data[0].numAvgReviews#)</span>
                     </div>
                 </td>
                 <td>
                     <div class="center">
-                        <img class="svg store" src="images/store_icon.svg"/>
-                        <img class="svg best-price store" src="images/store_icon.svg"/>
+                        # for (var i = 0; i < Number(data[1].avgRating); i++) { #
+                            <a data-icon="full-star" data-role="button" class="no-border no-padding sunflower-yellow-text"/>
+                        # } #
+                        # for (var i = 0; i < (5 - Number(data[1].avgRating)); i++) { #
+                            <a data-icon="full-star" data-role="button" class="no-border no-padding asbestos-text"/>
+                        # } #
+                        <br><span>(#= data[1].numAvgReviews#)</span>
                     </div>
                 </td>
-            </tr>-->
-	    </table>
-	</div>
+            </tr>
+        </table>
+    </div>
 </script>
 
 
