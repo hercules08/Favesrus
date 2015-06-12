@@ -78,6 +78,8 @@ function settingsViewInit(e) {
 
 /**/
 function afterSettingsViewShow(e) {
+	showElement(APP.instance.view().id+" #header-search", false);
+	showElement(APP.instance.view().id+" #wishlist-backbtn", false);
 	//setWishlistIcon();
-	setWishlistTabBadge();
+	// setWishlistTabBadge();
 }

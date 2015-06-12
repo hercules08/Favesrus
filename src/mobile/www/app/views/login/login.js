@@ -266,5 +266,6 @@ function enableButtonTouchEventListeners(view) {
 */
 function returnHome() {
     APP.instance.navigate("#home-view");
+    APP.instance.view().footer.find(".km-tabstrip").data("kendoMobileTabStrip").switchTo("#home-view");
 }
 
