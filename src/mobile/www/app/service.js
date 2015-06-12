@@ -100,6 +100,16 @@ function webService(requestString, content) {
 		requestType = "GET";
 		// contentType = "application/json";
 	}
+	else if(requestString == "addgiftitemtowishlist") {
+		requestURL = domainName + "api/wishlist/"+requestString;
+		requestType = "POST";
+		contentType = "application/json";
+	}
+	else if(requestString == "removegiftitemfromwishlist") {
+		requestURL = domainName + "api/wishlist/"+requestString;
+		requestType = "POST";
+		contentType = "application/json";
+	}
 
 	//console.log("Data sent "+content);
 
@@ -108,17 +118,21 @@ function webService(requestString, content) {
 		type: requestType,	//Specifies the type of request. (GET or POST)
 		url: requestURL,	//Specifies the URL to send the request to. Default is the current page
 		data: content,		//Specifies data to be sent to the server
-		contentType: contentType	//Specifies the 
+		contentType: contentType	//Specifies the contentType (by default - )
 	})
 	.done(function(data, status, xhr) {		//Replaces the success() method
 	    // alert( JSON.stringify(data)+" Status: "+JSON.stringify(status));
 	    if (navigator.notification) {
-		    navigator.notification.alert(
+		    /*navigator.notification.alert(
 			    JSON.stringify(data)+" Status: "+JSON.stringify(status),  	// message
 			    alertDismissed,         					// callback
 			    'Success',            						// title
 			    'OK'                						// buttonName
-			);
+			);*/
+		}
+
+		else {
+			//alert(JSON.stringify(data)+" Status: "+JSON.stringify(status));
 		}
 
 

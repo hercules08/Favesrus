@@ -1,32 +1,86 @@
 <!-- wishlist View -->
-<div data-role="view" id="wishlist-view" data-layout="wishlist-layout" data-after-show="afterWishlistViewShow">
+<div data-role="view" id="wishlist-view" data-after-show="afterWishlistViewShow">
     <div class="container">
         <!-- <div data-role="scrollview"> --> <!--TODO Use with templates-->
             <div class="wishlist-header center">
                 <div id="wishlist-title">My List</div>
             </div>
-            <div id="default-wishlist" class="gallery container flexbox">
+            <div id="wishlist-toolbar"><a class="fa fa-pencil fa-2x no-border"></a><a class="fa fa-unlock fa-2x no-border"></a></div>
+            <div id="default-wishlist" class="gallery flexbox">
                 
             </div>
         <!-- </div> -->
     </div>
 </div>
 
-<!-- wishlist Layout -->
-<div data-role="layout" data-id="wishlist-layout">
-    <!-- Header -->
-    <div data-role="header">
-        <div data-role="navbar">
-            <a id="profile-pic" data-align="left" data-icon="profile-pic-holder" data-role="button"></a>
-            <span data-role="view-title"><img class="header-logo" src="images/FavesRUs_logo.png"/></span>
-        </div> 
+<div data-role="view" id="wishlist-retailers-view" data-after-show="afterWishlistRetailersViewShow">
+    <div id="product-details-container">
+
     </div>
-    <div data-role="footer">
-        <div id="tabstrip" class="tabstrip" data-role="tabstrip">
-            <a href="#home-view" data-icon="search">Search</a>
-            <a name="wishlist-tab" href="#wishlist-view" data-icon="wish-list">Wishlist</a>
-            <a href="#shares-view" data-icon="contacts">Shares</a>
-            <a href="#settings-view" data-icon="settings">Settings</a>
-        </div>
+    <div id="product-retailers-container">
+        <ul id="product-retailers-listview" data-role="listview" data-bind="source: source">
+            
+        </ul>
     </div>
 </div>
+
+<script id="wishlistProductDetailsTemplate" type="text/x-kendo-template">
+    <table>
+        <tr>
+            <td rowspan="3">
+                <img class="" src="#= data.image#"/>
+            </td>
+            <td>
+                <a class="fa fa-3x fa-trash"></a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="product-name">#= data.name#</div>
+            </td>
+        </tr>
+        </tr>
+            <td>
+                <div class="description">#= data.description#</div>
+            </td>
+        </tr>
+    </table>
+</script>
+
+<script id="wishlistProductRetailersTemplate" type="text/x-kendo-template">
+    # for (var i = 0; i < data.length; i++) { #
+        <li>
+            <table>
+                <tr>
+                    <td rowspan="3">
+                        <img src="#= data[i].image#"/>
+                    </td>
+                    <td>
+                        <span id="#= data[i].id#" class="retailer-name">#= data[i].name#</span>
+                    </td>
+                    <td rowspan="3">
+                        <span class="fa fa-2x fa-shopping-cart"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="">#= data[i].price#</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div>
+                            # for (var j = 0; j < Number(data[i].rating); j++) { #
+                                <a data-icon="full-star" data-role="button" class="no-border no-padding sunflower-yellow-text km-widget km-button"><span class="km-icon km-full-star km-notext"></span></a>
+                            # } #
+                            # for (var j = 0; j < (5 - Number(data[i].rating)); j++) { #
+                                <a data-icon="full-star" data-role="button" class="no-border no-padding asbestos-text km-widget km-button"><span class="km-icon km-full-star km-notext"></span></a>
+                            # } #
+                            
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </li>
+    # } #
+</script>

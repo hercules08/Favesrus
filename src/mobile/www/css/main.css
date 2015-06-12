@@ -5,7 +5,7 @@
 	background-clip: content-box !important;
 }
 
-.km-ios7 .km-buttongroup, .green-text {
+.km-ios7 .km-buttongroup, .green-text, .shares-wishlist {
 	color: #16a085 !important;
 }
 
@@ -48,12 +48,30 @@
 }
 
 /*#tabstrip a, #addItem-actionsheet a, #search-reset-btn span:active{*/
-#tabstrip a, #addItem-actionsheet a , #tort-addItem-actionsheet a{
+a.km-button.km-state-active {
+  color: #16a085 !important;
+}
+
+.tabstrip a.km-button:nth-child(3) {
+  background-color: rgba(22, 160, 133, 0.15) !important;
+}
+
+/*#tabstrip a {
+	color: #7f8c8d !important;
+}*/
+
+#addItem-actionsheet a , #tort-addItem-actionsheet a{
 	color: #16a085 !important; /*Green Sea*/
 }
 
+#tabstrip a:nth-child(3) img {
+	width:95% !important;
+}
+
 .km-tabstrip {
-	border-color: #16a085 !important;
+	/*border-color: #16a085 !important;
+	background-color: white !important;*/
+	border-color: #7f8c8d !important;
 	background-color: white !important;
 }
 
@@ -95,6 +113,7 @@ pre {
 	margin: 0 !important;	
 }
 
+/*Colors*/
 .black-tint {
 	background-color: rgba(0, 0, 0,0.4) !important;
 }
@@ -130,8 +149,32 @@ pre {
 	color: white !important;
 }
 
+.alizarin-text {
+	color: #e74c3c !important;
+}
+
+.black-text {
+	color: black !important;
+}
+
+.sunflower-yellow-text {
+	color: #E7B800 !important; /*Darkened on purpose*/
+}
+
+.asbestos-text {
+	color: #7f8c8d !important;
+}
+
+.gray-text {
+	color: #7C7C7C !important;;
+}
+
 .hidden {
 	display: none !important;
+}
+
+.invisible {
+	visibility: hidden !important;
 }
 
 .show {
@@ -145,6 +188,10 @@ pre {
 .no-border {
 	border: 0px !important;
 	background-color: transparent !important;
+}
+
+.no-padding {
+	padding: 0px !important;
 }
 
 /* ----------- This or That View ----------- */
@@ -168,8 +215,33 @@ pre {
 	font-size: 1.5em;
 }
 
-.km-heart-recommendations:before, .km-heart-recommendations:after {
+.km-heart-like:before, .km-heart-like:after {
 	content: "\e044";
+	/*-webkit-text-stroke: 3px white;*/
+}
+
+#thisorthat-view tr:nth-child(3) td {
+	padding-bottom: 1em;
+}
+
+ #thisorthat-view tr:nth-child(3) td a span{
+	color: #7C7C7C !important;
+}
+
+.km-full-star:before, .km-full-star:after {
+	content: "\e047";
+}
+
+.km-half-star:before, .km-half-star:after {
+	content: "\e049";
+}
+
+/*.km-no-star:before, .km-no-star:after {
+	content: "\e044";
+}*/
+
+.km-heart-like, .km-heart-like {
+	color: red !important;
 }
 
 /*#recommendations-btn {
@@ -229,6 +301,7 @@ pre {
 .menu {
 	width: 2.5em;
 	height: 2.5em;
+	margin: 2px 3px -1px 3px;
 }
 
 .main-menu-back {
@@ -241,26 +314,44 @@ pre {
 	z-index: 1;
 }
 
-.menu-option-back {
-	/*position: absolute;
-	top: 21%;
-	left: 24%;*/
-	background-color: white;
-	/*width: 1.3em;
-	height: 1.3em;*/
-	border-radius: 30px;
-	z-index: -1;
-	height: 2.2em !important;
-	width: 2.2em;
-	line-height: 3.5em;
-	box-shadow: 1px 2px 5px #272727;
-}
-
-.menu, .menu-option {
+.menu-option-container {
 	position: absolute;
-	right: 10%;
+	left: 10%;
+	bottom: 0%;
 }
 
+.menu-option:nth-child(2) {
+	margin-left: 2em;
+}
+
+.menu-option {
+	background-color: white;
+	border-radius: 30px;
+	border: 2px solid #7f8c8d;
+}
+
+.border-red {
+	border-color: red;
+}
+
+.border-green {
+	border-color: #16a085;
+}
+
+.menu-option>a {
+	margin: 2px 5px -2px 0px;
+}
+
+#thisorthat-view .menu-option a{
+	padding: 0em;
+	/*position: absolute;
+	right: 10%;*/
+}
+
+#thisorthat-view .menu-option a span{
+	font-size: 40px !important;
+	margin: 0px;
+}
 
 .popular-category-image {
 	position: relative;
@@ -280,13 +371,20 @@ pre {
 	/*left: 20%;*/
 }
 
+.thisorthat-icon{
+	width: 2em;
+	height: 2em;
+}
+
+
+
 .menu path {
-    stroke: white;
- 	/*stroke-width: 20px;*/
+    stroke: #7f8c8d; /*Asbestos*/
+ 	stroke-width: 8px;
 }
 
 .menu path, .best-price {
-    fill: #16a085;
+    fill: #7f8c8d;
 }
 
 #thisorthat-scrollview {
@@ -302,9 +400,11 @@ pre {
 	border: 1px solid red;
 }*/
 
+/*#thisorthat-view .km-pages, #home-view .km-pages{*/
 #thisorthat-view .km-pages {
 	color: #16a085 !important; /*Green Sea*/
 }
+/*}*/
 
 .store {
 	width: 1.5em !important;
@@ -324,7 +424,7 @@ pre {
 .category-header {
 	/*font-size: 1.2em !important;*/
 	font-size: 1.4em !important;
-	text-decoration: underline;
+	/*text-decoration: underline;*/
  	font-style: italic;
 }
 
@@ -371,15 +471,39 @@ pre {
 	padding-bottom: 0.4em !important;
 }
 
+
+/*Divider line between product images*/
+#thisorthat-view tr:nth-child(2) td:first-child{
+	border-right: 1px solid black;
+}
+
 #thisorthat-view tr:nth-child(4) td {
 	font-weight:bold;
+	/*padding-bottom: 1em;*/
 	/*padding-bottom: 0.6em;*/
+}
+
+/*$(Price)*/
+#thisorthat-view tr:nth-child(5) td {
+	color: #16a085 !important; /*Green Sea*/
+}
+
+#thisorthat-view tr:nth-child(5) td  path {
+	fill: #16a085; /*Green Sea*/
 }
 
 #thisorthat-view td {
 	color: black !important;
-	vertical-align: top;
+	vertical-align: baseline;
 	/*border: 1px solid black;*/
+}
+
+#thisorthat-view tr:nth-child(6) td div>span{
+	background: -webkit-linear-gradient(top, #D7B323, #ECBE0A);
+	background: linear-gradient(top, #878787, #000);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	font-weight: bold;
 }
 
 .star {
@@ -423,10 +547,24 @@ pre {
 	font-style: italic;
 }
 
+/*#thisorthat-products-details-container>div:nth-child(4){
+	position: relative;
+}*/
+
+.details-like-container, #thisorthat-products-details-container>div:nth-child(4) {
+	position: absolute;
+	left: 40%;
+}
+
+.details-like-container {
+	bottom: 0%;
+}
 
 #product-retailers-listview.km-list>li{
 	padding: .5em .7em !important;
 }
+
+
 /* ----------- Login View ----------- */
 /*profile pic holder icon for profile picture*/
 /*Filled in Profile (Contacts) icon*/
@@ -456,13 +594,13 @@ pre {
 }
 
 /*Login Buttons with Media Queries*/
-@media screen and (max-width: 360px) {
+@media screen and (max-width: 359px) {
 	.login-btn, #send-wishlist-request-btn, .logout-btn {
 		font-size: 1.1em !important;
 	}
 }
 
-@media screen and (min-width: 361px) {
+@media screen and (min-width: 360px) {
 	.login-btn, #send-wishlist-request-btn, .logout-btn {
 		font-size: 1.3em !important;
 	}
@@ -515,12 +653,21 @@ pre {
 	width:90% !important;
 }
 
+#login-fields-container table {
+	width: 100% !important;
+	margin-top: 1em;
+}
+
 /*Login input fields*/
 input.error-placeholder::-webkit-input-placeholder {  
 	color: red;  
 }
 
 /* ----------- Home-View ----------- */
+.placeholder {
+	background-image:url("images/image_placeholder.png");
+}
+
 #home-view .km-content{
 	/*background-image: url("../images/blank_product_search.png") !important;
 	background-size: 50% !important;
@@ -533,12 +680,103 @@ input.error-placeholder::-webkit-input-placeholder {
  	content: "\e031" !important;
 }
 
-/*  ------ Product Search results ------ */
-.item-image {
-	width: 16%;
-} 
+.event {
+	/*border: 2px solid #16a085;*/
+  	background-color: white !important;
+	color: white !important;
+	margin-right: 1em;
+}
 
-.item-image, .item-name, .item-description, #myprofile-list-item img, .retailer-name, .retailer-image {
+.person {
+	border-radius: 5em;
+}
+
+/*.event span{
+	position: relative;
+	top: 10%;
+}*/
+
+.event {
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+.add span{
+	font-size: 2.2em;
+}
+
+
+/*Upcoming Events Test*/
+#upcoming-events-scrollview>div>div div>span {
+	position: relative;
+  	left: 10%;
+}
+#upcoming-events-scrollview>div>div:first-child div:first-child .event {
+	background-image: url("http://damolaomotosho.com/images/my-photo.jpg");
+	background-repeat: round;
+}
+#upcoming-events-scrollview>div>div:first-child div:nth-child(2) .event {
+	background-image: url("http://www.lifesongs.com/pre-2015/wp-content/uploads/2013/04/mothers-day-heart.png");
+}
+
+#upcoming-events-scrollview>div>div:first-child div:nth-child(3) .event {
+	background-image: url("http://www.nsbepropdx.org/uploads/2/3/7/3/23733030/6684358_orig.jpg?179");
+	background-repeat: round;
+}
+
+#upcoming-events-scrollview>div>div:first-child div:nth-child(4) .event {
+	background-image: url("http://www.redwaterrestaurantgroup.com/wp-content/uploads/2014/06/fathers-day-2011.jpg");
+}
+/*Upcoming Events  Page 2*/
+#upcoming-events-scrollview>div>div:nth-child(2) div:first-child .event {
+	background-image: url("http://nassau.happeningmag.com/wp-content/uploads/2014/06/4thofjuly.jpg");
+	/*background-repeat: round;*/
+}
+#upcoming-events-scrollview>div>div:nth-child(2) div:nth-child(2) .event {
+	background-image: url("http://www.the-wedding-anniversary-site.com/image-files/love-heart-links.jpg");
+}
+
+#upcoming-events-scrollview>div>div:nth-child(2) div:nth-child(3) .event {
+	background-image: url("http://www.yourtrashpro.com/wp-content/uploads/2014/12/christmas-1.png");
+	/*background-repeat: round;*/
+}
+
+/*#upcoming-events-scrollview>div>div:first-child .event:nth-child(3) span, .event:nth-child(4) span{
+	visibility: hidden;
+}*/
+
+/*  ------ Product Search results ------ */
+.cover {
+	position: absolute;
+	width:100%;
+	height:1000%;
+	background-color: rgba(0, 0, 0, 0.4);
+	z-index: 2;
+}
+
+@media screen and (max-width: 330px) {
+	.item-image {
+		width: 100%;
+	} 
+
+	.event {
+		width: 3.8em;
+		height: 3.8em;
+	}
+}
+
+@media screen and (min-width: 360px) {
+	.item-image {
+		width: 75%;
+	}
+	.event {
+		width: 4.5em;
+		height: 4.5em;
+	}
+}
+
+/*.item-image, .item-name, .item-description, #myprofile-list-item img, .retailer-name, .retailer-image {*/
+#myprofile-list-item img, .retailer-name, .retailer-image {
 	float: left;
 }
 
@@ -552,13 +790,25 @@ input.error-placeholder::-webkit-input-placeholder {
 	margin: .3em 1em 0 .6em;
 }
 
-.item-description {
+#home-view .item-description {
+	width: 53%;	
+}
+
+#home-view .item-description, #shares-view .item-description {
 	font-size: .65em;
 	/*line-height: 1em;*/
-	width: 53%;
 	margin: 0.4em 0 0 0em;
 }
 
+#shares-view .item-description {
+	margin-right: 1rem;
+	margin-left: 1rem;
+}
+
+/*Increase the width share of the table for name & description*/
+.item-name-column {
+	width: 65% !important;
+}
 
 .retailer-name {
 	font-size: 1.1em !important;
@@ -570,8 +820,11 @@ input.error-placeholder::-webkit-input-placeholder {
 	width: 15%;
 }
 
-.product-add {
+.product-add, .shares-wishlist {
 	font-size: 3em !important;
+}
+
+.product-add {
 	background: -webkit-linear-gradient(#e74c3c 42%, #16a085 36%);
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
@@ -603,10 +856,21 @@ li a {
 
 .popular {
 	position: relative !important;
-	width: 9rem !important;
-  	height: 9rem !important;
-  	/*border-radius: 0px 20px;*/ /*THe shape of a leaf*/
-  	/*padding-top: 40px;*/
+}
+
+@media screen and (max-width: 359px) {
+	.popular {
+		width: 9rem !important;
+	  	height: 9rem !important;
+	}
+}
+
+
+@media screen and (min-width: 360px) {
+	.popular {
+		width: 10.5rem !important;
+	  	height: 10.5rem !important;
+	}
 }
 
 .popular-description {
@@ -614,7 +878,31 @@ li a {
 	font-weight: 500 !important;
 }
 
+#upcoming-events-container {
+	margin-left: 10px;
+}
+
 /* ----------- Wishlist-View ----------- */
+#wishlist-view a#wishlist-backbtn.km-widget.km-button.km-back{
+	line-height: 2.5em !important;
+}
+
+#wishlist-toolbar {
+	width: 100% !important;
+	margin-bottom: 3em;
+	color: #7f8c8d !important;
+}
+
+#wishlist-toolbar a:first-child {
+	position: absolute;
+	left: 10%;
+}
+
+#wishlist-toolbar a:nth-child(2) {
+	position: absolute;
+	right: 10%;
+}
+
 .retailer-image {
 	width: 30% !important;
 }
@@ -626,14 +914,67 @@ li a {
 
 .gallery-image-container {
 	width: 30% !important;
-	border: 2px solid #16a085;
+	border: 2px dashed #16a085;
 	border-radius:5px;
+	margin: 4px !important;
+	position: relative;
 }
 
-.gallery-image, .popular {
+.popular {
 	margin: 4px !important;
 }
 
+.delete > a {
+	background-color: #e74c3c !important;
+	color: white !important;
+	border-radius: 10em !important;
+	padding: 5px !important;
+	font-weight: bold !important;
+}
+
+.delete > a {
+	width: 2em !important;
+	height: 2em !important;
+}
+
+.delete, .right-corner {
+	position: absolute;
+	right: 0px;
+}
+
+/* ------------  Wishlist Retailers View -------- */
+
+#product-details-container td:first-child {
+	width: 10% !important;
+}
+
+#product-details-container td:first-child img{
+	width:100% !important;
+}
+.fa-trash {
+	float: right;
+	color: #16a085 !important;
+}
+
+#wishlist-retailers-view .product-name {
+	font-size: 1em !important;
+}
+
+#wishlist-retailers-view .retailer-name {
+	visibility: initial;
+}
+
+#wishlist-retailers-view #product-retailers-listview td:first-child {
+	width: 40% !important;
+}
+
+#wishlist-retailers-view #product-retailers-listview td:nth-child(2) {
+	width: 50% !important;
+}
+
+#wishlist-retailers-view #product-retailers-listview td img {
+	width: 4.5em !important;
+}
 
 
 /* --------------- SHares View -------------------*/
@@ -645,6 +986,13 @@ li a {
 	border-bottom: none;
 }
 
+.shares-wishlist {
+	padding: 0px !important;
+}
+
+.shares-wishlist .km-badge{
+	font-size: 0.9rem !important;
+}
 /* ----------- Settings-View ----------- */
 #myprofile-list-item img {
 	width: 15%;
@@ -667,6 +1015,16 @@ li a {
 	padding: 0 !important;
 	background-color: #95a5a6 !important;
   	color: white !important;
+}
+
+.circle {
+	border-radius: 10em;
+}
+
+.shares-image {
+	height: 4em;
+	width: 4em;
+	border-radius: 10em;
 }
 
 /* ----------- myprofile-View ----------- */
@@ -716,10 +1074,11 @@ li {
 
 #header-search {
 	background: #16a085 !important; /*Emerald green*/
-	display:-webkit-flex !important;
+	/*For allowing items to be side by side*/
+	/*display:-webkit-flex !important;
 	-webkit-align-items:center;
 	display:inline-flex !important;
-	align-items:center;
+	align-items:center;*/
 }
 
 .km-filter-wrap {
@@ -732,3 +1091,7 @@ li {
 	display:none !important;
 }*/
 
+.km-filter-reset .km-clear {
+	right: 5%;
+	z-index: 10;
+}
