@@ -54,7 +54,7 @@ namespace Favesrus.Server.Controllers.WebApi
         [HttpPost]
         [Route("loginfacebook")]
         [ValidateModel]
-        public async Task<IHttpActionResult> LoginFcebook(HttpRequestMessage requestMessage, LoginFacebookModel model)
+        public async Task<IHttpActionResult> LoginFacebook(HttpRequestMessage requestMessage, LoginFacebookModel model)
         {
             Log.Info(string.Format("Attempt register as {0} with provider key {1}", model.Email, model.ProviderKey));
 

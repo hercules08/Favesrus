@@ -5,7 +5,9 @@
 <div class="collapse navbar-collapse navbar-ex1-collapse">
     <div class="menu-container">
         <ul class="nav navbar-nav">
-            <li>@Html.ActionLink("Home", "Index", "Home", new { @class="page-scroll home" })</li>
+            <li class="page-scroll home">
+                @Html.ActionLink("Home", "Index", "Home")
+            </li>
             <li class="page-scroll">
                 <a href="#about">About Us</a>
             </li>
@@ -21,10 +23,6 @@
             <li class="page-scroll">
                 <a href="#contact">Contact</a>
             </li>
-            <li class="page-scroll">
-                <a href="../index.html">Main</a>
-            </li>
-
             @if (ViewBag.Notifications != null)
             {
                 foreach (NotificationViewModel notification in ViewBag.Notifications)
@@ -41,4 +39,5 @@
             }
         </ul>
     </div>
-</div><!-- /.navbar-collapse -->
+</div>
+<!-- /.navbar-collapse -->
