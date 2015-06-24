@@ -1,15 +1,21 @@
-﻿using Favesrus.DAL.Abstract;
-using Favesrus.Model.Entity;
-using Favesrus.Services.Interfaces;
-using System;
-using System.Collections.Generic;
+﻿using Favesrus.Core;
+using Favesrus.DAL.Core;
+using Favesrus.Domain.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Favesrus.Services
 {
-    public class RetailerService : IRetailerService
+    public interface IRetailerService
+    {
+        Retailer AddRetailer(Retailer entity);
+        Retailer UpdateRetailer(Retailer entity);
+        Retailer FindRetailerById(int id);
+        Retailer FindRetailerByName(string name);
+        void DeleteRetailer(int id);
+        IQueryable<Retailer> GetRetailers();
+    }
+
+    public class RetailerService :BaseService, IRetailerService
     {
         private readonly IUnitOfWork _uow = null;
         private readonly IRepository<Retailer> _retailerRepo = null;
@@ -26,7 +32,7 @@ namespace Favesrus.Services
         public Retailer AddRetailer(Retailer entity)
         {
             _retailerRepo.Add(entity);
-            _uow.Save();
+            _uow.Commit();
             return entity;
         }
 
@@ -39,24 +45,24 @@ namespace Favesrus.Services
         public Retailer UpdateRetailer(Retailer entity)
         {
             _retailerRepo.Update(entity);
-            _uow.Save();
+            _uow.Commit();
             return entity;
         }
 
         public Retailer FindRetailerById(int id)
         {
-            return _retailerRepo.Get(id);
+            return _retailerRepo.FindById(id);
         }
 
         public Retailer FindRetailerByName(string name)
         {
-            return _retailerRepo.FindBy(r => r.RetailerName == name);
+            return _retailerRepo.FindWhere(r => r.RetailerName == name);
         }
 
         public void DeleteRetailer(int id)
         {
-            _retailerRepo.Delete(id);
-            _uow.Save();
+            _retailerRepo.DeleteWhere(r => r.Id == id);
+            _uow.Commit();
         }
     }
 }

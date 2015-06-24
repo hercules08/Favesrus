@@ -1,4 +1,4 @@
-﻿using Favesrus.Common;
+﻿using Favesrus.Core;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Favesrus.IntegrationTest.Common

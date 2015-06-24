@@ -1,15 +1,19 @@
-﻿using Favesrus.DAL.Abstract;
-using Favesrus.Model.Entity;
-using Favesrus.Services.Interfaces;
+﻿using Favesrus.Core;
+using Favesrus.DAL.Core;
+using Favesrus.Domain.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Favesrus.Services
 {
-    public class RecommendationService:IRecommendationService
+    public interface IRecommendationService
+    {
+        ICollection<GiftItem> GetReccomendationsForCategories(ICollection<int> categoryIds, string userId, int numOfReccomendations);
+        ICollection<Recommendation> GetAllRecommendations();
+    }
+
+    public class RecommendationService:BaseService,IRecommendationService
     {
         private readonly IUnitOfWork _uow = null;
         private readonly IRepository<Recommendation> _recommendationRepo = null;

@@ -1,15 +1,20 @@
-﻿using Favesrus.DAL.Abstract;
-using Favesrus.Model.Entity;
-using Favesrus.Services.Interfaces;
-using System;
-using System.Collections.Generic;
+﻿using Favesrus.Core;
+using Favesrus.DAL.Core;
+using Favesrus.Domain.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Favesrus.Services
 {
-    public class GiftItemService:IGiftItemService
+    public interface IGiftItemService
+    {
+        GiftItem AddGiftItem(GiftItem entity);
+        GiftItem UpdateGiftItem(GiftItem entity);
+        IQueryable<GiftItem> GiftItemsByCategoryId(int id);
+        IQueryable<GiftItem> GiftItemsByCategoryName(string categoryName);
+        IQueryable<GiftItem> AllGiftItems { get; }
+    }
+
+    public class GiftItemService:BaseService,IGiftItemService
     {
         private readonly IUnitOfWork _uow = null;
         private readonly IRepository<GiftItem> _giftItemRepo = null;
@@ -25,14 +30,14 @@ namespace Favesrus.Services
         public GiftItem AddGiftItem(GiftItem entity)
         {
             _giftItemRepo.Add(entity);
-            _uow.Save();
+            _uow.Commit();
             return entity;
         }
 
         public GiftItem UpdateGiftItem(GiftItem entity)
         {
             _giftItemRepo.Update(entity);
-            _uow.Save();
+            _uow.Commit();
             return entity;
         }
 

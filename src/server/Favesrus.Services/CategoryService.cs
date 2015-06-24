@@ -1,15 +1,20 @@
-﻿using Favesrus.DAL.Abstract;
-using Favesrus.Model.Entity;
-using Favesrus.Services.Interfaces;
-using System;
-using System.Collections.Generic;
+﻿using Favesrus.Core;
+using Favesrus.DAL.Core;
+using Favesrus.Domain.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Favesrus.Services
 {
-    public class CategoryService:ICategoryService
+    public interface ICategoryService
+    {
+        IQueryable<Category> AllCategories { get; }
+        Category AddCategory(Category entity);
+        Category UpdateCategory(Category entity);
+        Category FindCategoryById(int id);
+        Category FindCategoryByName(string name);
+        void DeleteCategory(int id);
+    }
+    public class CategoryService:BaseService,ICategoryService
     {
         private readonly IUnitOfWork _uow = null;
         private readonly IRepository<Category> _categoryRepo = null;
@@ -31,31 +36,31 @@ namespace Favesrus.Services
         public Category AddCategory(Category entity)
         {
             _categoryRepo.Add(entity);
-            _uow.Save();
+            _uow.Commit();
             return entity;
         }
 
         public Category UpdateCategory(Category entity)
         {
             _categoryRepo.Update(entity);
-            _uow.Save();
+            _uow.Commit();
             return entity;
         }
 
         public Category FindCategoryById(int id)
         {
-            return _categoryRepo.Get(id);
+            return _categoryRepo.FindById(id);
         }
 
         public Category FindCategoryByName(string name)
         {
-            return _categoryRepo.FindBy(c => c.CategoryName == name);
+            return _categoryRepo.FindWhere(c => c.CategoryName == name);
         }
 
         public void DeleteCategory(int id)
         {
-            _categoryRepo.Delete(id);
-            _uow.Save();
+            _categoryRepo.DeleteWhere(c => c.Id == id);
+            _uow.Commit();
         }
     }
 }

@@ -45,6 +45,9 @@
     <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
       <HintPath>..\..\..\libs\Microsoft.AspNet.Identity.EntityFramework.2.1.0\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
     </Reference>
+    <Reference Include="PagedList">
+      <HintPath>..\..\..\libs\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -55,15 +58,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstract\IFavesrusDbContext.cs" />
-    <Compile Include="Abstract\IRepository.cs" />
-    <Compile Include="Abstract\IUnitOfWork.cs" />
+    <Compile Include="Core\DatabaseFactory.cs" />
+    <Compile Include="Core\Disposable.cs" />
+    <Compile Include="Core\RepositoryBase.cs" />
+    <Compile Include="Core\UnitOfWork.cs" />
     <Compile Include="FavesrusSeeder.cs" />
-    <Compile Include="Impl\FavesrusDbContext.cs" />
-    <Compile Include="Impl\FavesrusDbInit.cs" />
-    <Compile Include="Impl\NullFavesrusDbInit.cs" />
-    <Compile Include="Impl\Repository.cs" />
-    <Compile Include="Impl\UnitOfWork.cs" />
+    <Compile Include="FavesrusDbContext.cs" />
+    <Compile Include="FavesrusDbInit.cs" />
+    <Compile Include="Mapping\CategoryMapping.cs" />
+    <Compile Include="Mapping\IdentityUserLoginMapping.cs" />
+    <Compile Include="Mapping\RecommendationMapping.cs" />
+    <Compile Include="NullFavesrusDbInit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -71,15 +76,16 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Favesrus.Common\Favesrus.Common.csproj">
+    <ProjectReference Include="..\Favesrus.Core\Favesrus.Core.csproj">
       <Project>{45b94d87-3b21-48d8-9a22-8745d10c3111}</Project>
-      <Name>Favesrus.Common</Name>
+      <Name>Favesrus.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Favesrus.Model\Favesrus.Model.csproj">
+    <ProjectReference Include="..\Favesrus.Domain\Favesrus.Domain.csproj">
       <Project>{93724bc5-dc4d-4657-b955-a5c7ddcaecf0}</Project>
-      <Name>Favesrus.Model</Name>
+      <Name>Favesrus.Domain</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,0 +1,54 @@
+﻿@using Favesrus.Server.Models
+
+
+<!-- Collect the nav links, forms, and other content for toggling -->
+<div class="collapse navbar-collapse navbar-ex1-collapse">
+    <div class="menu-container">
+        <ul class="nav navbar-nav">
+            @Html.Partial("_LoginPartial")
+            <li class="dropdown home">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    Admin<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>@Html.ActionLink("Manage Accounts", "Index", "Account")</li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    Database<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>@Html.ActionLink("Gift Items", "Index", "GiftItem")</li>
+                    <li>@Html.ActionLink("Category", "Index", "Category")</li>
+                    <li>@Html.ActionLink("Recommendation", "Index", "Recommendation")</li>
+                    <li>@Html.ActionLink("Retailer", "Index", "Retailer")</li>
+                </ul>
+            </li>
+            <li>
+                <a href="~/help">API</a>
+            </li>
+            <li>
+                @Html.ActionLink("Test Client", "Testing", "Debug")
+            </li>
+            <li class="page-scroll">
+
+            </li>
+            @if (ViewBag.Notifications != null)
+            {
+                foreach (NotificationViewModel notification in ViewBag.Notifications)
+                {
+                    <li>
+                        <a href="#">
+                            @notification.NotificationType
+                            <span class="badge badge-@notification.BadgeClass">
+                                @notification.Count
+                            </span>
+                        </a>
+                    </li>
+                }
+            }
+        </ul>
+    </div>
+</div>
+<!-- /.navbar-collapse -->

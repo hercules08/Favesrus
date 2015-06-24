@@ -1,15 +1,10 @@
-﻿using Angela.Core;
-using Favesrus.DAL.Impl;
-using Favesrus.Model.Abstract;
-using Favesrus.Model.Entity;
+﻿using Favesrus.Domain.Base;
+using Favesrus.Domain.Entity;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Favesrus.DAL
 {
@@ -238,7 +233,7 @@ namespace Favesrus.DAL
                 FirstName = "Damola",
                 LastName = "Omotosho",
                 Birthday = DateTime.Parse("2/8/1987"),
-                Gender = Model.Enum.Gender.MALE,
+                Gender = Favesrus.Domain.Entity.Enum.Gender.MALE,
                 ProfilePic = "http://damolaomotosho.com/images/my-photo.jpg",
                 WishLists = new List<WishList>{ wishlistDamola },
                 UserName = "damola.omotosho@gmail.com"
@@ -249,13 +244,13 @@ namespace Favesrus.DAL
                 FirstName = "Elroy",
                 LastName = "Ashtian",
                 Birthday = DateTime.Parse("4/10/1988"),
-                Gender = Model.Enum.Gender.FEMALE,
+                Gender = Favesrus.Domain.Entity.Enum.Gender.FEMALE,
                 ProfilePic = "",
                 WishLists = new List<WishList> { wishlistElroy },
                 UserName = "elroy@faves.com"
             };
 
-            List<AbstractEntityBase> dbItems = new List<AbstractEntityBase>()
+            List<EntityBase> dbItems = new List<EntityBase>()
             {
                 retailerBestBuy,
                 retailerWalmart,

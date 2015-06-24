@@ -1,16 +1,18 @@
-﻿using Favesrus.Common;
-using Favesrus.Services.Interfaces;
+﻿using Favesrus.Core;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
 using System.Net.Mail;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Favesrus.Services
 {
-    public class EmailService:IEmailer
+    public interface IEmailService
+    {
+        bool SendEmail();
+        bool SendEmail(string from, string subject, string message, string to);
+        bool SendEmail(MailMessage message);
+        MailMessage GenerateMessageWithThisHTML(string html, bool bodyIsHTML, string toAddress);
+    }
+
+    public class EmailService:BaseService,IEmailService
     {
         private string _toAddresses;
         private string _fromAddress;
@@ -21,7 +23,7 @@ namespace Favesrus.Services
 
         public EmailService()
         {
-            _fromAddress = Constants.EMAIL_ADDRESS;
+            _fromAddress = FavesrusConstants.EMAIL_ADDRESS;
             SetupSmtp();
         }
 
@@ -78,13 +80,13 @@ namespace Favesrus.Services
 
         public MailMessage GenerateMessageWithThisHTML(string html, bool bodyIsHtml = false, string toAddress = null)
         {
-            _fromAddress = Constants.EMAIL_ADDRESS;
-            _subject = "Welcome to CutUp.";
+            _fromAddress = FavesrusConstants.EMAIL_ADDRESS;
+            _subject = "Welcome to Favesrus.";
             _message = html;
 
             if (string.IsNullOrEmpty(_toAddresses))
             {
-                _toAddresses = toAddress ?? Constants.EMAIL_ADDRESS;
+                _toAddresses = toAddress ?? FavesrusConstants.EMAIL_ADDRESS;
             }
             else if (_toAddresses[_toAddresses.Length - 1] == ',')
             {

@@ -37,16 +37,19 @@
       <HintPath>..\..\..\libs\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core">
-      <HintPath>..\..\..\libs\Microsoft.AspNet.Identity.Core.2.1.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+      <HintPath>..\..\..\libs\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
       <HintPath>..\..\..\libs\Microsoft.AspNet.Identity.EntityFramework.2.1.0\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Owin">
-      <HintPath>..\..\..\libs\Microsoft.AspNet.Identity.Owin.2.1.0\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+      <HintPath>..\..\..\libs\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Owin">
-      <HintPath>..\..\..\libs\Microsoft.Owin.2.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
+      <HintPath>..\..\..\libs\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\..\..\libs\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Owin.Security">
       <HintPath>..\..\..\libs\Microsoft.Owin.Security.2.1.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
@@ -73,15 +76,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationSignInManager.cs" />
     <Compile Include="CategoryService.cs" />
     <Compile Include="EmailService.cs" />
     <Compile Include="FavesrusRoleManager.cs" />
     <Compile Include="FavesrusUserManager.cs" />
-    <Compile Include="Interfaces\ICategoryService.cs" />
-    <Compile Include="Interfaces\IEmailer.cs" />
-    <Compile Include="Interfaces\IGiftItemService.cs" />
-    <Compile Include="Interfaces\IRecommendationService.cs" />
-    <Compile Include="Interfaces\IRetailerService.cs" />
     <Compile Include="GiftItemService.cs" />
     <Compile Include="RecommendationService.cs" />
     <Compile Include="RetailerService.cs" />
@@ -92,20 +91,23 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Favesrus.Common\Favesrus.Common.csproj">
+    <ProjectReference Include="..\Favesrus.Core\Favesrus.Core.csproj">
       <Project>{45b94d87-3b21-48d8-9a22-8745d10c3111}</Project>
-      <Name>Favesrus.Common</Name>
+      <Name>Favesrus.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\Favesrus.DAL\Favesrus.DAL.csproj">
       <Project>{4f7ce7d0-24df-4a9f-b38b-6d909cf8c204}</Project>
       <Name>Favesrus.DAL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Favesrus.Model\Favesrus.Model.csproj">
+    <ProjectReference Include="..\Favesrus.Domain\Favesrus.Domain.csproj">
       <Project>{93724bc5-dc4d-4657-b955-a5c7ddcaecf0}</Project>
-      <Name>Favesrus.Model</Name>
+      <Name>Favesrus.Domain</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Extensions\" />
+    <Folder Include="Logic\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
