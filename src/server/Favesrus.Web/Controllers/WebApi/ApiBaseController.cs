@@ -1,6 +1,5 @@
 ﻿using Favesrus.Domain.Entity;
 using Favesrus.Services;
-using log4net;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -15,8 +14,6 @@ namespace Favesrus.Server.Controllers.WebApi
     public abstract class ApiBaseController : ApiController
     {
         DpapiDataProtectionProvider provider = new DpapiDataProtectionProvider("Sample");
-
-        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         private FavesrusUserManager _userManager;
         private IAuthenticationManager _authManager;
         private FavesrusRoleManager _roleManager;
@@ -71,14 +68,6 @@ namespace Favesrus.Server.Controllers.WebApi
             foreach (var error in result.Errors)
             {
                 ModelState.AddModelError("", error);
-            }
-        }
-
-        public ILog Log
-        {
-            get
-            {
-                return log;
             }
         }
 

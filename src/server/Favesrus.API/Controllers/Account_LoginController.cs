@@ -1,18 +1,23 @@
-﻿using Favesrus.Core;
+﻿using Favesrus.API.Filters;
+using Favesrus.Core;
+using Favesrus.Core.Results.Error;
 using Favesrus.Data.Dtos;
+using Favesrus.Results;
 using Favesrus.Server.Dto.FavesrusUser;
-using Favesrus.Server.Filters;
-using Favesrus.Server.Processing.ActionResult;
 using Favesrus.Services;
 using Microsoft.AspNet.Identity;
-using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 
-namespace Favesrus.Server.Controllers.WebApi
+namespace Favesrus.API.Controllers
 {
-    public partial class AccountController : ApiBaseController
+    public partial interface IAccountController
+    {
+        Task<IHttpActionResult> LoginAsync(LoginModel model);
+        Task<IHttpActionResult> LoginFacebook(LoginFacebookModel model, BaseApiController controller);
+    }
+
+    public partial class AccountController: IAccountController
     {
         /// <summary>
         /// Log In to Faves 'R' Us with your email and password
@@ -21,19 +26,18 @@ namespace Favesrus.Server.Controllers.WebApi
         [HttpPost]
         [Route("login")]
         [ValidateModel]
-        public async Task<IHttpActionResult> Login(HttpRequestMessage request, LoginModel model)
+        public async Task<IHttpActionResult> LoginAsync(LoginModel model)
         {
-            string successStatus = "login_success";
-            string successMessage = "Successfully logged in to Faves 'R' Us.";
+            Logger.Info("Begin Login");
 
-            FavesrusUserModel dtoFavesrusUser = await _accountProcessor.LoginUserAsync(model);
+            string apiStatus = "login_success";
+            string apiMessage = "Successfully logged in to Faves 'R' Us.";
 
-            var result = new LoginDtoFavesrusActionResult(
-                request,dtoFavesrusUser,
-                successMessage,successStatus, 
-                HttpStatusCode.OK);
+            FavesrusUserModel userModel = await _accountService.LoginUserAsync(model);
 
-            return result;
+            Logger.Info("End Login");
+
+            return new ApiActionResult<FavesrusUserModel>(apiStatus, apiMessage, userModel);
         }
 
         /// <summary>
@@ -42,14 +46,13 @@ namespace Favesrus.Server.Controllers.WebApi
         [HttpPost]
         [Route("loginfacebook")]
         [ValidateModel]
-        public async Task<IHttpActionResult> LoginFacebook(HttpRequestMessage requestMessage, LoginFacebookModel model)
+        public async Task<IHttpActionResult> LoginFacebook(LoginFacebookModel model, BaseApiController controller)
         {
-            Log.Info(string.Format("Attempt register as {0} with provider key {1}", model.Email, model.ProviderKey));
+            Logger.Info(string.Format("Attempt register as: {0}|Provider key: {1}", model.Email, model.ProviderKey));
 
-            var result = await _accountProcessor.LoginFacebookAsync(model, requestMessage, this);
+            var result = await _accountService.LoginFacebookAsync(model, controller);
 
             return result as IHttpActionResult;
-            
         }
 
         /// <summary>
@@ -64,15 +67,15 @@ namespace Favesrus.Server.Controllers.WebApi
         {
             if (userId == null || code == null)
             {
-                Log.Info("User Id or Generated Code was empty.");
-                //return BadRequest("User Id or Generated Code was empty.");
+                Logger.Info("User Id or Generated Code was empty.");
+                throw new ApiErrorException("User Id or Generated Code was empty.");
             }
 
-            var result = UserManager.ConfirmEmail(userId, code);
+            var result = _userManager.ConfirmEmail(userId, code);
             if (result.Succeeded)
             {
 
-                var user = UserManager.FindById(userId);
+                var user = _userManager.FindById(userId);
                 //var dtoFavesUser = mapper.Map<DtoFavesrusUser>(user);
                 //await UserManager.SendEmailAsync(user.Id, "Faves Account Confirmation", "Your Faves Account Has Been Confirmed");
 
@@ -81,7 +84,7 @@ namespace Favesrus.Server.Controllers.WebApi
                             providerKey);
 
 
-                var addLoginResult = UserManager.AddLogin(user.Id, loginInfo);
+                var addLoginResult = _userManager.AddLogin(user.Id, loginInfo);
 
                 if (addLoginResult.Succeeded)
                 {
@@ -90,17 +93,17 @@ namespace Favesrus.Server.Controllers.WebApi
                         FavesrusConstants.EMAIL_ADDRESS,
                         "Faves Account Confirmed",
                         "Your Faves account has been confirmed", user.Email);
-                    Log.Info(string.Format("Successfully confirmed {0}", user.UserName));
+                    Logger.Info(string.Format("Successfully confirmed {0}", user.UserName));
                 }
                 else
                 {
-                    Log.Info(string.Format("Unable to add login for {0} with provider key {1}", user.UserName, providerKey));
+                    Logger.Info(string.Format("Unable to add login for: {0}| with provider key: {1}", user.UserName, providerKey));
                 }
                 //return Ok(dtoFavesUser);
             }
             else
             {
-                Log.Info(string.Format("Error finding user with Id: {0}", userId));
+                Logger.Info(string.Format("Error finding user with Id: {0}", userId));
                 //return GetErrorResult(result);
             }
         }

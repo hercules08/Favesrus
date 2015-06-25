@@ -1,41 +1,61 @@
 ﻿using Favesrus.ApiService;
+using Favesrus.Core;
 using Favesrus.Core.Logging;
+using Favesrus.Core.Results.Error;
 using Favesrus.Data.Dtos;
 using Favesrus.Results;
 using Favesrus.Server.Dto.FavesrusUser;
+using Favesrus.Services;
 using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace Favesrus.API.Controllers
 {
-    public interface IAccountController
+    public partial interface IAccountController
     {
-        Task<IHttpActionResult> LoginAsync(LoginModel model);
+        IHttpActionResult Logout();
     }
 
-    public class AccountController:BaseApiController, IAccountController
+    [RoutePrefix("api/account")]
+    public partial class AccountController:BaseApiController, IAccountController
     {
 
         IAccountService _accountService;
+        FavesrusUserManager _userManager;
 
-        public AccountController(ILogManager logManager, IAccountService accountService)
+        public AccountController(ILogManager logManager, IAccountService accountService,
+            FavesrusUserManager userManager)
             :base(logManager)
         {
             _accountService = accountService;
+            _userManager = userManager;
         }
 
-        public async Task<IHttpActionResult> LoginAsync(LoginModel model)
+        // POST api/Account/Logout
+        [Authorize]
+        [Route("Logout")]
+        public IHttpActionResult Logout()
         {
-            Logger.Info("Begin Login");
+            Logger.Info("Begin Logout");
 
-            string apiStatus = "login_success";
-            string apiMessage = "Successfully logged in to Faves 'R' Us.";
+            string apiStatus = "logout_success";
+            string apiMessage = "Successfully logged out of Faves 'R' Us.";
 
-            FavesrusUserModel userModel = await _accountService.LoginUserAsync(model);
+            bool logOutSuccess = _accountService.LogOut();
 
-            Logger.Info("End Login");
-
-            return new ApiActionResult<FavesrusUserModel>(apiStatus, apiMessage, userModel);
+            if (logOutSuccess)
+            {
+                Logger.Info("Logout success");
+                return new ApiActionResult(apiStatus, apiMessage);
+            }
+            else
+            {
+                string errorMessage = "Unable to log out";
+                Logger.Error(errorMessage);
+                throw new ApiErrorException(errorMessage);
+            }
         }
+
+
     }
 }

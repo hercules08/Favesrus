@@ -1,4 +1,6 @@
+using Favesrus.ApiService;
 using Favesrus.Core.Logging;
+using Favesrus.Core.TypeMapping;
 using Favesrus.DAL;
 using Favesrus.DAL.Core;
 using Favesrus.Domain.Entity;
@@ -30,12 +32,18 @@ namespace Favesrus.API
         private static void RegisterTypes(IUnityContainer container)
         {
             container.RegisterType<ILogManager, LogManager>();
+            container.RegisterType<IAutoMapper, AutoMapperAdapter>();
 
             ConfigureDAL(container);
             ConfigureIdentityOwin(container);
             
             // Services
-            //ConfigureServices(container);
+            ConfigureServices(container);
+        }
+
+        private static void ConfigureServices(IUnityContainer container)
+        {
+            container.RegisterType<IAccountService, AccountService>();
         }
 
         private static void ConfigureIdentityOwin(IUnityContainer container)

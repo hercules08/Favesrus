@@ -12,7 +12,7 @@ namespace Favesrus.IntegrationTest.Common
             // Arrange
             string expected = "name=DeployContext";
             // Act
-            string actual = Constants.DEPLOYED_CONTEXT;
+            string actual = FavesrusConstants.DEPLOYED_CONTEXT;
             // Assert
             Assert.AreEqual(expected, actual);
         }
@@ -23,7 +23,7 @@ namespace Favesrus.IntegrationTest.Common
             // Arrange
             string expected = "Favesrus_DEBUG";
             // Act
-            string actual = Constants.DB_NAME;
+            string actual = FavesrusConstants.DB_NAME;
             // Assert
             Assert.AreEqual(expected, actual);
         }

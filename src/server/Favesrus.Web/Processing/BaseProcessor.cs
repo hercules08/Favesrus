@@ -1,7 +1,6 @@
 ﻿using Favesrus.Server.Filters;
 using Favesrus.Server.Infrastructure.Interface;
 using Favesrus.Services;
-using log4net;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -13,7 +12,6 @@ namespace Favesrus.Server.Processing
 {
     public abstract class BaseProcessor
     {
-        readonly ILog _log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
         FavesrusUserManager _userManager;
         FavesrusRoleManager _roleManager;
         IAuthenticationManager _authManager;
@@ -53,14 +51,6 @@ namespace Favesrus.Server.Processing
             get
             {
                 return _emailer;
-            }
-        }
-
-        public ILog Log
-        {
-            get
-            {
-                return _log;
             }
         }
 

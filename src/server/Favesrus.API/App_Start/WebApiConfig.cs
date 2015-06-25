@@ -1,9 +1,10 @@
-﻿using Favesrus.Server.ErrorHandling;
+﻿using Favesrus.API.Results.Error;
+using Newtonsoft.Json.Serialization;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using System.Web.Http.ExceptionHandling;
 
-namespace Favesrus.Server
+namespace Favesrus.API
 {
     public static class WebApiConfig
     {
@@ -26,6 +27,14 @@ namespace Favesrus.Server
             //TODO Enable exception logger
 
             config.Services.Replace(typeof(IExceptionHandler), new GlobalExceptionHandler());
+
+            //Prevent Formatting Loops
+            GlobalConfiguration.Configuration.Formatters.JsonFormatter
+                .SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+
+            // Use camel casing
+            GlobalConfiguration.Configuration.Formatters.JsonFormatter
+                .SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             
         }
 

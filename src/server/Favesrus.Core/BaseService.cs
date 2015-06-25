@@ -1,5 +1,7 @@
 ﻿using Favesrus.Core.Logging;
+using Favesrus.Core.Results.Error;
 using Favesrus.Core.TypeMapping;
+using Microsoft.AspNet.Identity;
 using NLog.Interface;
 using System;
 using System.Collections.Generic;
@@ -42,6 +44,24 @@ namespace Favesrus.Core
             {
                 _mapper = value;
             }
+        }
+
+        public List<InvalidModelProperty> GetErrorsFromIdentityResult(IdentityResult result)
+        {
+            List<InvalidModelProperty> invalidModelStates = new List<InvalidModelProperty>();
+            int i = 1;
+
+            foreach (string error in result.Errors)
+            {
+                InvalidModelProperty invalidItem = new InvalidModelProperty();
+
+                invalidItem.ErrorItem = "issue" + i;
+                invalidItem.Reason = error;
+                invalidModelStates.Add(invalidItem);
+                i++;
+            }
+
+            return invalidModelStates;
         }
     }
 }

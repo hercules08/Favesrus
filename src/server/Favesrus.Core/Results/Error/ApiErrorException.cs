@@ -16,6 +16,14 @@ namespace Favesrus.Core.Results.Error
             _entity = entity;
         }
 
+        public ApiErrorException(string message, string apiStatus, object entity = null, HttpStatusCode badRequest = HttpStatusCode.BadRequest)
+            : base(message)
+        {
+            _statusCode = badRequest;
+            _entity = entity;
+            _apiStatus = apiStatus;
+        }
+
         public object Entity
         {
             get

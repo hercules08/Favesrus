@@ -1,16 +1,19 @@
 ﻿using Favesrus.Core.Logging;
+using Favesrus.Core.TypeMapping;
 using NLog.Interface;
 using System.Web.Http;
 
-namespace Favesrus.API.Controllers
+namespace Favesrus.Core
 {
     public class BaseApiController:ApiController
     {
         ILogger _logger;
+        IAutoMapper _mapper;
 
-        public BaseApiController(ILogManager logManager = null)
+        public BaseApiController(ILogManager logManager = null, IAutoMapper mapper = null)
         {
             Logger = logManager.GetLogger();
+            Mapper = mapper;
         }
 
         public ILogger Logger
@@ -22,6 +25,18 @@ namespace Favesrus.API.Controllers
             private set
             {
                 _logger = value;
+            }
+        }
+
+        public IAutoMapper Mapper
+        {
+            get
+            {
+                return _mapper ?? new AutoMapperAdapter();
+            }
+            private set
+            {
+                _mapper = value;
             }
         }
     }

@@ -11,15 +11,15 @@ namespace Favesrus.Server.Processing.Interface
     public interface IAccountProcessor
     {
 
-        IHttpActionResult 
-            ForgotPassword(ForgotPasswordViewModel model, 
-            HttpRequestMessage requestMessage,
-            FavesApi.AccountController controller);
+        //IHttpActionResult 
+        //    ForgotPassword(ForgotPasswordViewModel model, 
+        //    HttpRequestMessage requestMessage,
+        //    FavesApi.AccountController controller);
 
-        Task<IHttpActionResult> 
-            ForgotPasswordAsync(ForgotPasswordViewModel model, 
-            HttpRequestMessage requestMessage,
-            FavesApi.AccountController controller);
+        //Task<IHttpActionResult> 
+        //    ForgotPasswordAsync(ForgotPasswordViewModel model, 
+        //    HttpRequestMessage requestMessage,
+        //    FavesApi.AccountController controller);
 
         IHttpActionResult ResetPassword(string userId, string code, HttpRequestMessage requestMessage);
         Task<IHttpActionResult> ResetPasswordAsync(string userId, string code, HttpRequestMessage requestMessag);
@@ -30,13 +30,13 @@ namespace Favesrus.Server.Processing.Interface
         FavesrusUserModel LoginUser(LoginModel model);
         Task<FavesrusUserModel> LoginUserAsync(LoginModel model);
 
-        IHttpActionResult 
-            LoginFacebook(LoginFacebookModel model, 
-            HttpRequestMessage requestMessage,
-            FavesApi.AccountController controller);
-        Task<IHttpActionResult> 
-            LoginFacebookAsync(LoginFacebookModel model, 
-            HttpRequestMessage requestMessage,
-            FavesApi.AccountController controller);
+        //IHttpActionResult 
+        //    LoginFacebook(LoginFacebookModel model, 
+        //    HttpRequestMessage requestMessage,
+        //    FavesApi.AccountController controller);
+        //Task<IHttpActionResult> 
+        //    LoginFacebookAsync(LoginFacebookModel model, 
+        //    HttpRequestMessage requestMessage,
+        //    FavesApi.AccountController controller);
     }
 }

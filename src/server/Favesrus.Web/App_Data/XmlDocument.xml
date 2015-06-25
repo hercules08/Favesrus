@@ -4,41 +4,6 @@
         <name>Favesrus.Web</name>
     </assembly>
     <members>
-        <member name="M:Favesrus.Server.NinjectConfigurator.Configure(Ninject.IKernel)">
-            <summary>
-            Entry method used by caller to configure the given 
-            container with all of this application's 
-            dependencies. Also configures the container as this
-            application's dependency resolver.
-            </summary>
-        </member>
-        <member name="M:Favesrus.Server.NinjectConfigurator.AddBindings(Ninject.IKernel)">
-            <summary>
-            Add all bindings/dependencies to the container
-            </summary>
-        </member>
-        <member name="M:Favesrus.Server.NinjectWebCommon.Start">
-            <summary>
-            Starts the application
-            </summary>
-        </member>
-        <member name="M:Favesrus.Server.NinjectWebCommon.Stop">
-            <summary>
-            Stops the application.
-            </summary>
-        </member>
-        <member name="M:Favesrus.Server.NinjectWebCommon.CreateKernel">
-            <summary>
-            Creates the kernel that will manage your application.
-            </summary>
-            <returns>The created kernel.</returns>
-        </member>
-        <member name="M:Favesrus.Server.NinjectWebCommon.RegisterServices(Ninject.IKernel)">
-            <summary>
-            Load your modules or register your services here!
-            </summary>
-            <param name="kernel">The kernel.</param>
-        </member>
         <member name="M:Favesrus.Server.Areas.HelpPage.ApiDescriptionExtensions.GetFriendlyId(System.Web.Http.Description.ApiDescription)">
             <summary>
             Generates an URI-friendly ID for the <see cref="T:System.Web.Http.Description.ApiDescription"/>. E.g. "Get-Values-id_name" instead of "GetValues/{id}?name={name}"
@@ -515,31 +480,6 @@
             Initializes a new instance of the <see cref="T:Favesrus.Server.Areas.HelpPage.XmlDocumentationProvider"/> class.
             </summary>
             <param name="documentPath">The physical path to XML document.</param>
-        </member>
-        <member name="M:Favesrus.Server.Controllers.WebApi.AccountController.Logout">
-            <summary>
-            Sign out of Faves 'R' Us
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Favesrus.Server.Controllers.WebApi.AccountController.Login(System.Net.Http.HttpRequestMessage,Favesrus.Server.Dto.FavesrusUser.LoginModel)">
-            <summary>
-            Log In to Faves 'R' Us with your email and password
-            </summary>
-            <param name="model"></param>
-        </member>
-        <member name="M:Favesrus.Server.Controllers.WebApi.AccountController.LoginFacebook(System.Net.Http.HttpRequestMessage,Favesrus.Server.Dto.FavesrusUser.LoginFacebookModel)">
-            <summary>
-            Log In to Faves 'R' us with Facebook
-            </summary>
-        </member>
-        <member name="M:Favesrus.Server.Controllers.WebApi.AccountController.ConfirmFacebookEmail(System.String,System.String,System.String)">
-            <summary>
-            Confirms Facebook Faves 'R' Us sign in
-            </summary>
-            <param name="userId">The Faves 'R' Us users id</param>
-            <param name="code">The auto-generated confirm code sent with the email</param>
-            <param name="providerKey">The newly generated provider key from the users device</param>
         </member>
         <member name="P:Favesrus.Server.Filters.ValidateModelAttribute.AllowMultiple">
             <summary>

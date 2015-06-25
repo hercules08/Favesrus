@@ -1,4 +1,5 @@
-﻿using Favesrus.Data.Dtos;
+﻿using Favesrus.Core;
+using Favesrus.Data.Dtos;
 using Favesrus.Data.RequestModels;
 using Favesrus.Domain.Entity;
 using Favesrus.Server.Infrastructure.Interface;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Favesrus.Server.Processing.Impl
 {
-    public class RecommendationsProcessor : BaseProcessor, IRecommendationsProcessor
+    public class RecommendationsProcessor : BaseService, IRecommendationsProcessor
     {
         IRecommendationService _recommendationService;
         IGiftItemService _giftItemService;
@@ -20,7 +21,6 @@ namespace Favesrus.Server.Processing.Impl
             IAutoMapper mapper, 
             IRecommendationService recommendationSerivce, 
             IGiftItemService giftItemService)
-            : base(emailer, mapper)
         {
             _recommendationService = recommendationSerivce;
             _giftItemService = giftItemService;
@@ -32,7 +32,6 @@ namespace Favesrus.Server.Processing.Impl
                   IAuthenticationManager authManager,
                   IEmailService emailer,
                   IAutoMapper mapper)
-            : base(userManager, roleManager, authManager, emailer, mapper)
         {
         }
 
@@ -40,11 +39,11 @@ namespace Favesrus.Server.Processing.Impl
         {
             List<GiftItemModel> dtoGiftItems = new List<GiftItemModel>();
 
-            Log.Info("Returning " + model.ReturnedSetNumber + " sets.");
+            Logger.Info("Returning " + model.ReturnedSetNumber + " sets.");
             
             foreach(var recId in model.RecommendationIds)
             {
-                Log.Info("Searching for items with ids: " + recId);
+                Logger.Info("Searching for items with ids: " + recId);
             }
 
             var rItems = _recommendationService.GetAllRecommendations();
@@ -101,7 +100,7 @@ namespace Favesrus.Server.Processing.Impl
             foreach (var giftItem in giftItemsMatchingRecommendationIds)
             {
                 dtoGiftItems.Add(Mapper.Map<GiftItemModel>(giftItem));
-                Log.Info("Adding gift item " + giftItem.ItemName);
+                Logger.Info("Adding gift item " + giftItem.ItemName);
             }
 
             return dtoGiftItems;

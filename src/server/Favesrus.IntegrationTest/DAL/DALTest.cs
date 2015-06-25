@@ -1,8 +1,7 @@
-﻿using System;
+﻿using Favesrus.DAL;
+using Favesrus.Domain.Entity;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
-using Favesrus.Model.Entity;
-using Favesrus.DAL;
 
 namespace Favesrus.IntegrationTest.DAL
 {

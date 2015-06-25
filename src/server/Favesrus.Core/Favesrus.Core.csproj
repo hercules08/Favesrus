@@ -30,6 +30,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="BaseApiController.cs" />
     <Compile Include="BaseService.cs" />
     <Compile Include="Common\ILinkContaining.cs" />
     <Compile Include="Common\Link.cs" />

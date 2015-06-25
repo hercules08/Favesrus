@@ -1,52 +1,58 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.Routing;
-using System.Web.Security;
-using System.Web.SessionState;
+﻿using Favesrus.API;
+using Favesrus.Core.Logging;
+using Favesrus.Server;
+using Favesrus.Web.App_Start;
+using System;
 using System.Web.Http;
+using System.Web.Mvc;
 using System.Web.Optimization;
-using Favesrus.Server.Infrastructure.Impl;
-using Favesrus.Server.Infrastructure;
-using Favesrus.Server.Infrastructure.Interface;
-using Newtonsoft.Json.Serialization;
+using System.Web.Routing;
 
-[assembly: log4net.Config.XmlConfigurator(Watch = true)]
-
-namespace Favesrus.Server
+namespace Favesrus.Web
 {
-    public class Global : HttpApplication
+    public class Global : System.Web.HttpApplication
     {
-        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         void Application_Start(object sender, EventArgs e)
         {
-            if (log.IsInfoEnabled) log.Info("Starting Favesrus Website");
+            new LogManager().GetLogger().Info("Starting Favesrus Website");
 
             // Code that runs on application startup
             AreaRegistration.RegisterAllAreas();
+            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             GlobalConfiguration.Configure(WebApiConfig.Register);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+        }
 
-            // Configure Dependency Resolver for MVC
-            System.Web.Mvc.DependencyResolver.SetResolver(
-                (System.Web.Mvc.IDependencyResolver)
-                GlobalConfiguration.Configuration.DependencyResolver);
+        protected void Session_Start(object sender, EventArgs e)
+        {
 
+        }
 
-            // Configure AutoMapper from Domain to Dto
-            AutoMapperConfigurator.Configure(WebContainerManager.GetAll<IAutoMapperTypeConfigurator>());
+        protected void Application_BeginRequest(object sender, EventArgs e)
+        {
 
-            //Prevent Formatting Loops
-            GlobalConfiguration.Configuration.Formatters.JsonFormatter
-                .SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+        }
 
-            // Use camel casing
-            GlobalConfiguration.Configuration.Formatters.JsonFormatter
-                .SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+        protected void Application_AuthenticateRequest(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Application_Error(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Session_End(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Application_End(object sender, EventArgs e)
+        {
+
         }
     }
 }
