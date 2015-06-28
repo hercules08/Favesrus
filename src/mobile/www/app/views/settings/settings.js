@@ -40,7 +40,7 @@ $(
 	Apply event handler for all settings view buttons
 */
 function enableSettingsButtonEventHandlers(){
-	addTouchSMEvents("account-logout-btn", "inner-shadow");
+	/*addTouchSMEvents("account-logout-btn", "inner-shadow");
 
 	document.getElementById("account-logout-btn").addEventListener("touchend", 
         function (evt) {
@@ -52,7 +52,23 @@ function enableSettingsButtonEventHandlers(){
 			returnHome();
 		},
 		false
-	);	
+	);*/
+	//kendo.unbind("#account-logout-btn");
+    kendo.destroy("#account-logout-btn");
+    $("#account-logout-btn").kendoTouch({
+        touchstart: function (evt) {
+            $("#account-logout-btn").addClass("inner-shadow");
+        },
+        dragstart: function (evt) {
+            $("#account-logout-btn").removeClass("inner-shadow");
+        },
+        tap: function (evt) {
+            $("#account-logout-btn").removeClass("inner-shadow");  
+            webService("logout","");
+			removeLocalcredentials();
+			returnHome();
+        }
+    });	
 }
 
 /*
@@ -62,7 +78,7 @@ function enableSettingsButtonEventHandlers(){
 function settingsViewInit(e) {
 	//TODO Leverage Local Storage keys
 	console.log("settings-view init");
-	var temp_data = '{"entity":{"firstName":"First Name","lastName":"Last Name","profilePic":"images/image_placeholder.png"}}';
+	var temp_data = '{"entity":{"firstName":"John","lastName":"Doe","profilePic":"images/profile_image.png"}}';
     var data = JSON.parse(temp_data);
     //View-Model declaration
     var viewModel = kendo.observable({
@@ -83,3 +99,23 @@ function afterSettingsViewShow(e) {
 	//setWishlistIcon();
 	// setWishlistTabBadge();
 }
+
+/*
+	Description:
+
+*/
+function myprofileViewInit(e) {
+	var template = kendo.template($("#myProfileTemplate").html()); //Get the external template definition
+    var temp_data = '{ }';
+    var data = JSON.parse(temp_data);
+    console.log(data);
+    var result = template(data); //Execute the template
+    
+    //APP.instance.view().element.find("#products-search-listview").html(result); //Append the result
+    $("#myprofile-view div.center:first-child").html(result); //Append the result
+    replaceSVGImage();
+}
+
+
+
+

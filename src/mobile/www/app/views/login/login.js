@@ -25,7 +25,6 @@ define([
 });
 
 var loginViewShowCounter = 0;
-var orignalFacebookBtnX = 0; orignalFacebookBtnY = 0, orignalAccountBtnX = 0, orignalAccountBtnY = 0;
 
 //Execute after the DOM finishes loading
 $(
@@ -190,76 +189,93 @@ function login(option){
 */
 function enableButtonTouchEventListeners(view) {
 	if (view === "login"){
-        
-        addTouchSMEvents("facebook-login-btn", "inner-shadow");
-        //Add touchstart event to the create account button
-        document.getElementById("facebook-login-btn").addEventListener("touchend", 
-            function (evt) {
-            	if( (evt.changedTouches[0].clientX >= orignalFacebookBtnX-50 && evt.changedTouches[0].clientX <= orignalFacebookBtnX+50) && (evt.changedTouches[0].clientY >= orignalFacebookBtnY-10 && evt.changedTouches[0].clientY <= orignalFacebookBtnY+10) ) {
-                    $("#search-reset-btn span").removeClass("inner-shadow"); 
-                    login("facebook");
-                	//e.preventDefault(); //Prevents default event of the browser that follows this action
-                }
-            }, 
-        false);
 
-        document.getElementById("create-account-btn").addEventListener("touchstart", 
-            function (e) {
-                resetTextFields()
-            	$("#login-fields-container ul li:last-child").removeClass("hidden");
-            	$("#forgot-password-link").addClass("hidden");
-            	$("#account-login-btn").text("Create Account");
-            }, 
-        false);
+        //kendo.unbind("#facebook-login-btn");
+        kendo.destroy("#facebook-login-btn");
+        $("#facebook-login-btn").kendoTouch({
+            touchstart: function (evt) {
+                $("#facebook-login-btn").addClass("inner-shadow");
+            },
+            dragstart: function (evt) {
+                $("#facebook-login-btn").removeClass("inner-shadow");
+            },
+            tap: function (evt) {
+                $("#facebook-login-btn").removeClass("inner-shadow");  
+                login("facebook");
+            }
+        });
 
-        document.getElementById("sign-in-btn").addEventListener("touchstart", 
-            function (e) {
+        //kendo.unbind("#create-account-btn");
+        kendo.destroy("#create-account-btn");
+        $("#create-account-btn").kendoTouch({
+            touchstart: function (evt) {
+                $("#create-account-btn").addClass("inner-shadow");
+            },
+            dragstart: function (evt) {
+                $("#create-account-btn").removeClass("inner-shadow");
+            },
+            tap: function (evt) {
+                $("#create-account-btn").removeClass("inner-shadow");  
                 resetTextFields();
-            	$("#login-fields-container ul li:last-child").addClass("hidden");
-            	$("#forgot-password-link").removeClass("hidden");
-            	$("#account-login-btn").text("Sign In");
-            }, 
-        false);
+                $("#login-fields-container ul li:last-child").removeClass("hidden");
+                $("#forgot-password-link").addClass("hidden");
+                $("#account-login-btn").text("Create Account");
+            }
+        });
+        
+        //kendo.unbind("#sign-in-btn");
+        kendo.destroy("#sign-in-btn");
+        $("#sign-in-btn").kendoTouch({
+            touchstart: function (evt) {
+                $("#sign-in-btn").addClass("inner-shadow");
+            },
+            dragstart: function (evt) {
+                $("#sign-in-btn").removeClass("inner-shadow");
+            },
+            tap: function (evt) {
+                $("#sign-in-btn").removeClass("inner-shadow");  
+                resetTextFields();
+                $("#login-fields-container ul li:last-child").addClass("hidden");
+                $("#forgot-password-link").removeClass("hidden");
+                $("#account-login-btn").text("Sign In");
+            }
+        });
 
-        addTouchSMEvents("account-login-btn", "inner-shadow");
-        //Add touchstart event to the create account button
-        document.getElementById("account-login-btn").addEventListener("touchend", 
-            function (evt) {
-                if ( (evt.changedTouches[0].clientX >= orignalAccountBtnX-50 && evt.changedTouches[0].clientX <= orignalAccountBtnX+50) && (evt.changedTouches[0].clientY >= orignalAccountBtnY-10 && evt.changedTouches[0].clientY <= orignalAccountBtnY+10) ) {
-                    $("#account-login-btn").removeClass("inner-shadow"); 
+        //kendo.unbind("#account-login-btn");
+        kendo.destroy("#account-login-btn");
+        $("#account-login-btn").kendoTouch({
+            touchstart: function (evt) {
+                $("#account-login-btn").addClass("inner-shadow");
+            },
+            dragstart: function (evt) {
+                $("#account-login-btn").removeClass("inner-shadow");
+            },
+            tap: function (evt) {
+                $("#account-login-btn").removeClass("inner-shadow");  
+                resetTextFields();
+                $("#login-fields-container ul li:last-child").addClass("hidden");
+                $("#forgot-password-link").removeClass("hidden");
+                $("#account-login-btn").text("Sign In");
+            }
+        });
 
-                	if($("#account-login-btn").text() === "Create Account") {
-                        console.log("Register with Email");
-                        login("register");
-                    }
-                    else if($("#account-login-btn").text() === "Sign In"){
-                        console.log("Login with Email");
-                        login("email");
-                    }
-                	//e.preventDefault();
+        //kendo.unbind("#forgot-password-link");
+        kendo.destroy("#forgot-password-link");
+        $("#forgot-password-link").kendoTouch({
+            tap: function (evt) {
+                if (navigator.notification) {
+                    navigator.notification.prompt(
+                        "Please enter your account's email address to receive your temporary password!",  // message
+                        onForgotPasswordPrompt,             // callback
+                        'Password Reset',   // title
+                        ["Send","Cancel"],  // buttonName
+                        ""                  //Default test
+                    );
                 }
-            }, 
-            false
-        );
-
-        document.getElementById("forgot-password-link").addEventListener("touchend", 
-            function (e) {
-            	if (navigator.notification) {
-		            navigator.notification.prompt(
-		                "Please enter your account's email address to receive your temporary password!",  // message
-		                onForgotPasswordPrompt,         	// callback
-		                'Password Reset',   // title
-		                ["Send","Cancel"],  // buttonName
-		            	""					//Default test
-		            );
-		        }
-            	//e.preventDefault();
-            }, 
-        false);
+            }
+        });
 	}
 }
-
-//TODO Change the click event handler for the return to Home tab 
 
 /*
   Description: Return to two previous pages back

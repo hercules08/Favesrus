@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- The icon can be used freely in both personal and commercial projects with no attribution required, but always appreciated. 
+You may NOT sub-license, resell, rent, redistribute or otherwise transfer the icon without express written permission from iconmonstr.com -->
+
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="512px" height="512px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
+<path id="credit-card-11-icon" d="M377.341,214.183c-46.756,0-84.659,37.903-84.659,84.658c0,46.756,37.903,84.659,84.659,84.659
+	S462,345.597,462,298.841C462,252.086,424.097,214.183,377.341,214.183z M362.938,344.441l-39.997-40.008l17.03-17.034
+	l22.967,22.973l53.021-53.021l17.038,17.026L362.938,344.441z M110.042,307.5h71.668v19h-71.668V307.5z M300.017,383.5H80
+	c-16.568,0-30-13.432-30-30v-195c0-16.568,13.432-30,30-30h314.655c16.568,0,30,13.432,30,30v35.841
+	c-9.498-4.306-19.573-7.294-30-8.864V168.5c0-5.523-4.478-10-10-10H90c-5.522,0-10,4.477-10,10v21.166h262.146
+	c-28.368,9.11-51.461,28.938-65.183,53.667H80V343.5c0,5.522,4.478,10,10,10h186.495C282.713,364.935,290.692,374.964,300.017,383.5
+	z M242.21,289H110.042v-19H242.21V289z"/>
+</svg>

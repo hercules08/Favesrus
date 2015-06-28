@@ -109,7 +109,7 @@ function afterWishlistViewShow(e) {
             console.log("delete");
             console.log($(this)[0].element.parent());
             $(this)[0].element.parent().remove();
-            setWishlistTabBadge();
+            setWishlistTabBadge("#wishlist-view");
         }
     });
 
@@ -127,7 +127,7 @@ function afterWishlistViewShow(e) {
 /*
     Description: Increment Wishlist icon Badge in the Tabstrip
 */
-function setWishlistTabBadge() {
+function setWishlistTabBadge(currentView) {
     //Multiple tabstrips used
     /*$.each($(".tabstrip"), function (index, element) {
         if($("#wishlist-view .gallery").find("img").length > 0) {
@@ -136,16 +136,21 @@ function setWishlistTabBadge() {
             console.log("increase wishlist badge");
         }
     });*/
-    if($("#home-view .tabstrip a:nth-child(2)").children()[0].tagName.toLowerCase() === "img") {
-        if ($(".tabstrip a:nth-child(2) span.km-badge").length === 0){
-            $(".tabstrip a:nth-child(2) img").after('<span class="km-badge">1</span>');
+//TODO Remove variable and add strings back into statements
+console.log(currentView);
+console.log('"' + currentView + ' .tabstrip a:nth-child(2)' + '"');
+    if($(currentView + ' .tabstrip a:nth-child(2)').children()[0].tagName.toLowerCase() === "img") {
+        console.log("if");
+        if ($(currentView + ' .tabstrip a:nth-child(2) span.km-badge').length === 0) {
+            $(currentView + ' .tabstrip a:nth-child(2) img').after('<span class="km-badge">1</span>');
         }
         else {
-            $(".tabstrip").data("kendoMobileTabStrip").badge(1,$("#wishlist-view .gallery").find("img").length);
+            $(currentView + ' .tabstrip').data("kendoMobileTabStrip").badge(1,$("#wishlist-view .gallery").find("img").length);
         }
     }
     else {
-        $(".tabstrip").data("kendoMobileTabStrip").badge(1,$("#wishlist-view .gallery").find("img").length);
+        console.log("else");
+        $(currentView + ' .tabstrip').data("kendoMobileTabStrip").badge(1,$("#wishlist-view .gallery").find("img").length);
     }
 }
 
@@ -192,7 +197,7 @@ function afterWishlistRetailersViewShow(e) {
     $(".fa-shopping-cart").kendoTouch({
         tap: function (evt) {
             try {
-                var ref = window.open('http://www.bestbuy.com/site/disney-interactive-disney-infinity-figure-sorcerers-apprentice-mickey-multi/3650039.p?id=1219092665944&skuId=3650039', '_blank', 'location=no');
+                /*var ref = window.open('http://www.bestbuy.com/site/disney-interactive-disney-infinity-figure-sorcerers-apprentice-mickey-multi/3650039.p?id=1219092665944&skuId=3650039', '_blank', 'location=no');
                 ref.addEventListener("exit", function(){
                     if (navigator.notification) {
                         navigator.notification.confirm(
@@ -205,14 +210,92 @@ function afterWishlistRetailersViewShow(e) {
                     else {
                         alert("Are you sure?");
                     }
+                });*/
+                cordova.ThemeableBrowser.open('http://www.bestbuy.com/site/disney-interactive-disney-infinity-figure-sorcerers-apprentice-mickey-multi/3650039.p?id=1219092665944&skuId=3650039', '_blank', {
+                    statusbar: {
+                        color: '#16a085'
+                    },
+                    toolbar: {
+                        height: 44,
+                        color: '#16a085'
+                    },
+                    title: {
+                        color: '#ffffff',
+                        showPageTitle: true
+                    },
+                    /*backButton: {
+                        image: 'back',
+                        imagePressed: 'back_pressed',
+                        align: 'left',
+                        event: 'backPressed'
+                    },
+                    forwardButton: {
+                        image: 'forward',
+                        imagePressed: 'forward_pressed',
+                        align: 'left',
+                        event: 'forwardPressed'
+                    },*/
+                    closeButton: {
+                        wwwImage: 'images/x-icon-64.png',
+                        wwwImagePressed: 'images/x-icon-64.png',
+                        wwwImageDensity: 2,
+                        align: 'left',
+                        event: 'closePressed'
+                    }/*,
+                    customButtons: [
+                        {
+                            image: 'share',
+                            imagePressed: 'share_pressed',
+                            align: 'right',
+                            event: 'sharePressed'
+                        }
+                    ],
+                    menu: {
+                        image: 'menu',
+                        imagePressed: 'menu_pressed',
+                        title: 'Test',
+                        cancel: 'Cancel',
+                        align: 'right',
+                        items: [
+                            {
+                                event: 'helloPressed',
+                                label: 'Hello World!'
+                            },
+                            {
+                                event: 'testPressed',
+                                label: 'Test!'
+                            }
+                        ]
+                    },
+                    backButtonCanClose: true*/
+                }).addEventListener('closePressed', function(e) {
+                    if (navigator.notification) {
+                        navigator.notification.confirm(
+                            "Are you sure?",    // message
+                            notificationCallback,                             // callback
+                            'Remove from Wishlist',                                  // title
+                            ['Yes','No']                                        // buttonName
+                        );
+                    }
+                    else {
+                        alert("Are you sure?");
+                    }
+                }).addEventListener(cordova.ThemeableBrowser.EVT_ERR, function(e) {
+                    console.error(e.message);
+                }).addEventListener(cordova.ThemeableBrowser.EVT_WRN, function(e) {
+                    console.log(e.message);
                 });
+
+                /*
+                //No longer needed
                 $(".fa-shopping-cart").toggleClass("green-text");
                 setTimeout(function(){
                     $(".fa-shopping-cart").toggleClass("green-text");
                 },500);
+                */
             }
             catch(ex) {
-                alert("Open in InApp Browser!");
+                alert("Exception: Open in Themeable InApp Browser!");
             }
         }
     });

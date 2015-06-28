@@ -96,6 +96,7 @@ function tortViewInit (e) {
 		}
 		document.querySelectorAll("#thisorthat-view .km-leftitem")[0].addEventListener("touchend", function (evt) {
 			returnHome();
+			setWishlistTabBadge("#home-view");
 		});
 		console.log(document.querySelectorAll("#thisorthat-view .km-leftitem")[0]);
 		console.log($("#thisorthat-view .km-leftitem")[0]);
@@ -106,32 +107,21 @@ function tortViewInit (e) {
 				returnHome();
 			}
 		});
-		//Set the ontouch functionality for the "View Wishlist" button
-		//Also display back button
-		/*document.getElementById("thisorthat-wishlist-btn").addEventListener("touchstart", function (evt) {
-			originalTortWishlistBtnX = evt.changedTouches[0].clientX;
-			originalTortWishlistBtnY = evt.changedTouches[0].clientY;
-			addTouchSMEvents("thisorthat-wishlist-btn", "inner-shadow");
-		});
-		document.getElementById("thisorthat-wishlist-btn").removeEventListener("touchend", function(){});
-		document.getElementById("thisorthat-wishlist-btn").addEventListener("touchend", function (evt) {
-			if((evt.changedTouches[0].clientX >= originalTortBtnX-10 && evt.changedTouches[0].clientX <= originalTortWishlistBtnX+10) && (evt.changedTouches[0].clientY >= originalTortWishlistBtnY-5 && evt.changedTouches[0].clientY <= originalTortWishlistBtnY+5) ) {
-				$(this).removeClass("inner-shadow");
-				// console.log("View Wishlist");
-				previousView = "thisorthat";
-				APP.instance.navigate("#wishlist-view");
-			}
-			else {
-				$(this).removeClass("inner-shadow");
-			}
-		});*/
 		//kendo.unbind("#"+e.data[i].id+"-img");
 		kendo.destroy("#thisorthat-wishlist-btn");
 		$("#thisorthat-wishlist-btn").kendoTouch({
+			touchstart: function (evt) {
+                $("#thisorthat-wishlist-btn").addClass("inner-shadow");
+            },
+            dragstart: function (evt) {
+                $("#thisorthat-wishlist-btn").removeClass("inner-shadow");
+            },
 			tap: function (evt) {
 				// console.log("View Wishlist");
-				previousView = "thisorthat";
+				$("#thisorthat-wishlist-btn").removeClass("inner-shadow");
+				//previousView = "thisorthat";
 				APP.instance.navigate("#wishlist-view");
+				setWishlistTabBadge("#wishlist-view");
 			}
 		});
 
@@ -196,7 +186,7 @@ function loadTortItems() {
     	$(".no-recommendations-message").addClass("hidden");
     	$("#thisorthat-scrollview").removeClass("hidden");
     	//Test
-    	var temp_data = '{ "Status": "search", "model": { "items": [ { "id": "3454388", "name": "Mario Amiibo", "image": "http://www.gamestop.com/common/images/lbox/104546b.jpg", "description": "Mario never hesitates to leap into action when there\'s trouble in the Mushroom Kingdom.", "category": "Interactive Gaming Figures", "numLikes": "14", "retailers": [ { "id": "12332", "name": "BestBuy", "image": "http://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Best_Buy_Logo.svg/300px-Best_Buy_Logo.svg.png", "price": "$12.96", "lowest": "0" }, { "id": "12334", "name": "Walmart", "image": "http://upload.wikimedia.org/wikipedia/commons/thumb/7/76/New_Walmart_Logo.svg/1000px-New_Walmart_Logo.svg.png", "price": "$12.95", "lowest": "1" } ], "numRetailers": "2", "avgRating": "4", "numAvgReviews": "1000" }, { "id": "3545354", "name": "Disney INFINITY: Disney Originals (2.0 Edition) Crystal Sorcerer Mickey Figure", "image": "http://www.gamestop.com/common/images/lbox/102788b.jpg", "description": "Feeling mischievous? Join Sorcerer\'s Apprentice Mickey\'s spellbinding high jinks. With his magic sweep and bursts, he\'s got more moves under his Sorcerer\'s hat than a wizard in a wand shop. Abracadabra!", "numLikes": "6","retailers": [ { "id": "12332", "name": "BestBuy", "image": "http://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Best_Buy_Logo.svg/300px-Best_Buy_Logo.svg.png", "price": "$12.96", "lowest": "0" }, { "id": "12334", "name": "Walmart", "image": "http://upload.wikimedia.org/wikipedia/commons/thumb/7/76/New_Walmart_Logo.svg/1000px-New_Walmart_Logo.svg.png", "price": "$12.95", "lowest": "1" }, { "id": "12335", "name": "Sears", "image": "http://www.buyvia.com/i/2013/10/Sears-logo.png", "price": "$13.96", "lowest": "0" } ], "numRetailers": "3", "avgRating": "3", "numAvgReviews": "500" }, { "id": "3454393", "name": "Material Girl Selena Rhinestone Flat Thong Sandals", "image": "http://slimages.macys.com/is/image/MCY/products/3/optimized/2158793_fpx.tif?wid=262&hei=320&fit=fit,1&$filtersm$", "description": "Add some shimmer to your summer with the Selena rhinestone flat thong sandals by Material Girl.", "category": "Sandals (Women)" }, { "id": "3945389", "name": "Easy Spirit Kalindi Flat Sandals", "image": "http://slimages.macys.com/is/image/MCY/products/1/optimized/2707711_fpx.tif?wid=262&hei=320&fit=fit,1&$filtersm$", "description": "A shoe with innovative comfort technology has never looked so chic! Easy Spirit\'s Kalindi sandals are simple, sophisticated and perfect for everyday adventures." }, { "id": "35453578", "name": "Apple Smartwatch Sport 42mm Silver Aluminium Case White Sport Band", "image": "http://ecx.images-amazon.com/images/I/31czk%2BukKPL.jpg", "description": "Silver or space gray anodized aluminum case<br>Retina display with Force Touch<br>Heart rate sensor, accelerometer, and gyroscope", "category": "Smart Watches" }, { "id": "3545124", "name": "Samsung Gear 2 Neo", "image": "http://ecx.images-amazon.com/images/I/91V3t5zHNSL._SL1500_.jpg", "description": "The Samsung Gear 2 Neo is the smart companion watch tailored to your look and lifestyle. With real-time notifications, calls and fitness tracking right at our wrist, you can stay focused in the moment. No matter where your day takes you, your Gear 2 Neo matches your style to keep you connected without feeling distracted." }, { "id": "3545394", "name": "?", "image": "images/image_placeholder.png", "description": "" }, { "id": "3545359", "name": "?", "image": "images/image_placeholder.png", "description": "" }, { "id": "3545984", "name": "? ", "image": "images/image_placeholder.png", "description": "" }, { "id": "35453674", "name": "?", "image": "images/image_placeholder.png", "description": "" } ] } }';
+    	var temp_data = '{ "Status": "search", "model": { "items": [ { "id": "3454388", "name": "Mario Amiibo", "image": "http://www.gamestop.com/common/images/lbox/104546b.jpg", "description": "Mario never hesitates to leap into action when there\'s trouble in the Mushroom Kingdom.", "categoryName": "Interactive Gaming Figures", "numLikes": "14", "retailers": [ { "id": "12332", "name": "BestBuy", "image": "http://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Best_Buy_Logo.svg/300px-Best_Buy_Logo.svg.png", "price": "$12.96", "lowest": "0" }, { "id": "12334", "name": "Walmart", "image": "http://upload.wikimedia.org/wikipedia/commons/thumb/7/76/New_Walmart_Logo.svg/1000px-New_Walmart_Logo.svg.png", "price": "$12.95", "lowest": "1" } ], "numRetailers": "2", "avgRating": "4", "numAvgReviews": "1000" }, { "id": "3545354", "name": "Disney INFINITY: Disney Originals (2.0 Edition) Crystal Sorcerer Mickey Figure", "image": "http://www.gamestop.com/common/images/lbox/102788b.jpg", "description": "Feeling mischievous? Join Sorcerer\'s Apprentice Mickey\'s spellbinding high jinks. With his magic sweep and bursts, he\'s got more moves under his Sorcerer\'s hat than a wizard in a wand shop. Abracadabra!", "numLikes": "6", "retailers": [ { "id": "12332", "name": "BestBuy", "image": "http://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Best_Buy_Logo.svg/300px-Best_Buy_Logo.svg.png", "price": "$12.96", "lowest": "0" }, { "id": "12334", "name": "Walmart", "image": "http://upload.wikimedia.org/wikipedia/commons/thumb/7/76/New_Walmart_Logo.svg/1000px-New_Walmart_Logo.svg.png", "price": "$12.95", "lowest": "1" }, { "id": "12335", "name": "Sears", "image": "http://www.buyvia.com/i/2013/10/Sears-logo.png", "price": "$13.96", "lowest": "0" } ], "numRetailers": "3", "avgRating": "3", "numAvgReviews": "500" }, { "id": "3454393", "name": "Material Girl Selena Rhinestone Flat Thong Sandals", "image": "http://slimages.macys.com/is/image/MCY/products/3/optimized/2158793_fpx.tif?wid=262&hei=320&fit=fit,1&$filtersm$", "description": "Add some shimmer to your summer with the Selena rhinestone flat thong sandals by Material Girl.", "categoryName": "Sandals (Women)" }, { "id": "3945389", "name": "Easy Spirit Kalindi Flat Sandals", "image": "http://slimages.macys.com/is/image/MCY/products/1/optimized/2707711_fpx.tif?wid=262&hei=320&fit=fit,1&$filtersm$", "description": "A shoe with innovative comfort technology has never looked so chic! Easy Spirit\'s Kalindi sandals are simple, sophisticated and perfect for everyday adventures." }, { "id": "35453578", "name": "Apple Smartwatch Sport 42mm Silver Aluminium Case White Sport Band", "image": "http://ecx.images-amazon.com/images/I/31czk%2BukKPL.jpg", "description": "Silver or space gray anodized aluminum case<br>Retina display with Force Touch<br>Heart rate sensor, accelerometer, and gyroscope", "categoryName": "Smart Watches" }, { "id": "3545124", "name": "Samsung Gear 2 Neo", "image": "http://ecx.images-amazon.com/images/I/91V3t5zHNSL._SL1500_.jpg", "description": "The Samsung Gear 2 Neo is the smart companion watch tailored to your look and lifestyle. With real-time notifications, calls and fitness tracking right at our wrist, you can stay focused in the moment. No matter where your day takes you, your Gear 2 Neo matches your style to keep you connected without feeling distracted." }, { "id": "3545394", "name": "?", "image": "images/image_placeholder.png", "description": "" }, { "id": "3545359", "name": "?", "image": "images/image_placeholder.png", "description": "" }, { "id": "3545984", "name": "? ", "image": "images/image_placeholder.png", "description": "" }, { "id": "35453674", "name": "?", "image": "images/image_placeholder.png", "description": "" } ] } }';
     	var data = JSON.parse(temp_data);
     	data = shortenText(data, "name");
     	console.log(data);
@@ -260,13 +250,13 @@ function loadProductDetails(data) {
 */
 function getTortProduct(element, data) {
 	// $(this).find("img").attr("src")
-	console.log("Add "+data[0].name);
+	//console.log("Add "+data[0].name+"with Category: "+data[0].categoryName);
 	if ($(element).attr("class").indexOf("this") > -1) { //this 0
-		setSelectedItemInfo(data[0].id, data[0].name, data[0].image);
+		setSelectedItemInfo(data[0].id, data[0].name, data[0].image, data[0].categoryName);
 	}
 	else if ($(element).attr("class").indexOf("that") > -1) { //that 1
 		//console.log("This or That: "+data[1].name);
-		setSelectedItemInfo(data[1].id, data[1].name, data[1].image);
+		setSelectedItemInfo(data[1].id, data[1].name, data[1].image, data[0].categoryName);
 	}
 }
 
@@ -280,23 +270,6 @@ function getViewableProductChange(e){
 	for(var i = 0; i < e.data.length; i++) {
 		console.log("Data Length "+e.data[0].id+" "+e.data[1].id);
 		//Image
-		/*document.getElementById(e.data[i].id+"-img").removeEventListener("touchstart", function(){});
-		document.getElementById(e.data[i].id+"-img").addEventListener("touchstart", function (evt) {
-			originalTouchX = evt.changedTouches[0].clientX;
-		});
-		document.getElementById(e.data[i].id+"-img").removeEventListener("touchend", function(){});
-		document.getElementById(e.data[i].id+"-img").addEventListener("touchend", function (evt) {
-			if(((originalTouchX - evt.changedTouches[0].clientX) < 20) && ((originalTouchX - evt.changedTouches[0].clientX) > -1)) {
-				$("#thisorthat-products-details-modal").data("kendoMobileModalView").open();
-				if ($(this).attr("alt") === "0"){
-					loadProductDetails(e.data[0]);
-				}
-				else if ($(this).attr("alt") === "1") {
-					loadProductDetails(e.data[1]);
-				}
-			}
-		});
-		*/
 		//kendo.unbind("#"+e.data[i].id+"-img");
 		kendo.destroy("#"+e.data[i].id+"-img");
 		$("#"+e.data[i].id+"-img").kendoTouch({
@@ -363,7 +336,7 @@ function getViewableProductChange(e){
 				console.log($(this)[0].element.context.className);
 				getTortProduct("#"+$(this)[0].element.context.id, e.data);
 				if($(this)[0].element.context.className.indexOf("plus") > -1) {
-					addToDefaultWishlist();
+					addToWishlistFrom("#thisorthat-view");
 					$("#"+$(this)[0].element.context.id).removeClass("plus");
 					$("#"+$(this)[0].element.context.id).addClass("added");
 					$("#"+$(this)[0].element.context.id).attr("src", "images/my_gift_icon.png");

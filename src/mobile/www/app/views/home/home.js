@@ -25,12 +25,9 @@ define([
 });
 
 var homeShowCounter = 0;
-var itemID, itemName, itemImageSrc, orignalSearchResetX = 0, orignalSearchResetY = 0;
-var searchResetBtnPressed = false;
-
-/*
-    Description:
-*/
+var itemID, itemName, itemImageSrc, itemCategoryName;
+var cancelBtnTapped = false;
+//var productResultsData = "";
 
 /*
     Description:
@@ -45,10 +42,11 @@ $(
 /*
     Description: Set the relevant item information for the selected product to be added to your wishlist
 */
-function setSelectedItemInfo(id, name, src) {
+function setSelectedItemInfo(id, name, src, category) {
     itemID = id;
     itemName = name;
     itemImageSrc = src;
+    itemCategoryName = category;
 }
 
 /*
@@ -57,32 +55,77 @@ function setSelectedItemInfo(id, name, src) {
 */
 function setProductData(e) {
         //Add Products to list view
-        /*var temp_data = '{"Status":"search", "Model":{"items":[{"id":"345435","name":"Mario Amiibo","image":"http://www.gamestop.com/common/images/lbox/104546b.jpg", "description":"Interactive Play with Nintendo console games"},{"id":"3545354","name":"Luigi Amiibo","image":"http://www.gamestop.com/common/images/lbox/106342b.jpg", "description":"Interactive Play with Nintendo console games"},{"id":"3454363","name":"Peach Amiibo","image":"http://www.gamestop.com/common/images/lbox/104547b.jpg", "description":"Interactive Play with Nintendo console games"},{"id":"3454398","name":"Wario Amiibo","image":"http://i5.walmartimages.com/dfw/dce07b8c-2652/k2-_771924f6-f385-4dec-b08a-a5aa1cced6c3.v1.jpg", "description":"Interactive Play with Nintendo console games"},{"id":"3454005","name":"Pit Amiibo","image":"http://www.gamestop.com/common/images/lbox/106338b.jpg", "description":"Interactive Play with Nintendo console games"}]}}';
-        var data = JSON.parse(temp_data);*/
         console.log("Search text: "+$(".km-filter-wrap input").val());
         webService("getgiftitemswithterm",'searchText='+$(".km-filter-wrap input").val());
         $(".km-filter-wrap input").blur();
         hideMobileKeyboard();
         showLoadingAnimation(true, "Loading...");
-
 }
+
+
+/*
+    Description:
+
+*/
+/*function getCategoryName(itemId, data) {
+    // iterate over each element in the array
+    for (var i = 0; i < data.length i++){
+      // look for the entry with a matching `code` value
+      if (data[i].id == itemId){
+         // we found it
+        console.log("item found in data");
+      }
+    }
+    var name = "";
+    return name;
+}*/
+
 
 /*
     Description:
     Add the currently selected item to the Default Wishlist
 */
-function addToDefaultWishlist() {
-    console.log("Add to Default Wishlist");
-    console.log("Item ID: "+ itemID + " and Item Name: " + itemName);
+function addToWishlistFrom(sourceView) {
+    console.log("Add to Wishlist");
+    console.log("Item ID: "+ itemID + " and Item Name: " + itemName + " | Category: " + itemCategoryName);
     insertIntoWishlist("default");
-    setWishlistTabBadge();
+    if(sourceView === "#home-view") {
+        setWishlistTabBadge(sourceView);
+    } 
 }
 
 /*
     Description:
 */
 function insertIntoWishlist(wishlistName) {
-    $("#"+wishlistName+"-wishlist").append('<div class="gallery-image-container"><div class="delete invisible"><a data-role="button" class="km-widget km-button"><span class="km-icon km-close-btn km-notext"></span></a></div><img id="'+itemID+'-product"'+'class="gallery-image" src="'+itemImageSrc+'"/></div>');
+    console.log("insertIntolWishlist & # of Group Headers: "+$("#"+wishlistName+"-wishlist").find($(".group-header")).length);
+
+    if($("#"+wishlistName+"-wishlist").find($(".group-header")).length > 0){ //Category header exist 
+        for(var i = 0; i < ($("#"+wishlistName+"-wishlist").find($(".group-header")).length); i++) {
+            console.log("# of Group Header" + $("#"+wishlistName+"-wishlist").find($(".group-header")).length + " & i: " + i);
+            if($("#"+wishlistName+"-wishlist").find($(".group-header")[i]).html() === itemCategoryName) {
+                //console.log("The #"+(i+1)+" group-header has the word Other in it");
+                console.log("Category found in wishlist");
+                //Insert product after category
+                $('<div class="gallery-image-container"><div class="delete invisible"><a data-role="button" class="km-widget km-button"><span class="km-icon km-close-btn km-notext"></span></a></div><span><img id="'+itemID+'-product"'+'class="gallery-image" src="'+itemImageSrc+'"/></span></div>').insertAfter($("#"+wishlistName+"-wishlist").find($(".group-header")[i]));
+                i = ($("#"+wishlistName+"-wishlist").find($(".group-header")).length + 1); //End loop
+            }
+            if(i == ($("#"+wishlistName+"-wishlist").find($(".group-header")).length - 1)) {//if category wasn't found
+                console.log("Category not found in wishlist & Category created; Not First");
+                $("#"+wishlistName+"-wishlist").append("<div class='group-header'>" + itemCategoryName + "</div>");
+                $("#"+wishlistName+"-wishlist").append('<div class="gallery-image-container"><div class="delete invisible"><a data-role="button" class="km-widget km-button"><span class="km-icon km-close-btn km-notext"></span></a></div><span><img id="'+itemID+'-product"'+'class="gallery-image" src="'+itemImageSrc+'"/></span></div>');
+                i = ($("#"+wishlistName+"-wishlist").find($(".group-header")).length + 1); //End loop
+            }
+        }
+    }
+    else { //first group header
+        console.log("First Category created in wishlist");
+        $("#"+wishlistName+"-wishlist").append("<div class='group-header'>" + itemCategoryName + "</div>");
+        $("#"+wishlistName+"-wishlist").append('<div class="gallery-image-container"><div class="delete invisible"><a data-role="button" class="km-widget km-button"><span class="km-icon km-close-btn km-notext"></span></a></div><span><img id="'+itemID+'-product"'+'class="gallery-image" src="'+itemImageSrc+'"/></span></div>');
+    }
+
+    //$("#"+wishlistName+"-wishlist").append('<div class="gallery-image-container"><div class="delete invisible"><a data-role="button" class="km-widget km-button"><span class="km-icon km-close-btn km-notext"></span></a></div><img id="'+itemID+'-product"'+'class="gallery-image" src="'+itemImageSrc+'"/></div>');
+    
     //TODO Create function to add info to object for sending with wishlist route
     //Add to Wishlist; Works
     /*var object = {};
@@ -112,76 +155,106 @@ function afterHomeViewShow(e){
     $(".km-filter-wrap input").unbind("keypress");
     $(".km-filter-wrap input").keypress(function(event) {
         var code = (event.keyCode ? event.keyCode : event.which);
-        //(alert)("Code: "+code);
         if(code === 13) { //Enter keycode for 'Search' key
-            setProductData(e);
+            if ($(".km-filter-wrap input").val() !== "")
+                setProductData(e);
         }
     });
     
     $(".km-filter-wrap input").unbind("focus");
     $(".km-filter-wrap input").focus(function(event) {
-        console.log("input focus");
-        $("#home-view .cover").removeClass("hidden");
-        if(searchResetBtnPressed === true) {
-            $(".km-filter-wrap input").blur();
-            //break;
-            searchResetBtnPressed = false;
-        }
-        else {
+        console.log("search input focus");
+        //if (cancelBtnTapped === false) { //Cancel button tapped
+            //console.log("Cancel button NOT pressed");
+            $("#home-view .cover").removeClass("hidden");
+            $("#home-view .km-scroll-wrapper").data("kendoMobileScroller").disable();//disable scrolling
+            if ($(".km-filter-wrap input").val() !== "")
+                $("#header-search").find($(".km-filter-reset")[0]).removeClass("hidden");
+            else
+                $(".km-filter-wrap input").attr("placeholder", "");
+            if ($(".km-filter-wrap").hasClass("active-search") === false)
+                $(".km-filter-wrap").addClass("active-search"); //shrink
+            setTimeout(function() {
+                $("#header-search div:last-child").addClass("show");
+            }, 850);
+            //$("#home-container").addClass("hidden"); //Keep default home view element on screen
+        //}
+        /*else { //Cancel
+            console.log("Cancel button pressed");
+            cancelBtnTapped = false;
+            //$(".km-filter-wrap input").blur();
+        }*/
+    });
+
+    $(".km-filter-wrap input").unbind("keyup");
+    $(".km-filter-wrap input").keyup(function() {
+        if ($(".km-filter-wrap input").val() !== "")
             $("#header-search").find($(".km-filter-reset")[0]).removeClass("hidden");
-            /*$("#header-search").find($(".km-filter-reset")[0]).addClass("show"); */
-            //Hide This or That option (Dual Search)
-            $(".secondary-search-container").addClass("hidden");
-            $("#home-container").addClass("hidden");
-        }
-        
+        else
+            $("#header-search").find($(".km-filter-reset")[0]).addClass("hidden");
     });
 
     $(".km-filter-wrap input").unbind("focusout");
-    $(".km-filter-wrap input").focusout(function(event) {
-        console.log("input no longer focused");
+    $(".km-filter-wrap input").focusout(function(event) { //Triggered via blur()
+        console.log("input no longer focus");
+        console.log("remove reset button");
+        $("#header-search").find($(".km-filter-reset")[0]).removeClass("show");
+        $("#header-search").find($(".km-filter-reset")[0]).addClass("hidden");
         $(".cover").addClass("hidden");
+        $("#home-view .km-scroll-wrapper").data("kendoMobileScroller").enable();//enable scrolling
         if($(".km-filter-wrap input").val() === "") {
-            $("#header-search").find($(".km-filter-reset")[0]).removeClass("show");
-            $("#header-search").find($(".km-filter-reset")[0]).addClass("hidden");
-            //Show this or that option (Dual Search)
-            e.view.element.find("#products-search-listview").data("kendoMobileListView").replace([ "" ]);
-            $("#products-search-listview").addClass("hidden");
-            $(".secondary-search-container").removeClass("hidden");
-            $("#home-container").removeClass("hidden");
-            APP.instance.view().scroller.reset(); //reset Scroller
+            // setTimeout(function() {
+                // $(".km-filter-wrap").removeClass("active-search");
+            $(".km-filter-wrap input").attr("placeholder", "Search Products or Categories");
+            // },50);
+            $("#header-search div:last-child").removeClass("show"); //hide Cancel
+            $(".km-filter-wrap").removeClass("active-search"); // expand input
+            //reset list
+            if($("#products-search-listview").hasClass("hidden") === false) {
+                e.view.element.find("#products-search-listview").data("kendoMobileListView").replace([ "" ]);
+                $("#products-search-listview").addClass("hidden");
+            }
+            $("#home-container").removeClass("hidden"); //show default containers
+            //APP.instance.view().scroller.reset(); //reset Scroller
         }
-    });
-    document.getElementById("search-reset-btn").removeEventListener("touchstart", function(){});
-    document.getElementById("search-reset-btn").removeEventListener("touchmove", function(){});
-    
-    addTouchSMEvents("search-reset-btn", "green-text");
+        else {
+            console.log("input not empty");
 
-    document.getElementById("search-reset-btn").removeEventListener("touchend", function(){});
-    document.getElementById("search-reset-btn").addEventListener("touchend", function (evt) {
-        console.log();
-        if( (evt.changedTouches[0].clientX >= orignalSearchResetX-10 && evt.changedTouches[0].clientX <= orignalSearchResetX+10) && (evt.changedTouches[0].clientY >= orignalSearchResetY-10 && evt.changedTouches[0].clientY <= orignalSearchResetY+10) ) {
-            console.log("touchend search-reset-btn");
-            $(".cover").addClass("hidden");
-            $(".km-filter-wrap input").blur();
-            searchResetBtnPressed = true;
-            $(".km-filter-wrap input").val("");
-            $("#search-reset-btn span").removeClass("green-text"); 
-            $("#header-search").find($(".km-filter-reset")[0]).removeClass("show");
-            $("#header-search").find($(".km-filter-reset")[0]).addClass("hidden");
-            //Reset the input to empty
-            $(".km-filter-wrap input").val("");
-            e.view.element.find("#products-search-listview").data("kendoMobileListView").replace([ "" ]);
-            $("#products-search-listview").addClass("hidden");
-            $("#products-search-listview>li:first-child").addClass("text-center");
-            //Show this or that option (Dual Search)
-            $(".secondary-search-container").removeClass("hidden");
-            $("#home-container").removeClass("hidden");
-            APP.instance.view().scroller.reset(); //reset Scroller
         }
-        
+        //console.log("\n");
+    });
+
+    //Add tap events
+    //kendo.unbind("#search-reset-btn");
+    kendo.destroy("#search-reset-btn");
+    $("#search-reset-btn").kendoTouch({
+        tap: function (evt) {
+            //$(".cover").addClass("hidden");
+            $(".km-filter-wrap input").val("");
+            $("#header-search").find($(".km-filter-reset")[0]).addClass("hidden");
+        }
     });
     
+    //kendo.unbind("#header-search div:last-child");
+    kendo.destroy("#header-search div:last-child");
+    $("#header-search div:last-child").kendoTouch({ //Search Cancel button
+        tap: function (evt) {
+            console.log("Cancel Search");
+            cancelBtnTapped = true;
+            $("#header-search div:last-child").removeClass("show");
+            $(".km-filter-wrap input").val("");
+            //$(".km-filter-wrap").removeClass("active-search"); //expand
+            //console.log("input expand");
+            $(".km-filter-wrap input").attr("readonly","readonly");
+            console.log("input readonly");
+            setTimeout(function() {
+                $(".km-filter-wrap input").blur();
+                $(".km-filter-wrap input").removeAttr("readonly");
+                console.log("blur input");
+            }, 850);
+        }
+    });
+
     $("#search-reset-btn>span:first-child").attr("style","content: '/\e031'");
 
     //Test
@@ -190,11 +263,20 @@ function afterHomeViewShow(e){
     $("#upcoming-events-scrollview>div>div:first-child div:nth-child(2) .event").kendoTouch({
         tap: function (evt) {
             //Default/Testing
-            APP.instance.navigate("#home-event-view", "slide:right");
+            APP.instance.navigate("#home-event-view", "overlay:down");
             showElement("#home-event-view #header-search", false);
         }
     })
 }
+
+/*
+    Description: set Product Category Data from webservice call
+*/
+//TODO
+function setProductCategoriesData() {
+    
+}
+
 
 /*
     Description:
@@ -203,6 +285,8 @@ function afterHomeViewShow(e){
 function homeViewInit(e) {
     console.log("home-view init");
     checkLocalCredentials();
+    //Set Product Categories
+    setProductCategoriesData();
     // Set the data for Upcoming Events
     //TODO
     //Set data for Popular Categories
@@ -215,73 +299,14 @@ function homeViewInit(e) {
 }
 
 /*
-    Description: add touch start and Move events
-*/
-function addTouchSMEvents(element, className) {
-//function addTouchSMEvents(element, className, TouchBtnX0, TouchBtnY0) { //Use this options TODO 
-    document.getElementById(element).addEventListener("touchstart", function (evt) {
-        var originalX = evt.changedTouches[0].clientX;
-        var originalY = evt.changedTouches[0].clientY;
-        
-        if (element === "search-reset-btn"){
-            $("#" + element + " span").addClass(className);
-            orignalSearchResetX = originalX;
-            orignalSearchResetY = originalY;
-        }
-        else if (element === "facebook-login-btn") {
-            $("#" + element).addClass(className);
-            orignalFacebookBtnX = originalX;
-            orignalFacebookBtnY = originalY;
-        }
-        /*else if (element === "facebook-login-btn") {
-            $("#" + element).addClass(className);
-            orignalFacebookBtnX = originalX;
-            orignalFacebookBtnY = originalY;
-        }*/
-        else if (element === "account-login-btn") {
-            $("#" + element).addClass(className);
-            orignalAccountBtnX = originalX;
-            orignalAccountBtnY = originalY;
-        }
-        else if (element === "account-logout-btn") {
-            $("#" + element).addClass(className);
-            originalLogOutBtnX = originalX;
-            originalLogOutBtnY = originalY;
-        }
-        else {
-            $("#" + element).addClass(className);
-        }
-        //evt.preventDefault();
-    });
-
-    document.getElementById(element).addEventListener("touchmove", function (evt) {
-        if (element === "search-reset-btn"){
-            $("#" + element + " span").removeClass(className);
-        }
-        else if (element === "facebook-login-btn") {
-            $("#" + element).removeClass(className);
-        }
-        else if (element === "account-login-btn") {
-            $("#" + element).removeClass(className);
-        }
-        else if (element === "account-logout-btn") {
-            $("#" + element).removeClass(className);
-        }
-        else {
-            $("#" + element).removeClass(className);
-        }
-        //evt.preventDefault();
-    });
-}
-
-/*
     Description: Set the server's response data into the Home View List View List elements
 */
 function setHomeViewProductData(webServiceResponse) {
     webServiceResponse = shortenText(webServiceResponse, "name");
-    var data = webServiceResponse;
+    data = webServiceResponse;
     // console.log(JSON.stringify(data));
     $("#home-view .cover").addClass("hidden");
+    $("#home-view .km-scroll-wrapper").data("kendoMobileScroller").enable();//enable scrolling
     if (data.model.items.length > 2) {
         var template = kendo.template($("#productSearchTemplate").html()); //Get the external template definition
         console.log("Inside the template: "+JSON.stringify(data));
@@ -294,15 +319,17 @@ function setHomeViewProductData(webServiceResponse) {
         //Add the touch event listener to all product add gift icons
         $.each($("#home-view .product-add"), function (index, element) {
             element.addEventListener("touchstart", function (evt) {
-                    setSelectedItemInfo($(this).parent().prev().find(".item-name").attr("id"), $(this).parent().prev().find(".item-name").html(), $(this).parent().prev().prev().find(".item-image").attr("src"));
-                    $("#addItem-actionsheet").data("kendoMobileActionSheet").open();
-                    //evt.preventDefault(); 
+                    setSelectedItemInfo($(this).parent().prev().find(".item-name").attr("id"), $(this).parent().prev().find(".item-name").html(), $(this).parent().prev().prev().find(".item-image").attr("src"), $(this).parent().parent().next().find(".item-category").html());
+                    //$("#addItem-actionsheet").data("kendoMobileActionSheet").open();
+                    addToWishlistFrom("#home-view");
                 }, 
             false);
         });
     }
     else {
         //TODO
+        $("#home-container").addClass("hidden");
+        $("#products-search-listview").removeClass("hidden");
         APP.instance.view().element.find("#products-search-listview").data("kendoMobileListView").replace([ "No products available!!" ]);
         $("#products-search-listview>li:first-child").addClass("text-center");
         //console.log("No items available.");
@@ -331,6 +358,7 @@ function setHomeViewPopularData(webServiceResponse){
             webService("getgiftitemswithterm",'searchText='+$(".km-filter-wrap input").val());
             showLoadingAnimation(true, "Loading...");
             $("#home-view .cover").removeClass("hidden");
+            $("#home-view .km-scroll-wrapper").data("kendoMobileScroller").disable();//disable scrolling
         }
     })
 }
@@ -389,7 +417,7 @@ function shortenText(data, field) {
 */
 
 function showElement(element, status) {
-    console.log("Show"+element);
+    //console.log("Show"+element);
     if (status === true)
         $(element).removeClass("hidden");
     else if (status === false)

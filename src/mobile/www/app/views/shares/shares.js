@@ -60,7 +60,7 @@ function onRequestUserWishlistPrompt(results) {
 
 /**/
 function initSharesView(e) {
-	document.getElementById("send-wishlist-request-btn").removeEventListener("touchstart", function(){});
+	/*document.getElementById("send-wishlist-request-btn").removeEventListener("touchstart", function(){});
     document.getElementById("send-wishlist-request-btn").removeEventListener("touchmove", function(){});
 	addTouchSMEvents("send-wishlist-request-btn", "inner-shadow");
 	document.getElementById("send-wishlist-request-btn").removeEventListener("touchend", function(){});
@@ -76,8 +76,30 @@ function initSharesView(e) {
 	            );
 	        }
         	//e.preventDefault();
-    });
+    });*/
 
+	//kendo.unbind("#facebook-login-btn");
+    kendo.destroy("#send-wishlist-request-btn");
+    $("#send-wishlist-request-btn").kendoTouch({
+        touchstart: function (evt) {
+            $("#send-wishlist-request-btn").addClass("inner-shadow");
+        },
+        dragstart: function (evt) {
+            $("#send-wishlist-request-btn").removeClass("inner-shadow");
+        },
+        tap: function (evt) {
+            $("#send-wishlist-request-btn").removeClass("inner-shadow");  
+            if (navigator.notification) {
+	            navigator.notification.prompt(
+	                "Please enter the email for the user that you would like to request access for their wishlist.",  // message
+	                onRequestUserWishlistPrompt,         	// callback
+	                "Request Wishlist",   // title
+	                ["Send","Cancel"],  // buttonName
+	            	""					//Default test
+	            );
+	        }
+        }
+    });
 }
 
 /*

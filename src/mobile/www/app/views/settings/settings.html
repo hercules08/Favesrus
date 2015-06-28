@@ -24,10 +24,44 @@
     </ul>
 </div>
 
-<div data-role="view" id="myprofile-view" data-layout="myprofile-layout" data-transition="slide:left">
-	<div class="center container">
-		<a id="account-logout-btn" data-role="button" class="logout-btn alizarin">LOG OUT</a>
-	</div>
+<div data-role="view" id="myprofile-view" data-layout="myprofile-layout" data-transition="slide:left" data-init="myprofileViewInit">
+	<div class="center"></div>
+    <div>
+        <ul data-role="listview" data-style="inset" data-type="flat">
+            <li>
+                <a href="">
+                    <img class="myprofile-list-view-img" src="images/wishlist_icon.png" data-bind="attr: { src: profilePic}"/>
+                    <span data-bind="text: name">40</span><span> items Added</span>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <img class="myprofile-list-view-img svg red-fill" src="images/heart_icon.svg" data-bind="attr: { src: profilePic}"/>
+                    <span data-bind="text: name">15</span><span> Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <table>
+                        <tr>
+                            <td rowspan="2">
+                                <span class="fa fa-users fa-2x"></span>
+                            </td>
+                            <td>
+                                <span data-bind="text: name">4</span><span> Wishlisters</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span>(20 items)</span>
+                            </td>
+                        </tr>
+                    </table>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="center"><a id="account-logout-btn" data-role="button" class="logout-btn">LOG OUT</a></div>
 </div>
 
 <div data-role="layout" data-id="myprofile-layout">
@@ -35,25 +69,50 @@
         <div data-role="navbar">
             <a data-align="left" data-role="backbutton">Back</a>
             <span data-role="view-title"><img class="header-logo" src="images/FavesRUs_logo.png"/></span>
+            <a data-align="right" data-role="button">EDIT</a>
         </div> 
     </div>
 </div>
 
-<!-- login Layout -->
-<div data-role="layout" data-id="settings-layout">
-    <!-- Header -->
-    <div data-role="header">
-        <div data-role="navbar">
-            <!-- <a id="profile-pic" data-align="left" data-icon="profile-pic-holder" data-role="button"></a> -->
-            <span data-role="view-title"><img class="header-logo" src="images/FavesRUs_logo.png"/></span>
-        </div> 
+<script id="myProfileTemplate" type="text/x-kendo-template">
+    <div style="background: -webkit-linear-gradient(rgba(22, 160, 133, 0.25), rgba(231, 76, 60, 0.25)); padding: 1em 0;">
+        <table style="text-align:left;" class="center">
+            <tr>
+                <td rowspan="2">
+                    <img style="width:4.5em;" class="circle" src="images/profile_image.png"/>
+                </td>
+                <td>John Doe</td>
+                <td>
+                    <div>
+                        <img class="credit-card svg green-fill" src="images/creditcard_icon.svg"/>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>johndoe@faves.com</span>
+                </td>
+            </tr>
+        </table>
+        <table style="text-align:left;" class="center">
+            <tr>
+                <td>
+                    <div><img class="profile-main-icon svg green-fill" src="images/male_icon.svg"/><span>Male</span></div>
+                </td>
+                <td>
+                    <div><span class="fa fa-calendar fa-2x green-text"></span><span>January 1, 1901</span></div>
+                </td>
+            </tr>
+            <tr style="text-align: center">
+                <td colspan="2">
+                    <div><img class="profile-main-icon svg green-fill" src="images/location_icon.svg"/><span>Portland, OR</span></div>
+                </td>
+            </tr>
+        </table>
     </div>
-    <div data-role="footer">
-        <div id="tabstrip" class="tabstrip" data-role="tabstrip">
-            <a href="#home-view" data-icon="search">Search</a>
-            <a name="wishlist-tab" href="#wishlist-view" data-icon="wish-list">Wishlist</a>
-            <a href="#shares-view" data-icon="contacts">Shares</a>
-            <a href="#settings-view" data-icon="settings">Settings</a>
-        </div>
-    </div>
-</div>
+    
+</script>
+
+<script id="myEditProfileTemplate" type="text/x-kendo-template">
+    
+</script>
