@@ -176,6 +176,7 @@
     <Compile Include="Controllers\Account_LoginController.cs" />
     <Compile Include="Controllers\Account_PasswordController.cs" />
     <Compile Include="Controllers\Account_RegisterController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\FaveEventController.cs" />
     <Compile Include="Controllers\GiftItemController.cs" />
     <Compile Include="Filters\ValidateModelAttribute.cs" />

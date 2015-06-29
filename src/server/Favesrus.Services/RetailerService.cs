@@ -17,7 +17,7 @@ namespace Favesrus.Services
         IQueryable<Retailer> GetRetailers();
     }
 
-    public class RetailerService :BaseService, IRetailerService
+    public class RetailerService : BaseService, IRetailerService
     {
         private readonly IUnitOfWork _uow = null;
         private readonly IRepository<Retailer> _retailerRepo = null;
@@ -27,7 +27,7 @@ namespace Favesrus.Services
             IAutoMapper mapper,
             IUnitOfWork uow,
             IRepository<Retailer> retailerRepo)
-            :base(logManager, mapper)
+            : base(logManager, mapper)
         {
             _uow = uow;
             _retailerRepo = retailerRepo;

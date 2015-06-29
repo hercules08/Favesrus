@@ -1,18 +1,20 @@
 ﻿using Favesrus.Core;
 using Favesrus.Core.Logging;
+using Favesrus.Core.Results.Error;
 using Favesrus.Core.TypeMapping;
 using Favesrus.DAL.Core;
 using Favesrus.Data.Dtos;
 using Favesrus.Domain.Entity;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Favesrus.Services
 {
     public interface IFaveEventService
     {
         ICollection<FaveEventModel> GetFaveEventsForUser(string userId);
-        FaveEventModel AddFaveEventForUser(FaveEventModel faveEventModel);
+        Task<FaveEventModel> AddFaveEventForUserAsync(FaveEventModel faveEventModel);
     }
 
     public class FaveEventService:BaseService, IFaveEventService
@@ -45,13 +47,21 @@ namespace Favesrus.Services
             return faveEventsModel;
         }
 
-        public FaveEventModel AddFaveEventForUser(FaveEventModel faveEventModel)
+        public async Task<FaveEventModel> AddFaveEventForUserAsync(FaveEventModel faveEventModel)
         {
             Logger.Info("Begin");
 
             FaveEvent faveEvent = Mapper.Map<FaveEvent>(faveEventModel);
-            _faveEventRepo.Add(faveEvent);
-            _uow.Commit();
+            
+            try
+            {
+                FaveEvent localFaveEvent = await _faveEventRepo.AddAsync(faveEvent);
+            }
+            catch
+            {
+                string errorMessage = "Unable to add Fave Event";
+                throw new ApiErrorException(errorMessage,faveEventModel);
+            }
 
             FaveEventModel resultModel = Mapper.Map<FaveEventModel>(faveEvent);
 

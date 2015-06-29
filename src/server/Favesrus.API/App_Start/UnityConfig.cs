@@ -31,7 +31,7 @@ namespace Favesrus.API
 
         private static void RegisterTypes(IUnityContainer container)
         {
-            container.RegisterType<Favesrus.API.Controllers.AccountController>();
+            //container.RegisterType<Favesrus.API.Controllers.AccountController>();
 
             container.RegisterType<ILogManager, LogManager>();
             container.RegisterType<IAutoMapper, AutoMapperAdapter>();
@@ -48,6 +48,8 @@ namespace Favesrus.API
             container.RegisterType<IAccountService, AccountService>();
             container.RegisterType<ICommunicationService, CommunicationService>();
             container.RegisterType<IGiftItemService, GiftItemService>();
+            container.RegisterType<IFaveEventService, FaveEventService>();
+            container.RegisterType<ICategoryService, CategoryService>();
         }
 
         private static void ConfigureIdentityOwin(IUnityContainer container)

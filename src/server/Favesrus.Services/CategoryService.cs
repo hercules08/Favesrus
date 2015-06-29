@@ -1,7 +1,9 @@
 ﻿using Favesrus.Core;
 using Favesrus.Core.Logging;
+using Favesrus.Core.Results.Error;
 using Favesrus.Core.TypeMapping;
 using Favesrus.DAL.Core;
+using Favesrus.Data.Dtos;
 using Favesrus.Domain.Entity;
 using System.Linq;
 
@@ -12,7 +14,7 @@ namespace Favesrus.Services
         IQueryable<Category> AllCategories { get; }
         Category AddCategory(Category entity);
         Category UpdateCategory(Category entity);
-        Category FindCategoryById(int id);
+        CategoryModel FindCategoryById(int id);
         Category FindCategoryByName(string name);
         void DeleteCategory(int id);
     }
@@ -29,12 +31,12 @@ namespace Favesrus.Services
             :base(logManager, mapper)
         {
             _uow = uow;
-            categoryRepo = _categoryRepo;
+            _categoryRepo = categoryRepo;
         }
 
         public IQueryable<Category> AllCategories
         {
-            get { return _categoryRepo.All; }
+            get { return _categoryRepo.All.OfType<Category>(); }
         }
 
 
@@ -52,9 +54,21 @@ namespace Favesrus.Services
             return entity;
         }
 
-        public Category FindCategoryById(int id)
+        public CategoryModel FindCategoryById(int id)
         {
-            return _categoryRepo.FindById(id);
+
+            var category = _categoryRepo.FindById(id);
+            
+            if (category == null)
+            {
+                string errorMessage = string.Format("Category with id {0} not found",id);
+                Logger.Error(errorMessage);
+                throw new ApiErrorException(errorMessage);
+            }
+
+            CategoryModel categoryModel = Mapper.Map<CategoryModel>(category);
+
+            return categoryModel;
         }
 
         public Category FindCategoryByName(string name)

@@ -615,7 +615,6 @@
     <Compile Include="Controllers\RecommendationController.cs" />
     <Compile Include="Controllers\RetailerController.cs" />
     <Compile Include="Controllers\WebApi\ApiBaseController.cs" />
-    <Compile Include="Controllers\WebApi\CategoryController.cs" />
     <Compile Include="Controllers\WebApi\GiftItemOldController.cs" />
     <Compile Include="Controllers\WebApi\ModoController.cs" />
     <Compile Include="Controllers\WebApi\RecommendationController.cs" />

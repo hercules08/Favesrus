@@ -12,7 +12,7 @@ namespace Favesrus.Domain.Entity
         public string EventName { get; set; }
         public string EventImage { get; set; }
         public DateTime? EventDate { get; set; }
-        public List<GiftItem> SuggestedGiftItems { get; set; }
+        public ICollection<GiftItem> SuggestedGiftItems { get; set; }
         public FavesrusUser FavesUser { get; set; }
         public string FavesUserId { get; set; }
         public bool IsVisible { get; set; }

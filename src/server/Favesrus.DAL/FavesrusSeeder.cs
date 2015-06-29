@@ -23,7 +23,7 @@ namespace Favesrus.DAL
             //    .Fill(p => p.ItemImage)
 
             return list;
-        }
+        } 
 
         static UserManager<FavesrusUser> userMgr;
         static RoleManager<FavesrusRole> roleMgr;
@@ -82,6 +82,21 @@ namespace Favesrus.DAL
             Recommendation recommendationSmartWatch = new Recommendation()
             {
                 CategoryName = "Smart Watches"
+            };
+
+            Category categoryElectronics = new Category()
+            {
+                CategoryName = "Electronics"
+            };
+
+            Category categoryKitchen = new Category()
+            {
+                CategoryName = "Kitchen"
+            };
+
+            Category categoryGaming = new Category()
+            {
+                CategoryName = "Gaming"
             };
 
             GiftItem giftItemMario = new GiftItem()
@@ -207,7 +222,6 @@ namespace Favesrus.DAL
                 Description = "Place Holder 4"
             };
 
-
             WishList wishlistDamola = new WishList()
             {
                 WishListName = "Default",
@@ -228,6 +242,28 @@ namespace Favesrus.DAL
                 }
             };
 
+
+            FaveEvent faveEventChristmas = new FaveEvent()
+            {
+                EventDate = DateTime.Parse("12/25/2015"),
+                EventImage = "http://christmas.jpg",
+                EventName = "Christmas",
+                SuggestedGiftItems = 
+                new List<GiftItem> {
+                    giftItemAppleWatch,
+                    giftItemSamsungWatch
+                }
+
+            };
+
+            FaveEvent faveEventElroyBirthday = new FaveEvent()
+            {
+                EventDate = DateTime.Parse("02/08/1988"),
+                EventImage = "http://christmas.jpg",
+                EventName = "Elroy's Birthday",
+                SuggestedGiftItems = wishlistElroy.GiftItems
+            };
+
             FavesrusUser userDamola = new FavesrusUser()
             {
                 FirstName = "Damola",
@@ -236,7 +272,11 @@ namespace Favesrus.DAL
                 Gender = Favesrus.Domain.Entity.Enum.Gender.MALE,
                 ProfilePic = "http://damolaomotosho.com/images/my-photo.jpg",
                 WishLists = new List<WishList>{ wishlistDamola },
-                UserName = "damola.omotosho@gmail.com"
+                UserName = "damola.omotosho@gmail.com",
+                FaveEvents = new List<FaveEvent>
+                {
+                    faveEventElroyBirthday
+                }
             };
 
             FavesrusUser userElroy = new FavesrusUser()
@@ -247,7 +287,11 @@ namespace Favesrus.DAL
                 Gender = Favesrus.Domain.Entity.Enum.Gender.FEMALE,
                 ProfilePic = "",
                 WishLists = new List<WishList> { wishlistElroy },
-                UserName = "elroy@faves.com"
+                UserName = "elroy@faves.com",
+                FaveEvents = new List<FaveEvent>
+                {
+                    faveEventChristmas
+                }
             };
 
             List<EntityBase> dbItems = new List<EntityBase>()
@@ -262,6 +306,10 @@ namespace Favesrus.DAL
                 recommendationGamingFigures,
                 recommendationSandalsWomen,
                 recommendationSmartWatch,
+
+                categoryKitchen,
+                categoryElectronics,
+                categoryGaming,
                 
                 giftItemMario,
                 giftItemMickey, 

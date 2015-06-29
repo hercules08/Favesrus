@@ -41,6 +41,7 @@ namespace Favesrus.API.Controllers
             ICollection<GiftItemModel2> foundMatches = 
                 _giftItemService.GetGiftItemsWithTerm(searchText);
 
+            Logger.Info("End");
             return new
             ApiActionResult<ICollection<GiftItemModel2>>
             (apiStatus, apiMessage, foundMatches);
