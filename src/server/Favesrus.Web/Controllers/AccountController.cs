@@ -1,5 +1,6 @@
 ﻿using Favesrus.Domain.Entity;
 using Favesrus.Server.Dto.FavesrusUser;
+using Favesrus.Services;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using System.Security.Claims;
@@ -11,6 +12,18 @@ namespace Favesrus.Server.Controllers
     [Authorize]
     public class AccountController : BaseController
     {
+
+        private readonly FavesrusUserManager userManager;
+        private readonly ApplicationSignInManager signInManager;
+        private readonly IAuthenticationManager authenticationManager;
+
+        public AccountController(FavesrusUserManager userManager, ApplicationSignInManager signInManager, IAuthenticationManager authenticationManager)
+        {
+            this.userManager = userManager;
+            this.signInManager = signInManager;
+            this.authenticationManager = authenticationManager;
+        }
+
         [AllowAnonymous]
         public ActionResult Login(string returnUrl = "/")
         {

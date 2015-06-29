@@ -31,6 +31,8 @@ namespace Favesrus.API
 
         private static void RegisterTypes(IUnityContainer container)
         {
+            container.RegisterType<Favesrus.API.Controllers.AccountController>();
+
             container.RegisterType<ILogManager, LogManager>();
             container.RegisterType<IAutoMapper, AutoMapperAdapter>();
 
@@ -44,6 +46,8 @@ namespace Favesrus.API
         private static void ConfigureServices(IUnityContainer container)
         {
             container.RegisterType<IAccountService, AccountService>();
+            container.RegisterType<ICommunicationService, CommunicationService>();
+            container.RegisterType<IGiftItemService, GiftItemService>();
         }
 
         private static void ConfigureIdentityOwin(IUnityContainer container)

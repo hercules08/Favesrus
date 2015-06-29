@@ -1,4 +1,6 @@
 ﻿using Favesrus.Core;
+using Favesrus.Core.Logging;
+using Favesrus.Core.TypeMapping;
 using System;
 using System.Net.Mail;
 
@@ -21,7 +23,8 @@ namespace Favesrus.Services
         private MailMessage _mailMessage;
         private SmtpClient _smtpClient;
 
-        public EmailService()
+        public EmailService(ILogManager logManager, IAutoMapper mapper)
+            :base(logManager, mapper)
         {
             _fromAddress = FavesrusConstants.EMAIL_ADDRESS;
             SetupSmtp();

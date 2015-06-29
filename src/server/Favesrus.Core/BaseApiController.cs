@@ -10,7 +10,7 @@ namespace Favesrus.Core
         ILogger _logger;
         IAutoMapper _mapper;
 
-        public BaseApiController(ILogManager logManager = null, IAutoMapper mapper = null)
+        public BaseApiController(ILogManager logManager, IAutoMapper mapper)
         {
             Logger = logManager.GetLogger();
             Mapper = mapper;

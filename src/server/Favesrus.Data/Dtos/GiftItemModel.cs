@@ -17,4 +17,19 @@ namespace Favesrus.Data.Dtos
         [DisplayName("WishLists")]
         public ICollection<WishListModel> WishList { get; set; }
     }
+    
+    public class GiftItemModel2 : EntityBaseModel
+    {
+        public GiftItemModel2()
+        {
+            Category = "Unknown";
+        }
+
+        public string Name { get; set; }
+        public string Image { get; set; }
+        public string Description { get; set; }
+        public Nullable<decimal> Price { get; set; }
+        [DisplayName("Categories/Recommendations")]
+        public string Category{ get; set; }
+    }
 }

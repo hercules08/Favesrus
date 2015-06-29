@@ -63,6 +63,14 @@
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\..\libs\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="NLog, Version=3.2.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\libs\NLog.3.2.0.0\lib\net45\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog.Interface, Version=3.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\libs\NLog.Interface.3.2.1\lib\net40\NLog.Interface.dll</HintPath>
+    </Reference>
     <Reference Include="Owin">
       <HintPath>..\..\..\libs\Owin.1.0\lib\net40\Owin.dll</HintPath>
     </Reference>
@@ -79,6 +87,7 @@
     <Compile Include="ApplicationSignInManager.cs" />
     <Compile Include="CategoryService.cs" />
     <Compile Include="EmailService.cs" />
+    <Compile Include="FaveEventService.cs" />
     <Compile Include="FavesrusRoleManager.cs" />
     <Compile Include="FavesrusUserManager.cs" />
     <Compile Include="GiftItemService.cs" />
@@ -98,6 +107,10 @@
     <ProjectReference Include="..\Favesrus.DAL\Favesrus.DAL.csproj">
       <Project>{4f7ce7d0-24df-4a9f-b38b-6d909cf8c204}</Project>
       <Name>Favesrus.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Favesrus.Data\Favesrus.Data.csproj">
+      <Project>{f6605fd6-f4d4-416d-8c8c-787ebcb7045b}</Project>
+      <Name>Favesrus.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\Favesrus.Domain\Favesrus.Domain.csproj">
       <Project>{93724bc5-dc4d-4657-b955-a5c7ddcaecf0}</Project>

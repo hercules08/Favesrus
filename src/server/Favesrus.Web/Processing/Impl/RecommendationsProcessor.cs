@@ -1,8 +1,9 @@
 ﻿using Favesrus.Core;
+using Favesrus.Core.Logging;
+using Favesrus.Core.TypeMapping;
 using Favesrus.Data.Dtos;
 using Favesrus.Data.RequestModels;
 using Favesrus.Domain.Entity;
-using Favesrus.Server.Infrastructure.Interface;
 using Favesrus.Server.Processing.Interface;
 using Favesrus.Services;
 using Microsoft.Owin.Security;
@@ -17,21 +18,26 @@ namespace Favesrus.Server.Processing.Impl
         IRecommendationService _recommendationService;
         IGiftItemService _giftItemService;
 
-        public RecommendationsProcessor(IEmailService emailer, 
-            IAutoMapper mapper, 
+        public RecommendationsProcessor( 
+            ILogManager logManager,
+            IAutoMapper mapper,
+            IEmailService emailer,
             IRecommendationService recommendationSerivce, 
             IGiftItemService giftItemService)
+            :base(logManager, mapper)
         {
             _recommendationService = recommendationSerivce;
             _giftItemService = giftItemService;
         }
 
         public RecommendationsProcessor(
+            ILogManager logManager,
+            IAutoMapper mapper,
                   FavesrusUserManager userManager,
                   FavesrusRoleManager roleManager,
                   IAuthenticationManager authManager,
-                  IEmailService emailer,
-                  IAutoMapper mapper)
+                  IEmailService emailer)
+            :base(logManager, mapper)
         {
         }
 

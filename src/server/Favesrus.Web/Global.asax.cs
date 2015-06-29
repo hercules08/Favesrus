@@ -2,6 +2,7 @@
 using Favesrus.Core.Logging;
 using Favesrus.Server;
 using Favesrus.Web.App_Start;
+using Favesrus.ApiService;
 using System;
 using System.Web.Http;
 using System.Web.Mvc;
@@ -23,6 +24,7 @@ namespace Favesrus.Web
             GlobalConfiguration.Configure(WebApiConfig.Register);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            AutoMappingConfigurator.Configure();
         }
 
         protected void Session_Start(object sender, EventArgs e)

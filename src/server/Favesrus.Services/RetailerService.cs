@@ -1,4 +1,6 @@
 ﻿using Favesrus.Core;
+using Favesrus.Core.Logging;
+using Favesrus.Core.TypeMapping;
 using Favesrus.DAL.Core;
 using Favesrus.Domain.Entity;
 using System.Linq;
@@ -21,8 +23,11 @@ namespace Favesrus.Services
         private readonly IRepository<Retailer> _retailerRepo = null;
 
         public RetailerService(
+             ILogManager logManager,
+            IAutoMapper mapper,
             IUnitOfWork uow,
             IRepository<Retailer> retailerRepo)
+            :base(logManager, mapper)
         {
             _uow = uow;
             _retailerRepo = retailerRepo;

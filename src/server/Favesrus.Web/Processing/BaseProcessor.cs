@@ -1,4 +1,5 @@
-﻿using Favesrus.Server.Filters;
+﻿using Favesrus.Core.TypeMapping;
+using Favesrus.Server.Filters;
 using Favesrus.Server.Infrastructure.Interface;
 using Favesrus.Services;
 using Microsoft.AspNet.Identity;
@@ -16,7 +17,7 @@ namespace Favesrus.Server.Processing
         FavesrusRoleManager _roleManager;
         IAuthenticationManager _authManager;
         IEmailService _emailer;
-        readonly IAutoMapper _mapper;
+        IAutoMapper _mapper;
 
         public BaseProcessor(IEmailService emailer, IAutoMapper mapper)
         {

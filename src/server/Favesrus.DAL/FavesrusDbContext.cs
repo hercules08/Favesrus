@@ -26,7 +26,6 @@ namespace Favesrus.DAL
         }
         
         public FavesrusDbContext(): base(FavesrusConstants.DB_NAME) { }
-        public FavesrusDbContext(string dbNameOrContext) : base(dbNameOrContext) { }
 
         public DbSet<GiftItem> GiftItems { get; set; }
         public DbSet<WishList> WishLists { get; set; }
@@ -45,8 +44,9 @@ namespace Favesrus.DAL
 
             modelBuilder.Configurations.Add(new CategoryMapping());
             modelBuilder.Configurations.Add(new RecommendationMapping());
-            modelBuilder.Configurations.Add(new IdentityUserLoginMapping());
-
+            
+            modelBuilder.Entity<IdentityUserLogin>().ToTable("AspNetUserLogins")
+                    .Property(c => c.ProviderKey).HasMaxLength(450);
         }
     }
 }

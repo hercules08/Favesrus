@@ -1,6 +1,6 @@
-﻿using Favesrus.DAL;
+﻿using Favesrus.Core.TypeMapping;
+using Favesrus.DAL;
 using Favesrus.Domain.Entity;
-using Favesrus.Server.Infrastructure.Interface;
 using Favesrus.Server.Processing;
 using Favesrus.Server.Processing.Interface;
 using Favesrus.Services;

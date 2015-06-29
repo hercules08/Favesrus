@@ -57,6 +57,7 @@
     <Compile Include="DomainObject\Page.cs" />
     <Compile Include="Entity\BaseCategory.cs" />
     <Compile Include="Entity\Category.cs" />
+    <Compile Include="Entity\FaveEvent.cs" />
     <Compile Include="Entity\FavesrusRole.cs" />
     <Compile Include="Entity\FavesrusUser.cs" />
     <Compile Include="Entity\FollowUser.cs" />

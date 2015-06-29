@@ -14,7 +14,7 @@ namespace Favesrus.API.Controllers
     public partial interface IAccountController
     {
         Task<IHttpActionResult> LoginAsync(LoginModel model);
-        Task<IHttpActionResult> LoginFacebook(LoginFacebookModel model, BaseApiController controller);
+        Task<IHttpActionResult> LoginFacebook(LoginFacebookModel model);
     }
 
     public partial class AccountController: IAccountController
@@ -28,14 +28,14 @@ namespace Favesrus.API.Controllers
         [ValidateModel]
         public async Task<IHttpActionResult> LoginAsync(LoginModel model)
         {
-            Logger.Info("Begin Login");
+            Logger.Info("Begin");
 
             string apiStatus = "login_success";
             string apiMessage = "Successfully logged in to Faves 'R' Us.";
 
             FavesrusUserModel userModel = await _accountService.LoginUserAsync(model);
 
-            Logger.Info("End Login");
+            Logger.Info("End");
 
             return new ApiActionResult<FavesrusUserModel>(apiStatus, apiMessage, userModel);
         }
@@ -46,13 +46,13 @@ namespace Favesrus.API.Controllers
         [HttpPost]
         [Route("loginfacebook")]
         [ValidateModel]
-        public async Task<IHttpActionResult> LoginFacebook(LoginFacebookModel model, BaseApiController controller)
+        public async Task<IHttpActionResult> LoginFacebook(LoginFacebookModel model)
         {
             Logger.Info(string.Format("Attempt register as: {0}|Provider key: {1}", model.Email, model.ProviderKey));
 
-            var result = await _accountService.LoginFacebookAsync(model, controller);
+            var result = await _accountService.LoginFacebookAsync(model, this);
 
-            return result as IHttpActionResult;
+            return result;
         }
 
         /// <summary>
@@ -88,8 +88,7 @@ namespace Favesrus.API.Controllers
 
                 if (addLoginResult.Succeeded)
                 {
-                    EmailService emailSender = new EmailService();
-                    emailSender.SendEmail(
+                    _emailService.SendEmail(
                         FavesrusConstants.EMAIL_ADDRESS,
                         "Faves Account Confirmed",
                         "Your Faves account has been confirmed", user.Email);

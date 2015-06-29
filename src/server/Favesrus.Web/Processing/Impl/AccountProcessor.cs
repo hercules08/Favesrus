@@ -1,16 +1,15 @@
 ﻿using Favesrus.Core;
+using Favesrus.Core.Logging;
+using Favesrus.Core.TypeMapping;
 using Favesrus.Data.Dtos;
-using Favesrus.Data.RequestModels;
 using Favesrus.Domain.Entity;
 using Favesrus.Server.Dto.FavesrusUser;
 using Favesrus.Server.Exceptions;
 using Favesrus.Server.Filters;
-using Favesrus.Server.Infrastructure.Interface;
 using Favesrus.Server.Processing.Interface;
 using Favesrus.Services;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
@@ -18,7 +17,6 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
-using FavesApi = Favesrus.Server.Controllers.WebApi;
 
 namespace Favesrus.Server.Processing.Impl
 {
@@ -27,8 +25,8 @@ namespace Favesrus.Server.Processing.Impl
         FavesrusUserManager _userManager;
         FavesrusRoleManager _roleManager;
         IAuthenticationManager _authManager;
-        IEmailService _emailer;
-        readonly IAutoMapper _mapper;
+        IEmailService _emailService;
+        IAutoMapper _mapper;
 
         public List<InvalidModelProperty> GetErrorsFromIdentityResult(IdentityResult result)
         {
@@ -49,20 +47,24 @@ namespace Favesrus.Server.Processing.Impl
         }
 
         public AcccountProcessor(
-            IEmailService emailer,
-            IAutoMapper mapper)
+            ILogManager logManager,
+            IAutoMapper mapper,
+            IEmailService emailService)
+            : base(logManager, mapper)
         {
-
+            _emailService = emailService;
         }
 
         public AcccountProcessor(
+            ILogManager logManager,
+            IAutoMapper mapper,
             FavesrusUserManager userManager,
             FavesrusRoleManager roleManager,
             IAuthenticationManager authManager,
-            IEmailService emailer,
-            IAutoMapper mapper)
+            IEmailService emailService)
+            : base(logManager, mapper)
         {
-
+            _emailService = emailService;
         }
 
         public IAuthenticationManager AuthManager
@@ -209,8 +211,7 @@ namespace Favesrus.Server.Processing.Impl
                 var result = UserManager.ResetPassword(userId, code, temporaryPassword);
                 if (result.Succeeded)
                 {
-                    EmailService emailSender = new EmailService();
-                    emailSender.SendEmail(
+                    _emailService.SendEmail(
                         FavesrusConstants.EMAIL_ADDRESS,
                         "Faves Password Reset",
                         "Your Faves account password has been reset to: " + temporaryPassword, user.Email);

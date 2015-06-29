@@ -36,8 +36,7 @@ namespace Favesrus.API.Controllers
                 var result = await _userManager.ResetPasswordAsync(userId, code, temporaryPassword);
                 if (result.Succeeded)
                 {
-                    EmailService emailSender = new EmailService();
-                    emailSender.SendEmail(
+                    _emailService.SendEmail(
                         FavesrusConstants.EMAIL_ADDRESS,
                         "Faves Password Reset",
                         "Your Faves account password has been reset to: " + temporaryPassword, user.Email);
@@ -80,8 +79,8 @@ namespace Favesrus.API.Controllers
                     userId = user.Id,
                     code = code
                 });
-            new EmailService()
-                .SendEmail(FavesrusConstants.EMAIL_ADDRESS,
+
+                _emailService.SendEmail(FavesrusConstants.EMAIL_ADDRESS,
                 "Reset Faves 'R' Us Password",
                 "Please confirm your Faves password reset by clicking <a href=\"" + callbackUrl + "\">here</a>",
                 user.Email);

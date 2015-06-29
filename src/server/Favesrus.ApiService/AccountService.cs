@@ -33,6 +33,7 @@ namespace Favesrus.ApiService
         FavesrusUserManager _userManager;
         IAuthenticationManager _authManager;
         ICommunicationService _commService;
+        IEmailService _emailService;
 
         public AccountService(
             IAutoMapper mapper,
@@ -40,19 +41,21 @@ namespace Favesrus.ApiService
             ApplicationSignInManager signInManager,
             FavesrusUserManager userManager,
             IAuthenticationManager authManager,
-            ICommunicationService commService)
+            ICommunicationService commService,
+            IEmailService emailService)
             :base(logManager,mapper)
         {
             _signInManager = signInManager;
             _userManager = userManager;
             _authManager = authManager;
             _commService = commService;
+            _emailService = emailService;
         }
         
         public async Task<FavesrusUserModel> LoginUserAsync(LoginModel model)
         {
             Logger.Info(string.Format("Find user with email: {0}", model.Email));
-            FavesrusUser user = await _userManager.FindByEmailAsync(model.Email);
+            FavesrusUser user = await _userManager.FindByNameAsync(model.Email);
 
             if(user != null)
             {
@@ -81,7 +84,8 @@ namespace Favesrus.ApiService
             {
                 string errorMessage = "Login User Model is null.";
                 Logger.Error(errorMessage);
-                throw new ApiErrorException(errorMessage, model);
+                model.Password = "*******";
+                throw new ApiErrorException(errorMessage,"unable_to_locate_user",model);
             }
         }
 
@@ -115,7 +119,7 @@ namespace Favesrus.ApiService
                         var callbackUrl = controller.Url.Link("ConfirmFacebookEmail", new { userId = user.Id, code = code, providerKey = model.ProviderKey });
                         //UserManager.SendEmail(user.Id, "Confirm Faves 'R' Us Account", "Please confirm your Faves account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                        new EmailService().SendEmail(FavesrusConstants.EMAIL_ADDRESS, "Confirm Faves 'R' Us Account", "Please confirm your Faves account by clicking <a href=\"" + callbackUrl + "\">here</a>", user.Email);
+                        _emailService.SendEmail(FavesrusConstants.EMAIL_ADDRESS, "Confirm Faves 'R' Us Account", "Please confirm your Faves account by clicking <a href=\"" + callbackUrl + "\">here</a>", user.Email);
                         return new ApiActionResult("facebook_register_email_sent",string.Format("Email sent to {0}", user.Email));
                     }
                     catch (Exception ex)
@@ -157,8 +161,7 @@ namespace Favesrus.ApiService
                         var callbackUrl = controller.Url.Link("ConfirmFacebookEmail", new { userId = user.Id, code = code, providerKey = model.ProviderKey });
                         //_userManager.SendEmail(user.Id, "Confirm Faves 'R' Us Account", "Please confirm your Faves account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                        EmailService emailSender = new EmailService();
-                        emailSender.SendEmail(FavesrusConstants.EMAIL_ADDRESS, "Confirm Faves 'R' Us Account", "Please confirm your Faves account by clicking <a href=\"" + callbackUrl + "\">here</a>", user.Email);
+                        _emailService.SendEmail(FavesrusConstants.EMAIL_ADDRESS, "Confirm Faves 'R' Us Account", "Please confirm your Faves account by clicking <a href=\"" + callbackUrl + "\">here</a>", user.Email);
                         return new ApiActionResult("facebook_register_email_sent", string.Format("Email sent to {0}", user.Email));
                     }
                     catch (Exception ex)

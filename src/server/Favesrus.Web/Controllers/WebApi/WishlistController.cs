@@ -1,4 +1,5 @@
-﻿using Favesrus.DAL;
+﻿using Favesrus.Core.TypeMapping;
+using Favesrus.DAL;
 using Favesrus.Data.RequestModels;
 using Favesrus.Domain.Entity;
 using Favesrus.Server.Exceptions;

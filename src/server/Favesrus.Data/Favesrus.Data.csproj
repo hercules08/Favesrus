@@ -43,6 +43,7 @@
     <Compile Include="Dtos\BaseCategoryModel.cs" />
     <Compile Include="Dtos\CategoryModel.cs" />
     <Compile Include="Dtos\EntityBaseModel.cs" />
+    <Compile Include="Dtos\FaveEventModel.cs" />
     <Compile Include="Dtos\FavesrusUserModel.cs" />
     <Compile Include="Dtos\FollowUserModel.cs" />
     <Compile Include="Dtos\GiftItemModel.cs" />

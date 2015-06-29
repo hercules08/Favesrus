@@ -1,5 +1,7 @@
 using System.Linq;
 using System.Web.Mvc;
+using Microsoft.Practices.Unity;
+using System.Web.Http;
 using Microsoft.Practices.Unity.Mvc;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(Favesrus.API.UnityWebActivator), "Start")]
@@ -19,6 +21,7 @@ namespace Favesrus.API
             FilterProviders.Providers.Add(new UnityFilterAttributeFilterProvider(container));
 
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
+            GlobalConfiguration.Configuration.DependencyResolver = new Unity.WebApi.UnityDependencyResolver(container);
 
             // TODO: Uncomment if you want to use PerRequestLifetimeManager
             // Microsoft.Web.Infrastructure.DynamicModuleHelper.DynamicModuleUtility.RegisterModule(typeof(UnityPerRequestHttpModule));

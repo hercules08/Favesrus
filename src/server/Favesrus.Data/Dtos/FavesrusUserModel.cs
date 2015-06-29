@@ -17,6 +17,7 @@ namespace Favesrus.Data.Dtos
         public DateTime? Birthday { get; set; }
         //public Gender Gender { get; set; }
         public string ProfilePic { get; set; }
+        public ICollection<FaveEventModel> FaveEvents { get; set; }
         public ICollection<WishListModel> WishLists { get; set; }
         public ICollection<FavesrusUserModel> FollowFromUser { get; set; }
         public ICollection<FavesrusUserModel> FollowToUser { get; set; }

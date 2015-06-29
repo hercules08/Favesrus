@@ -2,6 +2,7 @@
 using Favesrus.Core;
 using Favesrus.Core.Logging;
 using Favesrus.Core.Results.Error;
+using Favesrus.Core.TypeMapping;
 using Favesrus.Data.Dtos;
 using Favesrus.Results;
 using Favesrus.Server.Dto.FavesrusUser;
@@ -19,16 +20,17 @@ namespace Favesrus.API.Controllers
     [RoutePrefix("api/account")]
     public partial class AccountController:BaseApiController, IAccountController
     {
-
         IAccountService _accountService;
         FavesrusUserManager _userManager;
+        IEmailService _emailService;
 
-        public AccountController(ILogManager logManager, IAccountService accountService,
-            FavesrusUserManager userManager)
-            :base(logManager)
+        public AccountController(ILogManager logManager, IAutoMapper mapper, IAccountService accountService,
+            FavesrusUserManager userManager, IEmailService emailService)
+            : base(logManager, mapper)
         {
             _accountService = accountService;
             _userManager = userManager;
+            _emailService = emailService;
         }
 
         // POST api/Account/Logout
@@ -55,7 +57,5 @@ namespace Favesrus.API.Controllers
                 throw new ApiErrorException(errorMessage);
             }
         }
-
-
     }
 }

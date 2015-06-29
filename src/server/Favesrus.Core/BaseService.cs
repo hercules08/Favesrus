@@ -16,7 +16,7 @@ namespace Favesrus.Core
         ILogger _logger;
         IAutoMapper _mapper;
 
-        public BaseService(ILogManager logManager = null, IAutoMapper mapper = null)
+        public BaseService(ILogManager logManager, IAutoMapper mapper)
         {
             Logger = logManager.GetLogger();
             Mapper = mapper;

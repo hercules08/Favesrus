@@ -1,4 +1,6 @@
 ﻿using Favesrus.Core;
+using Favesrus.Core.Logging;
+using Favesrus.Core.TypeMapping;
 using Favesrus.DAL.Core;
 using Favesrus.Domain.Entity;
 using System.Linq;
@@ -20,8 +22,11 @@ namespace Favesrus.Services
         private readonly IRepository<Category> _categoryRepo = null;
 
         public CategoryService(
+            ILogManager logManager,
+            IAutoMapper mapper,
             IUnitOfWork uow,
             IRepository<Category> categoryRepo)
+            :base(logManager, mapper)
         {
             _uow = uow;
             categoryRepo = _categoryRepo;

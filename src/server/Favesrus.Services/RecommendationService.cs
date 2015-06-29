@@ -1,4 +1,6 @@
 ﻿using Favesrus.Core;
+using Favesrus.Core.Logging;
+using Favesrus.Core.TypeMapping;
 using Favesrus.DAL.Core;
 using Favesrus.Domain.Entity;
 using System;
@@ -19,8 +21,11 @@ namespace Favesrus.Services
         private readonly IRepository<Recommendation> _recommendationRepo = null;
 
         public RecommendationService(
+            ILogManager logManager,
+            IAutoMapper mapper,
             IUnitOfWork uow,
             IRepository<Recommendation> recommendationRepo)
+            :base(logManager, mapper)
         {
             _uow = uow;
             _recommendationRepo = recommendationRepo;
