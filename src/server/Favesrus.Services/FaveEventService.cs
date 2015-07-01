@@ -55,7 +55,7 @@ namespace Favesrus.Services
             
             try
             {
-                FaveEvent localFaveEvent = await _faveEventRepo.AddAsync(faveEvent);
+                await _faveEventRepo.AddAsync(faveEvent);
             }
             catch
             {

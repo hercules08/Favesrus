@@ -16,18 +16,18 @@ using System.Web.Http;
 namespace Favesrus.Server.Controllers.WebApi
 {
     //[Authorize]
-    [RoutePrefix("api/wishlist")]
-    public class WishlistController : ApiBaseController
+    [RoutePrefix("api/wishlistold")]
+    public class WishlistOldController : ApiBaseController
     {
         private FavesrusDbContext db = new FavesrusDbContext();
         private IAutoMapper _mapper;
         
-        public WishlistController(IAutoMapper mapper)
+        public WishlistOldController(IAutoMapper mapper)
         {
             _mapper = mapper;
         }
 
-        public WishlistController
+        public WishlistOldController
             (IAutoMapper mapper,
                 FavesrusUserManager userManager,
                 FavesrusRoleManager roleManager,

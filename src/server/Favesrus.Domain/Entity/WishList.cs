@@ -7,5 +7,10 @@ namespace Favesrus.Domain.Entity
     {
         public string WishListName { get; set; }
         public virtual ICollection<GiftItem> GiftItems { get; set; }
+
+        public void AddGiftItem(GiftItem foundItem)
+        {
+            GiftItems.Add(new GiftItem { Id = foundItem.Id });
+        }
     }
 }

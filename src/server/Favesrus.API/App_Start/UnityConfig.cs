@@ -50,6 +50,7 @@ namespace Favesrus.API
             container.RegisterType<IGiftItemService, GiftItemService>();
             container.RegisterType<IFaveEventService, FaveEventService>();
             container.RegisterType<ICategoryService, CategoryService>();
+            container.RegisterType<IWishListService, WishListService>();
         }
 
         private static void ConfigureIdentityOwin(IUnityContainer container)
@@ -67,9 +68,9 @@ namespace Favesrus.API
         private static void ConfigureDAL(IUnityContainer container)
         {
             container.RegisterType(typeof(IRepository<>), typeof(RepositoryBase<>));
-            container.RegisterType<IDatabaseFactory, DatabaseFactory>();
+            container.RegisterType<IDatabaseFactory, DatabaseFactory>(new ContainerControlledLifetimeManager());
             container.RegisterType<IUnitOfWork, UnitOfWork>();
-            container.RegisterType<FavesrusDbContext>();
+            container.RegisterType<FavesrusDbContext>(new ContainerControlledLifetimeManager());
         }
     }
 }

@@ -46,10 +46,10 @@ namespace Favesrus.API.Controllers
 
             var categories = _categoryService.AllCategories.ToList();
 
-            ICollection<CategoryModel> allCategories = Mapper.Map<ICollection<CategoryModel>>(categories);
+            ICollection<CategoryModel2> allCategories = Mapper.Map<ICollection<CategoryModel2>>(categories);
 
             Logger.Info("End");
-            return new ApiActionResult<ICollection<CategoryModel>>
+            return new ApiActionResult<ICollection<CategoryModel2>>
                 (apiStatus, apiMessage, allCategories);
         }
 

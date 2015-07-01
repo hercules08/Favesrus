@@ -179,6 +179,7 @@
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\FaveEventController.cs" />
     <Compile Include="Controllers\GiftItemController.cs" />
+    <Compile Include="Controllers\WishListController.cs" />
     <Compile Include="Filters\ValidateModelAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StartUp.cs" />

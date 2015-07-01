@@ -72,31 +72,37 @@ namespace Favesrus.DAL
             Recommendation recommendationGamingFigures = new Recommendation()
             {
                 CategoryName = "Interactive Gaming Figures",
+                BackgroundColor = "red"
             };
 
             Recommendation recommendationSandalsWomen = new Recommendation()
             {
                 CategoryName = "Sandals (Women)",
+                BackgroundColor = "river-blue"
             };
 
             Recommendation recommendationSmartWatch = new Recommendation()
             {
-                CategoryName = "Smart Watches"
+                CategoryName = "Smart Watches",
+                BackgroundColor = "black"
             };
 
             Category categoryElectronics = new Category()
             {
-                CategoryName = "Electronics"
+                CategoryName = "Electronics",
+                BackgroundColor = "gray"
             };
 
             Category categoryKitchen = new Category()
             {
-                CategoryName = "Kitchen"
+                CategoryName = "Kitchen",
+                BackgroundColor = "yellow"
             };
 
             Category categoryGaming = new Category()
             {
-                CategoryName = "Gaming"
+                CategoryName = "Gaming",
+                BackgroundColor = "green"
             };
 
             GiftItem giftItemMario = new GiftItem()

@@ -5,8 +5,9 @@ namespace Favesrus.Domain.Entity
 {
     public abstract class BaseCategory:EntityBase
     {
-        public virtual string CategoryName { get; set; }
+        public string CategoryName { get; set; }
         public virtual ICollection<GiftItem> GiftItems { get; set; }
-        public virtual string CategoryImage { get; set; }
+        public string CategoryImage { get; set; }
+        public string BackgroundColor { get; set; }
     }
 }

@@ -94,6 +94,7 @@
     <Compile Include="RecommendationService.cs" />
     <Compile Include="RetailerService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WishListService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

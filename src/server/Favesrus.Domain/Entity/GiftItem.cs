@@ -8,6 +8,9 @@ namespace Favesrus.Domain.Entity
     {
         public GiftItem()
         {
+            Category = new List<BaseCategory>();
+            Retailer = new List<Retailer>();
+            WishList = new List<WishList>();
         }
 
         public string ItemName { get; set; }
