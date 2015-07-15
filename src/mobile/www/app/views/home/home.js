@@ -27,6 +27,7 @@ define([
 var homeShowCounter = 0;
 var itemID, itemName, itemImageSrc, itemCategoryName;
 var cancelBtnTapped = false;
+var addProductElement = null;
 //var productResultsData = "";
 
 /*
@@ -277,6 +278,13 @@ function setProductCategoriesData() {
     
 }
 
+/*
+    Description: Set the eventlistener for the wishlist tab icon
+*/
+/*function setWishListTabIconEventListener() {
+    $().kendoTouch({
+        tap: function (evt) {
+}*/
 
 /*
     Description:
@@ -285,6 +293,8 @@ function setProductCategoriesData() {
 function homeViewInit(e) {
     console.log("home-view init");
     checkLocalCredentials();
+    //set wishlist image event listener
+    //setWishListTabIconEventListener();
     //Set Product Categories
     setProductCategoriesData();
     // Set the data for Upcoming Events
@@ -318,12 +328,26 @@ function setHomeViewProductData(webServiceResponse) {
         APP.instance.view().scroller.reset(); //reset Scroller
         //Add the touch event listener to all product add gift icons
         $.each($("#home-view .product-add"), function (index, element) {
-            element.addEventListener("touchstart", function (evt) {
-                    setSelectedItemInfo($(this).parent().prev().find(".item-name").attr("id"), $(this).parent().prev().find(".item-name").html(), $(this).parent().prev().prev().find(".item-image").attr("src"), $(this).parent().parent().next().find(".item-category").html());
-                    //$("#addItem-actionsheet").data("kendoMobileActionSheet").open();
-                    addToWishlistFrom("#home-view");
-                }, 
-            false);
+            //element.addEventListener("touchstart", function (evt) {
+            //element - touched button content > img
+            console.log($(element));
+            $(element).kendoTouch({
+                tap: function (evt) {
+                    //console.log($(this)[0].element[0]);
+                    //console.log($($(this)[0].element[0]).parent());
+                    if($($(this)[0].element[0]).find("img").attr("src") == "images/add_gift_icon.png") {
+                        setSelectedItemInfo($($(this)[0].element[0]).parent().prev().find(".item-name").attr("id"), $($(this)[0].element[0]).parent().prev().find(".item-name").html(), $($(this)[0].element[0]).parent().prev().prev().find(".item-image").attr("src"), $($(this)[0].element[0]).parent().parent().next().find(".item-category").html());
+                        $($(this)[0].element[0]).find("img").attr("src","images/my_gift_icon.png");
+                        /*addProductElement = $($(this)[0].element[0]).find("img");
+                        setInterval(function(){
+                            addProductElement.attr("src","images/add_gift_icon.png");
+                        }, 1000);*/
+                        //$("#addItem-actionsheet").data("kendoMobileActionSheet").open();
+                        addToWishlistFrom("#home-view");
+                    }
+                }//,
+            });
+            //false);
         });
     }
     else {

@@ -243,6 +243,13 @@ function loadProductDetails(data) {
 			likeProduct("thisorthat-products-details-modal", data, true);
 		}
 	});
+	//kendo.unbind("#"+e.data[i].id+"-heart-plus-icon-container");
+	kendo.destroy("#thisorthat-products-details-container #"+data.id+"-heart-icon-container");
+	$("#thisorthat-products-details-container #"+data.id+"-heart-icon-container").kendoTouch({
+		tap: function (evt) {
+			likeProduct("thisorthat-products-details-modal", data, true);
+		}
+	});
 }
 
 /*
@@ -316,8 +323,8 @@ function getViewableProductChange(e){
 			}
 		});
 		//kendo.unbind("#thisorthat-view #"+e.data[i].id+"-heart-icon");
-		kendo.destroy("#thisorthat-view #"+e.data[i].id+"-heart-icon");
-		$("#thisorthat-view #"+e.data[i].id+"-heart-icon").kendoTouch({
+		kendo.destroy("#thisorthat-view #"+e.data[i].id+"-heart-icon-container");
+		$("#thisorthat-view #"+e.data[i].id+"-heart-icon-container").kendoTouch({
 			tap: function (evt) {
 				//console.log($("#"+$(this)[0].element.context.id).parent().parent().next().attr("alt"));
 				if ($("#"+$(this)[0].element.context.id).parent().parent().next().attr("alt") === "0") {
@@ -407,20 +414,22 @@ function setTortScrollViewData(webServiceResponse) {
 	Find next row with Heart icon
 */
 function likeProduct(viewId, data, status){
-	var tempClass = "menu svg";
+	// var tempClass = "menu svg";
 	if (status === true) {
 		console.log("Likes "+data.id+" "+data.name);
-		$("#"+viewId+" #"+data.id+"-heart-icon").removeClass("hidden");
+		$("#"+viewId+" #"+data.id+"-heart-icon-container").removeClass("hidden");
+		$("#"+viewId+" #"+data.id+"-heart-icon-container svg path").addClass("fill-red");
 		$("#"+viewId+" #"+data.id+"-heart-plus-icon-container").addClass("hidden");
 		$("#"+viewId+" #"+data.id+"-heart-plus-icon-container").parent().addClass("border-red");
-		$("#"+viewId+" #"+data.id+"-likes span").attr("style", "color: red !important;");
+		//$("#"+viewId+" #"+data.id+"-likes span").attr("style", "color: red !important;");
 	}
 	else if (status === false) {
 		console.log("Dislikes "+ data.name);
-		$("#"+viewId+" #"+data.id+"-heart-icon").addClass("hidden");
+		$("#"+viewId+" #"+data.id+"-heart-icon-container").addClass("hidden");
+		$("#"+viewId+" #"+data.id+"-heart-icon-container svg path").removeClass("fill-red");
 		$("#"+viewId+" #"+data.id+"-heart-plus-icon-container").removeClass("hidden");
 		$("#"+viewId+" #"+data.id+"-heart-plus-icon-container").parent().removeClass("border-red");
-		$("#"+viewId+" #"+data.id+"-likes span").attr("style", "");
+		//$("#"+viewId+" #"+data.id+"-likes span").attr("style", "");
 	}
 }
 

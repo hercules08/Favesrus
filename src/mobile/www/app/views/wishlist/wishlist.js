@@ -196,6 +196,7 @@ function afterWishlistRetailersViewShow(e) {
     kendo.destroy(".fa-shopping-cart");
     $(".fa-shopping-cart").kendoTouch({
         tap: function (evt) {
+            var ref;
             try {
                 /*var ref = window.open('http://www.bestbuy.com/site/disney-interactive-disney-infinity-figure-sorcerers-apprentice-mickey-multi/3650039.p?id=1219092665944&skuId=3650039', '_blank', 'location=no');
                 ref.addEventListener("exit", function(){
@@ -211,7 +212,7 @@ function afterWishlistRetailersViewShow(e) {
                         alert("Are you sure?");
                     }
                 });*/
-                cordova.ThemeableBrowser.open('http://www.bestbuy.com/site/disney-interactive-disney-infinity-figure-sorcerers-apprentice-mickey-multi/3650039.p?id=1219092665944&skuId=3650039', '_blank', {
+                ref = cordova.ThemeableBrowser.open('http://www.bestbuy.com/site/disney-interactive-disney-infinity-figure-sorcerers-apprentice-mickey-multi/3650039.p?id=1219092665944&skuId=3650039', '_blank', {
                     statusbar: {
                         color: '#16a085'
                     },
@@ -236,21 +237,27 @@ function afterWishlistRetailersViewShow(e) {
                         event: 'forwardPressed'
                     },*/
                     closeButton: {
-                        wwwImage: 'images/x-icon-64.png',
-                        wwwImagePressed: 'images/x-icon-64.png',
-                        wwwImageDensity: 2,
+                        image: 'close',
+                        //wwwImagePressed: 'images/x-icon-64.png',
+                        //wwwImageDensity: 2,
                         align: 'left',
                         event: 'closePressed'
-                    }/*,
+                    },
                     customButtons: [
                         {
-                            image: 'share',
-                            imagePressed: 'share_pressed',
+                            image: 'refresh',
+                            //imagePressed: 'share_pressed',
                             align: 'right',
-                            event: 'sharePressed'
+                            event: 'refreshPressed'
+                        },
+                        {
+                            image: 'notify',
+                            //imagePressed: 'share_pressed',
+                            align: 'right',
+                            event: 'notifyPressed'
                         }
                     ],
-                    menu: {
+                    /*menu: {
                         image: 'menu',
                         imagePressed: 'menu_pressed',
                         title: 'Test',
@@ -274,6 +281,21 @@ function afterWishlistRetailersViewShow(e) {
                             "Are you sure?",    // message
                             notificationCallback,                             // callback
                             'Remove from Wishlist',                                  // title
+                            ['Yes','No']                                        // buttonName
+                        );
+                    }
+                    else {
+                        alert("Are you sure?");
+                    }
+                }).addEventListener('refreshPressed', function(e) {
+                    ref.reload();
+                }).addEventListener('notifyPressed', function(e) {
+                    ref.close();
+                    if (navigator.notification) {
+                        navigator.notification.confirm(
+                            'Send to Damola',    // message
+                            notificationCallback,                             // callback
+                            "Gift Notification",                                  // title
                             ['Yes','No']                                        // buttonName
                         );
                     }

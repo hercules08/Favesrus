@@ -84,6 +84,12 @@ a.km-button.km-state-active {
 	background-size: 100% 100% !important;
 }
 
+.km-state-active>.km-custom-wish-list {
+    background-image: url("../images/wishlist_icon_active.png");
+	-webkit-background-clip: border-box !important;
+	background-size: 100% 100% !important;
+}
+
 #addItem-actionsheet a , #tort-addItem-actionsheet a{
 	color: #16a085 !important; /*Green Sea*/
 }
@@ -357,6 +363,9 @@ pre {
 .border-red {
 	border-color: red;
 }
+.fill-red {
+	fill: red !important;
+}
 
 .border-green {
 	border-color: #16a085;
@@ -409,6 +418,11 @@ pre {
 
 .menu path, .best-price {
     fill: #7f8c8d;
+}
+
+.red path {
+	fill: red !important;
+	stroke: red !important;
 }
 
 #thisorthat-scrollview {
@@ -861,15 +875,20 @@ input.error-placeholder::-webkit-input-placeholder {
 	width: 15%;
 }
 
-.product-add, .shares-wishlist {
+.shares-wishlist {
+	/*For font icon*/
 	font-size: 3em !important;
 }
 
-.product-add {
+.product-add img {
+	width: 3em !important;
+}
+
+/*.product-add {
 	background: -webkit-linear-gradient(#e74c3c 42%, #16a085 36%);
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
-}
+}*/
 
 li a {
 	color: black !important;
@@ -970,7 +989,8 @@ li a {
 	display: table !important;
 	width: 30% !important;
 	height: 7em !important;
-	border: 2px dashed #16a085;
+	/*border: 2px dashed #16a085;*/
+	border: 1px solid rgb(213, 213, 213);
 	border-radius:5px;
 	margin: 4px !important;
 	position: relative;
